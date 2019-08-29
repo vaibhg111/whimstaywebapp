@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The Modal (background) */
+
+        .modal {
+         /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+
+        .close {
+            color: #f3eaea;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+   
+
+</head>
+
+<div class="topnav">
+    <div class="col-md-12">
+        <img class="col-md-2 col-md-offset-1 " id="logo" src="../assets/Wemaste-Logo.png">
+        <button class="col-md-2 col-md-offset-3 btn" style="height:40px;  border: 1px solid black;
+        background-color: white;">List Your Property</button>
+        <button class="col-md-2 btn" style="margin-left: 10px; width:100px;height:40px;  border: 1px solid black;
+        background-color: white; " data-reveal-id="exampleModal" >Login</button>
+        <button class="col-md-2 btn" style="margin-left: 10px; width:120px; height:40px;  border: 1px solid black;
+        background-color: white;">Sign Up</button>
+    </div>
+    <div class="col-md-12">
+        <hr style="border:0.5px solid rgb(207, 205, 205);">
+    </div>
+</div>
+<div>
+        <form action="/validatelogin" method="post">
+     <div class="modal-content" style="width: 600px; margin-top: 50px; background-color: rgb(71, 68, 68);">
+                <!-- <button class="close" onclick="closepopup()">&times;</button> -->
+                <div style="align-content: center;">
+                     <span style="margin-left: 170px; color:rgb(241, 234, 234);;">Enter your 6 digit SMS Comifmation</span>
+                    <br><br>
+                    <input type="hidden" class="form-control input-lg" id="numb" name="mobileno" maxlength="10" value="<%= data.mobileno %>" />
+
+                    <input class="inputs" type="text"  maxlength="6" style="width: 60px; height:60px;  border: 1px solid rgb(240, 228, 228);  border-radius: 3px;margin-left: 100px; padding: 10px;  font-weight: bold; text-align: center;font-size: 15px;"
+                        id="otp1" name="otpCode"/>
+                        <input class="inputs" type="text" pattern="[0-9]" maxlength="1" style="width: 60px; height:60px;  border: 1px solid rgb(240, 228, 228);  border-radius: 3px; padding: 10px; font-weight: bold; text-align: center;font-size: 15px; "
+                        id="otp1" name="fname" />
+                        <input class="inputs" type="text" pattern="[0-9]" maxlength="1" style="width: 60px; height:60px;  border: 1px solid rgb(240, 228, 228);  border-radius: 3px; padding: 10px; font-weight: bold; text-align: center;font-size: 15px;"
+                        id="otp1" name="fname" />
+                        <input class="inputs" type="text" pattern="[0-9]" maxlength="1" style="width: 60px; height:60px;  border: 1px solid rgb(240, 228, 228);  border-radius: 3px; padding: 10px; font-weight: bold; text-align: center;font-size: 15px;"
+                        id="otp1" name="fname" />
+                        <input class="inputs" type="text" pattern="[0-9]" maxlength="1" style="width: 60px; height:60px;  border: 1px solid rgb(240, 228, 228);  border-radius: 3px; padding: 10px; font-weight: bold; text-align: center;font-size: 15px;"
+                        id="otp1" name="fname" />
+                        <input class="inputs" type="text" pattern="[0-9]" maxlength="1" style="width: 60px; height:60px;  border: 1px solid rgb(240, 228, 228);  border-radius: 3px; padding: 10px; font-weight: bold; text-align: center;font-size: 15px;"
+                        id="otp1" name="fname" />
+                        <br><br>
+                    <span style="margin-left: 250px; margin-top: 100px; color:rgb(241, 234, 234);;">Resend</span>
+                    <input class="inputs" type="submit" value="submit">
+                        <br><br>
+                        <span style="margin-left: 400px; margin-top: 100px; color:rgb(241, 234, 234);;">Keep me signed in</span>
+                </div>
+    </div>
+    </form>
+    <div style="margin-left: 170px; margin-top:140px; ">
+        <button class="col-md-2 col-md-offset-3 btn" style="height:40px;  border: 1px solid black;
+background-color: white; width: 400px;">About & More</button>
+    </div>
+</div>
+
+
+<div>
+
+</div>
+
+</html>

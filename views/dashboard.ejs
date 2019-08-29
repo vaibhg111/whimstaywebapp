@@ -1,0 +1,353 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+	<meta name="author" content="Whimstay">
+	<meta name="robots" content="noindex">
+	<meta name="googlebot" content="noindex">
+	<!-- title -->
+	<title>Welcome - Whimstay Host</title>
+	<!-- favicon -->
+	<link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+
+	<!-- styles font-awesome icon -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<!-- animation -->
+	<link rel="stylesheet" href="../public/stylesheets/animate.min.css" />
+	<!-- font-awesome icon -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+		integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+	<!-- wemaste styles -->
+	<link rel="stylesheet" href="../public/stylesheets/core.css" />
+	<link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+
+
+
+</head>
+
+<body class="host-dashboard">
+
+	<!-- start header -->
+	<%- include mainMasterDashboard.ejs %>
+	<!-- start navigation -->
+
+	<!-- end header -->
+
+	<!-- start main content -->
+
+
+
+
+
+
+
+
+
+
+	<section id="getstarted" class="no-transition">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12  margin-20px-top margin-30px-bottom">
+
+
+					<h3 class="text-capitalize text-dark-blue font-weight-300">Welcome to Whimstay!</h3>
+					<input type="hidden" value="<%= data %>" id="userId">
+					<input type="hidden" value="<%= pmcId %>" id="pmc">
+					<input type="hidden" value="<%= hostUrl %>" id="hostUrl">
+					<input type="hidden" value="<%= firstName %>" id="firstName">
+				</div>
+			</div>
+
+			<div class="row">
+
+
+				<div class="col-md-8 margin-30px-bottom">
+
+					<div class="row">
+						<div class="col-md-6 text-center">
+							<img src="../public/images/wemaste-host-vacation-rentals-768x680.jpg"
+								alt="Whimstay Vacation Rental Host" title="Whimstay Vacation Rental Host" />
+
+							<!-- <a href="./newProperty"
+								class="btn btn-blue btn-rounded btn-large margin-30px-top margin-30px-bottom"
+								onclick="SessionClear()" id="addNewListingButtonId" disabled="disabled"
+								role="button">Add Your Property to Whimstay</a> -->
+							<a
+								class="btn btn-blue btn-rounded btn-large margin-30px-top margin-30px-bottom"
+								id="addNewListingButtonId" disabled="disabled"
+								role="button">Add Your Property to Whimstay</a>
+						</div>
+						<div class="col-md-6">
+							<!-- <p>Hi <%= firstName %>,</p>			 -->
+							<!-- <p> We are very excited to have you be part of our launch. We can't do this without you.</p>
+		<p>We would like to ask you to add all your short-term vacation rentals into the Whimstay Host dashboard. In return you will receive NO service fees for a whole year.*</p>
+		<p>You can import listings direct from HomeAway. You can also add properties without importing.</p>
+		<p>You only need to import or add your listings once. Whimstay will automatically use calendar sync to check your listings. Any nights not sold will be pulled 10 days out from expiration and be made available for instant booking on the Whimstay App at a 40% discount from the original price.</p>
+	
+		<p>If you have any questions, call or email Alex Alioto at (917) 517-6824, <a href="mailto:alex@wemaste.com">alex@wemaste.com</a>.</p>
+		<p>Let’s Go,</p>
+		<p>The Whimstay Team</p> -->
+							<!-- <div id="welcomeNote"></div> -->
+
+						</div>
+
+
+					</div>
+
+
+
+				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-3 margin-30px-bottom">
+
+					<div class="sidebar-box">
+						<h5 class="text-capitalize text-dark-blue font-weight-300">Share the Love</h5>
+						<p>Help us grow by telling your friends about Whimstay.</p>
+						<button type="button" id="shareMail" class="btn btn-blue btn-rounded btn-large width-100"
+							data-toggle="modal" data-target="#myModal-Share">Share</button>
+					</div>
+
+					<div class="sidebar-box">
+						<h5 class="text-capitalize text-dark-blue font-weight-300">Follow Us</h5>
+						<div class="sidebar-social-icon">
+							<a href="https://www.facebook.com/whimstay" class="facebook-bg-hvr" target="_blank"><i
+									class="fab fa-facebook-f"></i></a>
+							<a href="https://www.instagram.com/whimstay" class="instagram-bg-hvr" target="_blank"><i
+									class="fab fa-instagram"></i></a>
+							<a href="https://www.linkedin.com/company/whimstay" class="linkedin-bg-hvr"
+								target="_blank"><i class="fab fa-linkedin-in"></i></a>
+
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+
+
+		</div>
+	</section>
+	<!--end main content -->
+
+	<!-- start share with a host lightbox-->
+	<!-- Modal -->
+	<div id="myModal-Share" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<!--<h4 class="modal-title">Modal Header</h4>-->
+				</div>
+				<div class="modal-body">
+
+
+					<form action="/">
+						<div class="form-group">
+							<label for="shareTo">To: <span class="text-extra-small">(seperate with a
+									comma)</span></label> <input type="email" class="form-control" id="shareTo"
+								name="shareTo" onkeypress="validateInput()" maxlength="5000"
+								placeholder="Enter Emails... ">
+							<span id="mail1" style="color:red;"></span>
+						</div>
+						<div class="form-group">
+							<label for="shareSubject">Subject:</label>
+							<input type="text" class="form-control" id="shareSubject" onkeypress="validateInput()"
+								maxlength="500" name="shareSubject" Value="Have You Seen Whimstay Yet">
+							<span id="subject" style="color:red;"></span>
+						</div>
+						<div class="form-group">
+							<label for="shareMessage">Message:</label>
+							<div class="form-control margin-10px-bottom" contenteditable="true" id="shareMessage"
+								maxlength="2000" name="shareMessage">
+								<span id="message" style="color:red;"></span>
+							</div>
+						</div>
+
+						<button type="submit" class="btn btn-blue btn-rounded btn-large width-100" id="emailSent"
+							data-toggle="modal" data-target="#Share_model" data-dismiss="modal">Send</button>
+					</form>
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!-- end share with a host lightbox-->
+
+
+	<div class="alert alert-success" id="success-alert" style="display:none"> Success Message</div>
+
+
+	<!-- Modal start -->
+
+	<div id="Share_model" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: pink;">
+					<span class="modal-title"></span>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p id="message-body"></p>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
+
+	<!-- Modal -->
+	<div id="welcomeModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>Hi <%= firstName %>,</p>
+					<p>Congratulations! You are now registered to be a Whimstay Host.</p>
+					<p>If you use Escapia, V12, or Streamline as your property management system, we’re fully integrated
+						with them, which makes it very easy to get all your properties onto Whimstay. It takes less than
+						one hour, even if you have hundreds or thousands of properties. Please contact our Property
+						Manager On-boarding Team at (925) 464-1938 or <a
+							href="mailto:alex@whimstay.com">host@whimstay.com </a>
+						to make that happen.</p>
+					<p>If you will be manually adding your properties to Whimstay, click the “Add Your Properties to
+						Whimstay ” button to get started.</p>
+					<p>You only need to integrate or add your properties once. Whimstay will automatically use a
+						calendar integration to check your property availability. Properties with any nights still
+						available 10 days out from expiration will be made available for instant booking on the Whimstay
+						App at the discount percentage that you set.</p>
+					<p>We are excited to bring spontaneous, respectful travelers to your properties!</p>
+					<p>The Whimstay Team</p>
+					<button class="btn btn-blue btn-rounded btn-large width-100" data-dismiss="modal">Continue</button>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!-- end share with a Discount lightbox-->
+
+	<!-- start share with a taxes next lightbox-->
+
+	<a class="btn" id="welcomeToggle" data-toggle="modal" href="#welcomeModal" style="display:none;">Launch Modal</a>
+	<script>
+		$(window).on('load', function () {
+			var hostUrl = document.getElementById('hostUrl').value;
+			var currentUrl = $(location).attr('href');
+			console.log(currentUrl);
+			if (currentUrl === (hostUrl + 'welcomeUser')) {
+				$("#welcomeToggle")[0].click();
+			} else { }
+		});
+
+		function validateInput() {
+			$('#mail1').empty();
+			$('#subject').empty();
+		}
+	</script>
+
+
+	<!--footer Start-->
+	<footer class="bg-dark-blue padding-30px-tb text-center">
+		<div class="footer-widget-area">
+			<div class="container">
+				<div class="row">
+					<div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+						<a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+							href="https://www.facebook.com/whimstay" target="_blank"><i
+								class="fab fa-facebook-f"></i><span></span></a>
+						<a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s"
+							href="https://www.instagram.com/whimstay" target="_blank"><i
+								class="fab fa-instagram"></i><span></span></a>
+						<a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+							href="https://www.linkedin.com/company/whimstay" target="_blank"><i
+								class="fab fa-linkedin-in"></i><span></span></a>
+
+					</div>
+				</div>
+
+
+				<p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights
+					Reserved.</p>
+				<p class="text-white"><a href="./terms_privacy">Terms & Privacy</a> </p>
+			</div>
+		</div>
+
+	</footer>
+
+
+	<!-- end footer -->
+	<!-- javascript libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+
+	<!-- setting -->
+	<script src="../public/javascripts/global.js"></script>
+	<script src="../public/javascripts/validate.js"></script>
+	<script src="../public/javascripts/shareTheLoveApi.js"></script>
+
+	<script>
+		var baseUrl = globalUrl;
+		var userId = document.getElementById("userId").value;
+		$('#addNewListingButtonId').click(function () {
+			$.ajax({
+				url: baseUrl + 'v1/user/' + userId + '/pullPropertyProgressStatus',
+				type: 'GET',
+				dataType: "json",
+				'headers': {
+					Authorization: localStorage.getItem('token') || '',
+				},
+				success: function (result, textStatus, xhr) {
+					// console.log(result);
+					// console.log(result)
+					sessionStorage.setItem("isButtonDesable", result);
+				}
+			});
+
+		});
+	</script>
+	<script>
+		function SessionClear() {
+
+			//console.log(sessionStorage.getItem("userId"));
+
+			var userid = document.getElementById("userId").value;
+			userId.value = document.getElementById("userId").value;
+			sessionStorage.clear();
+			document.getElementById("userId").value = userid;
+
+			sessionStorage.setItem("propertyId", 0);
+			sessionStorage.setItem("userId", userid);
+
+			sessionStorage.setItem("isEditableFlag", false);
+			sessionStorage.setItem("isAddFlag", true);
+			sessionStorage.setItem("isBackFlag", false);
+
+		}
+
+
+	</script>
+
+</body>
+
+</html>

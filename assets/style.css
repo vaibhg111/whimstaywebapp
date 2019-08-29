@@ -1,0 +1,618 @@
+
+body {
+    font-family: ITC Lubalin Graph Std;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    height: 163.4px;
+    margin-top: 40px;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .topnav a:not(:first-child) {display: none;}
+    .topnav a.icon {
+      float: right;
+      display: block;
+    }
+  }
+  
+  @media screen and (max-width: 700px) {
+    .topnav.responsive {position: relative;}
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+  }
+  #book{
+      font-size: 26px;
+      line-height: 46px;
+      letter-spacing: -0.41px;
+      color: #404040;
+      margin-top: -20px;
+  }
+
+
+  #phone{
+      height: 55px;
+      width: 597.6px;
+      background-color: #010A15;
+      color: #f2f2f2;
+      margin-top: 10px;
+  
+     
+  }
+  #send{
+  height: 55px;
+  width: 597.6px;
+  background-color: #f2f2f2;
+  color: #010A15;
+  margin-top: 10px;
+  }
+  #help{
+    width: 125px;
+    height: 55px;
+    font-size: 18px;
+    line-height: 25px;
+    border: 1px solid black;
+    background-color: white;
+  }
+  #para{
+      font-size: 21px;
+      color: #404040;
+      line-height: 25px;
+      letter-spacing: -0.41px;
+      opacity: 0.5;
+      margin-top: 10px;
+  }
+  #owners{
+    margin-top: 80px;
+    height: 55px;
+    width: 597.6px;
+    color:#404040;
+    font-size: 21px;
+    letter-spacing: -0.41px;
+    line-height: 25px; 
+    border: 1px solid black;
+    background-color: white;
+  }
+#list{
+    width: 282px;
+    height: 55px;
+    font-size: 21px;
+    line-height: 25px;
+    border: 1px solid black;
+    background-color: white;
+}
+#login{
+    width: 282px;
+    height: 55px;
+    font-size: 21px;
+    line-height: 25px; 
+    border: 1px solid black;
+    background-color: white;
+    margin-left: 30px;
+}
+#account{
+  width: 583.24px;
+    height: 57.6px;
+    Font : Akkurat Pro;
+    font-size: 36px;
+    text-align: center;
+}  
+#google{
+  height: 55px;
+  width: 597.6px;
+  background-color: #010A15;
+  color: #f2f2f2;
+  margin-top: 50px;
+  }
+
+#lastcontent{
+  font-family: Regular Pro;
+  Font-Size: 15px;
+  Line-Height: 27px;
+  align-content: Center;
+  letter-spacing: -0.41px;
+}
+#property{
+    width: 282px;
+    height: 55px;
+    font-size: 18px;
+    line-height: 25px; 
+    border: 1px solid black;
+    background-color: white;
+}
+.host{
+  margin-left: 30px;
+}
+    @media only screen and (min-width:1100px) and (max-width:1300px) {
+      #list{
+          width: 200px;
+          height: 50px;
+          font-size: 18px;
+          line-height: 15px; 
+      }
+      #help{
+        width: 125px;
+        height: 50px;
+        font-size: 18px;
+        line-height: 15px; 
+    }
+
+      #login{
+        width: 200px;
+        height: 50px;
+        font-size: 18px;
+        line-height: 15px; 
+    }
+
+      #book {
+        font-size: 20px;
+        line-height: 25px;
+      }
+
+      #phone {
+        width: 560px;
+      }
+      #send
+      {
+        width: 530px;
+      }
+      #para{
+        margin-top: 10px;
+        font-size: 15px;
+        color: #404040;
+        line-height: 25px;
+        opacity: 0.5;
+    }
+    #lastcontent{
+      font-family: Regular Pro;
+      Font-Size: 14px;
+      Line-Height: 20px;
+      align-content: Center;
+      letter-spacing: -0.40px;
+    }
+  
+    #owners{
+      width: 530px;
+    }
+
+    } 
+
+    @media only screen and (min-width:800px) and (max-width:1100px) {
+
+      #phone {
+        width: 460px;
+      }
+    }
+
+    @media only screen and (min-width:500px) and (max-width:800px) {
+
+      #list{
+        width: 170px;
+        height: 40px;
+        font-size: 18px;
+        line-height: 15px; 
+        margin-left: 130px;
+        margin-top: -20px;
+    }
+    #help{
+      width: 100px;
+        height: 40px;
+        font-size: 18px;
+        line-height: 15px; 
+        margin-left: 150px;
+        margin-top: -20px;
+        }
+    #login{
+      width: 150px;
+      height: 40px;
+      font-size: 18px;
+      line-height: 15px; 
+      margin-top: -20px;
+  }
+
+    #book {
+      font-size: 20px;
+      line-height: 25px;
+    }
+    #lastcontent{
+      font-family: Regular Pro;
+      Font-Size: 15px;
+      Line-Height: 27px;
+      align-content: Center;
+      letter-spacing: -0.41px;
+    }
+
+    #phone {
+      width: 450px;
+    }
+    #send {
+      width: 450px;
+    }
+
+    #para{
+      font-size: 17px;
+    }
+
+    #owners{
+      width: 450px;
+    }
+  }
+
+     @media only screen and (min-width:250px) and (max-width:400px) {
+      #logo{
+         display: block;
+         margin-left: auto;
+         margin-right: auto;
+         width: 40%;
+      }
+      #list{
+        width: 150px;
+        height: 30px;
+        font-size: 16px;
+        line-height: 15px; 
+    }
+    #help{
+      width: 70px;
+      height: 30px;
+      font-size: 16px;
+      margin-left:45px;
+      line-height: 15px; 
+  }
+
+    #login{
+      width: 85px;
+      height: 30px;
+      font-size: 16px;
+      line-height: 15px; 
+  }
+  #lastcontent{
+    font-family: Regular Pro;
+    Font-Size: 12px;
+    Line-Height: 20px;
+    align-content: Center;
+    letter-spacing: -0.90px;
+  }
+
+    #book {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    #phone {
+      width: 250px;
+    }
+    #send {
+      width: 250px;
+    }
+    #para{
+      margin-top: 10px;
+      font-size: 18px;
+    }
+    #owners{
+      width: 250px;
+    }
+     ::placeholder {
+        font-size: 13px; /* Firefox */
+     }
+     
+     :-ms-input-placeholder { /* Internet Explorer 10-11 */
+       font-size: 13px;
+     }
+     
+     ::-ms-input-placeholder { /* Microsoft Edge */
+       font-size: 13px;
+     }
+
+     } 
+
+     @media only screen and (min-width:400px) and (max-width:500px) {
+      #logo{
+         display: block;
+         margin-left: auto;
+         margin-right: auto;
+         width: 40%;
+      }
+      #list{
+        width: 150px;
+        height: 30px;
+        font-size: 16px;
+        line-height: 15px; 
+        margin-left: 80px;
+    }
+    #lastcontent{
+      font-family: Regular Pro;
+      Font-Size: 12px;
+      Line-Height: 27px;
+      align-content: Center;
+      letter-spacing: -0.41px;
+    }
+    #help{
+      width: 70px;
+      height: 30px;
+      font-size: 16px;
+      line-height: 15px;
+      margin-left: 120px;
+  }
+
+    #login{
+      width: 85px;
+      height: 30px;
+      font-size: 16px;
+      line-height: 15px;
+  }
+
+    #book {
+      font-size: 21px;
+      line-height: 20px;
+    }
+  
+
+    #phone {
+      width: 320px;
+    }
+    #send{
+      width: 320px;
+    }
+
+    #para{
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    #owners{
+      width: 320px;
+    }
+
+    ::placeholder {
+      font-size: 14px; /* Firefox */
+   }
+   
+   :-ms-input-placeholder { /* Internet Explorer 10-11 */
+     font-size: 14px;
+   }
+   
+   ::-ms-input-placeholder { /* Microsoft Edge */
+     font-size: 14px;
+   }
+     }  
+
+   #logo{
+     width: 200px;
+     margin-bottom: 30px;
+   }
+   #footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: auto;
+}
+#first{
+  opacity: 0.5;
+}
+
+@media only screen and (min-width:500px) and (max-width:800px) {
+  .form-group{
+    width: 70%;
+    margin-left: 100px;
+  }
+  ::placeholder {
+   font-size: 14px; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  font-size: 14px;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  font-size: 14px;
+  }
+}
+
+#play{
+  background:none;
+  border:none;
+  padding:0;
+  outline:none;
+  float: right;
+  margin-top: -30px;
+  margin-right: 20px;
+}
+
+#home{
+  width: 110px;
+  height: 45px;
+  font-size: 18px;
+  line-height: 25px;
+  border: 1px solid black;
+  color: white;
+}
+#listings{
+  width: 110px;
+  height: 40px;
+  font-size: 18px;
+  line-height: 25px;
+  color: #01364D;
+  border: 1px solid black;
+  background-color: white;
+  margin-left: 0px;
+}
+.navbar-inverse .navbar-nav>li>a,.navbar-inverse .navbar-brand,.navbar-inverse .navbar-nav>.dropdown>a .caret
+{
+    color: #01364D;
+}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-nav>li>.dropdown-menu
+{
+    background: #01364D;
+}
+td {
+    padding-top: 20px !important;
+    font-size: 18px;
+}
+#top-nav{
+  height: 70px;
+  background-color: #01364D;
+  color: white;
+  font-size: 26px;
+  margin-top: 0px;
+}
+#newListing{
+    width: 170px;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+    background-color: #01364D;
+    line-height: 25px; 
+    border: 1px solid black;
+    margin-left: 20px;
+}
+@media only screen and (min-width:800px) and (max-width:1100px) {
+  #home{
+    width: 90px;
+    font-size: 16px;
+  }
+  #listings{
+    width: 90px;
+    font-size: 16px;
+  }
+  #account{
+    width: 150px;
+    height: 45px;
+    font-size: 16px;
+  }
+  #newListing{
+    width: 150px;
+    font-size: 16px;
+  } 
+  #polo{
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width:250px) and (max-width:400px) {
+  #home{
+    width: 80px;
+    font-size: 14px;
+  }
+  #listings{
+    width: 75px;
+    font-size: 13px;
+    margin-left: 0px;
+  }
+
+  #newListing{
+    width: 130px;
+    font-size: 13px;
+  } 
+  #polo{
+    font-size: 18px;
+  }
+  #top-nav{
+    margin-top: 40px;
+  }
+  .list{
+    margin-top: 5px;
+  }
+}
+@media only screen and (min-width:400px) and (max-width:500px) {
+  #home{
+    width: 80px;
+    font-size: 14px;
+  }
+  #listings{
+    width: 80px;
+    font-size: 14px;
+    margin-left: 0px;
+  }
+  #account{
+    width: 80px;
+    height: 45px;
+    font-size: 14px;
+    margin-left: -1PX;
+  }
+  #newListing{
+    width: 150px;
+    font-size: 14px;
+  } 
+  #polo{
+    font-size: 18px;
+  }
+  #top-nav{
+    margin-top: 0px;
+  }
+  .list{
+    margin-top: 5px;
+  }
+}
+@media only screen and (min-width:500px) and (max-width:800px) {
+  #home{
+    width: 80px;
+    font-size: 14px;
+    margin-left: 30px;
+  }
+  #listings{
+    width: 80px;
+    font-size: 14px;
+    margin-left: 0px;
+  }
+  #account{
+    width: 120px;
+    height: 45px;
+    font-size: 14px;
+    margin-left: 0PX;
+  }
+  #newListing{
+    width: 150px;
+    font-size: 14px;
+  } 
+  #polo{
+    font-size: 18px;
+  }
+  #top-nav{
+    margin-top: -30px;
+  }
+  .list{
+    margin-top: 5px;
+  }
+}
+
+#submit{
+  background-color: #01364D;
+  color:white;
+  font-size: 18px;
+  Line-Height: 25px;
+}
+
+li{
+  margin: 10px 15px;
+  font-size: 18px;
+}
+.navbar-default {
+  background-color: white;
+  border-top-color: white;
+  border-bottom-color: #FC97B9;
+  
+}
+.dropdown-menu li a{
+  color: white;
+}
+.navbar-default .navbar-nav>li>a {
+  color: #01364D;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+  background-color: white;
+}
+
+.navbar-default .navbar-toggle {
+  margin-top: 30px;
+}

@@ -1,0 +1,375 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+	<meta name="author" content="Wemastè">
+	<meta name="robots" content="noindex">
+	<meta name="googlebot" content="noindex">
+	<!-- title -->
+	<title>Add Listing - Whimstay Host</title>
+	<!-- favicon -->
+	<link rel="icon" href="../public/images/favicon.png">
+
+	<!-- styles font-awesome icon -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<!-- animation -->
+	<link rel="stylesheet" href="css/animate.min.css" />
+	<!-- font-awesome icon -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	 crossorigin="anonymous">
+
+	<!-- wemaste styles -->
+	<link rel="stylesheet" href="../public/stylesheets/core.css" />
+	<link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+
+
+</head>
+<style>
+	.ajax_loader {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		background: rgba(0, 0, 0, .1);
+	}
+
+	.ajax_loader i {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+	}
+</style>
+
+<body class="host-dashboard">
+
+	<!-- start header -->
+	<%- include mainMasterDashboard.ejs %>
+		<!-- end header -->
+
+		<div class="ajax_loader" style="display:none;" id="spinner" data-backdrop="static" data-keyboard="false">
+			<div id="ajax_loader">
+				<!-- <img src="../public/images/spinner.gif" style="display: block; margin-left: auto; margin-right: auto;"> -->
+				<i id="img-spinner" class="fa fa-spinner fa-spin" alt="Loading" style="font-size:50px;color: #FC97B9"></i>
+			</div>
+		</div>
+
+
+		<!-- start main content -->
+		<section id="getstarted" class="no-transition">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12  margin-20px-top margin-30px-bottom">
+
+
+						<h3 class="text-capitalize text-dark-blue font-weight-300">Add New Listing</h3>
+
+
+					</div>
+				</div>
+
+				<div class="row">
+
+
+					<div class="col-md-8 addlisting">
+
+						<h6 class="text-blue">How would you like to add a listing?</h6>
+
+						<div class="row text-center">
+							<div class="col-md-4 col-sm-6 ">
+								<a href="./newListings" id="isAdd" onclick="SessionClear()"><img src="../public/images/create-a-listing.jpg" alt="Create a new listing"
+									 title="Create a new listing"></a>
+								<a href="./newListings" id="isAdd" onclick="SessionClear()" class="btn btn-blue btn-rounded btn-large width-100" role="button">Create
+									a new listing</a>
+								<input type="hidden" value="<%= data %>" id="userId">
+								<input type="hidden" value="<%= stKey %>" id="stcode">
+								<input type="hidden" value="<%= firstName %>" id="firstName">
+							</div>
+							<div class="col-md-4 col-sm-6">
+									<!-- for image -->
+									<!-- <input type="hidden"  id="homeawyClientId"> -->
+									<a href="https://ws.homeaway.com/oauth/authorize?client_id=d48055a8-5364-458c-ab0c-0e8a4d8f7fb3"> 
+										<!-- <a  onclick="location.href='https://ws.homeaway.com/oauth/authorize?client_id='+document.getElementById('homeawyClientId').value"> -->
+										<img src="../public/images/import-homeaway.jpg" alt="HomeAway Access" title="HomeAway Access"></a>
+									<!-- access button Generating Code-->
+									<a href="https://ws.homeaway.com/oauth/authorize?client_id=d48055a8-5364-458c-ab0c-0e8a4d8f7fb3">
+										<button id="accessBtn" type="button" class="btn btn-blue btn-rounded btn-large width-100">HomeAway Access</button></a>
+									<!-- import button -->
+									<div id="importBtn" style="display: none">
+										<button type="button" id="homeawayLogin" class="btn btn-blue btn-rounded btn-large width-100">Import Property</button>
+									</div>
+									<!-- onclick="ImportProperty();" -->
+								</div>
+
+						</div>
+
+
+					</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-3 margin-30px-bottom">
+
+						<div class="sidebar-box">
+							<h5 class="text-capitalize text-dark-blue font-weight-300">Share the Love</h5>
+							<p>Help us grow by telling your host friends about Whimstay.</p>
+							<button type="button" id="shareMail" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-target="#myModal-Share">Share</button>
+						</div>
+
+						<div class="sidebar-box">
+							<h5 class="text-capitalize text-dark-blue font-weight-300">Follow Us</h5>
+							<div class="sidebar-social-icon">
+								<a href="https://facebook.com/wemastevacation" class="facebook-bg-hvr" target="_blank"><i class="fab fa-facebook-f"></i></a>
+								<a href="https://www.instagram.com/wemaste/" class="instagram-bg-hvr" target="_blank"><i class="fab fa-instagram"></i></a>
+								<a href="https://linkedin.com/company/wemaste" class="linkedin-bg-hvr" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+			</div>
+		</section>
+		<!--end main content -->
+
+<!-- Modal start -->
+
+<div id="Share_model" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: pink;">
+				<span class="modal-title">Message</span>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p id="message-body"></p>
+			</div>
+			<div class="modal-footer">
+				<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal End -->
+
+
+
+<!-- Modal start -->
+
+<div id="HomeAway-modal" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: pink;">
+				<span class="modal-title">Message</span>
+				<button type="button" class="close" id="homeawayModelClose" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p id="msges-body"></p>
+			</div>
+			<div class="modal-footer">
+				<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+				<button type="button" class="btn btn-secondary" id="homeawayClose">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal End -->
+
+
+		<!-- start share with a host lightbox-->
+		<!-- Modal -->
+		<div id="myModal-Share" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<!--<h4 class="modal-title">Modal Header</h4>-->
+					</div>
+					<div class="modal-body">
+
+
+						<form action="/">
+							<div class="form-group">
+								<label for="shareTo">To: <span class="text-extra-small">(seperate with a comma)</span></label> <input type="email"
+								 class="form-control" id="shareTo" name="shareTo" maxlength="5000" placeholder="Enter Emails... ">
+								 <span id="mail1" style="color:red;"></span>
+								</div>
+							<div class="form-group">
+								<label for="shareSubject">Subject:</label> <input type="text" class="form-control" id="shareSubject" maxlength="500" name="shareSubject"
+								 Value="Have You Seen Whimstay Yet">
+								 <span id="subject" style="color:red;"></span>
+								</div>
+							<div class="form-group">
+								<label for="shareMessage">Message:</label>
+								<div class="form-control margin-10px-bottom" contenteditable="true" maxlength="2000" id="shareMessage" name="shareMessage">
+								<span id="message" style="color:red;"></span>
+								</div>
+							</div>
+
+							<button type="submit" class="btn btn-blue btn-rounded btn-large width-100" id="emailSent" data-toggle="modal" data-target="#Share_model" data-dismiss="modal">Send</button>
+						</form>
+
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- end share with a host lightbox-->
+
+		<!-- start Login form lightbox-->
+		<!-- Modal -->
+		<div id="login-model" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<!--<h4 class="modal-title">Modal Header</h4>-->
+					</div>
+					<div class="modal-body">
+						<form action="#" method="POST">
+							<div class="form-group">
+								<!-- <a href="https://ws.homeaway.com/oauth/authorize?client_id=d48055a8-5364-458c-ab0c-0e8a4d8f7fb3" target="blank"><button type="button" class="btn btn-blue btn-rounded btn-large width-100">Generate ST Code</button><br/><br/></a> -->
+								<h3 class="text-medium text-dark-blue font-weight-300 no-margin-bottom">HomeAway Access for Import</h3>
+								<p class="text-small">Please enter your HomeAway credentials in order for Whimstay to auto pull your listing from
+									HomeAway.
+								</p>
+								<!-- <input type="text" class="form-control" id="stcode" name="emailId" placeholder="Please Enter your ST Code..."> -->
+								<input type="text" value="<%= stKey %>" id="stcode">
+								<span id="stcode1" style="color:red;"></span>
+								<!-- <input type="password" class="form-control" id="password" name="password" placeholder="Password...">
+                                <span id="num" style="color:red;"></span>
+                                 -->
+							</div>
+
+							<button type="button" id="homeawayLogin44" class="btn btn-blue btn-rounded btn-large width-100">Import Property</button>
+
+						</form>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- end Login form lightbox-->
+
+
+		<!--footer Start-->
+		<footer class="bg-dark-blue padding-30px-tb text-center">
+			<div class="footer-widget-area">
+				<div class="container">
+					<div class="row">
+						<div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+							<a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s" href="https://facebook.com/wemastevacation"
+							 target="_blank"><i class="fab fa-facebook-f"></i><span></span></a>
+							<a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s" href="https://www.instagram.com/wemaste/"
+							 target="_blank"><i class="fab fa-instagram"></i><span></span></a>
+							<a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s" href="https://linkedin.com/company/wemaste"
+							 target="_blank"><i class="fab fa-linkedin-in"></i><span></span></a>
+
+						</div>
+					</div>
+
+
+					<p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All rights reserved.</p>
+					<p class="text-white"><a href="./terms_privacy">Terms & Privacy</a> </p>
+				</div>
+			</div>
+
+		</footer>
+		<!-- end footer -->
+		<!-- javascript libraries -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    	<script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+
+		
+		<!-- setting -->
+		<!-- <script src="../public/javascripts/main.js"></script> -->
+		<script src="../public/javascripts/global.js"></script>
+		<script src="../public/javascripts/shareTheLoveApi.js"></script>
+		<script src="../public/javascripts/homeawayApi.js"></script>
+
+	
+		<script>
+			function SessionClear() {
+			
+				//console.log(sessionStorage.getItem("userId"));
+				var userid = document.getElementById("userId").value;
+				userId.value = document.getElementById("userId").value;
+				sessionStorage.clear();
+				document.getElementById("userId").value = userid;
+
+				sessionStorage.setItem("propertyId", 0);
+				sessionStorage.setItem("userId", userid);
+
+				sessionStorage.setItem("isEditableFlag",false);
+				sessionStorage.setItem("isAddFlag",true);
+				sessionStorage.setItem("isBackFlag", false);
+
+				
+				sessionStorage.removeItem("my_select");
+				
+				
+				
+			}
+		</script>
+		<script>
+			$(document).ready(function () {
+					var data = document.getElementById("stcode").value;
+					// console.log("data"+data);
+					if (data == "undefined" || data == '') {
+						// console.log("defined");
+						$("#accessBtn").show();
+						$("#importBtn").hide();
+
+					} else {
+						document.getElementById("msges-body").innerHTML = "Excellent! now click on Import Property button which is given below";
+						$('#HomeAway-modal').show();
+						//console.log("Grant Aceess Successfully ! Now click on Import Property");
+						$("#accessBtn").hide();
+						$("#importBtn").show();
+
+					}
+					var checkButton = sessionStorage.getItem("isButtonDesable");
+           
+					// var clientId = sessionStorage.getItem("client_id");
+					//  document.getElementById("homeawyClientId").value=clientId;
+					
+					if (checkButton == "true") {
+						document.getElementById("accessBtn").disabled = true;
+						document.getElementById("homeawayLogin").disabled = true;
+					} else if (checkButton == "false"){
+						
+						document.getElementById("accessBtn").disabled = false;
+						document.getElementById("homeawayLogin").disabled = false;
+					}
+				});
+				$('#homeawayModelClose').click(function () {
+					$('#HomeAway-modal').hide();
+				});
+				$('#homeawayClose').click(function () {
+					$('#HomeAway-modal').hide();
+				});
+		</script>
+</body>
+
+</html>

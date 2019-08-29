@@ -1,0 +1,524 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+	<meta name="author" content="Wemastè">
+	<meta name="robots" content="noindex">
+	<meta name="googlebot" content="noindex">
+	<!-- title -->
+	<title>Preview - Whimstay Host</title>
+	<!-- favicon -->
+	<link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+	<link rel="stylesheet" href="font-awesome.min.css">
+	<script src="//code.jquery.com/jquery.min.js"></script>
+	<script src="slider.js"></script>
+
+	<!-- styles font-awesome icon -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<!-- animation -->
+	<link rel="stylesheet" href="css/animate.min.css" />
+	<!-- font-awesome icon -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	 crossorigin="anonymous">
+
+	<!-- wemaste styles -->
+	<link rel="stylesheet" href="../public/stylesheets/core.css" />
+	<link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+	<style>
+		/* .current {
+			color: green;
+		} */
+
+		#pagin li {
+			display: inline-block;
+		}
+
+		img {
+			text-indent: 100vw;
+		}
+
+		.fas {
+			color: #01364D;
+		}
+
+		.fa {
+			color: #01364D;
+		}
+
+		.panel-heading {
+			color: #01364D !important;
+		}
+
+		label {
+			color: #01364D;
+		}
+
+		.AmenitiesColumn {
+			-webkit-column-count: 3;
+			-moz-column-count: 3;
+			column-count: 3;
+		}
+	</style>
+	<script>
+
+		$(document).ready(function () {
+			var url = document.getElementById("globalUrl").value;
+			var userId = document.getElementById("userId").value;
+			var pmcId = document.getElementById("pmcId").value;
+
+			$.ajax({
+
+				type: "GET",
+				dataType: "json", 'headers': { Authorization: localStorage.getItem('token') || '', },
+				url: url + 'property/user/0/pmcId/'+ pmcId +'/pmsUnitId/' + sessionStorage.getItem("Preview_ID"),
+
+				success: function (result) {
+					//console.log(JSON.stringify(result));
+					if (result.property.propertyName == undefined || result.property.propertyName == "" || result.property.propertyName == null) {
+						result.property.propertyName = "Untitled Property";
+					} else {
+						result.property.propertyName = result.property.propertyName;
+					}
+
+					if (result.property.propertyDesc == undefined || result.property.propertyDesc == "" || result.property.propertyDesc == null) {
+						result.property.propertyDesc = "";
+					} else {
+						result.property.propertyDesc = result.property.propertyDesc;
+					}
+
+					if (result.property.noOfBedroom == "999") {
+						result.property.noOfBedroom = "0";
+					} else {
+						result.property.noOfBedroom = result.property.noOfBedroom;
+					}
+
+					//----------------------------------------------Image Display ----------------------------------------------------------------
+
+					var trHTMLProp = '';
+					var trHTML = '';
+					var propertyAccessType;
+					var imageList = result.hostPropertyAttachment;
+					if (JSON.stringify(imageList) == '[]') {
+
+					} else {
+
+						for (var i = 0; i < imageList.length; i++) {
+
+							$('<div class="item"><img src="' + imageList[i].imageFullUrl + '" style="width:100%;  height:555px;"><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
+							$('<li data-target="#carousel-generic" data-slide-to="' + i + '"></li>').appendTo('.carousel-indicators')
+
+						}
+						$('#carousel_display').append('<a class="left carousel-control" href="#carousel-generic" data-slide="prev">' +
+							'<span class="glyphicon glyphicon-chevron-left"></span>' +
+							'</a><a class="right carousel-control" href="#carousel-generic" data-slide="next">' +
+							'<span class="glyphicon glyphicon-chevron-right"></span> </a>')
+
+					}
+
+					$('.item').first().addClass('active');
+					$('.carousel-indicators > li').first().addClass('active');
+					$('#carousel-generic').carousel();
+
+					//------------------------------------------------------Property Details--------------------------------------------------------------
+					if(result.property.propertyAccessType == null){
+						propertyAccessType = '';
+					}else{
+						propertyAccessType = result.property.propertyAccessType;
+					}
+					trHTMLProp += '<label style="margin-left:15px;font: bold;font-size: 16px;font-weight: 700; ">' + propertyAccessType + '</label><br/><label style="margin-left:15px;font: bold;font-size: 16px;font-weight: 700; ">' + result.property.propertyName + '</label><br/><br/>'
+					
+					if (result.property.maxNoGuest == 1) {
+						trHTMLProp += '<div class="row"><div class="col-sm-4"><label style="margin-left:15px;font: bold;font-size: 18px;font-weight: 700; "><i class="fas fa-users"></i></label> <label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 700; ">' + result.property.maxNoGuest + ' Guest</label> </div>'
+					} else {
+						trHTMLProp += '<div class="row"><div class="col-sm-4"><label style="margin-left:15px;font: bold;font-size: 18px;font-weight: 700; "><i class="fas fa-users"></i></label> <label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 700; ">' + result.property.maxNoGuest + ' Guests</label> </div>'
+					}
+
+					if (result.property.noOfBedroom <= 1) {
+						trHTMLProp += '<label style="margin-left:80px;font: bold;font-size: 18px;font-weight: 700; "><i class="fas fa-bed"></i></label> <label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 700; ">' + result.property.noOfBedroom + ' Bedroom</label>'
+					} else {
+						trHTMLProp += '<label style="margin-left:80px;font: bold;font-size: 18px;font-weight: 700; "><i class="fas fa-bed"></i></label> <label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 700; ">' + result.property.noOfBedroom + ' Bedrooms</label>'
+					}
+					// '<div class="row"><div class="col-sm-6"><label style="margin-left:15px;font: bold;font-size: 18px;font-weight: 700; "><i class="fas fa-bed"></i></label><label style="margin-left:15px;font: bold;font-size: 16px;font-weight: 700; ">' + result.propertyHostUnit.noOfBeds + ' Beds</label></div>' +
+					if (result.property.noOfBathroom <= 1) {
+						trHTMLProp += '<div class="pull-right"><label style="margin-right:25px;font: bold;font-size: 18px;font-weight: 700; "><i class="fas fa-bath"></i> </label><label style="margin-right:35px;font: bold;font-size: 16px;font-weight: 700; "> ' + result.property.noOfBathroom + ' Bathroom</label></div></div>'
+					} else {
+						trHTMLProp += '<div class="pull-right"><label style="margin-right:25px;font: bold;font-size: 18px;font-weight: 700; "><i class="fas fa-bath"></i> </label><label style="margin-right:35px;font: bold;font-size: 16px;font-weight: 700; "> ' + result.property.noOfBathroom + ' Bathrooms</label></div></div>'
+					}
+					trHTMLProp += '<label style="margin-left:15px;font: bold;font-size: 18px;font-weight: 700; "><i class="fa fa-map-marker"></i></label> <label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 700; ">' + result.property.addressline1 + ', ' + result.property.city + ', ' + result.property.state + ' ' + result.property.postalCode + ' ' + result.property.countryCode + ' </label><br/>' +
+						'<label style="margin-left:20px;font: bold;font-size: 16px;font-weight: 500; ">' + result.property.propertyDesc + '</label><br/>'
+					// + ', ' + result.propertyLocations[0].city + ', ' + result.propertyLocations[0].state + ', ' + result.propertyLocations[0].countryCode +
+					$('#Main_previewPro').append(trHTMLProp);
+
+					//----------------------------------------------------------Bedroom Display-----------------------------------------------------
+					// var bedroomIdarrBfrSort = [];
+					// var bedroomIdarrsort = [];
+					// var trHTMLBed = '';
+					// var iunitBedroomsCnt = result.propertyHostUnit.unitBedRooms.length;
+					// if (iunitBedroomsCnt == "0") {
+
+					// } else {
+					// 	$('#bedroom_details').append('<div id="bedroom"><div class="panel panel-default"><div class="panel-heading">' +
+					// 		'<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse2">' +
+					// 		'Accomodations <a class="pull-right" data-toggle="collapse" data-parent="#accordion" href="#collapse2"><i class="fas fa-angle-down"></i></a></a></h4></div><div id="collapse2" class="panel-collapse collapse">' +
+					// 		'<div class="panel-body"><div id="Main_previewBed"></div></div></div></div></div>')
+					// 	for (i = 0; i < iunitBedroomsCnt; i++) {
+					// 		var typeofbed0 = result.propertyHostUnit.unitBedRooms[i].propertyBedroomType.bedroomTypeId;
+
+					// 		if (typeofbed0 == "2") {
+					// 			trHTMLBed += '<label  style="font: bold;margin-left:15px;font-size: 16px;font-weight: 700;">' + result.propertyHostUnit.unitBedRooms[i].bedroomName + ':</label>'
+					// 			for (var j = 0; j < result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities.length; j++) {
+					// 				var name = result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities[j].propertyAmenity.amenitiesId;
+					// 				trHTMLBed += '<label style="margin-left:5px;">' + result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities[j].bedCount + '' + (" ") + '' + result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities[j].propertyAmenity.amenitiesDesc + ((j + 1 == result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities.length) ? '' : ',') + '</label>'
+
+					// 			}
+					// 		}
+
+					// 	}
+					// 	var v = 0;
+
+
+					// 	for (i = 0; i < iunitBedroomsCnt; i++) {
+
+					// 		var typeofbed0 = result.propertyHostUnit.unitBedRooms[i].propertyBedroomType.bedroomTypeId;
+					// 		if (typeofbed0 == "1") {
+					// 			var ibedroomId = result.propertyHostUnit.unitBedRooms[i].bedroomId;
+					// 			bedroomIdarrBfrSort[v] = ibedroomId;
+					// 			v = v + 1;
+					// 		}
+					// 	}
+					// 	bedroomIdarrsort = bedroomIdarrBfrSort.sort();
+
+					// 	for (b = 0; b < bedroomIdarrsort.length; b++) {
+					// 		var ibedroomId = bedroomIdarrsort[b];
+
+					// 		for (i = 0; i < iunitBedroomsCnt; i++) {
+					// 			var typeofbed0 = result.propertyHostUnit.unitBedRooms[i].propertyBedroomType.bedroomTypeId;
+
+					// 			if (typeofbed0 == "1" && ibedroomId == result.propertyHostUnit.unitBedRooms[i].bedroomId) {
+					// 				trHTMLBed += '<br/><label  style="font: bold;margin-left:15px;font-size: 16px;font-weight: 700;">' + result.propertyHostUnit.unitBedRooms[i].bedroomName + ':</label>'
+					// 				for (var j = 0; j < result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities.length; j++) {
+					// 					var name = result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities[j].propertyAmenity.amenitiesId;
+					// 					trHTMLBed += '<label style="margin-left:5px;">' + result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities[j].bedCount + '' + (" ") + '' + result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities[j].propertyAmenity.amenitiesDesc + ((j + 1 == result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities.length) ? '' : ',') + '</label>'
+
+					// 				}
+					// 			}
+
+					// 		}
+
+					// 	}
+					// }
+
+					// $('#Main_previewBed').append(trHTMLBed);
+
+					//-------------------------------------------------------Amenities Display-----------------------------------------------------------------
+					var trHTMLAmenties = '';
+					// if (result.externalProperty == true) {
+					// 	if (result.bhoomiHostPMSPropertyFeatures.length == "0") {
+
+					// 	} else {
+
+					// 		$('#amenties_details').append('<div id="bathroom"><div class="panel panel-default"><div class="panel-heading">' +
+					// 			'<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse4">' +
+					// 			'Amenities<a class="pull-right" data-toggle="collapse" data-parent="#accordion" href="#collapse4"><i class="fas fa-angle-down"></i></a></a></h4></div><div id="collapse4" class="panel-collapse collapse">' +
+					// 			'<div class="panel-body"><ul class="AmenitiesColumn"><div id="Main_previewAmenties"></div></ul></div></div></div></div>')
+
+					// 		for (var feature = 0; feature < result.bhoomiHostPMSPropertyFeatures.length; feature++) {
+					// 			trHTMLAmenties += '<li style="margin-left:15px; font-size: 16px;font-weight: 500;" >' + result.bhoomiHostPMSPropertyFeatures[feature].pmsFeatureDesc + '</li>'
+					// 			// <hr><label style="font: bold;font-size: 18px;font-weight: 800;padding-left: 3px;">Review</label><br>'
+					// 		}
+					// 	}
+					// } else {
+						if (result.propertyFeatures.length == "0") {
+
+						}
+						else {
+							$('#amenties_details').append('<div id="bathroom"><div class="panel panel-default"><div class="panel-heading">' +
+								'<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse4">' +
+								'Amenities<a class="pull-right" data-toggle="collapse" data-parent="#accordion" href="#collapse4"><i class="fas fa-angle-down"></i></a></a></h4></div><div id="collapse4" class="panel-collapse collapse">' +
+								'<div class="panel-body"><ul class="AmenitiesColumn"><div id="Main_previewAmenties"></div></ul></div></div></div></div>')
+
+							for (var feature = 0; feature < result.propertyFeatures.length; feature++) {
+								trHTMLAmenties += '<li style="margin-left:15px; font-size: 16px;font-weight: 500;" >' + result.propertyFeatures[feature].pmsFeatureDesc + '</li>'
+								// <hr><label style="font: bold;font-size: 18px;font-weight: 800;padding-left: 3px;">Review</label><br>'
+							}
+
+
+						}
+					//}
+					$('#Main_previewAmenties').append(trHTMLAmenties);
+
+					//------------------------------------------------------------House Rules Display------------------------------------------------------
+					$('#House_Rules').append('<div id="bathroom"><div class="panel panel-default"><div class="panel-heading">' +
+						'<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse5">' +
+						'House Rules <a class="pull-right" data-toggle="collapse" data-parent="#accordion" href="#collapse5"><i class="fas fa-angle-down"></i></a></a></h4></div><div id="collapse5" class="panel-collapse collapse">' +
+						'<div class="panel-body"><div id="Main_houseRules"></div></div></div></div></div>')
+
+					var checkInTime;
+					var checkoutTime;
+					if(result.property.checkInTime != "" || result.property.checkInTime != undefined || result.property.checkInTime!= null){
+						checkInTime = result.property.checkInTime;
+					}
+					if(result.property.checkOutTime != "" || result.property.checkOutTime != undefined || result.property.checkOutTime != null){
+						checkoutTime = result.property.checkOutTime;
+					}
+
+					// for (var i = 0; i < result.propertyHostUnit.yogiAnswers.length; i++) {
+					// 	if (result.propertyHostUnit.yogiAnswers[i].yogiQuestion.queId == 1) {
+					// 		checkInTime = result.propertyHostUnit.yogiAnswers[i].ansDesc
+					// 	} else if (result.propertyHostUnit.yogiAnswers[i].yogiQuestion.queId == 4) {
+					// 		checkoutTime = result.propertyHostUnit.yogiAnswers[i].ansDesc
+					// 	}
+					// }
+					
+					if (result.property.checkInTime != undefined || result.property.checkInTime != null) {
+						$('#Main_houseRules').append('<div class="row"><div class="col-sm-6"><label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 500; ">Check-In: ' + checkInTime + '</label> </div>' +
+							'<label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 500; "> Check-Out: ' + checkoutTime + '</label>')
+					}
+					if (result.property.suitableChild == true) {
+						$('#Main_houseRules').append('<label style="margin-left:15px; font-size: 16px;font-weight: 500;" >Suitable for children (2-12 years)</label><br>');
+					} else {
+
+					}
+					if (result.property.suitableInfant == true) {
+						$('#Main_houseRules').append('<label style="margin-left:15px; font-size: 16px;font-weight: 500;" >Suitable for infants (Under 2 years)</label><br>');
+					} else {
+
+					}
+					if (result.property.suitablePet == true) {
+						$('#Main_houseRules').append('<label style="margin-left:15px; font-size: 16px;font-weight: 500;" >Pets allowed</label><br>');
+					} else if (result.property.suitablePet == false) {
+						$('#Main_houseRules').append('<label style="margin-left:15px; font-size: 16px;font-weight: 500;" >Pets not allowed</label><br>');
+					} else {
+
+					}
+
+					if (result.property.smokeAllowed == true) {
+						$('#Main_houseRules').append('<label style="margin-left:15px; font-size: 16px;font-weight: 500;" >Smoking allowed</label><br>');
+					} else if (result.property.smokeAllowed == false) {
+						$('#Main_houseRules').append('<label style="margin-left:15px; font-size: 16px;font-weight: 500;" >Smoking not allowed</label><br>');
+					} else {
+
+					}
+					if (result.property.partyAllowed == true) {
+						$('#Main_houseRules').append('<label style="margin-left:15px; font-size: 16px;font-weight: 500;" >Parties or events allowed</label><br>');
+					} else if (result.property.partyAllowed == false) {
+						$('#Main_houseRules').append('<label style="margin-left:15px; font-size: 16px;font-weight: 500;" >Parties or events not allowed</label><br>');
+					} else {
+
+					}
+					if (result.property.wheelchairAccessable == true) {
+						$('#Main_houseRules').append('<label style="margin-left:15px; font-size: 16px;font-weight: 500;" >Wheelchair Accessable</label><br>');
+					}
+					if(result.property.addHouseRule != null ) {
+						$('#Main_houseRules').append('<label style="margin-left:15px; font-size: 16px;font-weight: 500;" >' + result.property.addHouseRule + '</label>');
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log('update Stock error: ' + textStatus);
+				}
+
+			});
+		});
+
+	</script>
+</head>
+
+<body class="host-dashboard">
+
+	<!-- start header -->
+	<%- include mainMasterDashboard.ejs %>
+		<!-- end header -->
+
+		<input type="hidden" value="<%= firstName %>" id="firstName">
+		<input type="hidden" value="<%= pmcId %>" id="pmcId">
+		<input type="hidden" value="<%= url %>" id="globalUrl">
+
+		<!-- start main content -->
+		<section id="listings" class="listings no-transition">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 margin-30px-bottom">
+						<a href="/properties" class="btn btn-blue btn-rounded btn-large width-100">Return to Properties</a>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10 margin-30px-bottom">
+						<!-- end tabs-->
+						<div class="tab-content">
+							<!-- Start active tabs-->
+
+							<div id="carousel-generic" class="carousel slide" data-ride="carousel">
+								<!-- Indicators -->
+								<ol class="carousel-indicators"></ol>
+								<!-- Wrapper for slides -->
+								<div class="carousel-inner"></div>
+								<!-- Controls -->
+								<div id="carousel_display"></div>
+							</div>
+							<input type="hidden" value="<%= data %>" id="userId">
+
+
+							<div class="panel-group" id="accordion">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+												Property Details <a class="pull-right" data-toggle="collapse" data-parent="#accordion" href="#collapse1"><i class="fas fa-angle-down"></i></a></a>
+										</h4>
+									</div>
+									<div id="collapse1" class="panel-collapse collapse in">
+										<div class="panel-body">
+											<div id="Main_previewPro"></div>
+										</div>
+									</div>
+								</div>
+
+								<div id="bedroom_details"></div>
+								<div id="bathroom_details"></div>
+								<div id="amenties_details"></div>
+								<div id="House_Rules"></div>
+
+
+							</div>
+
+						</div>
+						<!-- end tabs-->
+
+					</div>
+
+				</div>
+				<div>
+
+
+
+				</div>
+
+				<div class="row">
+					<div class="col-md-10 margin-30px-bottom">
+						<a href="/properties" class="btn btn-blue btn-rounded btn-large width-100">Return to Properties</a>
+					</div>
+				</div>
+
+		</section>
+		<!--end main content -->
+
+		<!-- start share with a host lightbox-->
+		<!-- Modal -->
+		<div id="myModal-Share" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<!--<h4 class="modal-title">Modal Header</h4>-->
+					</div>
+					<div class="modal-body">
+
+
+						<form action="/">
+							<div class="form-group">
+								<label for="shareTo">To:
+									<span class="text-extra-small">(seperate with a comma)</span>
+								</label>
+								<input type="email" class="form-control" id="shareTo" name="shareTo" maxlength="5000" placeholder="Enter Emails... ">
+								<span id="mail1" style="color:red;"></span>
+							</div>
+							<div class="form-group">
+								<label for="shareSubject">Subject:</label>
+								<input type="text" class="form-control" id="shareSubject" name="shareSubject" maxlength="500" Value="Have You Seen Whimstay Yet">
+								<span id="subject" style="color:red;"></span>
+							</div>
+							<div class="form-group">
+								<label for="shareMessage">Message:</label>
+								<div class="form-control margin-10px-bottom" contenteditable="true" id="shareMessage" maxlength="2000" name="shareMessage">
+									<span id="message" style="color:red;"></span>
+								</div>
+							</div>
+
+							<button type="submit" id="emailSent" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-target="#Share_model"
+							 data-dismiss="modal">Send</button>
+						</form>
+
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- end share with a host lightbox-->
+
+		<!-- Modal start -->
+
+		<div id="Share_model" class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: pink;">
+						<span class="modal-title"></span>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p id="message-body"></p>
+					</div>
+					<div class="modal-footer">
+						<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal End -->
+
+
+		<!--footer Start-->
+		<footer class="bg-dark-blue padding-30px-tb text-center">
+			<div class="footer-widget-area">
+				<div class="container">
+					<div class="row">
+						<div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+							<a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s" href="https://www.facebook.com/whimstay"
+							 target="_blank"><i class="fab fa-facebook-f"></i><span></span></a>
+							<a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s" href="https://www.instagram.com/whimstay"
+							 target="_blank"><i class="fab fa-instagram"></i><span></span></a>
+							<a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s" href="https://www.linkedin.com/company/whimstay"
+							 target="_blank"><i class="fab fa-linkedin-in"></i><span></span></a>
+
+						</div>
+					</div>
+
+
+					<p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights Reserved.</p>
+					<p class="text-white"><a href="./terms_privacy">Terms & Privacy</a> </p>
+				</div>
+			</div>
+
+		</footer>
+		<!-- end footer -->
+		<!-- javascript libraries -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<!--form validation-->
+		<!-- <script src="http://13.59.91.130:3000/assets/validation.js"></script>
+		<script src="http://13.59.91.130:3000/assets/script.js"></script> -->
+
+		<!-- setting -->
+		<script src="../public/javascripts/global.js"></script>
+		<script src="../public/javascripts/ListingApi.js"></script>
+		<script src="../public/javascripts/shareTheLoveApi.js"></script>
+
+</body>
+
+</html>

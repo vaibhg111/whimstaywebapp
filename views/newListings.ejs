@@ -1,0 +1,4887 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+	<meta name="author" content="Wemastè">
+	<meta name="robots" content="noindex">
+	<meta name="googlebot" content="noindex">
+	<!-- title -->
+	<title id="listingProperty"></title>
+	<!-- favicon -->
+	<link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+
+	<!-- styles font-awesome icon -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css	">
+	<!-- animation -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
+	<!-- <link rel="stylesheet" href="../public/stylesheets/animate.min.css" /> -->
+
+	<!-- font-awesome icon -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+		integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	<script src="slider.js"></script>
+
+
+	<!-- wemaste styles -->
+	<link rel="stylesheet" href="../public/stylesheets/core.css" />
+	<link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+	<link rel="stylesheet" href="../public/stylesheets/bootstrap-datetimepicker.min.css" />
+
+	<!-- <link rel="stylesheet" href="../public/stylesheets/grid.css" /> -->
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+
+
+	<!--   
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+
+
+	<style>
+		#datetimepicker3 .timepicker-picker table td a span,
+		#datetimepicker3 .timepicker-picker table td,
+		#datetimepicker3 .timepicker-picker table td span {
+			height: 10px !important;
+			line-height: 10px !important;
+			width: 10px !important;
+			line-height: 10px !important;
+			padding: 0px !important;
+		}
+
+
+		#datetimepicker4 .timepicker-picker table td a span,
+		#datetimepicker4 .timepicker-picker table td,
+		#datetimepicker4 .timepicker-picker table td span {
+			height: 5px !important;
+			line-height: 5px !important;
+			width: 5px !important;
+			line-height: 5px !important;
+			padding: 0px !important;
+		}
+
+		.main {
+			margin-left: -20px;
+		}
+
+		.img {
+			padding: 10px;
+		}
+
+		/* .logo-light {
+			margin-top: -20px;
+		} */
+
+		.fas {
+			color: #01364D;
+		}
+
+		.fa {
+			color: #01364D;
+		}
+
+		/* .AmenitiesColumn {
+			-webkit-column-count: 2;
+			-moz-column-count: 2;
+			column-count: 2;
+		} */
+
+		.AmenitiesLi {
+			font-size: 16px;
+			margin-left: 20px;
+			list-style-type: circle;
+			margin-bottom: 15px;
+		}
+
+		/* width */
+		::-webkit-scrollbar {
+			width: 1px;
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+			background: #f1f1f1;
+		}
+
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+			background: #888;
+		}
+
+		/* Handle on hover */
+		::-webkit-scrollbar-thumb:hover {
+			background: #555;
+		}
+
+		.gallery-image {
+			display: table;
+			width: 100%;
+			padding: 5px;
+		}
+
+		.column {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(200px, 1fr));
+			width: 75% !important;
+		}
+
+		#map {
+			width: 455px;
+			height: 300px;
+
+		}
+
+		.gm-svpc {
+			background: none !important;
+		}
+
+		input[type=number]::-webkit-outer-spin-button,
+		input[type=number]::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		input[type=number] {
+			-moz-appearance: textfield;
+		}
+
+		#container {
+			overflow: auto;
+			margin: 10px;
+			width: 100%;
+			display: grid;
+			grid-template-columns: repeat(3, minmax(200px, 1fr));
+		}
+
+		.img {
+			float: left;
+			position: relative;
+		}
+
+		a.delete {
+			display: none;
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 30px;
+			height: 30px;
+			text-indent: -999px;
+			background: red;
+		}
+
+		.AmenitiesColumn {
+			-webkit-column-count: 2;
+			-moz-column-count: 2;
+			column-count: 2;
+		}
+
+		a.setcover {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 30px;
+			height: 30px;
+			text-indent: -999px;
+			background: greenyellow
+		}
+
+		.img:hover a.delete {
+			display: block;
+		}
+
+		.img:hover a.setcover {
+			display: block;
+		}
+
+
+		.image {
+			width: 200px;
+			height: 200px;
+			float: left;
+			position: relative;
+		}
+
+		.image:hover a.delete {
+			display: block;
+		}
+
+		.image:hover a.setcover {
+			display: block;
+		}
+
+
+		.img-wrap {
+			position: relative;
+			display: inline-block;
+			border: 1p grey solid;
+			font-size: 0;
+			margin: 10px;
+		}
+
+
+		.img-wrap .fa-picture-o {
+			position: absolute;
+			bottom: 5px;
+			right: 2px;
+			z-index: 100;
+			background-color: #FFF;
+			padding: 5px 2px 2px;
+			color: #000;
+			font-weight: bold;
+			cursor: pointer;
+			opacity: .2;
+			text-align: center;
+			font-size: 30px;
+			line-height: 20px;
+			border-radius: 100%;
+		}
+
+		.img-wrap:hover .fa-picture-o {
+			opacity: 1;
+		}
+
+
+		.img-wrap .fa-check-circle {
+			position: absolute;
+			left: 2px;
+			z-index: 100;
+			background-color: #FFF;
+			padding: 5px 2px 2px;
+			color: #000;
+			font-weight: bold;
+			cursor: pointer;
+			opacity: .2;
+			text-align: center;
+			font-size: 30px;
+			line-height: 20px;
+			border-radius: 100%;
+		}
+
+		.img-wrap .fa-times-circle {
+			position: absolute;
+			left: 0px;
+			z-index: 100;
+			background-color: #FFF;
+			padding: 5px 2px 2px;
+			color: red;
+			font-weight: bold;
+			cursor: pointer;
+			opacity: .2;
+			text-align: center;
+			font-size: 30px;
+			line-height: 20px;
+			border-radius: 100%;
+		}
+
+		.img-wrap:hover .fa-times-circle {
+			opacity: 1;
+		}
+
+		.img-wrap:hover .fa-check-circle {
+			opacity: 1;
+		}
+
+		.img-wrap .close {
+			position: absolute;
+			top: -5px;
+			right: -10px;
+			z-index: 100;
+			background-color: #FFF;
+			padding: 5px 2px 2px;
+			color: red;
+			font-weight: bold;
+			cursor: pointer;
+			opacity: .2;
+			text-align: center;
+			font-size: 33px;
+			line-height: 10px;
+			border-radius: 100%;
+		}
+
+		.img-wrap:hover .close {
+			opacity: 1;
+		}
+
+		#sortable {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			width: 450px;
+		}
+
+		#sortable li {
+			margin: 3px 3px 3px 0;
+			padding: 1px;
+			float: left;
+			width: 222px;
+			height: 190px;
+			font-size: 1.fem;
+			text-align: center;
+		}
+
+		/* 
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 270px; } */
+		#sortable li span {
+			position: absolute;
+			margin-right: 5.7em;
+		}
+
+		#sortable li a {
+			position: absolute;
+			margin-left: 0.7em;
+		}
+
+		.ui-state-default {
+			border: 0px solid #c5c5c5;
+			background: #ffff;
+		}
+
+
+		/* .sticky{
+	position: fixed !important;
+	z-index: 1;
+} */
+	</style>
+
+
+
+</head>
+
+<body class="host-dashboard">
+
+
+	<!-- start header -->
+	<%- include mainMasterDashboard.ejs %>
+	<!-- end header -->
+
+	<!-- start main content -->
+	<section id="addnewlisting" class="no-transition addnewlisting">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12  margin-20px-top">
+					<script>
+						$(document).ready(function () {
+							// if (sessionStorage.getItem("propertyTypeId") == null) {
+							// $('#listingProperty').append('Property Details: Add Property - Whimstay Host');
+							// 	$('#name_display').append('<h3 class="text-capitalize text-dark-blue font-weight-300" style="margin-left: -18px;">Create A New Property</h3>');
+
+							// } else {
+							$('#listingProperty').append('Property Details: Edit Property - Whimstay Host');
+							$('#name_display').append('<h3 class="text-capitalize text-dark-blue font-weight-300" style="margin-left: -18px;">Edit Property</h3>');
+							// }
+						});
+					</script>
+
+					<div id="name_display">
+
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<!--start: add property wizard-->
+						<div class="wizard">
+							<div class="wizard-inner">
+								<div class="connecting-line"></div>
+								<ul class="nav nav-tabs" role="tablist">
+
+									<li role="presentation" id="propDetails" class="active">
+										<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab"
+											title="Property Details">
+											<span class="round-tab">
+												<i class="fas fa-home"></i>
+											</span>
+										</a>
+									</li>
+
+									<li role="presentation" id="bedroom" class="bedroomback disabled">
+										<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab"
+											title="Bedroom & Bathroom">
+											<span class="round-tab">
+												<i class="fas fa-bed"></i>
+											</span>
+										</a>
+									</li>
+									<!-- <li role="presentation" id="bathroom" class="disabled">
+										<a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Bathrooms">
+											<span class="round-tab">
+												<i class="fas fa-bath"></i>
+											</span>
+										</a>
+									</li> -->
+									<li role="presentation" id="amenities" class="disabled">
+										<a href="#step4" data-toggle="tab" aria-controls="step4" role="tab"
+											title="Amenities">
+											<span class="round-tab">
+												<i class="fas fa-swimming-pool"></i>
+											</span>
+										</a>
+									</li>
+									<li role="presentation" id="description" class="disabled">
+										<a href="#step5" data-toggle="tab" aria-controls="step5" role="tab"
+											title="Description">
+											<span class="round-tab">
+												<i class="far fa-image"></i>
+											</span>
+										</a>
+									</li>
+									<li role="presentation" id="price" class="disabled">
+										<a href="#step6" class="Price" data-toggle="tab" aria-controls="step6"
+											role="tab" title="Price">
+											<span class="round-tab">
+												<i class="fas fa-hand-holding-usd"></i>
+											</span>
+										</a>
+									</li>
+
+									<li role="presentation" id="completed" class="disabled">
+										<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab"
+											title="Complete">
+											<span class="round-tab">
+												<i class="fas fa-check"></i>
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+
+							<form id="myForm" role="form">
+								<div class="tab-content">
+									<!--start: step 1: property details-->
+									<div class="tab-pane active" role="tabpanel" id="step1">
+										<h4 class="alt-font">Property Details</h4>
+										<div class="row">
+											<div class="col-sm-5">
+												<div class="form-group">
+													<label for="lisitngName">Property Title</label>
+													<input type="text" class="form-control" id="propertyName"
+														name="propertyName" tabindex="1" onkeypress="validateInput()"
+														maxlength="64000" placeholder="e.g. Dream Place">
+													<span id="propertyName1" style="color:red;"></span>
+												</div>
+
+												<label for="propertyAddress">Property Location</label>
+												<input type="hidden" value="<%= data %>" id="userId">
+												<input type="hidden" value="<%= url %>" id="globalUrl">
+												<input type="hidden" id="propertyId">
+												<input type="hidden" id="unitId">
+												<input type="hidden" id="active">
+												<input type="hidden" id="isHide">
+												<div id="locationField">
+													<input type="text" class="propertyAddressCls" id="autocomplete"
+														onkeypress="validateInput()" name="propertyAddress"
+														maxlength="64000" tabindex="2"
+														placeholder="Enter Your Address..." />
+													<!-- onFocus="geolocate()"  -->
+												</div>
+												<span id="property" style="color:red;"></span>
+												<table id="address" style="display: none">
+													<!-- style="display: none" -->
+													<tr>
+														<!-- <td class="label">Street address</td> -->
+														<td class="slimField"><input type="text" class="field"
+																id="street_number"></td>
+														<td class="wideField" colspan="2"><input type="text"
+																class="field" id="route"></td>
+													</tr>
+													<tr>
+														<!-- <td class="label">City</td> -->
+
+														<td class="wideField" colspan="3"><input type="text"
+																class="field" id="locality"></td>
+													</tr>
+
+													<tr>
+														<!-- <td class="label">State</td> -->
+														<td class="slimField"><input type="text" class="field"
+																id="administrative_area_level_1"></td>
+														<!-- <td class="label">Zip code</td> -->
+														<td class="wideField"><input type="text" class="field"
+																id="postal_code"></td>
+													</tr>
+													<tr>
+														<!--  <td class="label">Country</td> -->
+														<td class="wideField" colspan="3"><input type="text"
+																class="field" id="country"></td>
+													</tr>
+													<tr>
+
+														<td class="slimField"><input type="text" class="field" id="lat">
+														</td>
+
+														<td class="wideField"><input type="text" class="field" id="lng">
+														</td>
+													</tr>
+
+
+												</table>
+												<br /><br />
+												<div id="map"></div>
+
+
+
+												<!-- <div class="row">
+													<div class="col-sm-6">
+														
+														<input type="text" class="form-control" id="city" name="city" tabindex="2" maxlength="1000" placeholder="City...">
+														<span id="city1" style="color:red;"></span>
+														<input type="text" class="form-control" id="country" name="country" Value="USA" maxlength="5000" disabled>
+														<span id="country1" style="color:red;"></span>
+													</div>
+
+													<div class="col-sm-6">
+
+														<input type="text" class="form-control" id="state" name="state" tabindex="3" maxlength="1000" placeholder="State...">
+														<span id="state1" style="color:red;"></span>
+														<input type="text" class="form-control" id="zipCode" maxlength="50" onkeypress="return validate(event);" name="zipCode" tabindex="4"
+														 placeholder="ZipCode...">
+														<span id="zip1" style="color:red;"></span>
+
+													</div>
+												</div> -->
+
+												<!-- <iframe src="https://maps.google.com/maps?q=&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300" frameborder="0"
+												 style="border:0" allowfullscreen></iframe> -->
+
+
+
+
+											</div>
+
+											<div class="col-sm-2">
+
+											</div>
+
+											<div class="col-sm-5">
+
+												<div class="form-group">
+													<label for="sel1">Property Type</label>
+													<div id="propertyTypeDisplay" style="font-weight:700;"></div>
+													<!-- <select class="form-control" id="propertyType" tabindex="5" onchange="validateInput()">
+															<option id="0" value="0">Select...</option>
+															<option id="1" value="1">Apartment</option>
+															<option id="2" value="2">House</option>
+															<option id="3" value="3">Secondary Unit</option>
+															<option id="4" value="4">Bed & Breakfast</option>
+															<option id="5" value="5">Boutique Hotel</option>
+															<option id="6" value="6">Unique Space</option>
+														</select> -->
+													<span id="propertyType1" style="color:red;"></span>
+
+												</div>
+
+												<div class="form-group">
+													<label for="sel1">Property Sub-Type</label>
+													<div id="propertySubTypeDisplay" style="font-weight:700;"></div>
+													<!-- <select class="form-control" id="subPropertyType" tabindex="6" onchange="validateInput()">
+
+														</select> -->
+													<span id="subPropertyType1" style="color:red;"></span>
+												</div>
+
+												<div class="form-group" id="accomodationRadio">
+													<label for="sel1">Accomodation Type</label>
+													<div id="accomodationType" style="font-weight:700;"></div>
+
+
+													<!-- <div class="radio" tabindex="7">
+															<label><input type="radio" value="1" name="optradio">Entire Property
+															</label>
+														</div>
+														<div class="radio">
+															<label><input type="radio" value="2" name="optradio">Private Room
+															</label>
+														</div>
+														<div class="radio">
+															<label><input type="radio" value="3" name="optradio">Shared Room
+															</label>
+														</div> -->
+													<span id="guestRoom1" style="color:red;"></span>
+												</div>
+
+												<label for="noGuest">Maximum Occupancy</label>
+												<!-- <p>The number and type of beds you have determines how many guests can stay comfortably.</p> -->
+
+												<div class="row">
+													<div class="col-xs-3">
+														<input type="text" class="form-control addNo"
+															onkeypress="return validate(event);" id="noBeds"
+															maxlength="2" name="noGuest" tabindex="8">
+
+													</div>
+
+													<div class="col-xs-9">
+														<span class="fa-stack fa-lg" id="btn_Minus"
+															onclick="btn_Minus()">
+															<i class="far fa-circle fa-stack-2x"></i>
+															<i class="fas fa-minus fa-stack-1x"></i>
+														</span>
+														<span class="fa-stack fa-lg" id="btn_Plus" onclick="btn_Plus()">
+															<i class="far fa-circle fa-stack-2x"></i>
+															<i class="fas fa-plus fa-stack-1x"></i>
+														</span>
+
+													</div>
+
+
+												</div>
+
+												<div class="row">
+													&nbsp;&nbsp;&nbsp;<span id="noBeds1" style="color:red;"></span>
+												</div>
+
+											</div>
+
+										</div>
+
+										<ul class="list-inline pull-right">
+											<li class="property"><button type="button" id="PropertyDetailsSave"
+													data-target="#step2" data-toggle="tab"
+													class="btn btn-blue btn-rounded next-step"
+													tabindex="9">Next</button></li>
+										</ul>
+									</div>
+									<script>
+										window.getSelection().removeAllRanges();
+									</script>
+									<!--start: step 2: -->
+									<div class="tab-pane" role="tabpanel" id="step2">
+										<!-- <div class="col-sm-5" style="padding: 0px;"> -->
+
+										<h4 class="alt-font">Bedroom & Bathroom Details</h4>
+										<!-- </div> -->
+										<!-- <div class="col-sm-2">
+
+											</div>
+
+											<div class="col-sm-5">
+											<h4 class="alt-font">Bathroom Details</h4>
+											</div> -->
+
+										<div class="row4">
+											<div class="col-sm-5" style="padding: 0px;">
+
+												<div class="form-group">
+													<label for="sel1">Number of Bedrooms</label>
+													<!-- <p>Only include bedrooms the guest can use.</p> -->
+													<!-- <select class="form-control" id="my_select">
+														<option value="999">Select...</option>
+														<option id="1" value="0">studio</option>
+														<option id="2" value="1">1 bedroom</option>
+														<option id="3" value="2">2 bedrooms</option>
+														<option id="4" value="3">3 bedrooms</option>
+														<option id="5" value="4">4 bedrooms</option>
+														<option id="6" value="5">5 bedrooms</option>
+														<option id="7" value="6">6 bedrooms</option>
+														<option id="8" value="7">7 bedrooms</option>
+														<option id="9" value="8">8 bedrooms</option>
+														<option id="10" value="9">9 bedrooms</option>
+														<option id="11" value="10">10 bedrooms</option>
+														<option id="12" value="11">11 bedrooms</option>
+														<option id="13" value="12">12 bedrooms</option>
+														<option id="14" value="13">13 bedrooms</option>
+														<option id="15" value="14">14 bedrooms</option>
+														<option id="16" value="15">15 bedrooms</option>
+													</select> -->
+													<div class="row">
+
+														<div class="col-xs-4">
+															<input type="text" class="form-control addNo" id="my_select"
+																name="noBed"
+																onKeyDown="if(this.value.length==2 && event.keyCode!=8 ) return false;"
+																onkeypress="validateInput1(event)"
+																onchange="onSelectMethod()">
+														</div>
+														<div class="col-xs-8">
+
+
+															<span class="fa-stack fa-lg" id="btn_Bedroom_Minus"
+																onclick="btn_Bedroom_Minus()">
+																<i class="far fa-circle fa-stack-2x"></i>
+																<i class="fas fa-minus fa-stack-1x"></i>
+															</span>
+															<span class="fa-stack fa-lg" id="btn_Bedroom_Plus"
+																onclick="btn_Bedroom_Plus()">
+																<i class="far fa-circle fa-stack-2x"></i>
+																<i class="fas fa-plus fa-stack-1x"></i>
+															</span>
+														</div>
+													</div>
+
+													<span id="my_select1" style="color:red;"></span>
+												</div>
+
+												<!-- <label>Sleeping Arrangements</label><br /> -->
+
+												<div id="main" class="main" style="margin-left: -15px;">
+
+												</div>
+
+												<script>
+													var curr_bedValue;
+													var update_bedValue;
+
+													//var op = $('#my_select').find('option');
+
+													function onSelectMethod() {
+
+
+
+														var selectedBed = document.getElementById('my_select').value;
+														var savedBed = sessionStorage.getItem('my_select')
+
+														if (sessionStorage.getItem('my_select') > document.getElementById('my_select').value) {
+															// document.getElementById('my_select').min=sessionStorage.getItem('my_select')
+															$('#btn_Bedroom_Minus ').attr("disabled", "disabled");
+														}
+
+														if (document.getElementById('my_select').value > 15) {
+															document.getElementById('my_select').value = 15;
+														}
+													}
+
+													// $('#btn_Bedroom_Minus').click(function(){
+													// 	alert("");
+													// 	$('#btn_Bedroom_Minus span').attr("disabled", "disabled");
+
+													// })
+
+
+
+													$(document).ready(function () {
+														var status = $('#option').find('.status');
+														curr_bedValue = sessionStorage.getItem("my_select");
+
+														if (curr_bedValue == null || curr_bedValue == "999") {
+															//alert("in 999");
+															return true;
+														} else if (curr_bedValue != null) {
+															if (sessionStorage.getItem('my_select') > document.getElementById('my_select').value) {
+																// document.getElementById('my_select').min=sessionStorage.getItem('my_select')
+																$('#btn_Bedroom_Minus ').attr("disabled", "disabled");
+
+
+															}
+
+
+														}
+													});
+
+
+													$("#my_select").on("keypress", function (e) {
+														var currentValue = String.fromCharCode(e.which);
+														var finalValue = $(this).val() + currentValue;
+														if (finalValue > 15) {
+															e.preventDefault();
+														}
+													});
+
+
+
+
+
+
+
+												</script>
+
+
+												<!-- <label for="noGuest">How many beds?</label>
+
+												<div class="row">
+
+													<div class="col-xs-3 bedCount">
+														<input type="text" class="form-control addNo" onchange="handleChange(this);" onkeypress="return validate(event);"
+														 id="noBed" name="noBed" maxlength="2" value="0">
+
+													</div>
+													<div class="col-xs-9">
+
+
+														<span class="fa-stack fa-lg" id="btn_minus" onclick="btn_minus()">
+															<i class="far fa-circle fa-stack-2x"></i>
+															<i class="fas fa-minus fa-stack-1x"></i>
+														</span>
+														<span class="fa-stack fa-lg" id="btn_plus" onclick="btn_plus()">
+															<i class="far fa-circle fa-stack-2x"></i>
+															<i class="fas fa-plus fa-stack-1x"></i>
+														</span>
+													</div>
+												</div>
+												<span id="noBed1" style="color:red;"></span> -->
+											</div>
+
+											<div class="col-sm-2">
+
+											</div>
+
+											<div class="col-sm-5">
+												<label for="noBaths">Number of Bathrooms </label>
+												<!-- <p>Only include bathrooms the guest can use.</p> -->
+
+												<div class="row">
+
+													<div class="col-xs-4 bathCount">
+														<input type="text" class="form-control addNo" id="noBaths"
+															pattern="[0-9]+([\.][0-9]+)?" name="noBaths"
+															onkeypress="return validateBathroom(event)"
+															onchange="validate1(event)" maxlength="4">
+													</div>
+													<div class="col-xs-8">
+														<span class="fa-stack fa-lg" id="btn_Bathroom_Minus"
+															onclick="btn_Bathroom_Minus()">
+															<i class="far fa-circle fa-stack-2x"></i>
+															<i class="fas fa-minus fa-stack-1x"></i>
+														</span>
+														<span class="fa-stack fa-lg" id="btn_Bathroom_Plus"
+															onclick="btn_Bathroom_Plus()">
+															<i class="far fa-circle fa-stack-2x"></i>
+															<i class="fas fa-plus fa-stack-1x"></i>
+														</span>
+													</div>
+												</div>
+
+												<div id="Bathroom" class="Bathroom" style="display: none;">
+
+
+												</div>
+												<span id="noBaths1" style="color:red;"></span>
+
+
+												<ul class="list-inline pull-right">
+													<li><button type="button" id="propertyBack"
+															class="btn btn-default btn-rounded prev-step">Back</button>
+													</li>
+													<li class="bedroom"><button type="button" id="BedroomSave"
+															data-target="#step4" data-toggle="tab"
+															class="btn btn-blue btn-rounded next-step">Next</button>
+													</li>
+													<!-- <li class="bedroom"><button type="button" id="bathroomApi"  class="btn btn-blue btn-rounded next-step">Way to Bathroom</button></li> -->
+												</ul>
+											</div>
+
+										</div>
+
+
+										<script>
+
+
+											$('input[name=noBaths]').change(function () {
+
+
+
+												if (document.getElementById("noBaths").value > 15) {
+													document.getElementById("noBaths").value = 15;
+												}
+
+
+											});
+
+										</script>
+
+
+									</div>
+									<!--start: step 3: -->
+									<!-- <div class="tab-pane" role="tabpanel" id="step3"> -->
+									<!-- <h4 class="alt-font">Bathroom Details</h4>
+
+
+										<div class="col-sm-5" style="padding: 0px;">
+
+											<label for="noBaths">Number Of Bathrooms </label> -->
+									<!-- <p>Only include bathrooms the guest can use.</p> -->
+
+									<!-- <div class="row">
+
+												<div class="col-xs-3 bathCount">
+													<input type="number" class="form-control addNo" id="noBaths"
+													 name="noBaths" value="0">
+												</div>
+												<div class="col-xs-9">
+
+
+													<span class="fa-stack fa-lg" id="btn_Bathroom_Minus" onclick="btn_Bathroom_Minus()">
+														<i class="far fa-circle fa-stack-2x"></i>
+														<i class="fas fa-minus fa-stack-1x"></i>
+													</span>
+													<span class="fa-stack fa-lg" id="btn_Bathroom_Plus" onclick="btn_Bathroom_Plus()">
+														<i class="far fa-circle fa-stack-2x"></i>
+														<i class="fas fa-plus fa-stack-1x"></i>
+													</span>
+												</div>
+											</div> -->
+
+									<!-- <span id="noBaths1" style="color:red;"></span>
+										</div>
+										<div class="col-sm-2">
+
+										</div>
+
+										<div class="col-sm-5" style="padding: 0px"> -->
+
+									<!-- <h6>Bathroom Features</h6> -->
+
+									<!-- <div id="Bathroom" class="Bathroom" style="display: none;">
+
+
+											</div>
+											<span id="noBaths2" style="color:red;"></span> -->
+
+									<!-- </div> -->
+
+
+									<!-- <ul class="list-inline pull-right">
+											<li><button type="button" id="backToBedroom" class="btn btn-default btn-rounded prev-step">Back</button></li>
+											<li class="bathroom"><button type="button" id="bathroomApi" data-target="#step4" data-toggle="tab" class="btn btn-blue btn-rounded next-step">Next</button></li>
+										</ul>
+									</div> -->
+									<!--start: step 4: -->
+									<div class="tab-pane" role="tabpanel" id="step4">
+										<h4 class="alt-font">Amenity Details</h4>
+
+										<div id="pmsAmenitiesShow">
+											<div class="col-sm-7" style="padding: 0px;margin-left: -35px;">
+												<ul class="AmenitiesColumn" id="pmsAmenities">
+
+												</ul>
+											</div>
+											<!-- <div class="col-sm-1" style="padding: 0px;">
+												</div> -->
+
+										</div>
+
+										<div class="nonPmsAmenities">
+											<div class="col-sm-5" style="padding: 0px;">
+												<h6>The Essentials</h6>
+												<div class="row">
+													<div class="col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"><label><input class="chk"
+																		type="checkbox" value="1" id="Feature_1">
+																	Essentials
+																	<span class="text-extra-small">(Towels, bed sheets,
+																		soap, toilet paper, & pillows)</span></label>
+															</div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"><label><input class="chk"
+																		type="checkbox" value="2" id="Feature_2">
+																	Wifi</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="3" id="Feature_3">
+																	Shampoo & Conditioner
+																</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="4" id="Feature_4"> Closet
+																	/ Drawers
+																</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="5" id="Feature_5">
+																	TV</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="6" id="Feature_6">
+																	Heat</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="7" id="Feature_7"> Air
+																	Conditioning
+																</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="8" id="Feature_8">
+																	Breakfast, Coffee,
+																	Tea
+																</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="9" id="Feature_9"> Desk /
+																	Workspace
+																</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="10" id="Feature_10">
+																	Fireplace</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="11" id="Feature_11">
+																	Iron</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="12" id="Feature_12"> Hair
+																	Dryer</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12" style="display: none;">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="13" id="Feature_13"> Pet
+																	Friendly</label>
+															</div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="14" id="Feature_14">
+																	Private Entrance
+																</label></div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="29" id="Feature_29"> Dish
+																	Washer</label>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="30" id="Feature_30">
+																	Refrigerator</label>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="31" id="Feature_31">
+																	Stove</label></div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="32" id="Feature_32">
+																	Oven</label></div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="33" id="Feature_33">
+																	Satellite /
+																	Cable
+																</label></div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="34" id="Feature_34">
+																	Outdoor Grill
+																</label></div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="35" id="Feature_35">Combo
+																	(Tub /
+																	Shower)
+																</label></div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="36" id="Feature_36">
+																	Toilet</label></div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="37" id="Feature_37">
+																	Jetted Tub</label></div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="38" id="Feature_38">
+																	Tub</label></div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="39" id="Feature_39">
+																	Outdoor Shower
+																</label></div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="40" id="Feature_40">
+																	Shower</label></div>
+														</div>
+													</div>
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="41" id="Feature_41">
+																	Bidet</label></div>
+														</div>
+													</div>
+												</div>
+
+												<h6 class="margin-20px-top">Bonus Areas</h6>
+
+												<div class="row">
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="15" id="Feature_15">
+																	Kitchen</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="16" id="Feature_16">
+																	Washer
+																</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="17" id="Feature_17">
+																	Dryer
+																</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="18" id="Feature_18">
+																	Pool</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="19" id="Feature_19"> Hot
+																	Tub</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="20" id="Feature_20">
+																	Parking</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="21" id="Feature_21">
+																	Elevator</label></div>
+														</div>
+													</div>
+
+													<div class="col-sm-6 col-xs-12">
+														<div class="form-group">
+															<div class="checkbox"> <label><input class="chk"
+																		type="checkbox" value="22" id="Feature_22">
+																	Gym</label></div>
+														</div>
+													</div>
+
+
+												</div>
+
+											</div>
+											<div class="col-sm-2">
+
+											</div>
+										</div>
+
+										<div class="col-sm-5">
+											<div id="amenitiesShowHide">
+												<h6>Safety Amenities</h6>
+
+												<div class="col-xs-12" style="padding: 0px">
+													<div class="form-group">
+														<div class="checkbox"><label><input class="chk" type="checkbox"
+																	value="23" id="Feature_23"> Smoke Detector
+																<span class="text-extra-small">(Check your local laws,
+																	which may require a working smoke detector in every
+																	room)
+																</span></label></div>
+													</div>
+												</div>
+
+												<div class="col-xs-12" style="padding: 0px">
+													<div class="form-group">
+														<div class="checkbox"><label><input class="chk" type="checkbox"
+																	value="24" id="Feature_24"> Carbon Monoxide
+																Detector <span class="text-extra-small">(Check your
+																	local laws, which may require a working carbon
+																	monoxide
+																	detector in every room)</span></label></div>
+													</div>
+												</div>
+
+												<div class="col-xs-12" style="padding: 0px">
+													<div class="form-group">
+														<div class="checkbox"><label><input class="chk" type="checkbox"
+																	value="25" id="Feature_25"> First Aid Kit
+															</label></div>
+													</div>
+												</div>
+
+												<div class="col-xs-12" style="padding: 0px">
+													<div class="form-group">
+														<div class="checkbox"><label><input class="chk" type="checkbox"
+																	value="26" id="Feature_26"> Safety Card
+															</label></div>
+													</div>
+												</div>
+
+												<div class="col-xs-12" style="padding: 0px">
+													<div class="form-group">
+														<div class="checkbox"><label><input class="chk" type="checkbox"
+																	value="27" id="Feature_27"> Fire Extinguisher
+															</label></div>
+													</div>
+												</div>
+
+												<div class="col-xs-12" style="padding: 0px">
+													<div class="form-group">
+														<div class="checkbox"><label><input class="chk" type="checkbox"
+																	value="28" id="Feature_28"> Lock on Bedroom
+																Door
+															</label></div>
+													</div>
+												</div>
+
+											</div>
+											<div class="col-xs-12" style="margin-top: 15px;padding: 0px">
+												<div class="form-group">
+													<label style="font-weight: 400;"> List of Local Area Attractions
+													</label>
+													<textarea class="form-control margin-10px-bottom" rows="2"
+														id="que_3" maxlength="250" name="checkinLockbox"
+														disabled></textarea>
+
+												</div>
+											</div>
+										</div>
+
+
+
+										<ul class="list-inline pull-right">
+											<li><button type="button" id="backToBathroom"
+													class="btn btn-default btn-rounded  prev-step">Back</button></li>
+											<li class="Aminities"><button type="button" id="AmenitiesApi"
+													data-target="#step5" data-toggle="tab"
+													class="btn btn-blue btn-rounded btn-info-full next-step">Next</button>
+											</li>
+										</ul>
+									</div>
+									<!--start: step 5: -->
+									<div class="tab-pane" role="tabpanel" id="step5">
+										<h4 class="alt-font">Description & Photos</h4>
+
+
+										<div class="col-sm-5" style="padding: 0px;">
+
+											<!-- <div class="form-group">
+												<label for="lisitngName">Property Title</label>
+												<input type="text" class="form-control" id="propertyName" name="propertyName" maxlength="64000" placeholder="Property Title...">
+												<span id="propertyName1" style="color:red;"></span>
+											</div> -->
+											<div class="form-group">
+												<label for="lisitngDesc">Description of Property</label>
+												<textarea class="form-control margin-10px-bottom" rows="7"
+													onkeypress="validateInput()" id="propertyDesc" maxlength="64000"
+													name="propertyDesc"></textarea>
+												<span id="propertyDesc1" style="color:red;"></span>
+											</div>
+
+											<div class="form-group">
+												<label class="upload btn btn-blue btn-rounded">Upload Property Photos
+													<input type="file" class="input-file" id="profile-img" name="file"
+														onclick="validateInput()"
+														accept="image/jpg, image/jpeg, image/png, image/gif"
+														multiple="">
+												</label>
+												<span id="profile-img1" style="color:red;"></span>
+											</div>
+											<br /><br />
+
+
+											</li>
+											</ul>
+
+											<span id="profile-img-tag">
+												<ul id='sortable' class="list"></ul>
+											</span>
+
+											<!-- <section class="grid-demo">
+											<div class="controls cf" style="display: none">
+												<div class="control search">
+													<div class="control-icon">
+														<i class="material-icons">&#xE8B6;</i>
+													</div>
+													<input class="control-field search-field form-control " type="text" name="search" placeholder="Search..." />
+												</div>
+												<div class="control filter">
+													<div class="control-icon">
+														<i class="material-icons">&#xE152;</i>
+													</div>
+													<div class="select-arrow">
+														<i class="material-icons">&#xE313;</i>
+													</div>
+													<select class="control-field filter-field form-control">
+														<option value="" selected>All</option>
+														<option value="red">Red</option>
+														<option value="blue">Blue</option>
+														<option value="green">Green</option>
+													</select>
+												</div>
+												<div class="control sort">
+													<div class="control-icon">
+														<i class="material-icons">&#xE164;</i>
+													</div>
+													<div class="select-arrow">
+														<i class="material-icons">&#xE313;</i>
+													</div>
+													<select class="control-field sort-field form-control">
+														<option value="order" selected>Drag</option>
+														<option value="title">Title (drag disabled)</option>
+														<option value="color">Color (drag disabled)</option>
+													</select>
+												</div>
+												<div class="control layout">
+													<div class="control-icon">
+														<i class="material-icons">&#xE871;</i>
+													</div>
+													<div class="select-arrow">
+														<i class="material-icons">&#xE313;</i>
+													</div>
+													<select class="control-field layout-field form-control">
+														<option value="left-top" selected>Left Top</option>
+														<option value="left-top-fillgaps">Left Top (fill gaps)</option>
+														<option value="right-top">Right Top</option>
+														<option value="right-top-fillgaps">Right Top (fill gaps)</option>
+														<option value="left-bottom">Left Bottom</option>
+														<option value="left-bottom-fillgaps">Left Bottom (fill gaps)</option>
+														<option value="right-bottom">Right Bottom</option>
+														<option value="right-bottom-fillgaps">Right Bottom (fill gaps)</option>
+													</select>
+												</div>
+											</div>
+
+											<div class="grid"></div>
+											<div class="grid-footer">
+												<button class="add-more-items btn btn-primary"><i class="material-icons">&#xE145;</i>upload images</button>
+											</div>
+										</section> -->
+
+											<script>
+												$(function () {
+													$("#sortable").sortable({
+														update: function () {
+															var sortableImageList = [];
+															var imgOrder = 0
+
+
+															var hostPopertyAttachmentList = [];
+															$('#sortable li').each(function (i) {
+																var orderImages = ++imgOrder;
+																var sortedImages = $(this).attr('id');
+																hostPopertyAttachmentList.push(sortedImages);
+																sortableImageList.push(orderImages);
+															});
+
+
+															var FinalList = new Array();
+
+															var ImageOrderSortingList = {};
+
+
+															var userId = document.getElementById('userId').value;
+
+															var propertyId = sessionStorage.getItem("Property_Id");
+
+
+															var propertyHostUnitId = sessionStorage.getItem("Property_HostUnitId");
+
+															for (var i = 0; i < sortableImageList.length; i++) {
+																// if (imgarray[i].hostPopertyAttachmentId == imageId.id) {
+																// 	ImageOrderSortingList = {
+																// 		"hostPopertyAttachmentId": hostPopertyAttachmentList[i],
+																// 		"imgOrder":  sortableImageList[i],
+																// 		"isCoverImg": 1,
+																// 	}
+																// } else {
+																ImageOrderSortingList = {
+																	"hostPopertyAttachmentId": hostPopertyAttachmentList[i],
+																	"imgOrder": sortableImageList[i],
+																	// }
+																}
+																FinalList.push(ImageOrderSortingList);
+															}
+															// console.log("ImageOrderSortingList" + JSON.stringify(FinalList));
+															$.ajax({
+																url: newurl + 'v1/user/' + userId + '/property/' + propertyId + '/unit/' + propertyHostUnitId + '/attachment/order',
+																type: 'PUT',
+																data: JSON.stringify(FinalList),
+																contentType: "application/json",
+																dataType: "json",
+																headers: {
+																	'Authorization': 'Basic aG9zdDpkZmdoamFzZmdzaGZqc3VmeXNnemhjZ2pzemJqY2Jqc3piY2pic2hiaDIzNDU2NzY1NDM0cnRld2VydA==',
+																},
+																success: function (result) {
+
+																	// document.getElementById("msg-body").innerHTML = "Image successfully rearranged";
+																	// $('#dyna-popup').modal('show');
+
+																	setTimeout(function () {
+																		$('#dyna-popup').modal('hide');
+																		// window.location.reload();
+																	}, 3000);
+																},
+																error: function (xhr, textStatus, errorThrown) {
+
+																},
+															});
+
+														}
+													});
+
+
+													$("#sortable").disableSelection();
+												});
+											</script>
+
+											<script>
+
+												$(document).ready(function () {
+													var baseUrl = globalUrl;
+													// 	$.ajax({
+													// 		url: baseUrl + 'v1/user/' + document.getElementById("userId").value + '/property/' + sessionStorage.getItem("propertyId"),
+													// 		type: 'GET',
+													// 		dataType: "json",
+													// 		'headers': {
+													// 			Authorization: localStorage.getItem('token') || '',
+													// 		},
+													// 		success: function (result, textStatus, xhr) {
+													// 			var imgarray = [];
+													// 			var idarray = [];
+
+													// 			if (result.status != 404) {
+													// 				// console.log(result)
+													// 				result.propertyHostUnit.propertyAttachments.forEach(element => {
+													// 					imgarray.push(element);
+													// 				});
+
+													// 				if (imgarray != null) {
+
+													// 					sessionStorage.setItem("host-attachment-id-list", JSON.stringify(imgarray));
+
+													// 					// $('#profile-img-tag').append("");
+													// 					$.each(imgarray, function (index, value) {
+													// 						//$('#profile-img-tag .list').append("<li class='ui-state-default'><a  class='fa fa-check-circle fa-lg'  title='Delete Image' id='item1'  onClick ='deleteImage(this)'></a>  <span title='Set Cover Image'  class='fa fa-times-circle fa-lg'  id="+value.hostPopertyAttachmentId + "  onClick ='setCoverImage(this)'></span>   <div class='img-wrap col-lg-4 col-sm-4 col-xs-6 thumbnail img-responsive'   id='image" + index + "' style='width:200px' ><span class='close' title='Delete Image' id='" + value.hostPopertyAttachmentId + "'  onClick ='deleteImage(this)'>&times;</span><span title='Set Cover Image'  class='fa fa-picture-o fa-lg' id='" + value.hostPopertyAttachmentId + "'  onClick ='setCoverImage(this)'></span>  <img  class='thumbnail  img-responsive'  src='" + value.fullFilePath + "'  data-id='" + value.hostPopertyAttachmentId + "'  ></div></li>");
+
+
+													// 						$('#profile-img-tag .list').append("<li class='ui-state-default' id='" + value.hostPopertyAttachmentId + "' data-id='" + value.imgOrder + "' ><div class='img-wrap col-lg-4 col-sm-4 col-xs-6 thumbnail img-responsive'   id='image" + index + "' style='width:200px' ><span class='fa fa-times-circle fa-lg' title='Delete Image' id='" + value.hostPopertyAttachmentId + "'  onClick ='deleteImage(this)'></span><a title='Set Cover Image'  class='fa fa-picture-o fa-lg' id='" + value.hostPopertyAttachmentId + "'  onClick ='setCoverImage(this)'></a>  <img  class='thumbnail  img-responsive'  src='" + value.fullFilePath + "'  data-id='" + value.hostPopertyAttachmentId + "'  ></div></li>");
+													// 						//$('#profile-img-tag').append("<div class='image'  id='image"+ index + "'> <img  class='thumbnail' src='" + value.fullFilePath + "' /><a  id='" + value.hostPopertyAttachmentId +"' class='delete'  onClick ='deleteImage(this)'><i  class='fa fa-pencil fa-lg'></i></a><a id='" + value.hostPopertyAttachmentId +"' class='setcover' onClick ='setCoverImage(this)'><i class='fa fa-pencil fa-lg'></i></a></div> ");
+													// 						//$('#profile-img-tag').append("<div class='img-wrap col-lg-4 col-sm-4 col-xs-6 thumbnail img-responsive'   id='image" + index + "' style='width:200px' ><span class='close' title='Delete Image' id='" + value.hostPopertyAttachmentId + "'  onClick ='deleteImage(this)'>&times;</span><span title='Set Cover Image'  class='fa fa-picture-o fa-lg' id='" + value.hostPopertyAttachmentId + "'  onClick ='setCoverImage(this)'></span>  <img  class='thumbnail  img-responsive'  src='" + value.fullFilePath + "'  data-id='" + value.hostPopertyAttachmentId + "'  ></div>");
+
+													// 						$("#profile-img-tag").val("setImage");
+													// 					});
+													// 				} else {
+													// 					$('#profile-img-tag').append("<span>No Content</span>");
+													// 				}
+													// 			}
+													// 		},
+													// 		error: function (xhr, textStatus, errorThrown) {
+													// 			console.log('Response Error ');
+													// 			// console.log(errorThrown);
+													// 		}
+													// 	});
+
+													$(function () {
+														$(document).on('click', '.column', function () {
+															var imageId = $(this).attr("src");
+															sessionStorage.setItem("coverPhotoId", imageId);
+														});
+													});
+												});
+											</script>
+
+										</div>
+										<div class="col-sm-2">
+
+										</div>
+										<div class="col-sm-5">
+											<h6 class="margin-20px-bottom">Property Requirements</h6>
+
+											<div class="row">
+												<div class="col-xs-12">
+													<div class="form-group">
+														Suitable for Children (2-12 years):
+														<label class="radio-inline"><input type="radio" value="true"
+																id="r" name="optChildren">Yes</label>
+														<label class="radio-inline"><input type="radio" value="false"
+																id="r" name="optChildren">No</label>
+
+													</div>
+												</div>
+												<div class="col-xs-12">
+													<div class="form-group" required>
+														Suitable for Infants (Under 2 years):
+														<label class="radio-inline"><input type="radio" value="true"
+																name="optInfants">Yes</label>
+														<label class="radio-inline"><input type="radio" value="false"
+																name="optInfants">No</label>
+													</div>
+												</div>
+												<div class="col-xs-12">
+													<div class="form-group">
+														Pets Allowed:
+														<label class="radio-inline"><input type="radio" value="true"
+																name="optPets">Yes</label>
+														<label class="radio-inline"><input type="radio" value="false"
+																name="optPets">No</label>
+													</div>
+													<!-- onchange="petfeeHide(1)" -->
+												</div>
+												<div class="col-xs-12">
+													<div class="form-group">
+														Smoking Allowed:
+														<label class="radio-inline"><input type="radio" value="true"
+																name="optSmoking">Yes</label>
+														<label class="radio-inline"><input type="radio" value="false"
+																name="optSmoking">No</label>
+													</div>
+												</div>
+												<div class="col-xs-12">
+													<div class="form-group">
+														Events or Parties Allowed:
+														<label class="radio-inline"><input type="radio" value="true"
+																name="optEvents">Yes</label>
+														<label class="radio-inline"><input type="radio" value="false"
+																name="optEvents">No</label>
+													</div>
+
+												</div>
+												<div class="col-xs-12">
+													<div class="form-group">
+														Wheelchair Accessable:
+														<label class="radio-inline"><input type="radio" value="true"
+																name="optWheelChair">Yes</label>
+														<label class="radio-inline"><input type="radio" value="false"
+																name="optWheelChair">No</label>
+													</div>
+													<span id="radioErr" style="color:red;"> </span>
+												</div>
+
+												<!-- <div class="col-xs-12">
+													<div class="form-group">
+														Deposit required:
+														<label class="radio-inline"><input type="radio" value="1" name="optDeposit">Yes</label>
+														<label class="radio-inline"><input type="radio" value="0" name="optDeposit">No</label>
+													</div>
+													<span id="radioErr" style="color:red;"> </span>
+												</div> -->
+												<div class="col-xs-12">
+													<div class="form-group">
+														<label for="shareMessage">House Rules</label>
+														<textarea class="form-control margin-10px-bottom" rows="2"
+															id="txtaddhouserule" maxlength="64000"
+															name="txtaddhouserule" disabled></textarea>
+													</div>
+												</div>
+												<div class="col-xs-12">
+													<div class="form-group">
+														<!-- <label for="shareMessage">Write a personal thank you for guests.</label> -->
+														<input type="hidden" class="form-control margin-10px-bottom"
+															rows="2" id="que_6" maxlength="250"
+															name="checkoutOpenQuestion">
+													</div>
+												</div>
+
+
+											</div>
+
+										</div>
+
+										<ul class="list-inline pull-right">
+											<li><button type="button" id="getApi"
+													class="btn btn-default btn-rounded  prev-step">Back</button></li>
+											<li class="imageValidation"><button type="button" id="addPhotoApi"
+													data-target="#step6" data-toggle="tab"
+													class="btn btn-blue btn-rounded btn-info-full next-step">Next</button>
+											</li>
+										</ul>
+									</div>
+
+
+									<!--start: step 6: -->
+									<div class="tab-pane" role="tabpanel" id="step6">
+										<h4 class="alt-font">Check-In, Check-Out & Pricing</h4>
+
+										<div class="col-sm-5" style="padding: 0px;">
+
+											<h6 class="margin-20px-bottom">Check-In & Check-Out Information</h6>
+
+											<!--end add check-in info-->
+											<div class="row">
+
+												<div class="col-xs-6">
+													<div class="form-group">
+
+														<label for="shareMessage"> Check-In Time</label>
+														<div class='input-group date' id='datetimepicker3'>
+															<!-- <textarea class="form-control margin-10px-bottom" rows="2" id="que_1" name="checkinTime"></textarea> -->
+															<input class="form-control" type="text" id="que_1"
+																name="checkinTime" disabled>
+															<span class="input-group-addon" onclick="validateInput()">
+																<span class="glyphicon glyphicon-time"></span>
+															</span>
+
+														</div>
+														<span id="que_12" style="color:red;"></span>
+													</div>
+												</div>
+												<div class="col-xs-6">
+													<div class="form-group">
+														<label for="shareMessage"> Check-Out Time</label>
+														<div class='input-group date' id='datetimepicker4'>
+															<!-- <textarea class="form-control margin-10px-bottom" rows="2" id="que_1" name="checkinTime"></textarea> -->
+															<input class="form-control" type="text" id="que_4"
+																name="checkoutProcess" disabled>
+															<span class="input-group-addon" onclick="validateInput()">
+																<span class="glyphicon glyphicon-time"></span>
+															</span>
+
+														</div>
+														<span id="que_42" style="color:red;"></span>
+
+													</div>
+												</div>
+												<script type="text/javascript">
+													$(function () {
+														$('#datetimepicker3').datetimepicker({
+															format: 'LT',
+															stepping: 15
+														});
+													});
+												</script>
+												<div class="col-xs-12">
+													<div class="form-group">
+														<label for="shareMessage">Check-In Instructions</label>
+														<textarea class="form-control margin-10px-bottom" rows="2"
+															id="que_2" maxlength="15000" name="checkinWifi"
+															disabled></textarea>
+														<!-- <span id="que_22" style="color:red;"></span> -->
+													</div>
+												</div>
+												<!-- <div class="col-xs-12">
+														<div class="form-group">
+															<label for="shareMessage">What are some recommend attractions in the area?</label>
+															<textarea class="form-control margin-10px-bottom" rows="2" id="que_3" maxlength="250" name="checkinLockbox"></textarea>
+															<span id="que_32" style="color:red;"></span>
+														</div>
+													</div> -->
+
+												<!--end add check-in info-->
+
+
+											</div>
+
+											<!--start add check-out info-->
+											<!-- <h6 class="margin-20px-bottom">Check-Out Information</h6> -->
+											<div class="row">
+												<!-- <div class="col-xs-12">
+														<div class="form-group">
+																<label for="shareMessage"> Check-Out Time</label>
+																<div class='input-group date' id='datetimepicker4'>
+																<input class="form-control" type="text" id="que_4" name="checkoutProcess">
+																<span class="input-group-addon">
+																		<span class="glyphicon glyphicon-time"></span>
+																	</span>
+																
+															</div>
+															<span id="que_42" style="color:red;"></span>
+															
+														</div>
+													</div> -->
+												<script type="text/javascript">
+													$(function () {
+														$('#datetimepicker4').datetimepicker({
+															format: 'LT',
+															stepping: 15
+														});
+													});
+												</script>
+												<div class="col-xs-12">
+													<div class="form-group">
+														<label for="shareMessage">Check-Out Instructions</label>
+														<textarea class="form-control margin-10px-bottom" rows="2"
+															id="que_5" maxlength="15000" name="checkoutTime"
+															disabled></textarea>
+														<span id="que_52" style="color:red;"></span>
+													</div>
+												</div>
+												<!-- <div class="col-xs-12">
+														<div class="form-group">
+															<label for="shareMessage">Write a personal thank you for guests.</label>
+															<textarea class="form-control margin-10px-bottom" rows="2" id="que_6" maxlength="250" name="checkoutOpenQuestion"></textarea>
+															<span id="que_62" style="color:red;"></span>
+														</div>
+													</div> -->
+
+											</div>
+
+											<!--end add check-out info-->
+
+										</div>
+
+										<div class="col-sm-2">
+
+										</div>
+
+										<div class="col-sm-5">
+
+
+											<h6>Pricing</h6>
+											<div class="form-group margin-20px-top">
+
+												<span class="col-sm-6" style="margin-left: -15px;">Nightly Rate</span>
+												<div class="input-group col-sm-4">
+
+													<span class="input-group-addon"><i
+															class="fas fa-dollar-sign"></i></span>
+
+													<input type="text" class="form-control" id="lisitngPrice"
+														maxlength="5" onkeypress="return validate(event);"
+														name="lisitngPrice" placeholder="Amount"
+														style="text-align:right;" disabled>
+
+
+												</div>
+												<span id="lisitngPrice1" style="color:red;"></span>
+											</div>
+											<input type="hidden" class="form-control" id="min_stay" value="1">
+
+											<!-- <h6 class="margin-20px-top">Pricing</h6>
+												<div class="form-group">
+	
+													<p>What is the premium price you get for this listing? This price will then be discounted by 40% on the Wemastè
+														app. </p>
+													<div class="input-group">
+														<span class="input-group-addon"><i class="fas fa-dollar-sign"></i></span>
+														<input type="text" class="form-control" id="lisitngPrice" maxlength="6" onkeypress="return validate(event);"
+														 name="lisitngPrice" placeholder="Amount">
+														<span id="lisitngPrice1" style="color:red;"></span>
+													</div>
+												</div> -->
+
+
+											<div class="form-group margin-30px-top">
+
+												<span class="col-sm-6" style="margin-left: -15px;">Discount Percentage
+													<!-- <span class="text-small">The discount must be at least
+															20%. The default and recommendation is 40%.</span>  -->
+												</span>
+												<div class="input-group col-sm-4">
+
+													<input type="number" class="form-control" id="lisitngDiscount"
+														name="lisitngDiscount" value="40"
+														onInput="return check(event,value)" step="0.01"
+														style="text-align:right;"><span class="input-group-addon"><i
+															class="fas fa-percent"></i></span>
+
+
+												</div>
+												<span id="lisitngDiscount1" style="color:red;"></span>
+											</div>
+											<div class="form-group margin-30px-top" style="margin-bottom: 5px;">
+												<p class="col-sm-6" style="margin-left: -15px;">Minimum Nightly Rate
+												</p>
+												<div class="input-group col-sm-4">
+													<span class="input-group-addon"><i
+															class="fas fa-dollar-sign"></i></span>
+													<input type="text" class="form-control" id="minimumPrice"
+														name="minimumPrice" onkeypress="return validate(event);"
+														maxlength="6" placeholder="Amount" style="text-align:right;">
+
+												</div>
+
+											</div>
+											<span style="margin-top: -15px; font-size: 13px;">(Property will be booked
+												with this amount if discounted price
+												goes below threshold value.)
+											</span>
+
+
+
+											<div class="row  margin-15px-top">
+												<div class="col-sm-12">
+													<h6 class="margin-20px-top margin-10px-bottom">Taxes & Fees</h6>
+												</div>
+												<div class="col-sm-12">
+													<select class="form-control" id="taxesT">
+														<option value="0">Select Tax Template</option>
+													</select>
+												</div>
+											</div>
+
+
+
+
+											<div class="row  margin-20px-top">
+												<div class="col-sm-12">
+													<label>Cleaning Fee</label>
+
+												</div>
+												<div class="col-xs-6">
+													<div class="form-group">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																	class="fas fa-dollar-sign"></i></span>
+															<input type="number" class="form-control" id="cleaningPrice"
+																name="cleaningPrice" onInput="checkLength()"
+																onkeypress="return check1(event,value);"
+																placeholder="Amount" style="text-align:right;" min="0">
+														</div>
+													</div>
+												</div>
+												<div class="col-xs-6">
+													<label class="text-small"><input type="checkbox"
+															class="serviceTaxCleaning" value="1" id="serviceTaxCleaning"
+															name="serviceTaxCleaning"> Apply Service Tax </label>
+												</div>
+
+											</div>
+
+											<div class="row  margin-20px-top" id="isEnable">
+												<div class="col-sm-12">
+													<label>Pet Fee</label>
+												</div>
+												<div class="col-xs-6">
+													<div class="form-group">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																	class="fas fa-dollar-sign"></i></span>
+															<input type="number" class="form-control" id="petPrice"
+																name="petPrice" onInput="checkLength()"
+																onkeypress="return check1(event,value);"
+																placeholder="Amount" style="text-align:right;" min="0">
+														</div>
+													</div>
+												</div>
+												<div class="col-xs-6">
+													<label class="text-small"><input type="checkbox" value="1"
+															id="serviceTaxPet" name="serviceTaxPet"> Apply Service
+														Tax </label>
+												</div>
+
+											</div>
+
+											<div class="row  margin-20px-top">
+												<div class="col-sm-12">
+													<label>Other Fees </label>
+
+												</div>
+
+												<div class="col-xs-6">
+													<div class="form-group">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																	class="fas fa-dollar-sign"></i></span>
+															<input type="number" class="form-control" id="otherFee"
+																name="otherFee" onInput="checkLength()"
+																onkeypress="return check1(event,value);"
+																placeholder="Amount" style="text-align:right;" min="0">
+														</div>
+													</div>
+												</div>
+												<div class="col-xs-6">
+													<label class="text-small"><input type="checkbox" value="1"
+															id="serviceTaxOther" name="serviceTaxOther"> Apply
+														Service Tax </label>
+												</div>
+												<div class="col-xs-12" id="descFees" style="display: none;">
+
+													<label class="text-small">Description of Other Fee(s):</label>
+													<input type="text" class="form-control no-margin-bottom"
+														id="otherFeeName" onkeypress="validateInput()"
+														name="otherFeeName">
+												</div>
+											</div>
+											<span id="otherFeeName1" style="color:red;"></span>
+											<div class="row margin-40px-top">
+												<div class="col-sm-12">
+													<h6 class="margin-10px-bottom">Damage Waiver or Deposit</h6>
+
+												</div>
+												<div class="col-xs-6">
+													<div class="form-group">
+														<select class="form-control" id="depositeBasicType">
+															<option value="0">Select...</option>
+															<option value="1">Damage Waiver</option>
+															<option value="2">Security Deposit</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-xs-6">
+													<div class="form-group" style="display: none" id="depositDisplay">
+														<select class="form-control" id="depositType"
+															onchange="validateInput()">
+															<option value="0">Select Fee Type...</option>
+															<option value="p">Percent of Total</option>
+															<option value="f">Flat Rate</option>
+														</select>
+													</div>
+													<span id="depositType1"
+														style="color:red; margin-right: -15px; margin-top: -10px;"></span>
+												</div>
+
+												<div class="clearfix"></div>
+												<script>
+													$('#depositeBasicType').change(function () {
+														$('#deposit').val("");
+														if (document.getElementById("depositeBasicType").value == 2) {
+															document.getElementById("depositDisplay").style.display = "block";
+															document.getElementById("showHideCheckbox").style.display = "none";
+															document.getElementById("depositType").value = 0;
+															$('.depositAmount').empty();
+
+														}
+														else {
+															$('#depositType1').empty();
+															document.getElementById("depositDisplay").style.display = "none";
+															$('#serviceTaxDeposite').prop('checked', false);
+															document.getElementById("showHideCheckbox").style.display = "block";
+
+															$('.depositAmount').empty();
+															$('.depositAmount').append('<span class="input-group-addon" id="test"><i class="fas fa-dollar-sign"></i></span><input type="text" id="deposit" onkeypress="return validate(event);" class="form-control" style="text-align:right;" onkeypress="return validate(event);" maxlength="4" name="depositAmount" placeholder="Amount">')
+														}
+														if (document.getElementById("depositeBasicType").value == 0) {
+															document.getElementById("depositDisplay").style.display = "none";
+															document.getElementById("showHideCheckbox").style.display = "none";
+															document.getElementById("deposit").style.display = "none";
+															$('.depositAmount').empty();
+														}
+
+													});
+													$(document).ready(function () {
+														// if (document.getElementById('depositType').value == "p" || sessionStorage.getItem("depositType") == "p") {
+														// 	$('.depositAmount').append('<input type="number" id="deposit" class="form-control" onkeypress="return validate(event);" onInput="return check(event,value)" min="0" max="100" step="0.01" style="text-align:right;" name="depositAmount"><span class="input-group-addon" id="test"><i class="fas fa-percent"></i></span>')
+														// 	document.getElementById("showHideCheckbox").style.display = "none";
+														// } else {
+														// 	$('.depositAmount').append('<span class="input-group-addon" id="test"><i class="fas fa-dollar-sign"></i></span><input type="text" id="deposit" onkeypress="return validate(event);" style="text-align:right;" class="form-control" onkeypress="return validate(event);" maxlength="4" name="depositAmount" placeholder="Amount">')
+														// 	document.getElementById("showHideCheckbox").style.display = "none";
+														// }
+
+														// 	if(document.getElementById("depositeBasicType").value == 0){
+														// 	document.getElementById("depositDisplay").style.display = "none";
+														// 	document.getElementById("showHideCheckbox").style.display = "none";
+														// 	$('.depositAmount').empty();
+														// }
+
+														// if (sessionStorage.getItem("depositeBasicType") == 2) {
+														// 	document.getElementById("depositDisplay").style.display = "block";
+														// 	//document.getElementById("showHideCheckbox").style.display = "none";
+														// } else {
+														// 	$('.depositAmount').empty();
+														// 	document.getElementById("depositDisplay").style.display = "none";
+														// 	if (sessionStorage.getItem("depositAmount") != null && sessionStorage.getItem("depositAmount") != 0) {
+
+														// 		$('.depositAmount').append('<span class="input-group-addon" id="test"><i class="fas fa-dollar-sign"></i></span><input type="text" id="deposit" style="text-align:right;" onkeypress="return validate(event);" class="form-control" onkeypress="return validate(event);" maxlength="4" name="depositAmount" placeholder="Amount">');
+														// 		document.getElementById("showHideCheckbox").style.display = "block";
+														// 	}
+														// 	//document.getElementById("showHideCheckbox").style.display = "block";
+														// 	//$('.depositAmount').append('<span class="input-group-addon" id="test"><i class="fas fa-dollar-sign"></i></span><input type="text" id="deposit" class="form-control" onkeypress="return validate(event);" maxlength="4" name="depositAmount" placeholder="Amount">')
+														// }
+														// if(document.getElementById("depositeBasicType").value == 0){
+														// 	document.getElementById("depositDisplay").style.display = "none";
+														// 	document.getElementById("showHideCheckbox").style.display = "none";
+														// 	$('.depositAmount').empty();
+														// }
+													});
+
+												</script>
+												<div class="col-xs-6">
+													<div class="form-group">
+														<div class="input-group depositAmount">
+															<!-- <div id="depositSign"></div> -->
+
+															<!-- <div id="depositAmount"></div> -->
+														</div>
+													</div>
+													<span id="deposit1" style="color:red;"></span>
+
+												</div>
+												<script>
+
+													$('#depositType').change(function () {
+														$('.depositAmount').empty();
+
+														if (document.getElementById('depositType').value == "p") {
+
+															$('.depositAmount').append('<input type="number" id="deposit" onkeypress="return validate(event);" class="form-control" onInput="return check(event,value)" min="0" max="100" step="0.01" style="text-align:right;"  name="depositAmount"><span class="input-group-addon" id="test"><i class="fas fa-percent"></i></span>')
+														} else if (document.getElementById('depositType').value == "f") {
+															$('.depositAmount').append('<span class="input-group-addon" id="test"><i class="fas fa-dollar-sign"></i></span><input type="text" id="deposit" class="form-control" style="text-align:right;" onkeypress="return validate(event);" maxlength="4" name="depositAmount" placeholder="Amount">')
+														}
+													});
+													check = function (e, value) {
+														if (!e.target.validity.valid) {
+															e.target.value = value.substring(0, value.length - 1);
+															return false;
+														}
+														var idx = value.indexOf('.');
+														if (idx >= 0) {
+															if (value.length - idx > 3) {
+																e.target.value = value.substring(0, value.length - 1);
+																return false;
+															}
+														}
+														return true;
+													}
+
+												</script>
+												<div class="col-xs-6" id="showHideCheckbox">
+													<label class="text-small"><input type="checkbox"
+															id="serviceTaxDeposite" name="serviceTaxDeposite"> Apply
+														Service
+														Tax </label>
+												</div>
+
+											</div>
+										</div>
+
+
+										<ul class="list-inline pull-right">
+											<li><button type="button" id="backToPhotos"
+													class="btn btn-default btn-rounded  prev-step">Back</button></li>
+											<li class="priceValidation"><button type="button" id="PriceYogiApi"
+													data-toggle="tab"
+													class="btn btn-blue btn-rounded btn-info-full next-step">Next</button>
+											</li>
+										</ul>
+									</div>
+									<!--start: step :-->
+									<div class="tab-pane" role="tabpanel" id="complete">
+
+										<div class="col-sm-5" style="padding: 0px">
+											<h4 class="alt-font">Preview & Publish</h4>
+											<p>(All steps have been successfully completed)</p>
+											<a class="btn btn-blue btn-rounded" id="saveAsDraft"
+												role="button">Review</a>
+											<a class="btn btn-blue btn-rounded" id="publish" role="button">Publish</a>
+										</div>
+										<!-- <div class="col-sm-7">
+												<div id="preview" style="border-radius: 32px;
+												border: 5px solid #01364D;
+												padding: 0px; height: 500px;
+												 width: 270px; overflow:scroll; overflow-x: hidden;">
+
+												</div>
+
+
+											</div> -->
+
+										<div class="col-md-7 margin-30px-bottom">
+											<!-- end tabs-->
+											<div class="tab-content">
+												<!-- Start active tabs-->
+
+
+
+												<div id="carousel-generic-listing" class="carousel slide"
+													data-ride="carousel">
+													<!-- Indicators -->
+													<!-- <ol class="carousel-indicators"></ol> -->
+													<!-- Wrapper for slides -->
+													<div class="carousel-inner" data-interval="10000"></div>
+													<!-- Controls -->
+													<!-- <div id="carousel_display"></div> -->
+													<!-- <div id="carousel_display"></div> -->
+													<a class="left carousel-control" href="#carousel-generic-listing"
+														data-slide="prev">
+														<span class="glyphicon glyphicon-chevron-left"></span></a>
+													<a class="right carousel-control" href="#carousel-generic-listing"
+														data-slide="next">
+														<span class="glyphicon glyphicon-chevron-right"></span> </a>
+												</div>
+
+												<input type="hidden" value="<%= data %>" id="userId">
+												<input type="hidden" value="<%= pmcId %>" id="pmcId">
+												<input type="hidden" id="pmsUnitId">
+
+
+												<div class="panel-group" id="accordion">
+													<div class="panel panel-default">
+														<div class="panel-heading">
+															<h4 class="panel-title">
+																<a data-toggle="collapse" data-parent="#accordion"
+																	href="#collapse1">
+																	Property Details <a class="pull-right"
+																		data-toggle="collapse" data-parent="#accordion"
+																		href="#collapse1"><i
+																			class="fas fa-angle-down"></i></a></a>
+															</h4>
+														</div>
+														<div id="collapse1" class="panel-collapse collapse in">
+															<div class="panel-body">
+																<div id="Main_previewPro"></div>
+															</div>
+														</div>
+													</div>
+
+													<div id="bedroom_details"></div>
+													<div id="bathroom_details"></div>
+													<div id="amenties_details"></div>
+													<div id="House_Rules"></div>
+
+
+												</div>
+
+											</div>
+											<!-- end tabs-->
+
+										</div>
+
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</form>
+						</div>
+						<!--end: add property wizard-->
+
+
+
+					</div>
+				</div>
+	</section>
+
+	<div class="ajax_loader" style="display:none;" id="spinner" data-backdrop="static" data-keyboard="false">
+		<div id="ajax_loader">
+			<!-- <img src="../public/images/spinner.gif" style="display: block; margin-left: auto; margin-right: auto;"> -->
+			<i id="img-spinner" class="fa fa-spinner fa-spin" alt="Loading" style="font-size:50px;color: #FC97B9"></i>
+		</div>
+	</div>
+	<!--end main content -->
+
+
+	<!-- start share with a host lightbox-->
+	<!-- Modal -->
+
+	<div id="dyna-popup" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: pink;">
+					<span class="modal-title"></span>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p id="msg-body"></p>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="myModal-Share" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<!--<h4 class="modal-title">Modal Header</h4>-->
+				</div>
+				<div class="modal-body">
+
+
+					<form action="/">
+						<div class="form-group">
+							<label for="shareTo">To: <span class="text-extra-small">(seperate with a comma)
+								</span></label> <input type="email" class="form-control" id="shareTo" name="shareTo"
+								placeholder="Enter Emails... ">
+						</div>
+						<div class="form-group">
+							<label for="shareSubject">Subject:</label> <input type="text" class="form-control"
+								id="shareSubject" name="shareSubject" Value="Have You Seen Whimstay Yet">
+						</div>
+						<div class="form-group">
+							<label for="shareMessage">Message:</label>
+							<textarea class="form-control margin-10px-bottom" rows="7" id="shareMessage"
+								name="shareMessage">
+Just wanted to share the love. Thought you might be interested.
+							  
+Whimstay is a new vacation rental app that will sell your unsold listings 10 days out as last-minute deals to respectful adventurers.
+
+Best of all, they are offering NO service fees for a whole year by signing up today.
+							  
+http://whimstay.com/host
+
+Cheers,
+
+[Host First Name]		
+						  </textarea>
+						</div>
+
+						<button type="submit" class="btn btn-blue btn-rounded btn-large width-100"
+							data-dismiss="modal">Send</button>
+					</form>
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!-- end share with a host lightbox-->
+
+	<!--footer Start-->
+	<footer class="bg-dark-blue padding-30px-tb text-center">
+		<div class="footer-widget-area">
+			<div class="container">
+				<div class="row">
+					<div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+						<a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+							href="https://www.facebook.com/whimstay" target="_blank"><i
+								class="fab fa-facebook-f"></i><span></span></a>
+						<a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s"
+							href="https://www.instagram.com/whimstay" target="_blank"><i
+								class="fab fa-instagram"></i><span></span></a>
+						<a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+							href="https://www.linkedin.com/company/whimstay" target="_blank"><i
+								class="fab fa-linkedin-in"></i><span></span></a>
+
+					</div>
+				</div>
+
+
+				<p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights
+					Reserved.
+				</p>
+				<p class="text-white"><a href="./terms_privacy">Terms & Privacy</a> </p>
+			</div>
+		</div>
+
+	</footer>
+	<!-- end footer -->
+	<!-- javascript libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCB_eHRb6TGgBI_6OD-tp4MwRSIQ9BBazE&libraries=places&callback=initAutocomplete"
+		async defer></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js'></script>
+	<!-- <script src='../public/javascripts/calendar.js'></script> -->
+	<script
+		src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+	<!--form validation-->
+	<!-- <script src="http://13.59.91.130:3000/assets/validation.js"></script>
+  <script src="http://13.59.91.130:3000/assets/script.js"></script> -->
+
+	<!-- setting -->
+	<script src="../public/javascripts/global.js"></script>
+	<script src="../public/javascripts/googleMap.js"></script>
+	<script src="../public/javascripts/main.js"></script>
+	<script src="../public/javascripts/ListingApi.js"></script>
+	<script src="../public/javascripts/createNewListingApi.js"></script>
+
+
+	<script>
+		$(function () {
+
+			$(':input[type=number]').on('mousewheel', function (e) { $(this).blur(); });
+
+		});
+
+		$('#otherFee').change(function () {
+			if (document.getElementById("otherFee").value > 0) {
+				$('#otherFeeName').val('');
+				document.getElementById("descFees").style.display = "block";
+			} else {
+				document.getElementById("descFees").style.display = "none";
+				document.getElementById("otherFeeName1").innerHTML = '';
+			}
+		});
+
+
+			// $("#lisitngDiscount").on("keypress", function (e) {
+			// 	var currentValue = String.fromCharCode(e.which);
+			// 	var finalValue = $(this).val() + currentValue;
+			// 	if (finalValue > 100) {
+			// 		e.preventDefault();
+			// 	}
+			// });
+
+
+	</script>
+
+	<script>
+
+		function initAutocomplete() {
+
+			autocomplete = new google.maps.places.Autocomplete(
+					 /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+				{ types: ['geocode'] });
+
+		}
+
+		function googleAddress() {
+			var placeSearch, autocomplete;
+			var componentForm = {
+				street_number: 'short_name',
+				route: 'long_name',
+				locality: 'long_name',
+				administrative_area_level_1: 'short_name',
+				country: 'long_name',
+				postal_code: 'short_name'
+			};
+
+			if (document.getElementById("autocomplete").value == null) {
+				var map = new google.maps.Map(document.getElementById('map'), {
+					center: { lat: 37.773972, lng: -122.431297 },
+					zoom: 13
+
+				});
+
+			} else {
+				var geocoder = new google.maps.Geocoder();
+				var address = document.getElementById("autocomplete").value;
+				var latitude;
+				var longitude;
+				var map;
+				var marker;
+
+
+				geocoder.geocode({ 'address': address }, function (results, status) {
+
+					if (status == google.maps.GeocoderStatus.OK) {
+						latitude = results[0].geometry.location.lat();
+						longitude = results[0].geometry.location.lng();
+
+						map = new google.maps.Map(document.getElementById('map'), {
+							center: { lat: latitude, lng: longitude },
+							zoom: 13
+						});
+
+						var myLatLng = { lat: latitude, lng: longitude };
+						marker = new google.maps.Marker({
+							position: myLatLng,
+							map: map
+						});
+
+					}
+
+				});
+
+			}
+
+
+			var card = document.getElementById('pac-card');
+			var input = document.getElementById('autocomplete');
+			var types = document.getElementById('type-selector');
+			var strictBounds = document.getElementById('strict-bounds-selector');
+
+
+
+
+			//   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+			var autocomplete = new google.maps.places.Autocomplete(input);
+
+
+			// autocomplete.bindTo('bounds', map);
+
+
+			autocomplete.setFields(
+				['address_components', 'geometry', 'icon', 'name']);
+
+			var infowindow = new google.maps.InfoWindow();
+			var infowindowContent = document.getElementById('infowindow-content');
+			infowindow.setContent(infowindowContent);
+
+			marker = new google.maps.Marker({
+				map: map,
+				anchorPoint: new google.maps.Point(0, -29)
+			});
+
+			autocomplete.addListener('place_changed', function () {
+				// alert("change");
+				// var marker = new google.maps.Marker({});
+
+
+				infowindow.close();
+				// marker.setVisible(false);
+				var place = autocomplete.getPlace();
+
+				for (var component in componentForm) {
+					document.getElementById(component).value = '';
+					document.getElementById(component).disabled = false;
+				}
+
+
+				// and fill the corresponding field on the form.
+				for (var i = 0; i < place.address_components.length; i++) {
+					var addressType = place.address_components[i].types[0];
+					if (componentForm[addressType]) {
+						var val = place.address_components[i][componentForm[addressType]];
+						document.getElementById(addressType).value = val;
+					}
+				}
+
+				if (!place.geometry) {
+					// User entered the name of a Place that was not suggested and
+					// pressed the Enter key, or the Place Details request failed.
+					window.alert("No details available for input: '" + place.name + "'");
+					return;
+				}
+
+				// If the place has a geometry, then present it on a map.
+				if (place.geometry.viewport) {
+					map.fitBounds(place.geometry.viewport);
+				} else {
+					map.setCenter(place.geometry.location);
+					map.setZoom(17);  // Why 17? Because it looks good.
+				}
+				document.getElementById('lat').value = place.geometry.location.lat();
+				document.getElementById('lng').value = place.geometry.location.lng();
+				var myLatLng = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
+
+				if (marker && marker.setMap) {
+					marker.setMap(null);
+				}
+
+				marker = new google.maps.Marker({
+					position: myLatLng,
+					map: map
+				});
+
+
+
+
+
+
+				// marker.setPosition(place.geometry.location);
+				// marker.setVisible(true);
+
+				var address = '';
+				if (place.address_components) {
+					address = [
+						(place.address_components[0] && place.address_components[0].short_name || ''),
+						(place.address_components[1] && place.address_components[1].short_name || ''),
+						(place.address_components[2] && place.address_components[2].short_name || '')
+					].join(' ');
+				}
+
+
+			});
+
+			//  }
+
+		};
+
+
+	</script>
+
+
+
+	<script>
+		$("#accomodationRadio").change(function () {
+			if ($('input[name=optradio]').is(':checked')) {
+				$('#guestRoom1').empty();
+			}
+		});
+
+		$("input#my_select").keypress(function (event) {
+			var code = event.charCode || event.which;
+			if (code >= 32 && !/^\d+$/.test(String.fromCharCode(code))) {
+				event.preventDefault();
+			}
+			$('#my_select1').empty();
+		});
+
+		function validate1(event) {
+			var value = document.getElementById("noBaths").value;
+			if (value === '....' || value === '...' || value === '..') {
+				document.getElementById("noBaths").value = 0;
+			}
+			if (value.indexOf(".") == 1 || value.indexOf(".") == 2) {
+				value = value.split(".");
+				if (value[1] >= 10) {
+					value[1] = value[1];
+				} else if (value[1] == 5) {
+					value[1] = value[1] + 0;
+				} else {
+					value[1] = value[1] + 1;
+				}
+				if (value[1] < 50) {
+					document.getElementById("noBaths").value = value[0];
+				} else if (value[1] > 50) {
+					document.getElementById("noBaths").value = parseInt(value[0]) + 1;
+				} else if (value[1] == 5) {
+					document.getElementById("noBaths").value = document.getElementById("noBaths").value;
+				}
+			} else {
+				document.getElementById("noBaths").value = document.getElementById("noBaths").value;
+			}
+
+		}
+		function validateBathroom(event) {
+			$('#noBaths1').empty();
+			var charCode = (event.which) ? event.which : event.keyCode;
+			if (charCode != 46 && charCode > 31
+				&& (charCode < 48 || charCode > 57))
+				return false;
+		}
+
+		function validateInput() {
+			$('#propertyName1').empty();
+			$('#propertyType1').empty();
+			$('#subPropertyType1').empty();
+			$('#guestRoom1').empty();
+			$('#property').empty();
+			$('#propertyDesc1').empty();
+			$('#que_12').empty();
+			$('#que_42').empty();
+			$('#otherFeeName1').empty();
+			$('#profile-img1').empty();
+			$('#depositType1').empty();
+		}
+
+		var point = false;
+		var count = 0;
+		function check1(e, value) {
+
+			var fieldVal = document.getElementById('cleaningPrice').value;
+			if (fieldVal.length > 6) {
+				return false;
+			}
+
+			var fieldVal1 = document.getElementById('petPrice').value;
+			if (fieldVal1.length > 6) {
+				return false;
+			}
+
+			var fieldVal2 = document.getElementById('otherFee').value;
+			if (fieldVal2.length > 6) {
+				return false;
+			}
+
+			var unicode = e.charCode ? e.charCode : e.keyCode;
+
+			var idx = value.indexOf('.');
+			if (idx >= 0 && unicode != 45 && unicode != 46) {
+				if (value.length - idx > 2) {
+					e.target.value = value.substring(0, value.length - 1);
+				}
+			}
+
+			if (idx != -1 && unicode == 46) {
+				return false;
+			}
+
+			if (unicode == 45 && point == false) {
+				point = true;
+			}
+			if (unicode != 8) if ((unicode < 48 || unicode > 57) && unicode != 46 && unicode == 45) return false;
+		}
+		function checkLength() {
+			var fieldVal = document.getElementById('cleaningPrice').value;
+		}
+
+		function validate(e) {
+			$("#noBeds1").empty();
+			$("#lisitngPrice1").empty();
+			$("#lisitngDiscount1").empty();
+			$("#deposit1").empty();
+
+			var charCode = e.which || e.keyCode;
+
+			if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+				return false;
+			} else
+				return true;
+		}
+	</script>
+
+	<script>
+		$('#addPhotoApi').click(function () {
+			if ($('input[name=optPets]:checked').val() == "true") {
+
+				$('#isEnable').show();
+			} else {
+				$('#isEnable').hide();
+			}
+
+			// if ($('input[name=optDeposit]:checked').val() == 1) {
+
+			// 	$('#isDisplay').show();
+			// } else {
+			// 	$('#isDisplay').hide();
+			// }
+
+		});
+
+		$('.Price').click(function () {
+
+			if ($('input[name=optPets]:checked').val() == "true") {
+
+				$('#isEnable').show();
+			} else {
+				$('#isEnable').hide();
+			}
+
+			// if ($('input[name=optDeposit]:checked').val() == 1) {
+
+			// 	$('#isDisplay').show();
+			// } else {
+			// 	$('#isDisplay').hide();
+			// }
+
+		});
+
+	</script>
+
+
+	<script type="text/javascript">
+
+		function previewImages() {
+
+
+			var $preview = $('#profile-img-tag .list');
+			var existingImagesList = [];
+			var newImageCount;
+			var existingImages = $('#profile-img-tag .img-wrap').length;
+			// var selectdImage = document.getElementById('profile-img');
+
+			if (this.files) $.each(this.files, readAndPreview);
+
+			function readAndPreview(i, file) {
+				if (existingImages) {
+					newImageCount = ++existingImages;
+				} else {
+					newImageCount = i;
+				}
+
+				var imageId = newImageCount;
+				var ImageName = file.name;
+
+				if (file.size > 20971520) { // make it in MB so divide by 1024*1024
+					document.getElementById("msg-body").innerHTML = "Please select image size less than 20 MB";
+					$('#dyna-popup').modal('show');
+					//console.log('Please select image size less than 20 MB');
+					return false;
+				}
+
+				if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+					return console.log(file.name + " is not an image");
+				} // else...
+
+				var reader = new FileReader();
+
+				$(reader).on("load", function () {
+					$preview.append("<div  id='" + "image" + imageId + "'  class='img-wrap col-lg-4 col-sm-4 col-xs-6   img-responsive'   style='width:200px' ><span class='fa fa-times-circle fa-lg'  id='" + "image" + imageId + "'  title='Delete Image'   onClick ='deleteImage(this)'></span> <img  class='thumbnail  img-responsive'  src='" + this.result + "'   /></div>");
+
+				});
+				reader.readAsDataURL(file);
+			}
+
+		}
+
+		$('#profile-img').on("change", previewImages);
+
+	</script>
+
+
+	<script>
+
+		$('input').keypress(function (e) {
+			if (this.value.length == 0 && e.which == 48) {
+				return false;
+			}
+		});
+
+		$(".next-step").on("click", function () {
+			window.scroll(0, 0)
+		});
+	</script>
+
+	<script>
+
+		$(document).ready(function () {
+			var addflag = sessionStorage.getItem("isAddFlag");
+			var editFlag = sessionStorage.getItem("isEditableFlag");
+
+			//document.getElementById("pmsUnitId").value = sessionStorage.getItem("pmsUnitId");
+
+			// if ((sessionStorage.getItem('externalId') == 'false') && (editFlag == "true")) {
+			// 	$('.nonPmsAmenities').show();
+			// 	$('#amenitiesShowHide').show();
+			// 	$('#pmsAmenitiesShow').hide();
+			// } else if ((sessionStorage.getItem('externalId') == 'false') || (addflag == "true")) {
+			// 	$('.nonPmsAmenities').show();
+			// 	$('#amenitiesShowHide').show();
+			// 	$('#pmsAmenitiesShow').hide();
+			// } else {
+			// 	$('.nonPmsAmenities').hide();
+			// 	$('#amenitiesShowHide').hide();
+			// 	$('#pmsAmenitiesShow').show();
+			// 	$.ajax({
+
+			// 		type: "GET",
+			// 		dataType: "json",
+			// 		headers: {
+			// 			'Authorization': 'Basic aG9zdDpkZmdoamFzZmdzaGZqc3VmeXNnemhjZ2pzemJqY2Jqc3piY2pic2hiaDIzNDU2NzY1NDM0cnRld2VydA==',
+			// 		},
+			// 		url: url + 'v1/user/' + userId + '/property/' + sessionStorage.getItem("propertyId"),
+
+			// 		success: function (result) {
+			// 			var trHTMLAmenties = '';
+
+			// 			var AmenitiesArray = [];
+			// 			for (var feature = 0; feature < result.bhoomiHostPMSPropertyFeatures.length; feature++) {
+			// 				if(result.bhoomiHostPMSPropertyFeatures[feature].pmsFeatureDescCategory == null){
+			// 					result.bhoomiHostPMSPropertyFeatures[feature].pmsFeatureDescCategory = "Other";
+			// 			}
+			// 				if (AmenitiesArray.indexOf(result.bhoomiHostPMSPropertyFeatures[feature].pmsFeatureDescCategory) == -1) {
+			// 					AmenitiesArray.push(result.bhoomiHostPMSPropertyFeatures[feature].pmsFeatureDescCategory)
+
+			// 				}
+			// 			}
+			// 			for (var ArrayLoop = 0; ArrayLoop < AmenitiesArray.length; ArrayLoop++) {
+			// 				trHTMLAmenties += '<h6 style="margin-bottom: 10px;word-break: break-all;">' + AmenitiesArray[ArrayLoop] + '</h6>'
+			// 				for (var feature = 0; feature < result.bhoomiHostPMSPropertyFeatures.length; feature++) {
+			// 					if (result.bhoomiHostPMSPropertyFeatures[feature].pmsFeatureDescCategory == AmenitiesArray[ArrayLoop]) {
+			// 						trHTMLAmenties += '<label style="margin-left:10px; display: block; padding: 0px; margin-top: -8px; font-weight: 500;"><li class="AmenitiesLi">' + result.bhoomiHostPMSPropertyFeatures[feature].pmsFeatureDesc + '</li></label>'
+			// 					}
+
+			// 				}
+			// 			}
+
+			// 			// <hr><label style="font: bold;font-size: 18px;font-weight: 800;padding-left: 3px;">Review</label><br>'
+
+
+			// 			$('#pmsAmenities').append(trHTMLAmenties);
+			// 		},
+			// 		error: function (jqXHR, textStatus, errorThrown) {
+			// 			console.log('update Stock error: ' + textStatus);
+			// 		}
+
+			// 	});
+			// }
+
+
+
+			// if(noBeds.value=""){
+			// 	$('#btn_Plus').prop("disabled",true);
+			// }
+			//console.log(sessionStorage.getItem("propertyId"));
+			// console.log("property");
+			// console.log(sessionStorage.getItem("userId"));
+			var editFlag = sessionStorage.getItem("isEditableFlag");
+			if (editFlag == "true") {
+				var $active = $('.wizard .nav-tabs li.active');
+				$active.nextAll().removeClass('disabled');
+
+
+				var setStepId3 = sessionStorage.getItem('setStepId3');
+				var setStepId2 = sessionStorage.getItem('setStepId2');
+				var setStepId6 = sessionStorage.getItem('setStepId6');
+				if (setStepId2 == 'step2') {
+					$("#propDetails").removeClass('active');
+					$('#step2').toggle();
+					$('#step1').hide(); $('#step3').hide(); $('#step4').hide(); $('#step5').hide(); $('#step6').hide(); $('#complete').hide();
+				}
+				if (setStepId6 == 'step6') {
+					$("#propDetails").removeClass('active');
+					$('#step6').toggle();
+					$('#step6').show();
+					$('#step1').hide(); $('#step2').hide(); $('#step4').hide(); $('#step5').hide(); $('#step3').hide(); $('#complete').hide();
+					var petFee = sessionStorage.getItem('petFee');
+					if (petFee == "null") {
+						$('#isEnable').hide();
+					} else {
+						$('#isEnable').show();
+					}
+				}
+				if (setStepId3 == 'step2') {
+					$("#propDetails").removeClass('active');
+					$('#step2').toggle();
+					$('#step2').show();
+					$('#step1').hide(); $('#step4').hide(); $('#step5').hide(); $('#step6').hide(); $('#complete').hide();
+				}
+				if ($('#propDetails').click(function () {
+					$('#step1').toggle();
+					$('#step1').show();
+					$('#step2').hide(); $('#step3').hide(); $('#step4').hide(); $('#step5').hide(); $('#step6').hide(); $('#complete').hide();
+				}));
+				if ($('#bathroom').click(function () {
+					$('#step3').toggle();
+					$('#step3').show();
+					$('#step1').hide(); $('#step2').hide(); $('#step4').hide(); $('#step5').hide(); $('#step6').hide(); $('#complete').hide();
+				}));
+				if ($('#amenities').click(function () {
+					$('#step4').toggle();
+					$('#step1').hide(); $('#step3').hide(); $('#step2').hide(); $('#step5').hide(); $('#step6').hide(); $('#complete').hide();
+				}));
+				if ($('#description').click(function () {
+					$('#step5').toggle();
+					$('#step1').hide(); $('#step3').hide(); $('#step4').hide(); $('#step2').hide(); $('#step6').hide(); $('#complete').hide();
+				}));
+				if ($('#price').click(function () {
+					$('#step6').toggle();
+					$('#step2').hide(); $('#step3').hide(); $('#step4').hide(); $('#step5').hide(); $('#step1').hide(); $('#complete').hide();
+				}));
+				if ($('#completed').click(function () {
+					$('#complete').toggle();
+					$('#step2').hide(); $('#step3').hide(); $('#step4').hide(); $('#step5').hide(); $('#step6').hide(); $('#step1').hide();
+				}));
+				if ($('#bedroom').click(function () {
+					$('#step2').toggle();
+					$('#step1').hide(); $('#step3').hide(); $('#step4').hide(); $('#step5').hide(); $('#step6').hide(); $('#complete').hide();
+				}));
+				else {
+					$('#step1').toggle();
+					$('#step1').show();
+				}
+				sessionStorage.removeItem('setStepId2');
+				sessionStorage.removeItem('setStepId3');
+				sessionStorage.removeItem('setStepId6');
+			}
+			document.getElementById("userId").value = document.getElementById("userId").value;
+			if (parseInt(sessionStorage.getItem("propertyId")) > 0) {
+				// document.getElementById("unitId").value = sessionStorage.getItem("unitId");
+				// document.getElementById("propertyId").value = sessionStorage.getItem("propertyId");
+				// document.getElementById("autocomplete").value = sessionStorage.getItem("route");
+				// document.getElementById("locality").value = sessionStorage.getItem("city");
+				// document.getElementById("administrative_area_level_1").value = sessionStorage.getItem("state");
+				// document.getElementById("country").value = sessionStorage.getItem("country");
+				// document.getElementById("postal_code").value = sessionStorage.getItem("postalCode");
+				// document.getElementById("route").value = sessionStorage.getItem("myMainKey");
+				// document.getElementById("lat").value = sessionStorage.getItem("latitude");
+				// document.getElementById("lng").value = sessionStorage.getItem("longitude");
+
+				var p = sessionStorage.getItem("propertyTypeId");
+				document.getElementById("propertyType").value = p
+				if (p == 1) {
+					$('#subPropertyType').empty();
+					$('#subPropertyType').append($('<option></option>').val(0).html('Select...'));
+					$('#subPropertyType').append($('<option></option>').val(1).html('Apartment'));
+					$('#subPropertyType').append($('<option></option>').val(2).html('Condo'));
+					$('#subPropertyType').append($('<option></option>').val(3).html('Loft'));
+					$('#subPropertyType').append($('<option></option>').val(4).html('Studio'));
+				}
+				else if (p == 2) {
+					$('#subPropertyType').empty();
+					$('#subPropertyType').append($('<option></option>').val(0).html('Select...'));
+					$('#subPropertyType').append($('<option></option>').val(5).html('House'));
+					$('#subPropertyType').append($('<option></option>').val(6).html('Bungalow'));
+					$('#subPropertyType').append($('<option></option>').val(7).html('Cabin'));
+					$('#subPropertyType').append($('<option></option>').val(8).html('Cottage'));
+					$('#subPropertyType').append($('<option></option>').val(9).html('Country House'));
+					$('#subPropertyType').append($('<option></option>').val(10).html('Townhome'));
+					$('#subPropertyType').append($('<option></option>').val(11).html('Villa'));
+				}
+				else if (p == 3) {
+					$('#subPropertyType').empty();
+					$('#subPropertyType').append($('<option></option>').val(0).html('Select...'));
+					$('#subPropertyType').append($('<option></option>').val(12).html('Guesthouse'));
+					$('#subPropertyType').append($('<option></option>').val(13).html('Guest Suite'));
+				}
+				else if (p == 4) {
+					$('#subPropertyType').empty();
+					$('#subPropertyType').append($('<option></option>').val(0).html('Select...'));
+					$('#subPropertyType').append($('<option></option>').val(14).html('Bed & Breakfast'));
+
+				}
+				else if (p == 5) {
+					$('#subPropertyType').empty();
+					$('#subPropertyType').append($('<option></option>').val(0).html('Select...'));
+					$('#subPropertyType').append($('<option></option>').val(15).html('Boutique Hotel'));
+					$('#subPropertyType').append($('<option></option>').val(16).html('Aparthotel'));
+					$('#subPropertyType').append($('<option></option>').val(17).html('Hostel'));
+					$('#subPropertyType').append($('<option></option>').val(18).html('Hotel'));
+					$('#subPropertyType').append($('<option></option>').val(19).html('Lodge'));
+					$('#subPropertyType').append($('<option></option>').val(20).html('Resort'));
+					$('#subPropertyType').append($('<option></option>').val(21).html('Serviced Apartment'));
+				}
+				else if (p == 6) {
+					$('#subPropertyType').empty();
+					$('#subPropertyType').append($('<option></option>').val(0).html('Select...'));
+					$('#subPropertyType').append($('<option></option>').val(22).html('Barn'));
+					$('#subPropertyType').append($('<option></option>').val(23).html('Boat'));
+					$('#subPropertyType').append($('<option></option>').val(24).html('Bus'));
+					$('#subPropertyType').append($('<option></option>').val(25).html('Camper/RV'));
+					$('#subPropertyType').append($('<option></option>').val(26).html('Campsite'));
+					$('#subPropertyType').append($('<option></option>').val(27).html('Castle'));
+					$('#subPropertyType').append($('<option></option>').val(28).html('Cave'));
+					$('#subPropertyType').append($('<option></option>').val(29).html('Dome House'));
+					$('#subPropertyType').append($('<option></option>').val(30).html('Earth House'));
+					$('#subPropertyType').append($('<option></option>').val(31).html('Farm Stay'));
+					$('#subPropertyType').append($('<option></option>').val(32).html('Houseboat'));
+					$('#subPropertyType').append($('<option></option>').val(33).html('Hut'));
+					$('#subPropertyType').append($('<option></option>').val(34).html('Igloo'));
+					$('#subPropertyType').append($('<option></option>').val(35).html('Island'));
+					$('#subPropertyType').append($('<option></option>').val(36).html('Lighthouse'));
+					$('#subPropertyType').append($('<option></option>').val(37).html('Plane'));
+					$('#subPropertyType').append($('<option></option>').val(38).html('Mobile Home'));
+					$('#subPropertyType').append($('<option></option>').val(39).html('Tent'));
+					$('#subPropertyType').append($('<option></option>').val(40).html('Tiny House'));
+					$('#subPropertyType').append($('<option></option>').val(41).html('Tipi'));
+					$('#subPropertyType').append($('<option></option>').val(42).html('Train'));
+					$('#subPropertyType').append($('<option></option>').val(43).html('Treehouse'));
+					$('#subPropertyType').append($('<option></option>').val(44).html('Windmill'));
+					$('#subPropertyType').append($('<option></option>').val(45).html('Yurt'));
+				}
+
+				document.getElementById("subPropertyType").value = sessionStorage.getItem("propertySubTypeId");
+				// document.getElementById("guestRoom").value = sessionStorage.getItem("optradio");
+				$('input[name=optradio][value="' + sessionStorage.getItem("optradio") + '"]').prop('checked', true);
+
+				// alert(sessionStorage.getItem("noBeds"));
+				if (sessionStorage.getItem("noBed") != '999') {
+					document.getElementById("noBeds").value = sessionStorage.getItem("noBeds");
+				} else {
+					document.getElementById("noBeds").value = 0;
+				}
+
+				// alert(sessionStorage.getItem("my_select"));
+
+				// if (sessionStorage.getItem("my_select") != '999') {
+				// 	//	document.getElementById("my_select").value = sessionStorage.getItem("my_select");
+				// 	$('#my_select').val(sessionStorage.getItem("my_select"));
+				// } else {
+				// 	//document.getElementById("my_select").value = 0;
+
+				// 	sessionStorage.setItem("my_select", 0);
+				// 	$('#my_select').val(0);
+				// }
+
+
+				// if(sessionStorage.getItem("noBed")=='999'){
+				// 	document.getElementById("noBed").value = sessionStorage.getItem("noBed");
+				// }else{
+				// 	document.getElementById("noBed").value = 0;
+				// }
+
+				// document.getElementById("noBaths").value = sessionStorage.getItem("noBaths");
+
+				// var propertyName = sessionStorage.getItem("propertyName");
+
+				// if (propertyName == "null") {
+
+				// 	document.getElementById("propertyName").value = ""
+
+				// } else {
+
+				// 	document.getElementById("propertyName").value = sessionStorage.getItem("propertyName");
+
+				// }
+
+				// var propertyName = sessionStorage.getItem("propertyDesc");
+				// if (propertyName == "null") {
+
+
+				// } else {
+
+				// 	document.getElementById("propertyDesc").value = sessionStorage.getItem("propertyDesc");
+
+				// }
+
+
+
+
+				for (var i = 0; i <= 40; i++) {
+					document.getElementById("Feature_" + (i + 1)).checked = ((sessionStorage.getItem("Feature_" + (i + 1)) == "1" ? true : false));
+				}
+
+				// $('input[name=optChildren][value="' + sessionStorage.getItem("suitableChild") + '"]').prop('checked', true);
+				// $('input[name=optInfants][value="' + sessionStorage.getItem("suitableInfant") + '"]').prop('checked', true);
+				// $('input[name=optPets][value="' + sessionStorage.getItem("suitablePet") + '"]').prop('checked', true);
+				// $('input[name=optSmoking][value="' + sessionStorage.getItem("smokeAllowed") + '"]').prop('checked', true);
+				// $('input[name=optEvents][value="' + sessionStorage.getItem("partyAllowed") + '"]').prop('checked', true);
+				// $('input[name=optWheelChair][value="' + sessionStorage.getItem("optWheelChair") + '"]').prop('checked', true);
+				// $('input[name=optDeposit][value="' + sessionStorage.getItem("depositeAllowed") + '"]').prop('checked', true);
+
+				var addHouseRule = sessionStorage.getItem("addHouseRule");
+
+				// if (addHouseRule == "null") {
+
+				// 	document.getElementById("txtaddhouserule").value = "";
+				// } else {
+				// 	document.getElementById("txtaddhouserule").value = sessionStorage.getItem("addHouseRule");
+				// }
+
+
+				// var YogiQuesAnsArr = JSON.parse(sessionStorage.getItem("YogiQuesAnsArr"));
+				// var QuesAnsArr = JSON.parse(sessionStorage.getItem("QuesAnsArr"));//no brackets
+				// for (var i = 0; i < YogiQuesAnsArr.length; i++) {
+				// 	// console.log(YogiQuesIdArr[i]);        
+				// 	document.getElementById("que_" + QuesAnsArr[i]).value = YogiQuesAnsArr[i];
+				// }
+
+				// //price//
+				// document.getElementById("lisitngPrice").value = sessionStorage.getItem("basePrice");
+				// if (sessionStorage.getItem("minPrice") == "null") {
+				// 	document.getElementById("minimumPrice").value = '';
+				// } else {
+				// 	document.getElementById("minimumPrice").value = sessionStorage.getItem("minPrice");
+				// }
+				// document.getElementById("lisitngDiscount").value = sessionStorage.getItem("discPer");
+
+				// document.getElementById("petPrice").value = parseFloat(sessionStorage.getItem("petFee"));
+				// if (document.getElementById("petPrice").value === "NaN") {
+				// 	document.getElementById("petPrice").value = "";
+				// }
+				// else {
+				// 	document.getElementById("petPrice").value = parseFloat(sessionStorage.getItem("petFee"));
+				// }
+				// // document.getElementById("petPricePer").value = sessionStorage.getItem("petFeeType");
+				// if (sessionStorage.getItem("minStayDays") == 0 || sessionStorage.getItem("minStayDays") == "null") {
+				// 	document.getElementById("min_stay").value = 1;
+				// } else {
+				// 	document.getElementById("min_stay").value = sessionStorage.getItem("minStayDays");
+				// }
+
+				// document.getElementById("cleaningPrice").value = parseFloat(sessionStorage.getItem("cleaningFee"));
+				// if (document.getElementById("cleaningPrice").value === "NaN") {
+				// 	document.getElementById("cleaningPrice").value = "";
+				// }
+				// else {
+				// 	document.getElementById("cleaningPrice").value = parseFloat(sessionStorage.getItem("cleaningFee"));
+				// }
+
+				// if (sessionStorage.getItem("depositAmount") != 0) {
+				// 	document.getElementById("deposit").value = sessionStorage.getItem("depositAmount");
+
+				// 	if (sessionStorage.getItem("depositAmount") === "null") {
+				// 		document.getElementById("deposit").value = "";
+				// 	}
+				// 	else {
+				// 		document.getElementById("deposit").value = sessionStorage.getItem("depositAmount");
+				// 	}
+				// }
+
+				// document.getElementById("otherFee").value = parseFloat(sessionStorage.getItem("otherFee"));
+				// if (document.getElementById("otherFee").value === "NaN") {
+				// 	document.getElementById("otherFee").value = "";
+				// }
+				// else {
+				// 	document.getElementById("otherFee").value = parseFloat(sessionStorage.getItem("otherFee"));
+				// }
+
+				// document.getElementById("otherFeeName").value = sessionStorage.getItem("otherFeeName");
+				// if (document.getElementById("otherFeeName").value === "null") {
+				// 	document.getElementById("otherFeeName").value = "";
+				// }
+				// else {
+				// 	document.getElementById("otherFeeName").value = sessionStorage.getItem("otherFeeName");
+				// }
+
+				// if (sessionStorage.getItem("depositeBasicType") == "null") {
+				// 	document.getElementById("depositeBasicType").value = 0;
+				// } else {
+				// 	document.getElementById("depositeBasicType").value = sessionStorage.getItem("depositeBasicType");
+				// }
+
+				// if (sessionStorage.getItem("depositType") == "") {
+				// 	document.getElementById("depositType").value = 0;
+				// } else {
+				// 	document.getElementById("depositType").value = sessionStorage.getItem("depositType");
+				// }
+
+				// var serviceTaxDeposite = sessionStorage.getItem("serviceTaxDeposite");
+				// if (serviceTaxDeposite == 1) {
+				// 	$('#serviceTaxDeposite').prop('checked', true);
+				// } else {
+				// 	$('#serviceTaxDeposite').prop('checked', false);
+				// }
+
+				// var serviceTaxCleaning = sessionStorage.getItem("serviceTaxCleaning");
+				// if (serviceTaxCleaning == 1) {
+				// 	$('#serviceTaxCleaning').prop('checked', true);
+				// } else {
+				// 	$('#serviceTaxCleaning').prop('checked', false);
+				// }
+
+				// var serviceTaxPet = sessionStorage.getItem("serviceTaxPet");
+				// if (serviceTaxPet == 1) {
+				// 	$('#serviceTaxPet').prop('checked', true);
+				// } else {
+				// 	$('#serviceTaxPet').prop('checked', false);
+				// }
+
+				// var serviceTaxOther = sessionStorage.getItem("serviceTaxOther");
+				// if (serviceTaxOther == 1) {
+				// 	$('#serviceTaxOther').prop('checked', true);
+				// } else {
+				// 	$('#serviceTaxOther').prop('checked', false);
+				// }
+
+				document.getElementById("active").value = sessionStorage.getItem("active");
+				document.getElementById("isHide").value = sessionStorage.getItem("isHide");
+
+				AddBathroomRow();
+
+				ShowBathroomRow();
+
+				ShowBedroomRow();
+
+			}
+		});
+
+		//Code change
+		function ShowBedroomRow() {
+
+			// alert("ShowBedroomRow");
+			// sessionStorage.setItem("bedCntAmenitiesarr",  JSON.stringify(bedCntAmenitiesarr) );
+
+			var iCnt = 0;
+			var ipresentCnt = 0;
+			// CREATE A "DIV" ELEMENT AND DESIGN IT USING jQuery ".css()" CLASS.
+			var bed_id;
+			var container = $(document.createElement('div')).css({
+				width: '100%',
+				borderTopColor: '#999', borderBottomColor: '#999',
+				borderLeftColor: '#999', borderRightColor: '#999'
+			});
+			container.addClass("bedContainer");
+			// $('container').attr('id','id_new');
+
+			var p = document.getElementById("my_select").value;
+			// alert(p);
+			$(container).empty();
+			var bedroomIDArr = JSON.parse(sessionStorage.getItem("bedroomID"));//no brackets
+			var bedroomAmenitiesArr = JSON.parse(sessionStorage.getItem("bedroomAmenities"));//no brackets    
+			var bedCntAmenitiesarr = JSON.parse(sessionStorage.getItem("bedCntAmenitiesarr"));//no brackets   
+
+			var BedType = (sessionStorage.getItem("BedType"));
+			if (BedType == 2) { bed_id = 0; }
+			else if (BedType == 1) {
+				bed_id = 1;
+			}
+			bed_id = 0;
+			var text_t = ""
+			var text_cnt = 0;
+			var tot_bed_cnt = 0;
+			if (p == "999") {
+
+			} else {
+				// commented on 04022019
+
+				for (var q = bed_id; q <= p; q++) { // (bed_id == 0) ? q < p : q <= p 
+					// for (var q = bed_id; q < p; q++) {
+					iCnt = q;
+					var r = document.getElementById("tb" + iCnt);
+					if (r == null) {
+						var strSub = "";
+						var lstPos = "right";
+
+						var array1 = [bedCntAmenitiesarr[iCnt]];
+
+
+						for (m = 0; m < array1.length; m++) {
+							var array = new Array();
+							if (array1 != undefined && array1.length != 0) {
+								array = array1[m].split(",");
+							}
+
+							var iRow = 1;
+							for (l = 0; l < array.length - 1; l++) {
+								var pos = array[l].indexOf(':');
+								var posamen = parseInt(array[l].substring(0, pos - 1));
+
+								var posamen1 = parseInt(array[l].substring(4));
+								text_t = (posamen == 1 ? 'Single' :
+									(posamen == 2 ? 'Double' :
+										(posamen == 3 ? 'Queen' :
+											(posamen == 4 ? 'King' :
+												(posamen == 5 ? 'Crib' :
+													(posamen == 6 ? 'Couch' :
+														(posamen == 7 ? 'Bunkbed' :
+															(posamen == 8 ? 'Air Mattress' :
+																(posamen == 9 ? 'Floor Mattress' :
+																	(posamen == 10 ? 'Toddler Bed' :
+																		(posamen == 11 ? 'Hammock' :
+																			(posamen == 12 ? 'Water Bed' : ''))))))))))));
+
+								// text_cnt=parseInt(bedCntAmenitiesarr[iCnt].substring(3 ,bedCntAmenitiesarr[iCnt].length -1)) ;
+								//  text_cnt=parseInt(bedCntAmenitiesarr[iCnt].substring(pos + 2 ,bedCntAmenitiesarr[iCnt])) ;
+
+
+
+								text_cnt = posamen1;
+
+								if (isNaN(parseFloat(text_cnt))) {
+									text_cnt = "";
+								} else {
+									text_cnt = posamen1;
+								}
+
+
+								if (!(l % 2)) {
+									lstPos = 'left';
+									strSub = strSub + '<div class="row4" >' +
+										'<div class="containerLeft" id=containerleft' + iCnt + '_' + iRow + '  >' + // (l + 1)
+										'<div class="col-sm-4 col-xs-8">' + text_t + '</div>' +
+										'   <div class="col-sm-2 col-xs-4 bedCount">' +
+										'<input type="text" class="form-control" id=bed' + text_t.replace(' ', '') + '_' + iCnt + ' name=' + text_t + ((text_cnt != "0") ? ' value="' + text_cnt + '"' : ' placeholder=" "') + 'onkeypress="return validate(event);" maxlength="1">' +
+										'</div>' +
+										'</div>'
+
+								}
+								else {
+									lstPos = 'right';
+									strSub = strSub + '<div class="containerRight" id=containerright' + iCnt + '_' + iRow + '  >' +// (l + 1) 
+										'<div class="col-sm-4 col-xs-8">' + text_t + '</div>' +
+										'<div class="col-sm-2 col-xs-4 bedCount">' +
+										'<input type="text" class="form-control" id=bed' + text_t.replace(' ', '') + '_' + iCnt + ' name=' + text_t + ((text_cnt != "0") ? ' value="' + text_cnt + '"' : ' placeholder=" "') + 'onkeypress="return validate(event);" maxlength="1">' +
+										'</div>' +
+										'</div>'
+									iRow = iRow + 1;
+								}
+							}
+						}
+						if (lstPos == "right") {
+							strSub = strSub + '<div class="row4" >' +
+								'<div class="containerLeft" id=containerleft' + iCnt + '_' + (array.length + 1) + '  >' +
+								'<div class="col-sm-6 col-xs-12">' +
+								'<select class="form-control selection" id=addNewBedLeft' + iCnt + '_' + (array.length + 1) + '   >' +
+								'<option value="0">Add Another Bed</option>' +
+								((bedroomAmenitiesArr[iCnt].indexOf('1,') != -1) ? '' : '<option value="1">Single</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('2,') != -1) ? '' : '<option value="2">Double</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('3,') != -1) ? '' : '<option value="3">Queen</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('4,') != -1) ? '' : '<option value="4">King</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('5,') != -1) ? '' : '<option value="5">Crib</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('6,') != -1) ? '' : '<option value="6">Couch</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('7,') != -1) ? '' : '<option value="7">Bunkbed</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('8,') != -1) ? '' : '<option value="8">Air Mattress</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('9,') != -1) ? '' : '<option value="9">Floor Mattress</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('10,') != -1) ? '' : '<option value="10">Toddler Bed</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('11,') != -1) ? '' : '<option value="11">Hammock</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('12,') != -1) ? '' : '<option value="12">Water Bed</option>') +
+
+
+
+								'</select>' +
+								'</div>' +
+								'</div>'
+
+						}
+						else {
+							strSub = strSub + '<div class="containerRight" id=containerright' + iCnt + '_' + (array.length) + '   >' +
+								'<div class="col-sm-6 col-xs-12">' +
+								'<select class="form-control selection" id=addNewBedRight' + iCnt + '_' + (array.length) + '   >' +
+								'<option value="0">Add Another Bed</option>' +
+
+								((bedroomAmenitiesArr[iCnt].indexOf('1,') != -1) ? '' : '<option value="1">Single</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('2,') != -1) ? '' : '<option value="2">Double</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('3,') != -1) ? '' : '<option value="3">Queen</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('4,') != -1) ? '' : '<option value="4">King</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('5,') != -1) ? '' : '<option value="5">Crib</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('6,') != -1) ? '' : '<option value="6">Couch</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('7,') != -1) ? '' : '<option value="7">Bunkbed</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('8,') != -1) ? '' : '<option value="8">Air Mattress</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('9,') != -1) ? '' : '<option value="9">Floor Mattress</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('10,') != -1) ? '' : '<option value="10">Toddler Bed</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('11,') != -1) ? '' : '<option value="11">Hammock</option>') +
+								((bedroomAmenitiesArr[iCnt].indexOf('12,') != -1) ? '' : '<option value="12">Water Bed</option>') +
+
+								'</select>' +
+								'</div>' +
+								'</div>'
+						}
+						//  iCnt=(bed_id==0)?iCnt+1:iCnt;
+
+						$(container).append('<div class="row4 addBeds"><div class="col-sm-9"><p><strong>' + ((iCnt == 0) ? "Common Space" : (" Bedroom" + " " + iCnt)) + '</strong><br>' +
+							// (iCnt-1) +' beds'+                             label
+							'<div><label type="text" id=lblBedCnt' + iCnt + '>0 Beds</></div>' +
+							'</p></div>' +
+							'<div class="col-sm-3 button-class">' +
+
+							'<button id=addbed_' + iCnt + ' type="button"  class="btn btn-blue btn-rounded btn-beds" style="width:100px;" data-toggle="collapse" data-target=#bed1collapse' + iCnt + '>' + 'Add Beds </button>' +
+
+							'</div>' +
+							'<div class="clearfix">' +
+							'<div id=bed1collapse' + iCnt + ' class="collapse bedcollapse">' +
+							'<div class="row4">' +
+							'<div><input type="hidden" value=' + iCnt + ' id=lbl' + iCnt + ' ></div>' +
+							'<div><input type="hidden" value=' + bedroomAmenitiesArr[iCnt] + ' id=lblSelected' + iCnt + ' ></div>' +
+
+							'<div><input type="hidden" value=' + bedCntAmenitiesarr[iCnt] + ' id=lblSelectbedCount' + iCnt + ' ></div>' +
+							'<div><input type="hidden" value=' + bedroomIDArr[iCnt] + ' id=lblbedroomId' + iCnt + ' ></div>' +
+
+							strSub +
+							'</div>' +
+							'</div>' +
+							'</div>'
+						);
+						// var lblbedroomId=document.getElementById("lblbedroomId"+ iCnt );
+						// var lblSelected=document.getElementById("lblSelected"+ iCnt );
+						// var lblSelectbedCount=document.getElementById("lblSelectbedCount"+ iCnt );
+						// lblbedroomId.value=bedroomIDArr[iCnt];
+						// lblSelected.value=bedroomAmenitiesArr[iCnt];
+						// lblSelectbedCount.value=bedCntAmenitiesarr[iCnt];
+
+						// '<input type=text class="input" id=tb' + iCnt + ' ' +
+						// 'value="Text Element ' + iCnt + '" />');
+					} else {
+						console.log("present");
+					}
+
+				}
+			}
+			// iCnt = iCnt + 1;
+			// ADD TEXTBOX.
+			//   $(container).append('<input type=text class="input" id=tb' + iCnt + ' ' +
+			//     'value="Text Element ' + iCnt + '" />');
+			// SHOW SUBMIT BUTTON IF ATLEAST "1" ELEMENT HAS BEEN CREATED.
+			if (iCnt == 1) {
+				var divSubmit = $(document.createElement('div'));
+				$(divSubmit).append('<input type=button class="bt"' +
+					'onclick="GetTextValue()"');
+			}
+			// ADD BOTH THE DIV ELEMENTS TO THE "main" CONTAINER.
+			$('#main').append(container, divSubmit);
+
+			for (var q = bed_id; q <= p; q++) { //(bed_id == 0) ? q < p : q <= p
+				addbedtype(q);
+
+
+
+
+				if ($('#lbl' + q).val() == "0") {
+					// document.getElementById(q).html('Add Bed');
+					document.getElementById("addbed_" + q).innerHTML = 'Add Bed';
+				}
+				else {
+					// document.getElementById(q).html('Edit Bed');
+					document.getElementById("addbed_" + q).innerHTML = 'Edit Bed';
+				}
+
+
+			}
+
+
+		}
+
+		//Code change
+		function ShowBathroomRow() {
+
+			var objBathCnt = document.getElementById("noBaths");
+			// console.log(objBathCnt.value);
+			if (objBathCnt.value.indexOf('-') != -1) objBathCnt.value = 0;
+			var BathCnt = objBathCnt.value;
+			var bhalf = false;
+			if (BathCnt.indexOf('.') != -1) {
+				BathCnt = parseFloat(noBaths.value) + 0.5;
+				bhalf = (noBaths.value % 1 == 0.5);
+			}
+			for (var BathroomNo = 1; BathroomNo <= BathCnt; BathroomNo++) {
+
+				if (sessionStorage.getItem("bathroomAmenities") != "undefined") {
+					var storedArray = JSON.parse(sessionStorage.getItem("bathroomAmenities"));//no brackets
+				}
+
+				if (sessionStorage.getItem("bathroomID") != "undefined") {
+					var BathRoomArray = JSON.parse(sessionStorage.getItem("bathroomID"));//no brackets
+				}
+
+				if (sessionStorage.getItem("bathroomTypeID") != "undefined") {
+					var BathRoomTypeArray = JSON.parse(sessionStorage.getItem("bathroomTypeID"));//no brackets
+				}
+				// console.log(storedArray[BathroomNo-1]);
+				var lblBathAmenities = document.getElementById("lblBathAmenities_" + BathroomNo);
+				var lblBathroomId = document.getElementById("lblBathroomId_" + BathroomNo);
+				var bathaddBaths = document.getElementById("addBaths_" + BathroomNo);
+
+				if (BathRoomArray == null) {
+					lblBathAmenities.innerText = "";
+					lblBathroomId.value = "";
+					//bathaddBaths.value = 0;
+					bathaddBaths.value = (bhalf == true && BathroomNo == BathCnt) ? "2" : "1";
+				}
+				else {
+					lblBathAmenities.innerText = "";
+					// lblBathAmenities.innerText = ((storedArray[BathroomNo - 1] == null || storedArray[BathroomNo - 1] == undefined) ? '' : storedArray[BathroomNo - 1]);
+					lblBathroomId.value = ((BathRoomArray[BathroomNo - 1] == null || BathRoomArray[BathroomNo - 1] == undefined) ? "" : BathRoomArray[BathroomNo - 1]);
+
+					// console.log(lblBathroomId.value);
+					// console.log('bathroom type'+ BathRoomTypeArray[BathroomNo-1]);
+					bathaddBaths.value = (bhalf == true && BathroomNo == BathCnt) ? "2" : "1";
+					//bathaddBaths.value = ((BathRoomTypeArray[BathroomNo - 1] == null || BathRoomTypeArray[BathroomNo - 1] == undefined) ? "0" : BathRoomTypeArray[BathroomNo - 1]);
+				}
+				//bathaddBaths.value = 0;
+
+				// console.log(document.getElementById("lblBathAmenities_"+ BathroomNo ).value);
+				if ((lblBathAmenities.innerText).indexOf("13,") != -1) {
+					document.getElementById("Combo_" + (BathroomNo)).checked = true;
+				}
+				if ((lblBathAmenities.innerText).indexOf("14,") != -1) {
+					document.getElementById("Toilet_" + (BathroomNo)).checked = true;
+				}
+				if ((lblBathAmenities.innerText).indexOf("15,") != -1) {
+					document.getElementById("JettedTub_" + (BathroomNo)).checked = true;
+				}
+				if ((lblBathAmenities.innerText).indexOf("16,") != -1) {
+					document.getElementById("Tub_" + (BathroomNo)).checked = true;
+				}
+				if ((lblBathAmenities.innerText).indexOf("17,") != -1) {
+					document.getElementById("OutdoorShower_" + (BathroomNo)).checked = true;
+				}
+				if ((lblBathAmenities.innerText).indexOf("18,") != -1) {
+					document.getElementById("Shower_" + (BathroomNo)).checked = true;
+				}
+				if ((lblBathAmenities.innerText).indexOf("19,") != -1) {
+					document.getElementById("Bidet_" + (BathroomNo)).checked = true;
+				}
+				//code change
+				AddBathroomType(BathroomNo);
+				var lblBathSelected = document.getElementById("lblBathSelected_" + BathroomNo);
+				var BtnBath = document.getElementById("BtnBath_" + BathroomNo);
+
+				BtnBath.innerHTML = ((lblBathSelected.innerText.length > 0) ? "Edit Features" : "Add Features");
+
+
+				//code change		
+			}
+
+			//console.log("ok3");
+		}
+
+
+	</script>
+	<script>
+		function btn_Minus() {
+			$("#noBeds1").empty();
+			var noBeds = document.getElementById("noBeds");
+			if (noBeds.value == 0) {
+				noBeds.value = 0
+			}
+			else
+				noBeds.value = parseFloat(noBeds.value) - 1;
+		}
+		function btn_Plus() {
+			$("#noBeds1").empty();
+			var noBeds = document.getElementById("noBeds");
+			if (noBeds.value == "" || noBeds.value == NaN) {
+				noBeds.value = 1;
+			}
+			else if (noBeds.value == 99) noBeds.value = 99
+			else
+				noBeds.value = parseFloat(noBeds.value) + 1;
+		}
+
+		function btn_Bedroom_Minus() {
+			$('#my_select1').empty();
+			var noBedroom = document.getElementById("my_select").value;
+			var currentValue = sessionStorage.getItem("my_select");
+			// alert(noBedroom);
+			// alert(currentValue);
+			// 
+			// alert("btn_Bedroom_Minus"+noBedroom);
+			if (noBedroom == 0) {
+				noBedroom = 0;
+				$('#my_select').val(noBedroom);
+			} else {
+
+				if (parseInt(noBedroom) <= parseInt(currentValue)) {
+					//alert("in else");
+					return false;
+				} else if (noBedroom == sessionStorage.getItem("my_select")) {
+					// alert("equla case");
+					return false;
+				} else {
+					noBedroom = parseFloat(noBedroom) - 1;
+					$('#my_select').val(noBedroom);
+				}
+			}
+			$('#my_select').trigger('change');
+
+
+		}
+
+		function btn_Bedroom_Plus() {
+			$('#my_select1').empty();
+			var noBedroom = document.getElementById("my_select").value;
+			// alert("btn_Bedroom_Plus"+noBedroom);
+			if (noBedroom == "" || noBedroom.value == NaN) {
+				noBedroom = 0;
+				$('#my_select').val(noBedroom);
+			} else if (noBedroom < 15) {
+				// alert("btn_Bedroom_Plus   else"+noBedroom);
+				noBedroom = parseFloat(noBedroom) + 1;
+				// alert(noBedroom);
+				$('#my_select').val(noBedroom);
+				//document.getElementbyId('my_select').value = noBedroom;
+			}
+			$('#my_select').trigger('change');
+
+
+		}
+
+
+
+		$("body").on("focusout", ".bathCount input", function () {
+			// console.log("a");
+
+			AddRow();
+
+		});
+
+		function AddRow() {
+			console.log("AddRow");
+			var objBathCnt = document.getElementById("noBeds");
+			// console.log(objBathCnt.value);
+			if (objBathCnt.value.indexOf('-') != -1) objBathCnt.value = 0;
+		}
+	</script>
+	<script>
+		function handleChange(input) {
+			if (input.value < 1) input.value = 1;
+			if (input.value > 50) input.value = 50;
+		}
+	</script>
+	<script>
+
+		// function btn_minus() {
+		// 	var noBed = document.getElementById("noBed");
+		// 	if (noBed.value == 0) noBed.value = 0
+		// 	else
+		// 		noBed.value = parseFloat(noBed.value) - 1;
+		// }
+		// function btn_plus() {
+		// 	var noBed = document.getElementById("noBed");
+		// 	if (noBed.value == "" || noBed.value == NaN) {
+		// 		noBed.value = 0;
+		// 	}
+		// 	else if (noBed.value == 50) noBed.value = 50
+		// 	else
+		// 		noBed.value = parseFloat(noBed.value) + 1;
+		// }
+
+
+
+		$("body").on("focusout", ".bathCount input", function () {
+			// console.log("a");
+			AddNewRow();
+		});
+
+		function AddNewRow() {
+			var objBathCnt = document.getElementById("noBeds");
+			// console.log(objBathCnt.value);
+			if (objBathCnt.value.indexOf('-') != 1) objBathCnt.value = 2;
+		}
+	</script>
+
+	<script>
+		$('#noBaths').blur(function () {
+			AddBathroomRow();
+			ShowBathroomRow();
+		});
+
+		function btn_Bathroom_Minus() {
+			$('#noBaths1').empty();
+			var noBaths = document.getElementById("noBaths");
+			if (noBaths.value == 0 || noBaths.value == NaN || noBaths.value === '....' || noBaths.value === '...' || noBaths.value === '..') {
+				noBaths.value = 0;
+			} else {
+				noBaths.value = parseFloat(noBaths.value) - 0.5;
+			}
+
+			AddBathroomRow();
+			ShowBathroomRow();
+		}
+		function btn_Bathroom_Plus() {
+			$('#noBaths1').empty();
+			// console.log(document.getElementById('noBaths').value);
+			var noBaths = document.getElementById("noBaths");
+			// alert(noBaths);
+			if (noBaths.value == "" || noBaths.value == NaN) {
+				noBaths.value = 0.5;
+			} else if (noBaths.value < 15) {
+				noBaths.value = parseFloat(noBaths.value) + 0.5;
+			}
+			AddBathroomRow();
+			ShowBathroomRow();
+		}
+		$("body").on("focusout", ".bedCount input", function () {
+			// console.log("a");
+			AddBathroomRow();
+			ShowBathroomRow();
+		});
+
+		$("body").on("click", ".bathCount input", function () {
+
+			// console.log(    $(this).is(":checked"));
+			// console.log(    $(this).attr('value'));
+			var str = $(this).attr('id');
+			var iRow = 0;
+			iRow = str.indexOf('_');
+			var iRNo = str.substring(iRow + 1);
+			var lblBathAmenities = document.getElementById("lblBathAmenities_" + iRNo);
+
+			if ($(this).is(":checked")) {
+				if ((lblBathAmenities.innerText).indexOf($(this).attr('value') + ",") == -1) {
+					lblBathAmenities.innerText = (lblBathAmenities.innerText) + $(this).attr('value') + ",";
+				}
+			}
+			else {
+				// lblBathAmenities.innerText = "";
+				lblBathAmenities.innerText = (lblBathAmenities.innerText).replace($(this).attr('value') + ",", "");
+			}
+			// console.log (lblBathAmenities.innerText);
+
+			AddBathroomType(iRNo);
+		});
+
+		$("body").on("change", ".bathSelection", function () {
+
+			var str = $(this).attr('id');
+			var iRow = 0;
+			iRow = str.indexOf('_');
+			var iRNo = str.substring(iRow + 1);
+
+			AddBathroomType(iRNo);
+		});
+
+		$("body").on("click", ".bathBtn button", function () {
+			var str = $(this).attr('id');
+			var iRow = 0;
+			iRow = str.indexOf('_');
+			var iRNo = str.substring(iRow + 1);
+			AddBathroomType(iRNo);
+
+			var lblBathSelected = document.getElementById("lblBathSelected_" + iRNo);
+			var BtnBath = document.getElementById("BtnBath_" + iRNo);
+
+			BtnBath.innerHTML = ((BtnBath.innerHTML == "Done") ? ((lblBathSelected.innerText.length > 0) ? "Edit Features" : "Add Features") : "Done");
+
+
+		});
+
+		function AddBathroomType(BRNo) {
+			var bathaddBaths = document.getElementById("addBaths_" + BRNo);
+			var BtnBath = document.getElementById("BtnBath_" + BRNo);
+			var lblBathSelected = document.getElementById("lblBathSelected_" + BRNo);
+
+			var lblBathAmenities = document.getElementById("lblBathAmenities_" + BRNo);
+
+			var BathFeat = "";
+			if (bathaddBaths != null) {
+				var strUser = document.getElementById(bathaddBaths.id).options[document.getElementById(bathaddBaths.id).selectedIndex].text;
+				if (strUser != "Bathroom type") BathFeat = strUser;
+			}
+			if ((lblBathAmenities.innerText).indexOf("13,") != -1) {
+				BathFeat = BathFeat + ((BathFeat.length > 0) ? "," : "") + " Combo Tub/Shower";
+			}
+			if ((lblBathAmenities.innerText).indexOf("14,") != -1) {
+				BathFeat = BathFeat + ((BathFeat.length > 0) ? "," : "") + " Toilet";
+			}
+			if ((lblBathAmenities.innerText).indexOf("15,") != -1) {
+				BathFeat = BathFeat + ((BathFeat.length > 0) ? "," : "") + " Jetted Tub";
+			}
+			if ((lblBathAmenities.innerText).indexOf("16,") != -1) {
+				BathFeat = BathFeat + ((BathFeat.length > 0) ? "," : "") + " Tub";
+			}
+			if ((lblBathAmenities.innerText).indexOf("17,") != -1) {
+				BathFeat = BathFeat + ((BathFeat.length > 0) ? "," : "") + " Outdoor Shower";
+			}
+			if ((lblBathAmenities.innerText).indexOf("18,") != -1) {
+				BathFeat = BathFeat + ((BathFeat.length > 0) ? "," : "") + " Shower";
+			}
+			if ((lblBathAmenities.innerText).indexOf("19,") != -1) {
+				BathFeat = BathFeat + ((BathFeat.length > 0) ? "," : "") + " Bidet";
+			}
+			lblBathSelected.innerText = BathFeat;
+
+			// BtnBath.innerHTML= ((BtnBath.innerHTML=="Done")? ((BathFeat.length >0 )? "Edit Feat.":"Add Feat") :"Done") ;
+			//    console.log(lblBathAmenities.innerText);
+		}
+
+		function AddBathroomRow() {
+			var objBathCnt = document.getElementById("noBaths");
+			if (objBathCnt.value.indexOf('-') != -1) objBathCnt.value = 0;
+			var BathCnt = objBathCnt.value;
+
+			if (BathCnt.indexOf('.') != -1) {
+				BathCnt = parseFloat(noBaths.value) + 0.5;
+			}
+			// console.log(BathCnt);
+			var containerBath = document.getElementById("Bathroom");
+			$(containerBath).empty();
+			// console.log(p);
+			for (var BathroomNo = 1; BathroomNo <= BathCnt; BathroomNo++) {
+				//       iCnt= q;
+				//       var r =  document.getElementById("tb"+iCnt);
+				//       if(r==null){
+
+				$(containerBath).append('<div class="row addBeds">' +
+					'<div class="col-sm-9">' +
+					'<p><strong>Bathroom ' + " " + BathroomNo + '</strong></p>' +
+					'<div><label type="text" id=lblBathSelected_' + BathroomNo + '></label></div>' +
+					'<div><input type="hidden" value="," id=lblBathAmenities_' + BathroomNo + ' ></div>' +
+					'<div><input type="hidden" value="" id=lblBathroomId_' + BathroomNo + ' ></div>' +
+					'</div>' +
+					'<div class="col-sm-3 bathBtn" style=display:none>' +
+					'<button id=BtnBath_' + BathroomNo + ' type="button" class="btn btn-blue btn-rounded btn-beds width-101" data-toggle="collapse" data-target=#bath' + BathroomNo + 'collapse>Add Feat.</button>' +
+					'</div>' +
+					'<div class="clearfix"></div>' +
+					'<div id="bath' + BathroomNo + 'collapse" class="collapse bedcollapse">' +
+					'<div class="row">' +
+					'<div class="col-sm-12 ">' +
+					'<div class="form-group">' +
+					'<select class="form-control bathSelection" id=addBaths_' + BathroomNo + '>' +
+					'<option value="0">Bathroom type</option>' +
+					'<option value="1">Full</option>' +
+					'<option value="2">Half</option>' +
+					'</select>' +
+					'</div>' +
+					'</div>' +
+					'</div>' +
+					'<div class="row">' +
+					'<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"><label class="bathCount"><input id=Combo_' + BathroomNo + ' type="checkbox" value="13">Combo Tub/Shower</label></div></div></div>' +
+					'<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"><label class="bathCount"><input id=Toilet_' + BathroomNo + ' type="checkbox" value="14">Toilet</label></div></div></div>' +
+
+					'</div>' +
+					'<div class="row">' +
+					'<div class="col-sm-6 col-xs-12"><div class="checkbox"><label class="bathCount"><input id=JettedTub_' + BathroomNo + ' type="checkbox" value="15">Jetted Tub</label></div></div>' +
+					'<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"><label class="bathCount"><input id=Tub_' + BathroomNo + ' type="checkbox" value="16">Tub</label></div></div></div>' +
+					'</div>' +
+					'<div class="row">' +
+					'<div class="col-sm-6 col-xs-12"><div class="checkbox"><label class="bathCount"><input id=OutdoorShower_' + BathroomNo + ' type="checkbox" value="17">Outdoor Shower</label></div></div>' +
+					'<div class="col-sm-6 col-xs-12"><div class="checkbox"><label class="bathCount"><input id=Shower_' + BathroomNo + ' type="checkbox" value="18">Shower</label></div></div>' +
+
+					'</div>' +
+					'<div class="row">' +
+					'<div class="col-sm-6 col-xs-12"><div class="checkbox"><label class="bathCount"><input id=Bidet_' + BathroomNo + ' type="checkbox" value="19">Bidet</label></div></div>' +
+					'</div>' +
+					'</div>' +
+
+					'</div>');
+
+
+
+				containerBath
+			}
+		}
+
+
+	</script>
+
+
+
+	<script>
+		$('#propertyType').change(function (e) {
+			//console.log(this.value);
+			if (this.value == 1) {
+				$('#subPropertyType').empty();
+				$('#subPropertyType').append($('<option></option>').val(0).html('Select...'));
+				$('#subPropertyType').append($('<option></option>').val(1).html('Apartment'));
+				$('#subPropertyType').append($('<option></option>').val(2).html('Condo'));
+				$('#subPropertyType').append($('<option></option>').val(3).html('Loft'));
+				$('#subPropertyType').append($('<option></option>').val(4).html('Studio'));
+			}
+			else if (this.value == 2) {
+				$('#subPropertyType').empty();
+				$('#subPropertyType').append($('<option></option>').val(0).html('Select...'));
+				$('#subPropertyType').append($('<option></option>').val(5).html('House'));
+				$('#subPropertyType').append($('<option></option>').val(6).html('Bungalow'));
+				$('#subPropertyType').append($('<option></option>').val(7).html('Cabin'));
+				$('#subPropertyType').append($('<option></option>').val(8).html('Cottage'));
+				$('#subPropertyType').append($('<option></option>').val(9).html('Country House'));
+				$('#subPropertyType').append($('<option></option>').val(10).html('Townhome'));
+				$('#subPropertyType').append($('<option></option>').val(11).html('Villa'));
+			}
+			else if (this.value == 3) {
+				$('#subPropertyType').empty();
+				$('#subPropertyType').append($('<option></option>').val(0).html('Select...'));
+				$('#subPropertyType').append($('<option></option>').val(12).html('Guesthouse'));
+				$('#subPropertyType').append($('<option></option>').val(13).html('Guest Suite'));
+
+			}
+			else if (this.value == 4) {
+				$('#subPropertyType').empty();
+				$('#subPropertyType').append($('<option></option>').val(0).html('Select...'));
+				$('#subPropertyType').append($('<option></option>').val(14).html('Bed & Breakfast'));
+
+			}
+
+			else if (this.value == 5) {
+				$('#subPropertyType').empty();
+				$('#subPropertyType').append($('<option></option>').val(0).html('Select...'));
+				$('#subPropertyType').append($('<option></option>').val(15).html('Boutique Hotel'));
+				$('#subPropertyType').append($('<option></option>').val(16).html('Aparthotel'));
+				$('#subPropertyType').append($('<option></option>').val(17).html('Hostel'));
+				$('#subPropertyType').append($('<option></option>').val(18).html('Hotel'));
+				$('#subPropertyType').append($('<option></option>').val(19).html('Lodge'));
+				$('#subPropertyType').append($('<option></option>').val(20).html('Resort'));
+				$('#subPropertyType').append($('<option></option>').val(21).html('Serviced Apartment'));
+			}
+			else if (this.value == 6) {
+				$('#subPropertyType').empty();
+				$('#subPropertyType').append($('<option></option>').val(0).html('Select...'));
+				$('#subPropertyType').append($('<option></option>').val(22).html('Barn'));
+				$('#subPropertyType').append($('<option></option>').val(23).html('Boat'));
+				$('#subPropertyType').append($('<option></option>').val(24).html('Bus'));
+				$('#subPropertyType').append($('<option></option>').val(25).html('Camper/RV'));
+				$('#subPropertyType').append($('<option></option>').val(26).html('Campsite'));
+				$('#subPropertyType').append($('<option></option>').val(27).html('Castle'));
+				$('#subPropertyType').append($('<option></option>').val(28).html('Cave'));
+				$('#subPropertyType').append($('<option></option>').val(29).html('Dome House'));
+				$('#subPropertyType').append($('<option></option>').val(30).html('Earth House'));
+				$('#subPropertyType').append($('<option></option>').val(31).html('Farm Stay'));
+				$('#subPropertyType').append($('<option></option>').val(32).html('Houseboat'));
+				$('#subPropertyType').append($('<option></option>').val(33).html('Hut'));
+				$('#subPropertyType').append($('<option></option>').val(34).html('Igloo'));
+				$('#subPropertyType').append($('<option></option>').val(35).html('Island'));
+				$('#subPropertyType').append($('<option></option>').val(36).html('Lighthouse'));
+				$('#subPropertyType').append($('<option></option>').val(37).html('Plane'));
+				$('#subPropertyType').append($('<option></option>').val(38).html('Mobile Home'));
+				$('#subPropertyType').append($('<option></option>').val(39).html('Tent'));
+				$('#subPropertyType').append($('<option></option>').val(40).html('Tiny House'));
+				$('#subPropertyType').append($('<option></option>').val(41).html('Tipi'));
+				$('#subPropertyType').append($('<option></option>').val(42).html('Train'));
+				$('#subPropertyType').append($('<option></option>').val(43).html('Treehouse'));
+				$('#subPropertyType').append($('<option></option>').val(44).html('Windmill'));
+				$('#subPropertyType').append($('<option></option>').val(45).html('Yurt'));
+
+			}
+
+
+
+
+		});
+
+	</script>
+
+
+	<script>
+		function addbedtype(strpos) {
+			var strTypeCnt = "";
+
+			var bedSingle = document.getElementById("bedSingle_" + strpos);
+			var bedDouble = document.getElementById("bedDouble_" + strpos);
+			var bedQueen = document.getElementById("bedQueen_" + strpos);
+			var bedKing = document.getElementById("bedKing_" + strpos);
+			var bedCouch = document.getElementById("bedCouch_" + strpos);
+			var bedBunkbed = document.getElementById("bedBunkbed_" + strpos);
+
+			var bedAirMattress = document.getElementById("bedAirMattress_" + strpos);
+			var bedFloorMattress = document.getElementById("bedFloorMattress_" + strpos);
+			var bedCrib = document.getElementById("bedCrib_" + strpos);
+			var bedToddler = document.getElementById("bedToddlerBed_" + strpos);
+			var bedHammock = document.getElementById("bedHammock_" + strpos);
+			var bedWater = document.getElementById("bedWaterBed_" + strpos);
+
+			var lblCnt = document.getElementById("lbl" + strpos);
+			var lblBedCnt = document.getElementById("lblBedCnt" + strpos);
+
+			var bedSingleCnt = 0;
+			var bedDoubleCnt = 0;
+			var bedQueenCnt = 0;
+			var bedKingCnt = 0;
+			var bedCouchCnt = 0;
+			var bedBunkbedCnt = 0;
+
+			var bedAirMattressCnt = 0;
+			var bedFloorMattressCnt = 0;
+			var bedCribCnt = 0;
+			var bedToddlerCnt = 0;
+			var bedHammockCnt = 0;
+			var bedWaterCnt = 0;
+
+
+			if (bedSingle != null) {
+				if (bedSingle.value > 0) {
+					bedSingleCnt = bedSingle.value;
+					strTypeCnt = strTypeCnt + ((strTypeCnt.length == 0) ? "" : ", ") + bedSingleCnt + " Single Bed";
+				}
+			}
+
+			if (bedDouble != null) {
+
+				if (bedDouble.value > 0) {
+					bedDoubleCnt = bedDouble.value;
+
+					strTypeCnt = strTypeCnt + ((strTypeCnt.length == 0) ? "" : ", ") + bedDoubleCnt + " Double Bed";
+				}
+			}
+
+			if (bedQueen != null) {
+				if (bedQueen.value > 0) {
+					bedQueenCnt = bedQueen.value;
+					strTypeCnt = strTypeCnt + ((strTypeCnt.length == 0) ? "" : ", ") + bedQueenCnt + " Queen Bed";
+				}
+			}
+
+			if (bedKing != null) {
+				if (bedKing.value > 0) {
+					bedKingCnt = bedKing.value;
+					strTypeCnt = strTypeCnt + ((strTypeCnt.length == 0) ? "" : ", ") + bedKingCnt + " King Bed";
+				}
+			}
+
+			if (bedBunkbed != null) {
+				if (bedBunkbed.value > 0) {
+					bedBunkbedCnt = bedBunkbed.value;
+					strTypeCnt = strTypeCnt + ((strTypeCnt.length == 0) ? "" : ", ") + bedBunkbedCnt + " Bunkbed";
+				}
+			}
+
+			if (bedCrib != null) {
+				if (bedCrib.value > 0) {
+					bedCribCnt = bedCrib.value;
+					strTypeCnt = strTypeCnt + ((strTypeCnt.length == 0) ? "" : ", ") + bedCribCnt + " Crib";
+				}
+			}
+
+			if (bedCouch != null) {
+				if (bedCouch.value > 0) {
+					bedCouchCnt = bedCouch.value;
+					strTypeCnt = strTypeCnt + ((strTypeCnt.length == 0) ? "" : ", ") + bedCouchCnt + " Couch";
+				}
+			}
+
+			if (bedAirMattress != null) {
+				if (bedAirMattress.value > 0) {
+					bedAirMattressCnt = bedAirMattress.value;
+					strTypeCnt = strTypeCnt + ((strTypeCnt.length == 0) ? "" : ", ") + bedAirMattressCnt + " Air Mattress";
+				}
+			}
+
+			if (bedFloorMattress != null) {
+				if (bedFloorMattress.value > 0) {
+					bedFloorMattressCnt = bedFloorMattress.value;
+					strTypeCnt = strTypeCnt + ((strTypeCnt.length == 0) ? "" : ", ") + bedFloorMattressCnt + " Floor Mattress";
+				}
+			}
+
+			if (bedToddler != null) {
+				if (bedToddler.value > 0) {
+					bedToddlerCnt = bedToddler.value;
+					strTypeCnt = strTypeCnt + ((strTypeCnt.length == 0) ? "" : ", ") + bedToddlerCnt + " Toddler Bed";
+				}
+			}
+
+			if (bedHammock != null) {
+				if (bedHammock.value > 0) {
+					bedHammockCnt = bedHammock.value;
+					strTypeCnt = strTypeCnt + ((strTypeCnt.length == 0) ? "" : ", ") + bedHammockCnt + " Hammock";
+				}
+			}
+
+			if (bedWater != null) {
+				if (bedWater.value > 0) {
+					bedWaterCnt = bedWater.value;
+					strTypeCnt = strTypeCnt + ((strTypeCnt.length == 0) ? "" : ", ") + bedWaterCnt + " Water Bed";
+				}
+			}
+
+
+			// alert("in eidt"+strTypeCnt);
+
+
+
+			lblCnt.value = parseInt(bedSingleCnt) + parseInt(bedDoubleCnt) + parseInt(bedQueenCnt) + parseInt(bedKingCnt)
+				+ parseInt(bedBunkbedCnt) + parseInt(bedCouchCnt) + parseInt(bedAirMattressCnt) +
+				parseInt(bedFloorMattressCnt) +
+				parseInt(bedCribCnt) +
+				parseInt(bedToddlerCnt) +
+				parseInt(bedHammockCnt) +
+				parseInt(bedWaterCnt);
+			// lblBedCnt.value=lblCnt.value;
+			lblBedCnt.innerHTML = lblCnt.value + ((lblCnt.value > 1) ? " Beds " : " Bed ") + ((strTypeCnt.length == 0) ? "" : "<br />" + strTypeCnt);
+
+			// }
+		}
+
+
+		$("body").on("focusout", ".bedCount input", function () {
+
+			var dInput = this.id;
+			iRow = dInput.indexOf('_');
+			var strpos = dInput.substring(iRow + 1);
+			addbedtype(strpos);
+			// console.log(this.id);
+			// if(dInput > 0){
+			// console.log(d);
+		});
+
+		$("body").on("click", ".button-class button", function () {
+			//Change Code
+			// console.log("trigger by "+$(this).attr('id'));
+			// console.log($('input[id^="tag"]').val());
+			var idbtn = $(this).attr('id');
+			var iRow = idbtn.indexOf('_');
+			var id = idbtn.substring(iRow + 1);
+			//console.log($('#lbl' + id).val());
+			//console.log($('input[id^="tag"]').value);
+			if ($(this).text() == "Done") {
+				// $('#lbl').val();
+
+				if ($('#lbl' + id).val() == "0") {
+					$(this).html('Add Bed');
+				}
+				else {
+					$(this).html('Edit Bed');
+				}
+			} else {
+				$(this).html('Done');
+
+			}
+			// console.log($('#container_id'+id).attr('id'));
+			//    $('#container_id'+id).empty(
+
+			//     );
+			//     $('#container_id'+id).append('<div class="col-sm-9"><p><strong>Append</strong><br>beds</p></div>'
+
+			//     );
+
+		});
+
+		$("body").on("change", ".selection", function () {
+			//console.log("a");
+			var str = $(this).attr('id');
+			var str1 = $((this)).val();
+			// console.log($(this).selectedIndex);
+			var text_t = $(this).find('option:selected').text();
+			var text_Val = $(this).find('option:selected').val();
+			// console.log(text_Val);
+
+			// var str1 = $((this)).text();
+			// console.log(text_t);
+			//var str = "addNewBeds1";
+			// var n = str.IndexOf('ight');
+
+			var iright = str.indexOf('Right');
+			var ileft = str.indexOf('Left');
+			var iRow = 0;
+			iRow = str.indexOf('_');
+			var iRowno = str.substring(iRow + 1);
+			// console.log(iRow);
+			if (ileft != -1) {
+				var result = str.substring(ileft + 4, iRow);
+
+				// console.log(result);
+				// console.log(iRowno);
+				var v = document.getElementById("lblSelected" + result).value;
+				v = v + text_Val + ',';
+				document.getElementById("lblSelected" + result).value = v;
+				//console.log(iRowno);
+				// iRow=str.indexOf('_');
+				// console.log(v.indexOf(',6,'));
+				// console.log(v.indexOf(',7,'));
+				//console.log(result);
+
+				$('#containerleft' + result + '_' + iRowno).empty();
+
+				$('#containerleft' + result + '_' + iRowno).append(
+					'<div class="col-sm-4 col-xs-8">' + text_t + '</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bed' + text_t.replace(' ', '') + '_' + result + ' name=' + text_t + ' onkeypress="return validate(event);" maxlength="1" >' +
+					'</div>' +
+					'<div class="containerRight" id=containerright' + result + '_' + iRowno + ' >' +
+					'<div class="col-sm-6 col-xs-12">' +
+					'<select class="form-control selection" id=addNewBedRight' + result + '_' + iRowno + ' >' +
+					'<option value="0">Add Another Bed</option>' +
+
+					((v.indexOf(',1,') != -1) ? '' : '<option value="1">Single</option>') +
+					((v.indexOf(',2,') != -1) ? '' : '<option value="2">Double</option>') +
+					((v.indexOf(',3,') != -1) ? '' : '<option value="3">Queen</option>') +
+					((v.indexOf(',4,') != -1) ? '' : '<option value="4">King</option>') +
+					((v.indexOf(',5,') != -1) ? '' : '<option value="5">Crib</option>') +
+					((v.indexOf(',6,') != -1) ? '' : '<option value="6">Couch</option>') +
+					((v.indexOf(',7,') != -1) ? '' : '<option value="7">Bunkbed</option>') +
+					((v.indexOf(',8,') != -1) ? '' : '<option value="8">Air Mattress</option>') +
+					((v.indexOf(',9,') != -1) ? '' : '<option value="9">Floor Mattress</option>') +
+					((v.indexOf(',10,') != -1) ? '' : '<option value="10">Toddler Bed</option>') +
+					((v.indexOf(',11,') != -1) ? '' : '<option value="11">Hammock</option>') +
+					((v.indexOf(',12,') != -1) ? '' : '<option value="12">Water Bed</option>') +
+
+					'</select>' +
+					'</div>' +
+					'</div>'
+				);
+			}
+			else {
+				var result = str.substring(iright + 5, iRow);
+				var v = document.getElementById("lblSelected" + result).value;
+				v = v + text_Val + ',';
+				document.getElementById("lblSelected" + result).value = v;
+				//console.log(iRowno);
+				//console.log(result);
+				$('#containerright' + result + '_' + iRowno).empty();
+
+				$('#containerright' + result + '_' + iRowno).append(
+					'<div class="col-sm-4 col-xs-8">' + text_t + '</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bed' + text_t.replace(' ', '') + '_' + result + ' name=' + text_t + ' onkeypress="return validate(event);" maxlength="1" >' +
+					'</div>' +
+					'<div class="row4" >' +
+					'<div class="containerLeft" id=containerleft' + result + '_' + (iRowno + 1) + ' >' +
+					'<div class="col-sm-6 col-xs-12">' +
+					'<select class="form-control selection" id=addNewBedLeft' + result + '_' + (iRowno + 1) + ' >' +
+					'<option value="0">Add Another Bed</option>' +
+					((v.indexOf(',1,') != -1) ? '' : '<option value="1">Single</option>') +
+					((v.indexOf(',2,') != -1) ? '' : '<option value="2">Double</option>') +
+					((v.indexOf(',3,') != -1) ? '' : '<option value="3">Queen</option>') +
+					((v.indexOf(',4,') != -1) ? '' : '<option value="4">King</option>') +
+					((v.indexOf(',5,') != -1) ? '' : '<option value="5">Crib</option>') +
+					((v.indexOf(',6,') != -1) ? '' : '<option value="6">Couch</option>') +
+					((v.indexOf(',7,') != -1) ? '' : '<option value="7">Bunkbed</option>') +
+					((v.indexOf(',8,') != -1) ? '' : '<option value="8">Air Mattress</option>') +
+					((v.indexOf(',9,') != -1) ? '' : '<option value="9">Floor Mattress</option>') +
+					((v.indexOf(',10,') != -1) ? '' : '<option value="10">Toddler Bed</option>') +
+					((v.indexOf(',11,') != -1) ? '' : '<option value="11">Hammock</option>') +
+					((v.indexOf(',12,') != -1) ? '' : '<option value="12">Water Bed</option>') +
+					'</select>' +
+					'</div>' +
+					'</div>' +
+					'</div>'
+				);
+			}
+
+		});
+
+
+
+		$(document).ready(function () {
+			// alert("ready");
+
+			$('#my_select').trigger('change');
+
+			var iCnt = 0;
+			var ipresentCnt = 0;
+			// CREATE A "DIV" ELEMENT AND DESIGN IT USING jQuery ".css()" CLASS.
+			// var container = $(document.createElement('div')).css({
+			// 	padding: '0px', margin: '0px', width: '460px',
+			// 	borderTopColor: '#999', borderBottomColor: '#999',
+			// 	borderLeftColor: '#999', borderRightColor: '#999'
+			// });
+
+			// $('#my_select').change(function (e) {
+
+			$('input[name=noBed]').change(function () {
+
+				var noBedroom = document.getElementById("my_select").value;
+				var currentValue = sessionStorage.getItem("my_select");
+
+
+
+
+				if (parseInt(noBedroom) <= parseInt(currentValue)) {
+					document.getElementById("my_select").value = currentValue;
+				}
+
+
+
+				if (iCnt <= 19) {
+					var p = document.getElementById("my_select").value;
+					var existingBed = $('#main .addBeds').length;
+					//var currentValue=0;
+					//	var idEditable=true;
+					var prevValue = existingBed;
+					currentValue = p;
+					if (p == 999) {
+						p = 'a';
+					}
+
+					var editFlag = sessionStorage.getItem("isEditableFlag");
+					var addflag = sessionStorage.getItem("isAddFlag");
+
+
+					//code added on 27112018
+					var BackFlag = sessionStorage.getItem("isBackFlag");
+					//code added on 27112018
+
+					// console.log("editFlag"+editFlag);
+					// console.log("add flag"+addflag);
+
+					//	if ( addflag==true &&  editFlag == false && existingBed == 0 || currentValue < prevValue) {
+
+					if ((addflag == "true" && BackFlag == "false") || sessionStorage.getItem("my_select") == '999') {
+						// alert("addflag");
+						// add Case
+						var container = $(document.createElement('div')).css({
+							padding: '0px', margin: '0px', width: '460px',
+							borderTopColor: '#999', borderBottomColor: '#999',
+							borderLeftColor: '#999', borderRightColor: '#999'
+						});
+						//code added on 27112018
+						container.addClass("bedContainer");
+						//code added on 27112018
+						$('#main').empty();
+						$(container).empty();
+
+						for (var q = 0; q <= p; q++) {
+							iCnt = q;
+							var r = document.getElementById("tb" + iCnt);
+							if (r == null) {
+								$(container).append('<div class="row addBeds"><div class="col-sm-9"><p><strong>' + ((iCnt == 0) ? "Common Space" : (" Bedroom" + " " + iCnt)) + '</strong><br>' +
+									// (iCnt-1) +' beds'+								
+									'<div><label type="text" id=lblBedCnt' + iCnt + '>0 Beds</label></div>' +
+									'</p></div>' +
+									'<div class="col-sm-3 button-class">' +
+
+									'<button id=addbed_' + iCnt + ' type="button"  class="btn btn-blue btn-rounded btn-beds" style="width:100px;" data-toggle="collapse" data-target=#bed1collapse' + iCnt + '>' + 'Add Beds </button>' +
+
+									'</div>' +
+									'<div class="clearfix"></div>' +
+									'<div id=bed1collapse' + iCnt + ' class="testingcollapse bedcollapse">' +
+									'<div class="row">' +
+									'<div><input type="hidden" value=' + (iCnt) + ' id=lbl' + iCnt + ' ></div>' +
+									((iCnt == 0) ?
+										'<div><input type="hidden" value=",6,8,9," id=lblSelected' + iCnt + ' ></div>' :
+										'<div><input type="hidden" value=",1,2,3,4," id=lblSelected' + iCnt + ' ></div>') +
+
+									'<div><input type="hidden" value="" id=lblSelectbedCount' + iCnt + ' ></div>' +
+									'<div><input type="hidden" value="" id=lblbedroomId' + iCnt + ' ></div>' +
+
+									((iCnt == 0) ?
+										'<div class="col-sm-4 col-xs-8">Couch</div>' +
+										'<div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedCouch_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1"  />' +
+										'</div>' +
+										'<div class="col-sm-4 col-xs-8">Air Mattress</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedAirMattress_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1" >' +
+										'</div>'
+										:
+
+										'<div class="col-sm-4 col-xs-8">Single Bed</div>' +
+										'<div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedSingle_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1"  />' +
+										'</div>' +
+										'<div class="col-sm-4 col-xs-8">Double Bed</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedDouble_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1" >' +
+										'</div>') +
+									'</div>' +
+
+									'<div class="row">' +
+									((iCnt == 0) ?
+
+										'<div class="col-sm-4 col-xs-8">Floor Mattress</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedFloorMattress_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1" >' +
+										'</div>' +
+										'<div class="containerSpace" id="containerright0_1">' +
+										'<div class="col-sm-6 col-xs-12">' +
+										'<select class="form-control selection" id="addNewBedRight0_1">' +
+										'<option value="0">Add Another Bed</option>' +
+										'<option value="1">Single</option>' +
+										'<option value="2">Double</option>' +
+										'<option value="3">Queen</option>' +
+										'<option value="4">King</option>' +
+										'<option value="5">Crib</option>' +
+										'<option value="7">Bunkbed</option>' +
+										'<option value="10">Toddler Bed</option>' +
+										'<option value="11">Hammock</option>' +
+										'<option value="12">Water Bed</option> ' +
+										'</select>' +
+										'</div>' +
+										'</div>'
+										:
+
+										'<div class="col-sm-4 col-xs-8">Queen Bed</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedQueen_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1" >' +
+										'</div>' +
+										'<div class="col-sm-4 col-xs-8">King Bed</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedKing_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1" >' +
+										'</div>') +
+
+									'</div>' +
+									((iCnt == 0) ? '' :
+										'<div class="row" >' +
+										'<div class="containerLeft" id=containerleft' + iCnt + '_1 >' +
+										'<div class="col-sm-6 col-xs-12">' +
+										'<select class="form-control selection" id=addNewBedLeft' + iCnt + '_1 >' +
+										'<option value="0">Add Another Bed</option>' +
+										'<option value="5">Crib</option>' +
+										'<option value="6">Couch</option>' +
+										'<option value="7">Bunkbed</option>' +
+										'<option value="8">Air Mattress</option>' +
+										'<option value="9">Floor Mattress</option>' +
+										'<option value="10">Toddler Bed</option>' +
+										'<option value="11">Hammock</option>' +
+										'<option value="12">Water Bed</option>' +
+										'</select>' +
+										'</div>' +
+										'</div>' +
+										'</div>') +
+
+									'</div>' +
+									'</div>'
+
+								);
+
+
+								// '<input type=text class="input" id=tb' + iCnt + ' ' +
+								// 'value="Text Element ' + iCnt + '" />');
+							} else {
+								console.log("present");
+							}
+
+						}
+						// iCnt = iCnt + 1;
+
+						// ADD TEXTBOX
+						//   $(container).append('<input type=text class="input" id=tb' + iCnt + ' ' +
+						//     'value="Text Element ' + iCnt + '" />');
+
+						// SHOW SUBMIT BUTTON IF ATLEAST "1" ELEMENT HAS BEEN CREATED.
+						if (iCnt == 1) {
+							var divSubmit = $(document.createElement('div'));
+							$(divSubmit).append('<input type=button class="bt"' +
+								'onclick="GetTextValue()"');
+						}
+
+						// ADD BOTH THE DIV ELEMENTS TO THE "main" CONTAINER.
+						//	$('#main').after(container, divSubmit);
+
+						$("#main").append(container, divSubmit);
+
+					} else if (currentValue < prevValue) {
+						//add remove
+						var removeBeds = (prevValue - currentValue);
+						for (var bed = 1; bed < removeBeds; bed++) {
+							$("#main .addBeds:last-child").remove();
+						}
+					} else if (editFlag == "true" || BackFlag == "true" || existingBed < p) {
+						//Edit Case
+						for (var q = existingBed; q <= p; q++) {
+							iCnt = q;
+							var r = document.getElementById("tb" + iCnt);
+							if (r == null) {
+								$("#main .bedContainer").append('<div class="row addBeds"><div class="col-sm-9"><p><strong>' + ((iCnt == 0) ? "Common Space" : (" Bedroom" + " " + iCnt)) + '</strong><br>' +
+									// (iCnt-1) +' beds'+								
+									'<div><label type="text" id=lblBedCnt' + iCnt + '>0 Beds</label></div>' +
+									'</p></div>' +
+									'<div class="col-sm-3 button-class">' +
+
+									'<button id=addbed_' + iCnt + ' type="button"  class="btn btn-blue btn-rounded btn-beds" style="width:100px;margin-left: -10px;" data-toggle="collapse" data-target=#bed1collapse' + iCnt + '>' + 'Add Beds </button>' +
+
+									'</div>' +
+									'<div class="clearfix"></div>' +
+									'<div id=bed1collapse' + iCnt + ' class="collapse bedcollapse">' +
+									'<div class="row">' +
+									'<div><input type="hidden" value=' + (iCnt) + ' id=lbl' + iCnt + ' ></div>' +
+									((iCnt == 0) ?
+										'<div><input type="hidden" value=",6,8,9," id=lblSelected' + iCnt + ' ></div>' :
+										'<div><input type="hidden" value=",1,2,3,4," id=lblSelected' + iCnt + ' ></div>') +
+
+									'<div><input type="hidden" value="" id=lblSelectbedCount' + iCnt + ' ></div>' +
+									'<div><input type="hidden" value="" id=lblbedroomId' + iCnt + ' ></div>' +
+
+									((iCnt == 0) ?
+										'<div class="col-sm-4 col-xs-8">Couch</div>' +
+										'<div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedCouch_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1"  />' +
+										'</div>' +
+										'<div class="col-sm-4 col-xs-8">Air Mattress</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedAirMattress_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1" >' +
+										'</div>'
+										:
+
+										'<div class="col-sm-4 col-xs-8">Single Bed</div>' +
+										'<div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedSingle_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1"  />' +
+										'</div>' +
+										'<div class="col-sm-4 col-xs-8">Double Bed</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedDouble_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1" >' +
+										'</div>') +
+									'</div>' +
+
+									'<div class="row">' +
+									((iCnt == 0) ?
+
+										'<div class="col-sm-4 col-xs-8">Floor Mattress</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedFloorMattress_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1" >' +
+										'</div>' +
+										'<div class="containerSpace" id="containerright0_1">' +
+										'<div class="col-sm-6 col-xs-12">' +
+										'<select class="form-control selection" id="addNewBedRight0_1">' +
+										'<option value="0">Add Another Bed</option>' +
+										'<option value="1">Single</option>' +
+										'<option value="2">Double</option>' +
+										'<option value="3">Queen</option>' +
+										'<option value="4">King</option>' +
+										'<option value="5">Crib</option>' +
+										'<option value="7">Bunkbed</option>' +
+										'<option value="10">Toddler Bed</option>' +
+										'<option value="11">Hammock</option>' +
+										'<option value="12">Water Bed</option> ' +
+										'</select>' +
+										'</div>' +
+										'</div>'
+										:
+
+										'<div class="col-sm-4 col-xs-8">Queen Bed</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedQueen_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1" >' +
+										'</div>' +
+										'<div class="col-sm-4 col-xs-8">King Bed</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedKing_' + iCnt + ' name="bedSingle" onkeypress="return validate(event);" maxlength="1" >' +
+										'</div>') +
+
+									'</div>' +
+									((iCnt == 0) ? '' :
+										'<div class="row" >' +
+										'<div class="containerLeft" id=containerleft' + iCnt + '_1 >' +
+										'<div class="col-sm-6 col-xs-12">' +
+										'<select class="form-control selection" id=addNewBedLeft' + iCnt + '_1 >' +
+										'<option value="0">Add Another Bed</option>' +
+										'<option value="5">Crib</option>' +
+										'<option value="6">Couch</option>' +
+										'<option value="7">Bunkbed</option>' +
+										'<option value="8">Air Mattress</option>' +
+										'<option value="9">Floor Mattress</option>' +
+										'<option value="10">Toddler Bed</option>' +
+										'<option value="11">Hammock</option>' +
+										'<option value="12">Water Bed</option>' +
+										'</select>' +
+										'</div>' +
+										'</div>' +
+										'</div>') +
+
+									'</div>' +
+									'</div>'
+
+								);
+
+
+								// '<input type=text class="input" id=tb' + iCnt + ' ' +
+								// 'value="Text Element ' + iCnt + '" />');
+							} else {
+								console.log("present");
+							}
+
+						}
+						// iCnt = iCnt + 1;
+
+						// ADD TEXTBOX.
+						//   $(container).append('<input type=text class="input" id=tb' + iCnt + ' ' +
+						//     'value="Text Element ' + iCnt + '" />');
+
+						// SHOW SUBMIT BUTTON IF ATLEAST "1" ELEMENT HAS BEEN CREATED.
+						if (iCnt == 1) {
+							var divSubmit = $(document.createElement('div'));
+							$(divSubmit).append('<input type=button class="bt"' +
+								'onclick="GetTextValue()"');
+						}
+
+						// ADD BOTH THE DIV ELEMENTS TO THE "main" CONTAINER.
+						$("#main").append(divSubmit);
+					} else {
+						//edit remove
+						var removeBeds = (existingBed - p);
+						for (var bed = 1; bed < removeBeds; bed++) {
+							$("#main .bedContainer .addBeds:last-child").remove();
+						}
+					}
+				}
+				// AFTER REACHING THE SPECIFIED LIMIT, DISABLE THE "ADD" BUTTON.
+				// (20 IS THE LIMIT WE HAVE SET)
+				else {
+					$(container).append('<label>Reached the limit</label>');
+					$('#btAdd').attr('class', 'bt-disable');
+					$('#btAdd').attr('disabled', 'disabled');
+				}
+			});
+
+			// REMOVE ONE ELEMENT PER CLICK.
+			$('#btRemove').click(function () {
+				if (iCnt != 0) { $('#tb' + iCnt).remove(); iCnt = iCnt - 1; }
+
+				if (iCnt == 0) {
+					$(container)
+						.empty()
+						.remove();
+
+					$('#btSubmit').remove();
+					$('#btAdd')
+						.removeAttr('disabled')
+						.attr('class', 'bt');
+				}
+			});
+
+			// REMOVE ALL THE ELEMENTS IN THE CONTAINER.
+			$('#btRemoveAll').click(function () {
+				$(container)
+					.empty()
+					.remove();
+
+				$('#btSubmit').remove();
+				iCnt = 0;
+
+				$('#btAdd')
+					.removeAttr('disabled')
+					.attr('class', 'bt');
+			});
+		});
+
+
+
+
+		function setCoverImage(imageId) {
+
+			var addflag = sessionStorage.getItem("isAddFlag");
+			var editFlag = sessionStorage.getItem("isEditableFlag");
+			var userId = document.getElementById('userId').value;
+			var propertyId = sessionStorage.getItem("Property_Id");
+			var propertyHostUnitId = sessionStorage.getItem("Property_HostUnitId");
+			var ImageUp = new FormData();
+
+			$('input[type="file"]').change(function (event) {
+				var files = event.target.files;
+				var file;
+				if (files.length < 50) {
+					// console.log("images");
+					for (var i = 0; i < files.length; i++) {
+
+						file = files[i];
+						ImageUp.append('propertyFile', file);
+						ImageUp.append('userId', userId);
+						ImageUp.append('propertyId', propertyId);
+						ImageUp.append('unitId', propertyHostUnitId);
+
+					}
+				} else {
+					document.getElementById("msg-body").innerHTML = "Please upload atleast six to seven images";
+					$('#dyna-popup').modal('show');
+				}
+
+			});
+
+
+
+			if (addflag == "true") {
+
+				$.ajax({
+					url: url + 'v1/user/' + userId + '/property/' + propertyId + '/unit/' + propertyHostUnitId + '/attachment',
+					processData: false,
+					'headers': {
+						'Authorization': 'Basic aG9zdDpkZmdoamFzZmdzaGZqc3VmeXNnemhjZ2pzemJqY2Jqc3piY2pic2hiaDIzNDU2NzY1NDM0cnRld2VydA==',
+					},
+					contentType: false,
+					data: ImageUp,
+					type: 'POST'
+				}).done(function (result) {
+
+					// alert("Get Cover image successfully saved");
+
+					$.ajax({
+						url: baseUrl + 'v1/user/' + userId + '/property/' + propertyId,
+						type: 'GET',
+						dataType: "json",
+						'headers': {
+							Authorization: localStorage.getItem('token') || '',
+						},
+						success: function (result, textStatus, xhr) {
+							var imgarray = [];
+							var idarray = [];
+
+							if (result.status != 404) {
+								result.propertyHostUnit.propertyAttachments.forEach(element => {
+									imgarray.push(element);
+								});
+
+								if (imgarray != null) {
+
+									var hostPopertyAttachmentIdList = [];
+
+									var FinalList = new Array();
+
+									var ImageOrderSortingList = {};
+									for (var i = 0; i < imgarray.length; i++) {
+										if (imgarray[i].hostPopertyAttachmentId == imageId.id) {
+											ImageOrderSortingList = {
+												"hostPopertyAttachmentId": imageId.id,
+												"imgOrder": 1,
+												"isCoverImg": 1,
+											}
+										} else {
+											ImageOrderSortingList = {
+												"hostPopertyAttachmentId": imgarray[i].hostPopertyAttachmentId,
+												"imgOrder": 1,
+												"isCoverImg": 0,
+											}
+										}
+										FinalList.push(ImageOrderSortingList);
+									}
+									// console.log("ImageOrderSortingList" + JSON.stringify(FinalList));
+									$.ajax({
+										url: newurl + 'v1/user/' + userId + '/property/' + propertyId + '/unit/' + propertyHostUnitId + '/attachment/order',
+										type: 'PUT',
+										data: JSON.stringify(FinalList),
+										contentType: "application/json",
+										dataType: "json",
+										'headers': {
+											'Authorization': 'Basic aG9zdDpkZmdoamFzZmdzaGZqc3VmeXNnemhjZ2pzemJqY2Jqc3piY2pic2hiaDIzNDU2NzY1NDM0cnRld2VydA==',
+										},
+										success: function (result) {
+											document.getElementById("msg-body").innerHTML = "Cover image successfully saved";
+											$('#dyna-popup').modal('show');
+
+											setTimeout(function () {
+												$('#dyna-popup').modal('hide');
+												// window.location.reload();
+											}, 3000);
+										},
+										error: function (xhr, textStatus, errorThrown) {
+
+										},
+									});
+
+								} //else {
+								// $('#profile-img-tag').append("<span>No Content</span>");
+								//}
+							}
+						},
+						error: function (xhr, textStatus, errorThrown) {
+							console.log('Response Error ');
+							// console.log(errorThrown);
+						}
+					});
+
+
+					// console.log("image sucessfully  Saved");
+
+
+				}).fail(function (a, b, c) {
+					document.getElementById("msg-body").innerHTML = "Uploading process failed";
+					$('#dyna-popup').modal('show');
+
+					setTimeout(function () {
+						$('#dyna-popup').modal('hide');
+					}, 3000);
+
+				});
+				// document.getElementById("msg-body").innerHTML = "You need to save image !............";
+				// $('#dyna-popup').modal('show');
+			} else if (editFlag == "true") {
+
+				var hostPopertyAttachmentIdList = JSON.parse(sessionStorage.getItem("host-attachment-id-list"));
+
+				// var imageOrderList = JSON.parse(sessionStorage.getItem("order-list"));
+
+				var FinalList = new Array();
+				// var isCover=JSON.parse(sessionStorage.getItem("order-array"));
+				// console.log("hostPopertyAttachmentIdList" + JSON.stringify(hostPopertyAttachmentIdList));
+				// console.log("imageOrderList" + JSON.stringify(imageOrderList));
+				var ImageOrderSortingList = {};
+				for (var i = 0; i < hostPopertyAttachmentIdList.length; i++) {
+					if (hostPopertyAttachmentIdList[i].hostPopertyAttachmentId == imageId.id) {
+
+						ImageOrderSortingList = {
+							"hostPopertyAttachmentId": imageId.id,
+							"imgOrder": 1,
+							"isCoverImg": 1,
+						}
+					} else {
+						ImageOrderSortingList = {
+							"hostPopertyAttachmentId": hostPopertyAttachmentIdList[i].hostPopertyAttachmentId,
+							"imgOrder": 1,
+							"isCoverImg": 0,
+						}
+					}
+					FinalList.push(ImageOrderSortingList);
+				}
+				// console.log("ImageOrderSortingList" + JSON.stringify(FinalList));
+				$.ajax({
+					url: newurl + 'v1/user/' + document.getElementById("userId").value + '/property/' + document.getElementById("propertyId").value + '/unit/' + document.getElementById("unitId").value + '/attachment/order',
+					type: 'PUT',
+					data: JSON.stringify(FinalList),
+					contentType: "application/json",
+					dataType: "json",
+					'headers': {
+						'Authorization': 'Basic aG9zdDpkZmdoamFzZmdzaGZqc3VmeXNnemhjZ2pzemJqY2Jqc3piY2pic2hiaDIzNDU2NzY1NDM0cnRld2VydA==',
+					},
+					success: function (result) {
+
+						document.getElementById("msg-body").innerHTML = "Cover image successfully saved";
+						$('#dyna-popup').modal('show');
+
+						setTimeout(function () {
+							$('#dyna-popup').modal('hide');
+
+						}, 3000);
+					},
+					error: function (xhr, textStatus, errorThrown) {
+
+					},
+				});
+			}
+		}
+
+		function deleteImage(imgId) {
+
+			var addflag = sessionStorage.getItem("isAddFlag");
+			var editFlag = sessionStorage.getItem("isEditableFlag");
+			if (addflag == "true") {
+
+				// var imageId=document.querySelector('.img-wrap').id;
+				var imageId = imgId.id;
+
+				$('#' + imageId).empty();
+
+			} else if (editFlag == "true") {
+				var host_id_Delete = imgId.id;
+				$('#' + host_id_Delete).empty();
+				$.ajax({
+					type: 'DELETE',
+					contentType: "application/json",
+					dataType: "json",
+					'headers': {
+						'Authorization': 'Basic aG9zdDpkZmdoamFzZmdzaGZqc3VmeXNnemhjZ2pzemJqY2Jqc3piY2pic2hiaDIzNDU2NzY1NDM0cnRld2VydA==',
+					},
+					url: url + 'v1/user/' + document.getElementById("userId").value + '/property/' + document.getElementById("propertyId").value + '/unit/' + document.getElementById("unitId").value + '/attachment/' + host_id_Delete,
+					success: function (result) {
+						//  alert(JSON.stringify(result));
+						// document.getElementById("msg-body").innerHTML = "Image Deleted successfully";
+						// $('#dyna-popup').modal('show');
+
+						setTimeout(function () {
+							$('#dyna-popup').modal('hide');
+							//location.reload();
+						}, 3000);
+
+
+					},
+					error: function (xhr, textStatus, errorThrown) {
+						// alert("Record not Saved");
+
+					},
+				});
+			}
+		}
+
+		// PICK THE VALUES FROM EACH TEXTBOX WHEN "SUBMIT" BUTTON IS CLICKED.
+		var divValue, values = '';
+
+		function GetTextValue() {
+			$(divValue)
+				.empty()
+				.remove();
+
+			values = '';
+
+			$('.input').each(function () {
+				divValue = $(document.createElement('div')).css({
+					padding: '5px', width: '200px'
+				});
+				values += this.value + '<br />'
+			});
+
+			$(divValue).append('<p><b>Your selected values</b></p>' + values);
+			$('body').append(divValue);
+		}
+
+
+
+	</script>
+
+	<script>
+
+		$(document).ready(function () {
+			var addflag = sessionStorage.getItem("isAddFlag");
+			var pmsUnitId = sessionStorage.getItem("pmsUnitId");
+			if (addflag == "true") {
+				$.ajax({
+					type: "GET",
+
+					url: newurl + 'property/tax/pmsUnitId/' + pmsUnitId + '/pmcId/' + pmcId,
+					// url: newurl + "v1/user/" + userId + "/template/tax",
+					dataType: "json",
+					'headers': {
+						'Authorization': 'Basic aG9zdDpkZmdoamFzZmdzaGZqc3VmeXNnemhjZ2pzemJqY2Jqc3piY2pic2hiaDIzNDU2NzY1NDM0cnRld2VydA==',
+					},
+					success: function (result) {
+						//console.log("taxTemplateArray" + result);
+						for (var i = 0; i < result.length; i++) {
+							$('#taxesT').append('<option value="' + result[i].taxTemplateId + '">' + result[i].taxTemplateName + '</option>')
+						}
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+					}
+				});
+			} else {
+				var taxTemplateList = JSON.parse(sessionStorage.getItem("taxTemplateArray"));
+				if (taxTemplateList != null) {
+					taxTemplateList = taxTemplateList[0];
+					if (taxTemplateList) {
+						//console.log(taxTemplateList);
+
+						for (var i = 0; i < taxTemplateList.length; i++) {
+							//console.log(taxTemplateList[i].active)
+							if (taxTemplateList[i].active == 1) {
+								$('#taxesT').append('<option value="' + taxTemplateList[i].taxTemplateId + '"selected>' + taxTemplateList[i].taxTemplateName + '</option>')
+							} else {
+								$('#taxesT').append('<option value="' + taxTemplateList[i].taxTemplateId + '">' + taxTemplateList[i].taxTemplateName + '</option>')
+							}
+						}
+					}
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

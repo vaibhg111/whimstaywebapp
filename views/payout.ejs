@@ -1,0 +1,1959 @@
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+	<meta name="author" content="Wemastè">
+	<meta name="robots" content="noindex">
+	<meta name="googlebot" content="noindex">
+	<!-- title -->
+	<title>Payout - Whimstay Host</title>
+	<!-- favicon -->
+	<link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+
+	<!-- styles font-awesome icon -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<!-- animation -->
+	<link rel="stylesheet" href="css/animate.min.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" />
+
+	<!-- font-awesome icon -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+		integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+	<!-- wemaste styles -->
+	<link rel="stylesheet" href="../public/stylesheets/core.css" />
+	<link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+	<!-- <link rel="stylesheet" href="../public/stylesheets/bootstrap-datetimepicker.min.css" /> -->
+
+	<!-- <link rel="stylesheet" href="../public/stylesheets/grid.css" /> -->
+
+	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+
+	<style>
+		label {
+			line-height: 24px !important;
+		}
+
+		td:nth-child(2) {
+			padding-left: 20px;
+		}
+	</style>
+
+
+</head>
+
+<body class="host-dashboard">
+
+	<!-- start header -->
+	<%- include mainMasterDashboard.ejs %>
+	<!-- end header -->
+
+	<!-- start main content -->
+	<input type="hidden" value="<%= firstName %>" id="firstName">
+	<input type="hidden" value="<%= pmcId %>" id="pmcId">
+	<input type="hidden" value="<%= url %>" id="globalUrl">
+	<section id="getstarted" class="no-transition">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12  margin-20px-top margin-30px-bottom">
+
+
+					<h3 class="text-capitalize text-dark-blue font-weight-300">Payout Settings</h3>
+
+
+				</div>
+			</div>
+
+			<div class="row">
+
+
+				<div class="col-md-8 margin-30px-bottom">
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h6 class="text-blue">Bank Account Info </h6>
+						</div>
+						<div class="panel-body">
+							<form action="/">
+								<div class="row">
+									<div class="form-group">
+
+										<div class="col-md-12">
+
+											<p>When you receive a payment for a booking, that payment is called a
+												"payout". Our secure payment system will
+												direct deposit the amount into a bank account after reservation check
+												in. The payment deposit may take 1-5 businesss
+												days. You setup your bank account here. </p>
+
+
+											<div id="Bank_Account"></div>
+
+										</div>
+									</div>
+								</div>
+
+							</form>
+
+						</div>
+
+					</div>
+
+
+
+				</div>
+
+
+
+
+				<div class="col-md-1"></div>
+				<div class="col-md-3">
+
+					<div class="sidebar-box">
+						<h5 class="text-capitalize text-dark-blue font-weight-300">Profile Settings</h5>
+						<ul class="no-margin-left no-padding-left margin-20px-top">
+							<li><a href="./profile">Profile Details</a></li>
+							<li class="active"><a href="./payout">Payout Settings</a></li>
+							<li><a href="./notification">Notifications</a></li>
+							<li><a href="./Sign_out" onclick="signOut()">Sign Out</a></li>
+						</ul>
+					</div>
+
+					<div class="sidebar-box">
+						<h5 class="text-capitalize text-dark-blue font-weight-300">Share the Love</h5>
+						<p>Help us grow by telling your friends about Whimstay.</p>
+						<button type="button" id="shareMail" class="btn btn-blue btn-rounded btn-large width-100"
+							data-toggle="modal" data-target="#myModal-Share" >Share</button>
+					</div>
+
+					<div class="sidebar-box">
+						<h5 class="text-capitalize text-dark-blue font-weight-300">Follow Us</h5>
+						<div class="sidebar-social-icon">
+							<a href="https://www.facebook.com/whimstay" class="facebook-bg-hvr" target="_blank"><i
+									class="fab fa-facebook-f"></i></a>
+							<a href="https://www.instagram.com/whimstay" class="instagram-bg-hvr" target="_blank"><i
+									class="fab fa-instagram"></i></a>
+							<a href="https://www.linkedin.com/company/whimstay" class="linkedin-bg-hvr"
+								target="_blank"><i class="fab fa-linkedin-in"></i></a>
+
+						</div>
+					</div>
+
+
+				</div>
+
+
+			</div>
+
+
+		</div>
+	</section>
+	<!--end main content -->
+
+	<!-- start add account form lightbox-->
+	<!-- Modal -->
+	<div id="myModal-AddAccount" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+
+				<div class="modal-body">
+
+
+
+					<div class="form-group">
+						<label for="accTypeRadio">Account Type:</label>
+						<div class="radio">
+							<label><input type="radio" name="accType" id="accType" value="1" checked>Individual</label>
+						</div>
+						<div class="radio">
+							<label><input type="radio" name="accType" id="accType" value="2">Company</label>
+						</div>
+					</div>
+
+					<div class="form-group">
+
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="agreement" value="agreement" onclick="validatePayout()"
+									id="agreement" /> By registering
+								your account, you agree to our <a href="./terms_privacy" target="blank">Services
+									Agreement</a> and the <a href="https://stripe.com/us/connect-account/legal"
+									target="_blank">Stripe Connected Account Agreement</a>.<br />
+								<span id="checkboxval" style="color:red; font-weight: 500"></span>
+							</label>
+						</div>
+					</div>
+
+					<button type="submit" id="checkAccType" class="btn btn-blue btn-rounded btn-large width-100">Start
+						Registration</button>
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<!-- end add account form lightbox-->
+
+
+	<!-- start business kyc form lightbox-->
+	<!-- Modal -->
+	<div id="myModal-Biz" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+				<div class="modal-body" style="height: 550px;overflow-y: scroll;">
+
+
+
+
+					<h3 class="text-medium text-dark-blue font-weight-300 no-margin-bottom">Business Name and Address
+					</h3>
+
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="BusinessName" maxlength="255"
+							onkeypress="validatePayout()" name="BusinessName" placeholder="Business Name...">
+						<span id="BusinessName1" style="color:red;"></span>
+					</div>
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="BusinessID" maxlength="30"
+							onkeypress="return numberValidation(event)" name="BusinessID"
+							placeholder="Business Tax ID...">
+						<span id="BusinessID1" style="color:red;"></span>
+					</div>
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="BusinessAddress" maxlength="255"
+							onkeypress="validatePayout()" name="Address" placeholder="Address...">
+						<span id="BusinessAddress1" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="BusinessAddress2" maxlength="255" name="Address2"
+							placeholder="Apt, Ste, etc...">
+						<span id="BusinessAddress3" style="color:red;"></span>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" class="form-control" id="BusinessCity" maxlength="50"
+									onkeypress="validatePayout()" name="City" placeholder="City...">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<select id="BusinessState" name="State" onchange="validatePayout()">
+								<option value="" selected>State</option>
+								<option value="Alabama">Alabama</option>
+								<option value="Alaska">Alaska</option>
+								<option value="Arizona">Arizona</option>
+								<option value="Arkansas">Arkansas</option>
+								<option value="California">California</option>
+								<option value="Colorado">Colorado</option>
+								<option value="Connecticut">Connecticut</option>
+								<option value="Delaware">Delaware</option>
+								<option value="District Of Columbia">District Of Columbia</option>
+								<option value="Florida">Florida</option>
+								<option value="Georgia">Georgia</option>
+								<option value="Hawaii">Hawaii</option>
+								<option value="Idaho">Idaho</option>
+								<option value="Illinois">Illinois</option>
+								<option value="Indiana">Indiana</option>
+								<option value="Iowa">Iowa</option>
+								<option value="Kansas">Kansas</option>
+								<option value="Kentucky">Kentucky</option>
+								<option value="Louisiana">Louisiana</option>
+								<option value="Maine">Maine</option>
+								<option value="Maryland">Maryland</option>
+								<option value="Massachusetts">Massachusetts</option>
+								<option value="Michigan">Michigan</option>
+								<option value="Minnesota">Minnesota</option>
+								<option value="Mississippi">Mississippi</option>
+								<option value="Missouri">Missouri</option>
+								<option value="Montana">Montana</option>
+								<option value="Nebraska">Nebraska</option>
+								<option value="Nevada">Nevada</option>
+								<option value="New Hampshire">New Hampshire</option>
+								<option value="New Jersey">New Jersey</option>
+								<option value="New Mexico">New Mexico</option>
+								<option value="New York">New York</option>
+								<option value="North Carolina">North Carolina</option>
+								<option value="North Dakota">North Dakota</option>
+								<option value="Ohio">Ohio</option>
+								<option value="Oklahoma">Oklahoma</option>
+								<option value="Oregon">Oregon</option>
+								<option value="Pennsylvania">Pennsylvania</option>
+								<option value="Rhode Island">Rhode Island</option>
+								<option value="South Carolina">South Carolina</option>
+								<option value="South Dakota">South Dakota</option>
+								<option value="Tennessee">Tennessee</option>
+								<option value="Texas">Texas</option>
+								<option value="Utah">Utah</option>
+								<option value="Vermont">Vermont</option>
+								<option value="Virginia">Virginia</option>
+								<option value="Washington">Washington</option>
+								<option value="West Virginia">West Virginia</option>
+								<option value="Wisconsin">Wisconsin</option>
+								<option value="Wyoming">Wyoming</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="text" class="form-control" maxlength="8"
+									onkeypress="return numberValidation(event)" id="BusinessZip" name="Zip"
+									placeholder="Zip...">
+
+							</div>
+						</div>
+					</div>
+					<span id="BusinessCity1" style="color:red;"></span>
+					<span id="BusinessState1" style="color:red;"></span>
+					<span id="BusinessZip1" style="color:red;"></span>
+
+
+					<h3 class="text-medium text-dark-blue font-weight-300 margin-20px-bottom">Business Owner's Identity
+						Verification</h3>
+					<div class="form-group">
+						<input type="text" class="form-control" id="Businessfirst" maxlength="50"
+							onkeypress="return TextName(this, event)" name="first" placeholder="First Name...">
+						<span id="Businessfirst1" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="Businesslast" maxlength="50"
+							onkeypress="return TextName(this, event)" name="last" placeholder="Last Name...">
+						<span id="Businesslast1" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="BusinessEmail" maxlength="255"
+							onkeypress="validatePayout()" name="email" placeholder="Email Id...">
+						<span id="BusinessEmail1" style="color:red;"></span>
+					</div>
+
+					<div class="form-group">
+						<p class="text-medium text-dark-blue font-weight-300 no-margin-bottom">Last 4 Digits of Your SSN
+						</p>
+						<input type="password" class="form-control" id="BusinessSsn" maxlength="4"
+							onkeypress="return numberValidation(event)" name="ssn" placeholder="SSN Last 4...">
+						<span id="BusinessSsn1" style="color:red;"></span>
+					</div>
+
+					<div class="form-group">
+						<p class="text-medium text-dark-blue font-weight-300 no-margin-bottom">Birthdate</p>
+						<!-- 
+						<div class="row">
+							<div class="col-md-5 ">
+								<select id="BusinessDob_month" name="userDOBMonth" onchange="validatePayout()"
+									class="form-control">
+									<option value="">Month</option>
+									<option value="01">January</option>
+									<option value="02">February</option>
+									<option value="03">March</option>
+									<option value="04">April</option>
+									<option value="05">May</option>
+									<option value="06">June</option>
+									<option value="07">July</option>
+									<option value="08">August</option>
+									<option value="09">September</option>
+									<option value="10">October</option>
+									<option value="11">November</option>
+									<option value="12">December</option>
+								</select>
+							</div>
+							<div class="col-md-3 ">
+								<select id="BusinessDob_day" name="userDOBDay" onchange="validatePayout()">
+									<option value="">Day</option>
+									<option value="01">1</option>
+									<option value="02">2</option>
+									<option value="03">3</option>
+									<option value="04">4</option>
+									<option value="05">5</option>
+									<option value="06">6</option>
+									<option value="07">7</option>
+									<option value="08">8</option>
+									<option value="09">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="20">20</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="23">23</option>
+									<option value="24">24</option>
+									<option value="25">25</option>
+									<option value="26">26</option>
+									<option value="27">27</option>
+									<option value="28">28</option>
+									<option value="29">29</option>
+									<option value="30">30</option>
+									<option value="31">31</option>
+								</select>
+							</div>
+							<div class="col-md-4 " style="padding-right:48px">
+								<select id="BusinessDob_year" name="userDOBYear" onchange="validatePayout()">
+									<option value="">Year</option>
+									<option value="2018">2018</option>
+									<option value="2017">2017</option>
+									<option value="2016">2016</option>
+									<option value="2015">2015</option>
+									<option value="2014">2014</option>
+									<option value="2013">2013</option>
+									<option value="2012">2012</option>
+									<option value="2011">2011</option>
+									<option value="2010">2010</option>
+									<option value="2009">2009</option>
+									<option value="2008">2008</option>
+									<option value="2007">2007</option>
+									<option value="2006">2006</option>
+									<option value="2005">2005</option>
+									<option value="2004">2004</option>
+									<option value="2003">2003</option>
+									<option value="2002">2002</option>
+									<option value="2001">2001</option>
+									<option value="2000">2000</option>
+									<option value="1999">1999</option>
+									<option value="1998">1998</option>
+									<option value="1997">1997</option>
+									<option value="1996">1996</option>
+									<option value="1995">1995</option>
+									<option value="1994">1994</option>
+									<option value="1993">1993</option>
+									<option value="1992">1992</option>
+									<option value="1991">1991</option>
+									<option value="1990">1990</option>
+									<option value="1989">1989</option>
+									<option value="1988">1988</option>
+									<option value="1987">1987</option>
+									<option value="1986">1986</option>
+									<option value="1985">1985</option>
+									<option value="1984">1984</option>
+									<option value="1983">1983</option>
+									<option value="1982">1982</option>
+									<option value="1981">1981</option>
+									<option value="1980">1980</option>
+									<option value="1979">1979</option>
+									<option value="1978">1978</option>
+									<option value="1977">1977</option>
+									<option value="1976">1976</option>
+									<option value="1975">1975</option>
+									<option value="1974">1974</option>
+									<option value="1973">1973</option>
+									<option value="1972">1972</option>
+									<option value="1971">1971</option>
+									<option value="1970">1970</option>
+									<option value="1969">1969</option>
+									<option value="1968">1968</option>
+									<option value="1967">1967</option>
+									<option value="1966">1966</option>
+									<option value="1965">1965</option>
+									<option value="1964">1964</option>
+									<option value="1963">1963</option>
+									<option value="1962">1962</option>
+									<option value="1961">1961</option>
+									<option value="1960">1960</option>
+									<option value="1959">1959</option>
+									<option value="1958">1958</option>
+									<option value="1957">1957</option>
+									<option value="1956">1956</option>
+									<option value="1955">1955</option>
+									<option value="1954">1954</option>
+									<option value="1953">1953</option>
+									<option value="1952">1952</option>
+									<option value="1951">1951</option>
+									<option value="1950">1950</option>
+									<option value="1949">1949</option>
+									<option value="1948">1948</option>
+									<option value="1947">1947</option>
+									<option value="1946">1946</option>
+									<option value="1945">1945</option>
+									<option value="1944">1944</option>
+									<option value="1943">1943</option>
+									<option value="1942">1942</option>
+									<option value="1941">1941</option>
+									<option value="1940">1940</option>
+									<option value="1939">1939</option>
+									<option value="1938">1938</option>
+									<option value="1937">1937</option>
+									<option value="1936">1936</option>
+									<option value="1935">1935</option>
+									<option value="1934">1934</option>
+									<option value="1933">1933</option>
+									<option value="1932">1932</option>
+									<option value="1931">1931</option>
+									<option value="1930">1930</option>
+									<option value="1929">1929</option>
+									<option value="1928">1928</option>
+									<option value="1927">1927</option>
+									<option value="1926">1926</option>
+									<option value="1925">1925</option>
+									<option value="1924">1924</option>
+									<option value="1923">1923</option>
+									<option value="1922">1922</option>
+									<option value="1921">1921</option>
+									<option value="1920">1920</option>
+									<option value="1919">1919</option>
+									<option value="1918">1918</option>
+									<option value="1917">1917</option>
+									<option value="1916">1916</option>
+									<option value="1915">1915</option>
+									<option value="1914">1914</option>
+									<option value="1913">1913</option>
+									<option value="1912">1912</option>
+									<option value="1911">1911</option>
+									<option value="1910">1910</option>
+									<option value="1909">1909</option>
+									<option value="1908">1908</option>
+									<option value="1907">1907</option>
+									<option value="1906">1906</option>
+									<option value="1905">1905</option>
+									<option value="1904">1904</option>
+									<option value="1903">1903</option>
+									<option value="1902">1902</option>
+									<option value="1901">1901</option>
+									<option value="1900">1900</option>
+									<option value="1899">1899</option>
+									<option value="1898">1898</option>
+								</select>
+							</div>
+							<input type="hidden" id="BusinessDob" name="dobDt">
+						</div>
+						<span id="BusinessDob1" style="color:red;"></span> -->
+
+
+						<div class='input-group date' id='datetimepicker3'>
+							<input type='text' class="form-control" id="BusinessDob" onkeypress="validatePayout()" />
+							<span class="input-group-addon">
+								<span class="glyphicon glyphicon-calendar"></span>
+							</span>
+						</div>
+
+						<span id="BusinessDob1" style="color:red;"></span>
+
+
+
+						<br /> <br />
+
+						<button type="button" id="payout_info"
+							class="btn btn-blue btn-rounded btn-large width-100">Next</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function () {
+			var now = new Date();
+		var years_ago_date = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
+			$('#datetimepicker3').datetimepicker(
+				{
+					format: 'MM/DD/YYYY',
+					maxDate: years_ago_date,
+					useCurrent: false,
+					allowInputToggle: true,
+					viewDate: years_ago_date
+				}
+			);
+		});
+
+		$('#BusinessDob').keydown(function (evnt) {
+			if (evnt.originalEvent.keyCode === 8) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+
+	</script>
+	<!-- end business kyc form lightbox-->
+
+	<!-- start individual kyc form lightbox-->
+	<!-- Modal -->
+	<div id="myModal-Individual" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+				<div class="modal-body" style="height: 550px;overflow-y: scroll;">
+
+
+					<!-- <form action="/" class="bankform"> -->
+
+					<h3 class="text-medium text-dark-blue font-weight-300 no-margin-bottom">Name and Address</h3>
+					<div class="form-group">
+						<input type="text" class="form-control" id="firstNameIndividual" maxlength="50"
+							onkeypress="return TextName(this, event)" name="firstName" placeholder="First Name...">
+						<span id="firstNameIndividual1" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="lastNameIndividual" maxlength="50"
+							onkeypress="return TextName(this, event)" name="lastName" placeholder="Last Name...">
+						<span id="lastNameIndividual1" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="emailIndividual" maxlength="255"
+							onkeypress="validatePayout()" name="lastName" placeholder="Email Address...">
+						<span id="emailIndividual1" style="color:red;"></span>
+					</div>
+
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="AddressIndividual" maxlength="255"
+							onkeypress="validatePayout()" name="Address" placeholder="Address...">
+						<span id="AddressIndividual1" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="Address2Individual" name="Address2" maxlength="255"
+							placeholder="Apt, Ste, etc...">
+						<span id="Address2Individual1" style="color:red;"></span>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" class="form-control" id="CityIndividual" maxlength="50"
+									onkeypress="validatePayout()" name="City" placeholder="City...">
+
+							</div>
+						</div>
+						<div class="col-md-3">
+							<select id="stateIndividual" name="State" onkeypress="validatePayout()">
+								<option value="" selected>State</option>
+								<option value="Alabama">Alabama</option>
+								<option value="Alaska">Alaska</option>
+								<option value="Arizona">Arizona</option>
+								<option value="Arkansas">Arkansas</option>
+								<option value="California">California</option>
+								<option value="Colorado">Colorado</option>
+								<option value="Connecticut">Connecticut</option>
+								<option value="Delaware">Delaware</option>
+								<option value="District Of Columbia">District Of Columbia</option>
+								<option value="Florida">Florida</option>
+								<option value="Georgia">Georgia</option>
+								<option value="Hawaii">Hawaii</option>
+								<option value="Idaho">Idaho</option>
+								<option value="Illinois">Illinois</option>
+								<option value="Indiana">Indiana</option>
+								<option value="Iowa">Iowa</option>
+								<option value="Kansas">Kansas</option>
+								<option value="Kentucky">Kentucky</option>
+								<option value="Louisiana">Louisiana</option>
+								<option value="Maine">Maine</option>
+								<option value="Maryland">Maryland</option>
+								<option value="Massachusetts">Massachusetts</option>
+								<option value="Michigan">Michigan</option>
+								<option value="Minnesota">Minnesota</option>
+								<option value="Mississippi">Mississippi</option>
+								<option value="Missouri">Missouri</option>
+								<option value="Montana">Montana</option>
+								<option value="Nebraska">Nebraska</option>
+								<option value="Nevada">Nevada</option>
+								<option value="New Hampshire">New Hampshire</option>
+								<option value="New Jersey">New Jersey</option>
+								<option value="New Mexico">New Mexico</option>
+								<option value="New York">New York</option>
+								<option value="North Carolina">North Carolina</option>
+								<option value="North Dakota">North Dakota</option>
+								<option value="Ohio">Ohio</option>
+								<option value="Oklahoma">Oklahoma</option>
+								<option value="Oregon">Oregon</option>
+								<option value="Pennsylvania">Pennsylvania</option>
+								<option value="Rhode Island">Rhode Island</option>
+								<option value="South Carolina">South Carolina</option>
+								<option value="South Dakota">South Dakota</option>
+								<option value="Tennessee">Tennessee</option>
+								<option value="Texas">Texas</option>
+								<option value="Utah">Utah</option>
+								<option value="Vermont">Vermont</option>
+								<option value="Virginia">Virginia</option>
+								<option value="Washington">Washington</option>
+								<option value="West Virginia">West Virginia</option>
+								<option value="Wisconsin">Wisconsin</option>
+								<option value="Wyoming">Wyoming</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="text" class="form-control" maxlength="8" id="ZipIndividual"
+									onkeypress="return numberValidation(event)" name="Zip" placeholder="Zip...">
+
+							</div>
+						</div>
+					</div>
+					<span id="CityIndividual1" style="color:red;"></span>
+					<span id="stateIndividual1" style="color:red;"></span>
+					<span id="ZipIndividual1" style="color:red;"></span>
+
+					<h3 class="text-medium text-dark-blue font-weight-300 margin-20px-bottom">Verify Your Identity</h3>
+					<div class="form-group">
+						<p class="text-medium text-dark-blue font-weight-300 no-margin-bottom">Last 4 Digits of Your SSN
+						</p>
+
+						<input type="password" class="form-control" id="ssnIndividual" maxlength="4"
+							onkeypress="return numberValidation(event)" name="ssn" placeholder="SSN Last 4...">
+
+					</div>
+					<span id="ssnIndividual1" style="color:red;"></span>
+					<div class="form-group">
+						<p class="text-medium text-dark-blue font-weight-300 no-margin-bottom">Birthdate</p>
+
+						<!-- 
+						<div class="row">
+							<div class="col-md-5 ">
+								<select id="dob_monthIndividual" onkeypress="validatePayout()" name="userDOBMonth"
+									class="form-control">
+									<option value="">Month</option>
+									<option value="01">January</option>
+									<option value="02">February</option>
+									<option value="03">March</option>
+									<option value="04">April</option>
+									<option value="05">May</option>
+									<option value="06">June</option>
+									<option value="07">July</option>
+									<option value="08">August</option>
+									<option value="09">September</option>
+									<option value="10">October</option>
+									<option value="11">November</option>
+									<option value="12">December</option>
+								</select>
+							</div>
+							<div class="col-md-3 ">
+								<select id="dob_dayIndividual" onkeypress="validatePayout()" name="userDOBDay">
+									<option value="">Day</option>
+									<option value="01">1</option>
+									<option value="02">2</option>
+									<option value="03">3</option>
+									<option value="04">4</option>
+									<option value="05">5</option>
+									<option value="06">6</option>
+									<option value="07">7</option>
+									<option value="08">8</option>
+									<option value="09">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="20">20</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="23">23</option>
+									<option value="24">24</option>
+									<option value="25">25</option>
+									<option value="26">26</option>
+									<option value="27">27</option>
+									<option value="28">28</option>
+									<option value="29">29</option>
+									<option value="30">30</option>
+									<option value="31">31</option>
+								</select>
+							</div>
+							<div class="col-md-4 ">
+								<select id="dob_yearIndividual" onkeypress="validatePayout()" name="userDOBYear">
+									<option value="">Year</option>
+									<option value="2018">2018</option>
+									<option value="2017">2017</option>
+									<option value="2016">2016</option>
+									<option value="2015">2015</option>
+									<option value="2014">2014</option>
+									<option value="2013">2013</option>
+									<option value="2012">2012</option>
+									<option value="2011">2011</option>
+									<option value="2010">2010</option>
+									<option value="2009">2009</option>
+									<option value="2008">2008</option>
+									<option value="2007">2007</option>
+									<option value="2006">2006</option>
+									<option value="2005">2005</option>
+									<option value="2004">2004</option>
+									<option value="2003">2003</option>
+									<option value="2002">2002</option>
+									<option value="2001">2001</option>
+									<option value="2000">2000</option>
+									<option value="1999">1999</option>
+									<option value="1998">1998</option>
+									<option value="1997">1997</option>
+									<option value="1996">1996</option>
+									<option value="1995">1995</option>
+									<option value="1994">1994</option>
+									<option value="1993">1993</option>
+									<option value="1992">1992</option>
+									<option value="1991">1991</option>
+									<option value="1990">1990</option>
+									<option value="1989">1989</option>
+									<option value="1988">1988</option>
+									<option value="1987">1987</option>
+									<option value="1986">1986</option>
+									<option value="1985">1985</option>
+									<option value="1984">1984</option>
+									<option value="1983">1983</option>
+									<option value="1982">1982</option>
+									<option value="1981">1981</option>
+									<option value="1980">1980</option>
+									<option value="1979">1979</option>
+									<option value="1978">1978</option>
+									<option value="1977">1977</option>
+									<option value="1976">1976</option>
+									<option value="1975">1975</option>
+									<option value="1974">1974</option>
+									<option value="1973">1973</option>
+									<option value="1972">1972</option>
+									<option value="1971">1971</option>
+									<option value="1970">1970</option>
+									<option value="1969">1969</option>
+									<option value="1968">1968</option>
+									<option value="1967">1967</option>
+									<option value="1966">1966</option>
+									<option value="1965">1965</option>
+									<option value="1964">1964</option>
+									<option value="1963">1963</option>
+									<option value="1962">1962</option>
+									<option value="1961">1961</option>
+									<option value="1960">1960</option>
+									<option value="1959">1959</option>
+									<option value="1958">1958</option>
+									<option value="1957">1957</option>
+									<option value="1956">1956</option>
+									<option value="1955">1955</option>
+									<option value="1954">1954</option>
+									<option value="1953">1953</option>
+									<option value="1952">1952</option>
+									<option value="1951">1951</option>
+									<option value="1950">1950</option>
+									<option value="1949">1949</option>
+									<option value="1948">1948</option>
+									<option value="1947">1947</option>
+									<option value="1946">1946</option>
+									<option value="1945">1945</option>
+									<option value="1944">1944</option>
+									<option value="1943">1943</option>
+									<option value="1942">1942</option>
+									<option value="1941">1941</option>
+									<option value="1940">1940</option>
+									<option value="1939">1939</option>
+									<option value="1938">1938</option>
+									<option value="1937">1937</option>
+									<option value="1936">1936</option>
+									<option value="1935">1935</option>
+									<option value="1934">1934</option>
+									<option value="1933">1933</option>
+									<option value="1932">1932</option>
+									<option value="1931">1931</option>
+									<option value="1930">1930</option>
+									<option value="1929">1929</option>
+									<option value="1928">1928</option>
+									<option value="1927">1927</option>
+									<option value="1926">1926</option>
+									<option value="1925">1925</option>
+									<option value="1924">1924</option>
+									<option value="1923">1923</option>
+									<option value="1922">1922</option>
+									<option value="1921">1921</option>
+									<option value="1920">1920</option>
+									<option value="1919">1919</option>
+									<option value="1918">1918</option>
+									<option value="1917">1917</option>
+									<option value="1916">1916</option>
+									<option value="1915">1915</option>
+									<option value="1914">1914</option>
+									<option value="1913">1913</option>
+									<option value="1912">1912</option>
+									<option value="1911">1911</option>
+									<option value="1910">1910</option>
+									<option value="1909">1909</option>
+									<option value="1908">1908</option>
+									<option value="1907">1907</option>
+									<option value="1906">1906</option>
+									<option value="1905">1905</option>
+									<option value="1904">1904</option>
+									<option value="1903">1903</option>
+									<option value="1902">1902</option>
+									<option value="1901">1901</option>
+									<option value="1900">1900</option>
+									<option value="1899">1899</option>
+									<option value="1898">1898</option>
+								</select>
+							</div>
+							<input type="hidden" id="fullDobIndividual" name="dobDt">
+						</div>
+						<span id="fullDobIndividual1" style="color:red;"></span> -->
+
+						<div class='input-group date' id='datetimepicker4'>
+							<input type='text' class="form-control" id="fullDobIndividual"
+								onkeypress="validatePayout()" />
+							<span class="input-group-addon">
+								<span class="glyphicon glyphicon-calendar"></span>
+							</span>
+						</div>
+						<span id="fullDobIndividual1" style="color:red;"></span>
+
+
+
+						<br /> <br />
+						<button type="button" id="payout_Indi"
+							class="btn btn-blue btn-rounded btn-large width-100">Next</button>
+
+
+
+						<!-- <button type="submit" id="fillDataIndividual" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-dismiss="modal"
+							 data-target="#myModal-BankAccount">Next</button> -->
+						<!-- </form> -->
+
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(function () {
+			var now = new Date();
+		var years_ago_date = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
+			$('#datetimepicker4').datetimepicker(
+				{
+					format: 'MM/DD/YYYY',
+					maxDate: years_ago_date,
+					useCurrent: false,
+					allowInputToggle: true,
+					viewDate: years_ago_date
+				}
+			);
+		});
+
+		$('#fullDobIndividual').keydown(function (evnt) {
+			if (evnt.originalEvent.keyCode === 8) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+
+	</script>
+	<!-- end individual kyc form lightbox-->
+
+	<!-- start bank form lightbox-->
+	<!-- Modal -->
+	<div id="myModal-BankAccount" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+				<div class="modal-body">
+
+					<div class="form-group">
+						<label for="fullName">Bank Name:</label>
+						<input type="text" class="form-control" id="bankNameIndividual" maxlength="255"
+							onkeypress="validatePayout()" name="fullName" placeholder="Bank Name...">
+					</div>
+					<span id="bankNameIndividual1" style="color:red;"></span>
+					<div class="form-group">
+						<label for="routing">Routing Number:</label>
+						<input type="password" class="form-control" id="routingIndividual" maxlength="9"
+							onkeypress="return numberValidation(event)" name="routing" placeholder="e.g. 123456789">
+					</div>
+					<span id="routingIndividual1" style="color:red;"></span>
+					<div class="form-group">
+						<label for="account">Account Number:</label>
+						<input type="password" class="form-control" id="accountIndividual" maxlength="35"
+							onkeypress="return numberValidation(event)" name="account" placeholder="e.g. 123456789">
+					</div>
+					<span id="accountIndividual1" style="color:red;"></span>
+					<div class="form-group">
+						<label for="accountConfirm">Confirm Account Number:</label>
+						<input type="password" class="form-control" id="accountConfirm" maxlength="35"
+							onkeypress="return numberValidation(event)" name="accountConfirm"
+							placeholder="e.g. 123456789">
+					</div>
+					<span id="accountConfirm1" style="color:red;"></span>
+
+
+					<a type="submit" class="btn btn-blue btn-rounded btn-large width-100" id="individualSubmit"
+						data-toggle="modal" data-dismiss="modal">Complete</a>
+					<!-- <a type="submit" class="btn btn-blue btn-rounded btn-large width-100" id="individualUpdate">Complete</a> -->
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!-- end bank form lightbox-->
+
+
+
+	<!-- start bank form lightbox-->
+	<!-- Modal -->
+	<div id="myModal-companyAccount" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+				<div class="modal-body">
+
+					<div class="form-group">
+						<label for="fullName">Bank Name:</label>
+						<input type="text" class="form-control" id="businessBankName" maxlength="255"
+							onkeypress="validatePayout()" name="fullName" placeholder="Bank Name...">
+					</div>
+					<span id="businessBankName1" style="color:red;"></span>
+					<div class="form-group">
+						<label for="routing">Routing Number:</label>
+						<input type="password" class="form-control" id="businessRouting" maxlength="9"
+							onkeypress="return numberValidation(event)" name="routing" placeholder="e.g. 123456789">
+					</div>
+					<span id="businessRouting1" style="color:red;"></span>
+					<div class="form-group">
+						<label for="account">Account Number:</label>
+						<input type="password" class="form-control" id="businessAccount" maxlength="35"
+							onkeypress="validatePayout()" name="account" placeholder="e.g. 123456789">
+					</div>
+					<span id="businessAccount1" style="color:red;"></span>
+					<div class="form-group">
+						<label for="accountConfirm">Confirm Account Number:</label>
+						<input type="password" class="form-control" id="businessAccountConfirm" maxlength="35"
+							onkeypress="validatePayout()" name="accountConfirm" placeholder="e.g. 123456789">
+					</div>
+					<span id="businessAccountConfirm1" style="color:red;"></span>
+
+
+					<a type="submit" id="businessAccountComplete" class="btn btn-blue btn-rounded btn-large width-100"
+						data-toggle="modal" data-dismiss="modal">Complete</a>
+
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!-- end bank form lightbox-->
+
+	<!-- start bank form lightbox-->
+	<!-- Modal -->
+	<div id="myModal-BankVerify" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+				<div class="modal-body">
+
+
+					<form action="/" class="bankform">
+						<div class="form-group">
+							<label for="verifyBA">Verify Bank Account:</label>
+							<p class="text-small">Before payments can be made or your lisitng be published, we must
+								first verify your bank account.
+								Enter the exact amount deposited into your account by Wemastè. It made take up to 3-7
+								business days for the deposit
+								to show in your bank transactions. </p>
+							<input type="text" class="form-control" id="verifyBA" name="verifyBA" placeholder="$0.00">
+						</div>
+
+
+						<button type="submit" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal"
+							data-dismiss="modal">Verify</button>
+					</form>
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!-- end bank form lightbox-->
+
+	<!-- start individual kyc form lightbox-->
+	<!-- Modal -->
+	<div id="myModal-Address" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+				<div class="modal-body">
+
+
+					<h3 class="text-medium text-dark-blue font-weight-300 no-margin-bottom">Name and Address</h3>
+					<div class="form-group">
+						<input type="text" class="form-control" onkeypress="validatePayout()" id="displayFirstName"
+							name="firstName" placeholder="First Name...">
+						<span id="displayfirst" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" onkeypress="validatePayout()" id="displayLastName"
+							name="lastName" placeholder="Last Name...">
+						<span id="displaylast" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="displayEmail" maxlength="255"
+							onkeypress="validatePayout()" name="displayEmail" placeholder="Email Address...">
+						<span id="displayEmail1" style="color:red;"></span>
+					</div>
+					<!-- <div class="form-group">
+							<input type="text" class="form-control" id="BusinessName" onkeypress="validatePayout()" name="email" value="test" placeholder="Bussiness Name...">
+							<span id="BusinessEmail1" style="color:red;"></span>
+						</div> -->
+
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="displayAddress" name="Address"
+							onkeypress="validatePayout()" placeholder="Address...">
+						<span id="displayAddress1" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="displayAddress2" name="Address2"
+							onkeypress="validatePayout()" placeholder="Apt, Ste, etc...">
+						<span id="displayAddress3" style="color:red;"></span>
+					</div>
+
+
+					<input type="hidden" class="form-control" id="accountHolderType" name="accountHolderType"
+						placeholder="accountHolderType...">
+					<input type="hidden" class="form-control" id="displayRoutingNumber" name="displayRoutingNumber"
+						placeholder="displayRoutingNumber...">
+					<input type="hidden" class="form-control" id="displayCountry" name="displayCountry"
+						placeholder="displayCountry...">
+					<input type="hidden" class="form-control" id="displayCurrency" name="displayCurrency"
+						placeholder="displayCurrency...">
+					<input type="hidden" class="form-control" id="displayType" name="displayType"
+						placeholder="displayType...">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" class="form-control" id="displayCity" name="City"
+									onkeypress="validatePayout()" placeholder="City...">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<select id="displaystate" name="State" onkeypress="validatePayout()" placeholder="State">
+								<option value="" selected>State</option>
+								<option value="Alabama">Alabama</option>
+								<option value="Alaska">Alaska</option>
+								<option value="Arizona">Arizona</option>
+								<option value="Arkansas">Arkansas</option>
+								<option value="California">California</option>
+								<option value="Colorado">Colorado</option>
+								<option value="Connecticut">Connecticut</option>
+								<option value="Delaware">Delaware</option>
+								<option value="District Of Columbia">District Of Columbia</option>
+								<option value="Florida">Florida</option>
+								<option value="Georgia">Georgia</option>
+								<option value="Hawaii">Hawaii</option>
+								<option value="Idaho">Idaho</option>
+								<option value="Illinois">Illinois</option>
+								<option value="Indiana">Indiana</option>
+								<option value="Iowa">Iowa</option>
+								<option value="Kansas">Kansas</option>
+								<option value="Kentucky">Kentucky</option>
+								<option value="Louisiana">Louisiana</option>
+								<option value="Maine">Maine</option>
+								<option value="Maryland">Maryland</option>
+								<option value="Massachusetts">Massachusetts</option>
+								<option value="Michigan">Michigan</option>
+								<option value="Minnesota">Minnesota</option>
+								<option value="Mississippi">Mississippi</option>
+								<option value="Missouri">Missouri</option>
+								<option value="Montana">Montana</option>
+								<option value="Nebraska">Nebraska</option>
+								<option value="Nevada">Nevada</option>
+								<option value="New Hampshire">New Hampshire</option>
+								<option value="New Jersey">New Jersey</option>
+								<option value="New Mexico">New Mexico</option>
+								<option value="New York">New York</option>
+								<option value="North Carolina">North Carolina</option>
+								<option value="North Dakota">North Dakota</option>
+								<option value="Ohio">Ohio</option>
+								<option value="Oklahoma">Oklahoma</option>
+								<option value="Oregon">Oregon</option>
+								<option value="Pennsylvania">Pennsylvania</option>
+								<option value="Rhode Island">Rhode Island</option>
+								<option value="South Carolina">South Carolina</option>
+								<option value="South Dakota">South Dakota</option>
+								<option value="Tennessee">Tennessee</option>
+								<option value="Texas">Texas</option>
+								<option value="Utah">Utah</option>
+								<option value="Vermont">Vermont</option>
+								<option value="Virginia">Virginia</option>
+								<option value="Washington">Washington</option>
+								<option value="West Virginia">West Virginia</option>
+								<option value="Wisconsin">Wisconsin</option>
+								<option value="Wyoming">Wyoming</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<input type="text" class="form-control" maxlength="8" id="displayZip" name="Zip"
+									onkeypress="validatePayout()" placeholder="Zip...">
+								<span id="last" style="color:red;"></span>
+							</div>
+						</div>
+
+					</div>
+
+					<span id="displayCity1" style="color:red;"></span>
+					<span id="displaystate1" style="color:red;"></span>
+					<span id="displayZip1" style="color:red;"></span>
+
+					<div class="form-group" id="displayHide">
+						<p class="text-medium text-dark-blue font-weight-300 no-margin-bottom">Birthdate</p>
+
+						<div class='input-group date' id='datetimepicker5'>
+							<input type='text' class="form-control" id="fullDob" onkeypress="validatePayout()" />
+							<span class="input-group-addon">
+								<span class="glyphicon glyphicon-calendar"></span>
+							</span>
+						</div>
+
+						<span id="fullDob1" style="color:red;"></span>
+
+
+						<br /> <br />
+					</div>
+					<button type="button" id="updateAddress"
+						class="btn btn-blue btn-rounded btn-large width-100">Update</button>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var now = new Date();
+		var years_ago_date = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
+		$(function () {
+			$('#datetimepicker5').datetimepicker(
+				{
+					format: 'MM/DD/YYYY',
+					maxDate: years_ago_date,
+					useCurrent: false,
+					allowInputToggle: true,
+					viewDate: years_ago_date
+				}
+			);
+		});
+
+		$('#fullDob').keydown(function (evnt) {
+			if (evnt.originalEvent.keyCode === 8) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+
+	</script>
+
+	<!-- end individual kyc form lightbox-->
+
+	<!-- Modal -->
+	<div id="myModal-info_biz" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<span>Business Account Details</span>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+
+				<div class="modal-body">
+
+					<table>
+						<tr>
+							<td><label> Company Name </label></td>
+							<td><label id="payout-BusinessName"></label></td>
+						</tr>
+						<tr>
+							<td><label> Buisness Id </label></td>
+							<td><label id="payout-BusinessID"></label></td>
+						</tr>
+						<tr>
+							<td><label> Address</label></td>
+							<td><label id="payout-BusinessAddress"></label></td>
+						</tr>
+						<!-- <tr>
+								<td><label> Address 2 </label></td>
+								<td><label id="payout-BusinessAddress2"></label></td>
+							</tr> -->
+						<td><label id="payout-BusinessAddress2"></label></td>
+						<td><label id="payout-BusinessAddress3"></label></td>
+						<tr>
+							<td><label> City </label></td>
+							<td><label id="payout-BusinessCity"></label></td>
+						</tr>
+						<tr>
+							<td><label> State </label></td>
+							<td><label id="payout-BusinessState"></label></td>
+						</tr>
+						<tr>
+							<td><label> Zip </label></td>
+							<td><label id="payout-BusinessZip"></label></td>
+						</tr>
+						<tr>
+							<td><label> First Name</label></td>
+							<td><label id="payout-Businessfirst"></label></td>
+						</tr>
+						<tr>
+							<td><label> Last Name </label></td>
+							<td><label id="payout-Businesslast"></label></td>
+						</tr>
+						<tr>
+							<td><label> Email </label></td>
+							<td><label id="payout-BusinessEmail"></label></td>
+						</tr>
+						<tr>
+							<td><label> SSN </label></td>
+							<td><label id="payout-BusinessSsn"></label></td>
+						</tr>
+						<tr>
+							<td><label> Date Of Birth </label></td>
+							<td><label id="payout-BusinessDob"></label></td>
+						</tr>
+
+					</table>
+
+					<br />
+					<div class="row">
+						<div class="col-sm-6 text-center">
+							<button type="submit" class="btn btn-blue btn-rounded btn-large width-100"
+								data-toggle="modal" data-dismiss="modal" data-target="#myModal-Biz">Back</button>
+						</div>
+						<div class="col-sm-6 text-center">
+							<button type="submit" id="payout_info" class="btn btn-blue btn-rounded btn-large width-100"
+								data-toggle="modal" data-dismiss="modal"
+								data-target="#myModal-companyAccount">Next</button>
+						</div>
+					</div>
+
+
+
+					<!-- <label> Company Name :</label> <p id="payout-BusinessName"></p>
+							<label> Buisness Id :</label> <p id="payout-BusinessID"></p> -->
+					<!-- <label> First Name :</label> <p id="payout-Businessfirst"></p>
+						<label> Last Name :</label> <p id="payout-Businesslast"></p>
+						<label> Address :</label> <p id="payout-BusinessAddress"></p>
+						<label> Address 2 :</label> <p id="payout-BusinessAddress2"></p>
+						<label> City :</label> <p id="payout-BusinessCity"></p>
+						<label> State :</label> <p id="payout-BusinessState"></p>
+						<label> Zip :</label> <p id="payout-BusinessZip"></p>
+						<label> SSN :</label> <p id="payout-BusinessSsn"></p>
+						<label> Date Of Birth :</label><p id="payout-BusinessDob"></p>
+						<label> Email :</label> <p id="payout-BusinessEmail"></p>
+						<button type="submit" id="payout_info" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-dismiss="modal"
+						 data-target="#myModal-companyAccount">Next</button> -->
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<!-- end add account form lightbox-->
+
+
+	<div id="myModal_test" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<span>Individual Account Details</span>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+
+				<div class="modal-body">
+					<span>Modal Here</span>
+
+
+					<!-- <button type="submit" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-dismiss="modal" data-target="#myModal-Individual">Back</button>
+						<button type="submit" id="fillDataIndividual" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-dismiss="modal"
+						 data-target="#myModal-BankAccount">Next</button>  -->
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<!-- Modal -->
+	<div id="myModal-info_indi" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<span>Individual Account Details</span>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+
+				<div class="modal-body">
+					<table>
+						<tr>
+							<td><label> First Name </label></td>
+							<td><label id="payout-firstNameIndividual"></label></td>
+						</tr>
+
+						<tr>
+							<td><label> Last Name </label></td>
+							<td><label id="payout-lastNameIndividual"></label></td>
+						</tr>
+						<tr>
+							<td><label> Email </label></td>
+							<td><label id="payout-email"></label></td>
+						</tr>
+						<tr>
+							<td><label> Address </label></td>
+							<td><label id="payout-AddressIndividual"></label></td>
+						</tr>
+						<td><label id="payout-Address2Individual"></label></td>
+						<td><label id="payout-Address3Individual"></label></td>
+						<tr>
+							<td><label> City </label></td>
+							<td><label id="payout-CityIndividual"></label></td>
+						</tr>
+						<tr>
+							<td><label> State </label></td>
+							<td><label id="payout-stateIndividual"></label></td>
+						</tr>
+						<tr>
+							<td><label> Zip </label></td>
+							<td><label id="payout-ZipIndividual"></label></td>
+						</tr>
+						<tr>
+							<td><label> SSN </label></td>
+							<td><label id="payout-ssnIndividual"></label></td>
+						</tr>
+						<tr>
+							<td><label> Date Of Birth </label></td>
+							<td><label id="payout-fullDobIndividual"></label></td>
+						</tr>
+					</table>
+					<br />
+					<div class="row">
+						<div class="col-sm-6 text-center">
+							<button type="submit" class="btn btn-blue btn-rounded btn-large width-100"
+								data-toggle="modal" data-dismiss="modal" data-target="#myModal-Individual">Back</button>
+						</div>
+						<div class="col-sm-6 text-center">
+							<button type="submit" id="fillDataIndividual"
+								class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal"
+								data-dismiss="modal" data-target="#myModal-BankAccount">Next</button>
+						</div>
+					</div>
+
+
+					<!-- <button type="submit" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-dismiss="modal" data-target="#myModal-Individual">Back</button>
+					<button type="submit" id="fillDataIndividual" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-dismiss="modal"
+					 data-target="#myModal-BankAccount">Next</button>  -->
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- start share with a host lightbox-->
+	<!-- Modal -->
+	<div id="myModal-Share" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<!--<h4 class="modal-title">Modal Header</h4>-->
+				</div>
+				<div class="modal-body">
+
+
+					<form action="/">
+						<div class="form-group">
+							<label for="shareTo">To: <span class="text-extra-small">(seperate with a
+									comma)</span></label> <input type="email" class="form-control" id="shareTo"
+								name="shareTo" onkeypress="validateInput()" maxlength="5000"
+								placeholder="Enter Emails... ">
+							<span id="mail1" style="color:red;"></span>
+						</div>
+						<div class="form-group">
+							<label for="shareSubject">Subject:</label> <input type="text" class="form-control"
+								id="shareSubject" onkeypress="validateInput()" maxlength="500" name="shareSubject"
+								Value="Have You Seen Whimstay Yet">
+							<span id="subject" style="color:red;"></span>
+						</div>
+						<div class="form-group">
+							<label for="shareMessage">Message:</label>
+							<div class="form-control margin-10px-bottom" contenteditable="true" id="shareMessage"
+								maxlength="2000" name="shareMessage">
+								<span id="message" style="color:red;"></span>
+							</div>
+						</div>
+
+						<button type="submit" id="emailSent" class="btn btn-blue btn-rounded btn-large width-100"
+							data-toggle="modal" data-target="#Share_model" data-dismiss="modal">Send</button>
+					</form>
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!-- end share with a host lightbox-->
+
+	<!-- Modal start -->
+
+	<div id="Share_model" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: pink;">
+					<span class="modal-title"></span>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p id="message-body"></p>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
+	<!-- Modal start -->
+
+	<div id="Payout_Message" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: pink;">
+					<span class="modal-title"></span>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"
+						onclick="location.reload()">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p id="payout-body"></p>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"
+						onclick="location.reload()">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
+
+	<!--footer Start-->
+	<footer class="bg-dark-blue padding-30px-tb text-center">
+		<div class="footer-widget-area">
+			<div class="container">
+				<div class="row">
+					<div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+						<a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+							href="https://www.facebook.com/whimstay" target="_blank"><i
+								class="fab fa-facebook-f"></i><span></span></a>
+						<a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s"
+							href="https://www.instagram.com/whimstay" target="_blank"><i
+								class="fab fa-instagram"></i><span></span></a>
+						<a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+							href="https://www.linkedin.com/company/whimstay" target="_blank"><i
+								class="fab fa-linkedin-in"></i><span></span></a>
+
+					</div>
+				</div>
+
+
+				<p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights
+					Reserved.</p>
+				<p class="text-white"><a href="./terms_privacy">Terms & Privacy</a> </p>
+			</div>
+		</div>
+
+	</footer>
+	<!-- end footer -->
+	<!-- javascript libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+	<!-- setting -->
+	<script src="../public/javascripts/global.js"></script>
+	<script src="../public/javascripts/shareTheLoveApi.js"></script>
+	<script src="../public/javascripts/payoutApi.js"></script>
+
+	<script>
+		$("#dob_yearIndividual,#dob_monthIndividual,#dob_dayIndividual").change(function () {
+			getDate();
+		});
+		function getDate() {
+			var startAth = $("#dob_yearIndividual").val();
+			if (startAth === "") {
+				$("#fullDobIndividual").val('');
+				// console.log("start at hours missing");
+				return;
+			}
+			var startAtm = $("#dob_monthIndividual").val();
+			if (startAtm == "") {
+				$("#fullDobIndividual").val('');
+				//   console.log("start at minutes missing");
+				return;
+			}
+			var startAtam = $("#dob_dayIndividual").val();
+			if (startAtm == "") {
+				$("#fullDobIndividual").val('');
+				//  console.log("start at AM/PM missing");
+				return;
+			}
+			var DateComp = startAth + "-" + startAtm + "-" + startAtam;
+			$("#fullDobIndividual").val(DateComp);
+		}
+
+		//----------------------------------Display date of birth code---------------------------------------------------------- 
+		$("#dob_year,#dob_month,#dob_day").change(function () {
+			getDateDisplay();
+		});
+		function getDateDisplay() {
+			var startAth = $("#dob_year").val();
+			if (startAth === "") {
+				$("#fullDob").val('');
+				// console.log("start at hours missing");
+				return;
+			}
+			var startAtm = $("#dob_month").val();
+			if (startAtm == "") {
+				$("#fullDob").val('');
+				//   console.log("start at minutes missing");
+				return;
+			}
+			var startAtam = $("#dob_day").val();
+			if (startAtm == "") {
+				$("#fullDob").val('');
+				//  console.log("start at AM/PM missing");
+				return;
+			}
+			var DateComp = startAth + "-" + startAtm + "-" + startAtam;
+			$("#fullDob").val(DateComp);
+		}
+
+	</script>
+	<script>
+		$("#BusinessDob_year,#BusinessDob_month,#BusinessDob_day").change(function () {
+			getStartDate();
+		});
+		function getStartDate() {
+			var startAth = $("#BusinessDob_year").val();
+			if (startAth === "") {
+				$("#BusinessDob").val('');
+				// console.log("start at hours missing");
+				return;
+			}
+			var startAtm = $("#BusinessDob_month").val();
+			if (startAtm == "") {
+				$("#BusinessDob").val('');
+				//   console.log("start at minutes missing");
+				return;
+			}
+			var startAtam = $("#BusinessDob_day").val();
+			if (startAtm == "") {
+				$("#BusinessDob").val('');
+				//  console.log("start at AM/PM missing");
+				return;
+			}
+			var startDate = startAth + "-" + startAtm + "-" + startAtam;
+			$("#BusinessDob").val(startDate);
+		}
+	</script>
+	<script>
+
+
+
+
+		function validatePayout() {
+
+
+			$('#checkboxval').empty();
+			$('#AddressIndividual1').empty();
+			$('#CityIndividual1').empty();
+			$('#emailIndividual1').empty();
+			$('#stateIndividual1').empty();
+			$('#fullDobIndividual1').empty();
+			$('#bankNameIndividual1').empty();
+			// $('#accountIndividual1').empty();
+			// $('#accountConfirm1').empty();
+			$('#displayAddress1').empty();
+			$('#displayAddress3').empty();
+			$('#displayCity1').empty();
+			$('#displaystate1').empty();
+			$('#displayZip1').empty();
+			$('#last').empty();
+			$('#displaylast').empty();
+			$('#displayfirst').empty();
+			$('#fullDob1').empty();
+
+			$('#displayEmail1').empty();
+
+			$('#BusinessName1').empty();
+			$('#BusinessAddress1').empty();
+			$('#BusinessCity1').empty();
+			$('#BusinessState1').empty();
+			$('#BusinessEmail1').empty();
+			$('#BusinessDob1').empty();
+			$('#businessRouting1').empty();
+			$('#businessBankName1').empty();
+			$('#businessAccount1').empty();
+			$('#businessAccountConfirm1').empty();
+
+		}
+		function numberValidation(e) {
+
+			$('#BusinessID1').empty();
+			$('#BusinessZip1').empty();
+			$('#BusinessSsn1').empty();
+			$('#businessRouting1').empty();
+			$('#ZipIndividual1').empty();
+			$('#routingIndividual1').empty();
+			$('#ssnIndividual1').empty();
+			$('#accountIndividual1').empty();
+			$('#accountConfirm1').empty();
+
+			var charCode = e.which || e.keyCode;
+
+			if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+				return false;
+			}
+			return true;
+		}
+
+		function TextName(txt, e) {
+			$('#firstNameIndividual1').empty();
+			$('#lastNameIndividual1').empty();
+			$('#Businessfirst1').empty();
+			$('#Businesslast1').empty();
+
+			var arr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz- ";
+			var code;
+			if (window.event)
+				code = e.keyCode;
+			else
+				code = e.which;
+			var char = keychar = String.fromCharCode(code);
+			if (arr.indexOf(char) != -1 || e.key === "Backspace" || e.key === "Tab") {
+				return true;
+			} else {
+				return false;
+			}
+
+		}
+
+		var globalUrl = document.getElementById('globalUrl').value
+		var pmcId = document.getElementById('pmcId').value
+		$(document).ready(function () {
+
+			$.ajax({
+
+				headers: { "Content-Type": "application/json" },
+				type: "GET",
+				'headers': {
+					Authorization: localStorage.getItem('token') || '',
+				},
+				url: globalUrl + 'user/payment/account/host/' + pmcId,
+
+				success: function (result) {
+					//console.log(result)
+					if (result == []) {
+						$('#Bank_Account').append('<div class="row"><div class="col-md-4 sm-margin-20px-bottom"><button type="button" class="btn btn-blue btn-rounded btn-large width-300" data-toggle="modal" data-target="#myModal-AddAccount">Register Your Bank Account</button></div></div>')
+					} else {
+						var fullName = result.firstName + ' ' + result.lastName
+						var accountBank = '';
+						if (result.banks.length != 0) {
+							accountBank += '<h6>Bank Account Details</h6><p>' + fullName + '<br/>Bank Account: ******' + result.banks[0].accountNumber + '<br/>' +
+								'Status: ' + result.status + '<br/>' +
+								'Address: ' + result.address + '... (<a onclick="displayAddress()" href="#" data-toggle="modal" data-target="#myModal-Address">update address</a>)</p>'
+							// '<div class="row"><div class="col-md-4"><button type="button" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-target="#myModal-BankVerify">Verify Account</button></div>' +
+							// '<div class="col-md-4"><button type="button" class="btn btn-blue btn-rounded btn-large width-100" onclick="displayBankAccount()" data-toggle="modal" data-target="#myModal-BankAccount">Update Account</button></div>' +
+							// '<div class="col-md-4 sm-margin-20px-bottom"><button type="button" onclick="deletePayout()" class="btn btn-blue btn-rounded btn-large width-100">Delete Account</button></div></div>'
+
+							$('#Bank_Account').append(accountBank);
+						}
+
+					}
+
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log('update Stock error: ' + textStatus);
+				}
+
+			});
+		});
+
+		// function displayBankAccount() {
+		// 	document.getElementById('individualSubmit').style.display = "none";
+
+		// 	$.ajax({
+
+		// 		headers: { "Content-Type": "application/json" },
+		// 		type: "GET",
+		// 		'headers': {                 
+		// 			Authorization: localStorage.getItem('token') || '',
+		// 		},
+		// 		url: globalUrl + 'user/payment/account/'+ pmcId,
+
+		// 		success: function (result) {
+		// 			document.getElementById("bankNameIndividual").value = result[0].banks[0].bankName;
+		// 			document.getElementById("routingIndividual").value = result[0].banks[0].routingNumber;
+		// 			document.getElementById("accountIndividual").value = '*****' + result[0].banks[0].accountNumber;
+		// 			document.getElementById("accountConfirm").value = '*****' + result[0].banks[0].accountNumber;
+
+		// 		},
+		// 		error: function (jqXHR, textStatus, errorThrown) {
+		// 			console.log('update Stock error: ' + textStatus);
+		// 		}
+
+		// 	});
+
+		// }
+		function displayAddress() {
+			$.ajax({
+
+				headers: { "Content-Type": "application/json" },
+				type: "GET",
+				'headers': {
+					Authorization: localStorage.getItem('token') || '',
+				},
+				url: globalUrl + 'user/payment/account/host/' + pmcId,
+
+				success: function (result) {
+					console.log(JSON.stringify(result));
+					document.getElementById("displayFirstName").value = result.firstName;
+					document.getElementById("displayLastName").value = result.lastName;
+					document.getElementById("displayEmail").value = result.email;
+					document.getElementById("displayAddress").value = result.address;
+					document.getElementById("displayAddress2").value = result.addressline1;
+					document.getElementById("displayCity").value = result.city;
+					document.getElementById("displaystate").value = result.state;
+					document.getElementById("displayZip").value = result.zipcode;
+					document.getElementById('displayCountry').value = result.country;
+					document.getElementById('displayCurrency').value = result.currency;
+					document.getElementById('displayType').value = result.type;
+					document.getElementById('accountHolderType').value = result.accountHolderType;
+					document.getElementById('displayRoutingNumber').value = result.banks[0].routingNumber;
+					if (result.dateOfBirth != null) {
+						$('#datetimepicker5').data('DateTimePicker').defaultDate(moment(result.dateOfBirth));
+						var date = result.dateOfBirth;
+					}
+					if (result.status == 'verified') {
+						document.getElementById("displayHide").style.display = "none";
+						document.getElementById("displayFirstName").disabled = true;
+						document.getElementById("displayLastName").disabled = true;
+					}
+
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log('update Stock error: ' + textStatus);
+				}
+
+			});
+		}
+
+			// function deletePayout() {
+			// 	$.ajax({
+			// 		url: globalUrl + 'v1/user/' + document.getElementById('userId').value + '/payment/host/delete',
+			// 		type: 'DELETE',
+			// 		'headers': {                 
+        	// 			Authorization: localStorage.getItem('token') || '',
+     		// 		},
+			// 		contentType: "application/json",
+			// 		dataType: "json",             'headers': {                 Authorization: localStorage.getItem('token') || '',             },
+			// 	}).done(function (result) {
+			// 		window.location.reload();
+
+			// 	}).fail(function (a, b, c) {
+			// 		console.log(a, b, c);
+			// 	});
+			// }
+
+	</script>
+
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js'></script>
+	<script
+		src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
+
+	<script>
+		function signOut() {
+			localStorage.removeItem('token');
+		}
+	</script>
+</body>
+
+</html>

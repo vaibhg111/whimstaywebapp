@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+               <title>User Details - Whimstay host</title>
+               <link rel="icon" href="../public/images/favicon.ico">
+               <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+           
+    <meta charset="utf-8">
+    <style type="text/css">
+        form {
+            margin: 20px 0;
+        }
+
+        form input,
+        button {
+            padding: 5px;
+        }
+
+        table {
+            width: 70%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #FC97B9;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+</head>
+
+<body>
+        <%- include mainMasterDashboard.ejs %>
+    <!-- <div class="row">
+            <div class="col-md-12  margin-20px-top margin-30px-bottom">
+                  <h3 class="text-capitalize text-dark-blue font-weight-300">Property Details</h3>
+            </div>
+        </div> -->
+    <div id="div1" style="margin-top: 10%"></div>
+    <div class="div2" style="color:rgb(28, 209, 209)"></div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+
+               // headers: { "Content-Type": "application/json" },
+                type: "GET",
+                url: baseUrl + 'v1/admin/user',
+                success: function (result) {
+                    var cnt = 0;
+                    var UserDetailsList = result;
+                    table = $('<table align="center">');
+                    table.append('<th>Sr.no</th><th>Full Name</th><th>Mobile Number</th><th>Email Id </th>');
+                    UserDetailsList.forEach(function (user) {
+                        var tr = $('<tr>');
+                        cnt++;
+
+                        tr.append('<td>' + cnt + '</td>');
+                        ['fullName', 'mobileNo1', 'emailId'].forEach(function (attr) {
+
+                            tr.append('<td>' + user[attr] + '</td>');
+                        });
+                        table.append(tr);
+                        sessionStorage.setItem('totalCnt', cnt);
+                    });
+                    $(table).appendTo('#div1');
+                    var totalCnt = sessionStorage.getItem('totalCnt');
+                    $('.div2').append('<b>Total Count : ' + totalCnt + '.</b>');
+                },
+                error: function (jqXHR, textStatus, errorThrown) { 
+                    console.log('update Stock error: ' + textStatus); 
+                    }
+
+            });
+        });
+    </script>
+</body>
+
+</html>

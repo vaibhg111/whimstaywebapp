@@ -1,0 +1,163 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+    <meta name="author" content="Wemastè">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    <!-- title -->
+    <title>Dashboard - Whimstay Host</title>
+    <!-- favicon -->
+    <link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+
+    <!-- styles font-awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!-- animation -->
+    <!-- <link rel="stylesheet" href="css/animate.min.css"/> -->
+    <!-- font-awesome icon -->
+    <!-- <link rel="stylesheet" href="css/font-awesome.min.css"/> -->
+
+    <!-- wemaste styles -->
+    <link rel="stylesheet" href="../public/stylesheets/core.css" />
+    <link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+
+
+</head>
+
+<body class="host-dashboard">
+
+    <!-- start header -->
+    <header>
+
+            <nav class="nav-white-text navbar navbar-default bootsnav navbar-fixed-top nav-darkblue header-light bg-medium-gray nav_line">
+                    <div class="container-fluid nav-header-container">
+                      <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span> 
+                        </button>
+                        
+                          <a href="./welcome" title="Logo" class="logo scroll navbar-brand">
+                              <img src="../public/images/whimstay-logo.png" class="logo-dark" alt="boltex">
+                              <img src="../public/images/whimstay-logo.png" alt="boltex" class="logo-light default">
+                         </a>
+                      </div>
+                      
+                      <div class="collapse navbar-collapse pull-right bg-medium-gray" id="myNavbar">
+                            
+                            <ul id="accordion" class="nav navbar-nav navbar-left no-margin alt-font text-normal"
+                            data-in="fadeIn" data-out="fadeOut"> 
+                            <!-- start menu item -->
+                        <li>
+                                <div class="col-md-2 col-xs-5 width-auto sm-width-15 xs-width-20 no-padding">
+                                    <!-- Add href to enable this button -->
+                                    <a onclick="SessionClear()" type="button" id="addNewListingButtonId" class="btn btn-blue btn-rounded btn-large" disabled="disabled">Add New Property</a>
+                                </div>
+                            </li>
+                            <li class="hideTab"></li> <li class="hideTab"></li><li class="hideTab"></li> <li class="hideTab"></li><li class="hideTab"></li><li class="hideTab"></li>
+                            
+                            <li>
+                                <a href="./welcome" class="scroll">Welcome</a>
+                            </li>
+                            <li>
+                                <a href="./properties" class="scroll">Properties</a>
+                            </li>
+                            <li>
+                                <a href="./bookings" class="scroll">Bookings</a>
+                            </li>
+                            <li>
+                                <a href="./profile" class="scroll">Profile</a>
+                            </li>
+                            <li>
+                                <a href="./support" class="scroll">Host Support</a>
+                            </li>
+                            <li>
+                                <a href="./propertyBulkUpdate" class="scroll">Bulk Update</a>
+                            </li>
+                            <li>
+                                <a href="./propertyReports" class="scroll">Reports</a>
+                            </li>
+                        </ul>
+                          
+                      </div>
+                      
+                    </div>
+                  </nav>
+                  <!-- <input type="hidden" value="<%= isAdmin %>" id="isAdminFlag"> -->
+       
+    </header>
+
+    <input type="hidden" value="<%= data %>" id="userId">
+    <input type="hidden" value="<%= url %>" id="globalUrl">
+    <script src="../public/javascripts/global.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var baseUrl = document.getElementById("globalUrl").value;
+        var userId = document.getElementById("userId").value;
+        $(document).ready(function () {
+            var url = window.location;
+            $('ul.nav a[href="' + url + '"]').parent().addClass('active');
+            $('ul.nav a').filter(function () {
+                return this.href == url;
+            }).parent().addClass('active');
+        })
+
+        $('#addNewListingButtonId').click(function () {
+            
+            $.ajax({
+                url: baseUrl + 'v1/user/' + userId + '/pullPropertyProgressStatus',
+                type: 'GET',
+                dataType: "json",             'headers': {                 Authorization: localStorage.getItem('token') || '',             },
+                success: function (result, textStatus, xhr) {
+                    // console.log(result);
+                    console.log(result)
+                    sessionStorage.setItem("isButtonDesable", result);
+                }
+            });
+
+            //  $.ajax({
+            //     url: newurl + 'v1/env/hm/client_id',
+            //     type: 'GET',
+            //     dataType: "json",             'headers': {                 Authorization: localStorage.getItem('token') || '',             },
+            //     success: function (result, textStatus, xhr) {
+            //         console.log("client_id"+client_id);
+            //         sessionStorage.setItem("client_id", result);
+            //     }
+            // });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            var userId = document.getElementById("userId").value;
+        });
+    </script>
+    		<script>
+                function SessionClear() {
+                   
+                    //console.log(sessionStorage.getItem("userId"));
+                    sessionStorage.removeItem("my_select");
+                    var userid = document.getElementById("userId").value;
+                    userId.value = document.getElementById("userId").value;
+                    sessionStorage.clear();
+                    document.getElementById("userId").value = userid;
+    
+                    sessionStorage.setItem("propertyId", 0);
+                    sessionStorage.setItem("userId", userid);
+    
+                    sessionStorage.setItem("isEditableFlag",false);
+                    sessionStorage.setItem("isAddFlag",true);
+                    sessionStorage.setItem("isBackFlag", false);
+                  
+                    
+                }
+            </script>
+</body>
+
+</html>

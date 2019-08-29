@@ -1,0 +1,46 @@
+
+{
+    "development": {
+        "config_id": "development",
+        "app_name": "Whimstay",
+        "app_desc": "Rental WebApp",
+        "api_url":"https://api-dev.wemaste.com/v2/",
+        "host_url":"https://host-dev.wemaste.com/",
+        "node_port": 9001,
+        "mode":"development",
+        "json_indentation": 4
+    },
+    "testing": {
+        "config_id": "testing",
+        "app_name": "Whimstay",
+        "app_desc": "Rental WebApp",
+        "api_url":"https://api-test.wemaste.com/v2/",
+        "host_url":"https://host-test.wemaste.com/",
+        "node_port": 4003,
+        "mode":"testing",
+        "json_indentation": 4
+    },
+    "production": {
+        "config_id": "production",
+        "app_name": "Whimstay",
+        "app_desc": "Rental WebApp",
+        "api_url":"https://api.wemaste.com/v2/",
+        "host_url":"https://host.wemaste.com/",
+        "node_port": 4001,
+        "mode":"production",
+        "json_indentation": 4
+    },
+    "staging": {
+        "config_id": "staging",
+        "app_name": "Whimstay",
+        "app_desc": "Rental WebApp",
+        "api_url":"https://api-staging.whimstay.com/whimstayAPI/v2/",
+        "host_url":"https://host-staging.whimstay.com/",
+        "node_port": 4001,
+        "mode":"staging",
+        "json_indentation": 4
+    },
+    "env":{
+        "mode":"development"
+    }
+}

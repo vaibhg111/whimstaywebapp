@@ -1,0 +1,999 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+    <meta name="author" content="Wemastè">
+    <!-- title -->
+    <title>Whimstay Host - Why Not? Let's Go! | Book Your Unsold Nights</title>
+    <!-- description -->
+
+    <meta name="description"
+        content="Book exclusive deals on last-minute vacation rentals! Build community by splitting the cost with friends right from the mobile app. Choose from various destinations in Northern California.">
+    <!-- keywords -->
+    <meta name="keywords"
+        content="last-minute vacation rentals, discount vacation rentals, vacation rentals, renting vacation homes, vacation home rentals, vacation rentals by owner, renting vacation homes, beach house, cabin rental, cottage rental, great rentals, vacation home, vacation homes, vacation rental, renting lodging, discount lodging, holiday homes, villas for rent, cabins for rent, rental cabins, cottages for rent, rent cottages, rent cabins, rent villas, rental villas, condos for rent, condo rentals, pet friendly vacation rentals, accessible vacation rentals, rentals for holidays, weekend vacation rentals">
+    <!-- favicon -->
+    <link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+
+    <!-- styles font-awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!-- animation -->
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <!-- wemaste styles -->
+    <link rel="stylesheet" href="../public/stylesheets/core.css" />
+    <link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+    <script src="../public/javascripts/UserAPI.js"></script>
+    <script src="../public/jQuery-Mask/src/jquery.mask.js"></script>
+
+
+
+
+    <script>
+        function mobileNumber() {
+            var output = document.getElementById("mobile").value;
+            var mobile = output.replace(/\D+/g, '');
+            if (mobile != "") {
+                document.getElementById("mobileNumber").value = mobile;
+                document.getElementById("moNumber").value = mobile;
+            }
+        }
+
+        function otpcode() {
+            var output = document.getElementById("mobileVerify").value;
+            document.getElementById("otpcodeDisplay").value = output;
+        }
+
+        function otpcodeSignUp() {
+            var mobileSignup = document.getElementById("mobileVerifySignup").value;
+            document.getElementById("otpcodeSignup").value = mobileSignup;
+        }
+
+        function sign() {
+
+            var firstName = document.getElementById("firstName").value;
+            document.getElementById("Name").value = firstName;
+
+            var lastName = document.getElementById("lastName").value;
+            document.getElementById("lastname").value = lastName;
+
+            var emailId = document.getElementById("email").value;
+            document.getElementById("emailID").value = emailId;
+
+            var pms_id = document.getElementById("pms_id").value;
+            document.getElementById("pmsid").value = pms_id;
+
+            var pmsType = document.getElementById("pmsType").value;
+            document.getElementById("pmsTypeName").value = pmsType;
+
+            var countryCode = document.getElementById("countryCode").value;
+            document.getElementById("dialerCode").value = countryCode;
+            document.getElementById("CodeCountry").value = countryCode;
+
+            var mobileno = document.getElementById("mobileno").value;
+            var mobileNum = mobileno.replace(/\D+/g, '');
+            document.getElementById("mobileno12").value = mobileNum;
+            document.getElementById("mobilenoSignUp").value = mobileNum;
+
+
+            // var fullDob = document.getElementById("fullDob").value;
+            // document.getElementById("dateofBirth").value = fullDob;
+
+
+        }
+    </script>
+    <style>
+        fieldset {
+            border: thin solid #ccc;
+            border-radius: 4px;
+            padding: 20px;
+            padding-left: 40px;
+            background: #fbfbfb;
+        }
+
+        legend {
+            color: #678;
+        }
+
+        .form-control {
+            width: 95%;
+        }
+
+        label small {
+            color: #678 !important;
+        }
+
+        span.req {
+            color: maroon;
+            font-size: 112%;
+        }
+
+        input[type="checkbox"] {
+
+            width: 15px;
+            height: 19px;
+            margin-top: 8px;
+            vertical-align: bottom;
+        }
+
+        @media (max-width: 800px) {
+            section {
+                padding: 100px 0 !important;
+            }
+        }
+
+        .checkbox label {
+            font-weight: 500 !important;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <!-- start header -->
+    <header>
+        <!-- start navigation -->
+
+
+        <nav class="navbar navbar-default navbar-fixed-top header-light nav-darkblue bg-pink nav-white-text nav_line">
+            <div class="container-fluid nav-header-container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a href="/" title="Logo" class="logo scroll navbar-brand">
+                        <img src="../public/images/whimstay-logo.png" class="logo-dark" alt="boltex">
+                        <img src="../public/images/whimstay-logo.png" alt="boltex" class="logo-light default">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse pull-right bg-pink" id="myNavbar">
+                    <ul id="accordion" class="nav navbar-nav navbar-left no-margin alt-font text-normal"
+                        data-in="fadeIn" data-out="fadeOut">
+                        <li><a href="https://whimstay.com" class="scroll">Whimstay Home</a></li>
+                        <li class="active"><a href="/" class="scroll">Become a Host</a></li>
+                        <li><a href="#" class="scroll" data-toggle="modal" data-target="#myModal-Signup">Sign Up</a>
+                        </li>
+                        <li> <a href="#" class="scroll" data-toggle="modal" data-target="#myModal-Login">Sign In</a>
+                        </li>
+                    </ul>
+
+                    <div class="header-social-icon sm-display-none pull-right margin-20px-top" aria-hidden="true">
+                        <a href="https://www.facebook.com/whimstay" class="facebook-bg-hvr" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/whimstay" class="instagram-bg-hvr" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/whimstay" class="linkedin-bg-hvr" target="_blank"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+
+    </header>
+    <!-- end header -->
+
+    <!-- start get started -->
+    <input type="hidden" value="<%= url %>" id="globalUrl">
+    <section id="getstarted" class="no-transition">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 margin-30px-top margin-30px-bottom">
+                    <div class="sec-title">
+                        <div class="text-large text-red margin-10px-bottom font-weight-400 text-blue">Become a Whimstay
+                            Host
+                        </div>
+                        <h2 class="text-capitalize text-dark-blue font-weight-300">Earn More Money</h2>
+                        <p>Increase your occupancy by booking your unsold nights and cancellations. Whimstay will list
+                            your
+                            properties 10 days out as last-minute deals to respectful adventurers.</p>
+
+                        <!-- <p>Best of all, enjoy
+                            <strong class="text-dark-blue">ZERO service fees for a whole year</strong> by signing up
+                            today.* </p> -->
+                    </div>
+                    <div class="host--get-started margin-30px-top">
+                        <button type="button" class="btn btn-blue btn-rounded btn-large width-100 margin-20px-bottom"
+                            data-toggle="modal" data-target="#myModal-Signup">Get
+                            Started
+                        </button>
+                    </div>
+
+
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+
+                    <img src="../public/images/Wemaste Mobile app.png" alt="Whimstay Vacation Rental App"
+                        title="Whimstay Vacation Rental App" />
+                </div>
+                <div class="col-md-2"></div>
+
+            </div>
+
+
+        </div>
+    </section>
+    <!--end get started -->
+
+    <!-- start how it works-->
+    <section id="howitworks" class="no-transition bg-medium-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 margin-30px-bottom">
+
+                    <img src="images/wemaste-host-vacation-rentals-768x680.jpg" alt="Whimstay Vacation Rental Host"
+                        title="Whimstay Vacation Rental Host" />
+
+                </div>
+                <div class="col-md-6">
+
+                    <h4 class="text-capitalize text-dark-blue font-weight-300">How It Works</h4>
+                    <h5 class="text-capitalize alt-font text-dark-blue font-weight-300">Step 1:</h5>
+                    <p>Sign up as a Whimstay Host.</p>
+                    <h5 class="text-capitalize alt-font text-dark-blue font-weight-300">Step 2:</h5>
+                    <p>Easily integrate with Whimstay through your PMS system (Escapia, V12, Streamline, Barefoot and
+                        more).</p>
+                    <h5 class="text-capitalize alt-font text-dark-blue font-weight-300">Step 3:</h5>
+                    <p>We will then automatically list unsold nights 10 days out. Sit back, count your money and enjoy
+                        the
+                        Whimstay community.</p>
+
+
+                </div>
+
+            </div>
+            <!-- <div class="col-md-12 text-center margin-30px-top">
+                <p class="text-extra-small">*The ‘ZERO service fee for a year’ promotion is only available to hosts who
+                    sign up before December 31, 2018.</p>
+            </div> -->
+
+
+        </div>
+    </section>
+    <!--end how it works -->
+    <form name="f1">
+        <!-- start sign up form lightbox-->
+        <!-- Modal -->
+        <div id="myModal-Signup" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--<h4 class="modal-title">Modal Header</h4>-->
+                    </div>
+                    <div class="modal-body">
+
+
+                        <!-- <form> -->
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="firstName" name="firstName" maxlength="50"
+                                onkeypress="return numberOnly(this, event)" placeholder="First Name..."
+                                autocomplete="off" oncopy="return false" onpaste="return false">
+                            <span id="first" style="color:red;"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="lastName" name="lastName" maxlength="50"
+                                onkeypress="return numberOnly(this, event)" placeholder="Last Name..."
+                                autocomplete="off" oncopy="return false" onpaste="return false">
+                            <span id="last" style="color:red;"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="emailId"
+                                onkeypress="validateInput()" maxlength="255" placeholder="Enter Your Email...">
+                            <span id="mail" style="color:red;"></span>
+                        </div>
+                        <div class="form-group">
+                            <h3 class="text-medium text-dark-blue font-weight-300 no-margin-bottom">Mobile Number</h3>
+                            <p class="text-small">You will use your mobile number to sign into your account.</p>
+                            <div class="col-sm-2" style="padding-left:0px">
+                                <!-- <input type="text"  id="countryCode" name="countryCode" class="form-control" value="+1" disabled= true> -->
+                                <select id="countryCode" name="countryCode" class="form-control">
+                                    <option disabled="" value="1">Select code</option>
+                                    <option value="+1" selected>+1</option>
+                                    <option value="+91">+91</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-10" style="padding-right:10px">
+                                <input type="text" class="form-control" id="mobileno" name="mobileno" maxlength="12"
+                                    placeholder="Mobile Number...">
+                                <span id="number" style="color:red;"></span>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <span class="text-small text-dark-blue font-weight-700 no-margin-bottom">linked with any pms
+                                system (Escapia, V12, Streamline)</span>
+                            <span class="radio-inline"><input type="radio" name="pms" value="1" id="pmsYes">Yes</span>
+                            <span class="radio-inline"><input type="radio" name="pms" value="0" id="pmsNo">No</span>
+                            <br><span id="pms1" style="color:red;"></span>
+                        </div> -->
+                        <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                            <span class="text-small text-dark-blue font-weight-700 no-margin-bottom">Select your management system</span>
+                            <select class="form-control" id="pmsType" onchange="pmsIdDisplay(this)">
+                                <option id="0" value="WHIM">None...</option>
+                                <option id="1" value="V12">Escapia V12</option>
+                                <option id="2" value="escapia">Escapia EVERN</option>
+                                <option id="2" value="streamline">Streamline</option>
+                            </select>   
+                    </div>
+                    <div class="col-sm-6">
+                                <span class="text-small text-dark-blue font-weight-700 no-margin-bottom">Enter your PMS Id</span>
+                                <input type="text" class="form-control" id="pms_id" name="pms_id"
+                                onkeypress="validateInput()" maxlength="255" placeholder="PMS Company Id...">
+                            <span id="pms_id1" style="color:red;"></span>
+                        </div>
+                          </div>
+                        </div>
+                        <!-- <div class="form-group">
+                            <div class="col-sm-2" style="padding-left:0px">
+                                <span class="text-small text-dark-blue font-weight-700 no-margin-bottom">PMS Type</span>
+                            </div>
+                            <div class="col-sm-10">
+                                
+                            </div>
+                            <span id="pmsType1" style="color:red;"></span>
+                        </div> -->
+                        
+                        <!-- <div class="form-group">
+                            <input type="text" class="form-control" id="pms_id" style="display: none" name="pms_id"
+                                onkeypress="validateInput()" maxlength="255" placeholder="PMS Company Id...">
+                            <span id="pms_id1" style="color:red;"></span>
+                        </div> -->
+                        <script>
+                            $("input[name='mobileno']").keyup(function () {
+                                $("#mobileno").mask("999-999-9999");
+                                $('#number').empty();
+                            });
+                            function pmsIdDisplay(obj){
+                            document.getElementById("pms_id1").innerHTML = "";
+                            if(obj.value == "WHIM"){
+                                document.getElementById('pms_id').disabled = true;
+                                document.getElementById("pms_id").value = "";
+                            }else{
+                                document.getElementById('pms_id').disabled = false;
+                            }
+                            }
+                            $(document).ready(function () {
+                            document.getElementById('pms_id').disabled  = 'disabled';
+                            })
+                            // $('#pmsYes').click(function () {
+                            //     document.getElementById('pms_id').style.display = 'block';
+                            //     document.getElementById("pms1").innerHTML = "";
+                            // })
+                            // $('#pmsNo').click(function () {
+                            //     document.getElementById('pms_id').style.display = 'none';
+                            //     document.getElementById('pms_id').value = '';
+                            //     document.getElementById("pms1").innerHTML = "";
+                            //     document.getElementById("pms_id1").innerHTML = "";
+                            // })
+
+                        </script>
+
+                        <!-- <div class="form-group">
+                            <div class="checkbox"> -->
+
+                        <!-- </div>
+                            </div> -->
+
+                        <!-- <div class="form-group"> -->
+                        <!-- <h3 class="text-medium text-dark-blue font-weight-300 no-margin-bottom">Birthdate</h3>
+                            <p class="text-small">To sign up, you must be 18 or older. Other people won’t see your
+                                birthday.</p>
+
+                            <div class="row">
+                                <div class="col-md-5 ">
+                                    <select id="dob_month" name="userDOBMonth" class="form-control">
+                                        <option value="">Month</option>
+                                        <option value="01">January</option>
+                                        <option value="02">February</option>
+                                        <option value="03">March</option>
+                                        <option value="04">April</option>
+                                        <option value="05">May</option>
+                                        <option value="06">June</option>
+                                        <option value="07">July</option>
+                                        <option value="08">August</option>
+                                        <option value="09">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <select id="dob_day" name="userDOBDay">
+                                        <option value="">Day</option>
+                                        <option value="01">1</option>
+                                        <option value="02">2</option>
+                                        <option value="03">3</option>
+                                        <option value="04">4</option>
+                                        <option value="05">5</option>
+                                        <option value="06">6</option>
+                                        <option value="07">7</option>
+                                        <option value="08">8</option>
+                                        <option value="09">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                        <option value="31">31</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 " style="padding-right:48px">
+                                    <select id="dob_year" name="userDOBYear">
+                                        <option value="">Year</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2013">2013</option>
+                                        <option value="2012">2012</option>
+                                        <option value="2011">2011</option>
+                                        <option value="2010">2010</option>
+                                        <option value="2009">2009</option>
+                                        <option value="2008">2008</option>
+                                        <option value="2007">2007</option>
+                                        <option value="2006">2006</option>
+                                        <option value="2005">2005</option>
+                                        <option value="2004">2004</option>
+                                        <option value="2003">2003</option>
+                                        <option value="2002">2002</option>
+                                        <option value="2001">2001</option>
+                                        <option value="2000">2000</option>
+                                        <option value="1999">1999</option>
+                                        <option value="1998">1998</option>
+                                        <option value="1997">1997</option>
+                                        <option value="1996">1996</option>
+                                        <option value="1995">1995</option>
+                                        <option value="1994">1994</option>
+                                        <option value="1993">1993</option>
+                                        <option value="1992">1992</option>
+                                        <option value="1991">1991</option>
+                                        <option value="1990">1990</option>
+                                        <option value="1989">1989</option>
+                                        <option value="1988">1988</option>
+                                        <option value="1987">1987</option>
+                                        <option value="1986">1986</option>
+                                        <option value="1985">1985</option>
+                                        <option value="1984">1984</option>
+                                        <option value="1983">1983</option>
+                                        <option value="1982">1982</option>
+                                        <option value="1981">1981</option>
+                                        <option value="1980">1980</option>
+                                        <option value="1979">1979</option>
+                                        <option value="1978">1978</option>
+                                        <option value="1977">1977</option>
+                                        <option value="1976">1976</option>
+                                        <option value="1975">1975</option>
+                                        <option value="1974">1974</option>
+                                        <option value="1973">1973</option>
+                                        <option value="1972">1972</option>
+                                        <option value="1971">1971</option>
+                                        <option value="1970">1970</option>
+                                        <option value="1969">1969</option>
+                                        <option value="1968">1968</option>
+                                        <option value="1967">1967</option>
+                                        <option value="1966">1966</option>
+                                        <option value="1965">1965</option>
+                                        <option value="1964">1964</option>
+                                        <option value="1963">1963</option>
+                                        <option value="1962">1962</option>
+                                        <option value="1961">1961</option>
+                                        <option value="1960">1960</option>
+                                        <option value="1959">1959</option>
+                                        <option value="1958">1958</option>
+                                        <option value="1957">1957</option>
+                                        <option value="1956">1956</option>
+                                        <option value="1955">1955</option>
+                                        <option value="1954">1954</option>
+                                        <option value="1953">1953</option>
+                                        <option value="1952">1952</option>
+                                        <option value="1951">1951</option>
+                                        <option value="1950">1950</option>
+                                        <option value="1949">1949</option>
+                                        <option value="1948">1948</option>
+                                        <option value="1947">1947</option>
+                                        <option value="1946">1946</option>
+                                        <option value="1945">1945</option>
+                                        <option value="1944">1944</option>
+                                        <option value="1943">1943</option>
+                                        <option value="1942">1942</option>
+                                        <option value="1941">1941</option>
+                                        <option value="1940">1940</option>
+                                        <option value="1939">1939</option>
+                                        <option value="1938">1938</option>
+                                        <option value="1937">1937</option>
+                                        <option value="1936">1936</option>
+                                        <option value="1935">1935</option>
+                                        <option value="1934">1934</option>
+                                        <option value="1933">1933</option>
+                                        <option value="1932">1932</option>
+                                        <option value="1931">1931</option>
+                                        <option value="1930">1930</option>
+                                        <option value="1929">1929</option>
+                                        <option value="1928">1928</option>
+                                        <option value="1927">1927</option>
+                                        <option value="1926">1926</option>
+                                        <option value="1925">1925</option>
+                                        <option value="1924">1924</option>
+                                        <option value="1923">1923</option>
+                                        <option value="1922">1922</option>
+                                        <option value="1921">1921</option>
+                                        <option value="1920">1920</option>
+                                        <option value="1919">1919</option>
+                                        <option value="1918">1918</option>
+                                        <option value="1917">1917</option>
+                                        <option value="1916">1916</option>
+                                        <option value="1915">1915</option>
+                                        <option value="1914">1914</option>
+                                        <option value="1913">1913</option>
+                                        <option value="1912">1912</option>
+                                        <option value="1911">1911</option>
+                                        <option value="1910">1910</option>
+                                        <option value="1909">1909</option>
+                                        <option value="1908">1908</option>
+                                        <option value="1907">1907</option>
+                                        <option value="1906">1906</option>
+                                        <option value="1905">1905</option>
+                                        <option value="1904">1904</option>
+                                        <option value="1903">1903</option>
+                                        <option value="1902">1902</option>
+                                        <option value="1901">1901</option>
+                                        <option value="1900">1900</option>
+                                        <option value="1899">1899</option>
+                                        <option value="1898">1898</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" id="fullDob" name="dobDt">
+                                <center> <span id="dob" style="color:red;"></span></center>
+                            </div>
+                            </div> -->
+
+
+                        <label style="margin-top: -5px;">
+                            <input type="checkbox" class="form-check-input" value="dob" onclick="tncValidate()"
+                                style="margin-bottom: 8px;" id="dob" name="dob2"><span class="text-small"> I agree that
+                                I am 18 years of age or older and accept your <a href="./termsandcondition" target="blank"><b>Terms of
+                                Service.</b></a>
+                            </span></label> <br>
+                        <div class="text-center">
+                            <span id="terms1" style="color:red;"></span>
+                        </div>
+                        <script>
+                            function tncValidate() {
+                                $('#terms1').empty();
+                            }
+                        </script>
+
+
+
+                        <div class="text-center">
+                            <button type="submit" onclick="sign()" id="signup" data-target="#Signup-Verify"
+                                data-dismiss="modal" style="margin: 20px;"
+                                class="btn btn-blue btn-rounded btn-large width-95" data-backdrop="static"
+                                data-keyboard="false">Sign
+                                Up
+                            </button></div>
+                        <!-- </form> -->
+
+                        <!-- </form>   -->
+
+                        <div class="modal-footer">
+                            <p class="text-extra-small text-center">Already have a Whimstay account?
+                                <a href="#" data-toggle="modal" data-target="#myModal-Login" data-dismiss="modal">Sign
+                                    in
+                                    here.
+                                </a> </p>
+                            <p class="text-extra-small  text-center">We’ll send you marketing promotions, insight, and
+                                policy
+                                updates via email. You can opt out of receiving these at any time in your account
+                                profile
+                                or via the link in the message.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- end sign-up form lightbox-->
+
+    <!-- start Login form lightbox-->
+    <!-- Modal -->
+    <div id="myModal-Login" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <!--<h4 class="modal-title">Modal Header</h4>-->
+                </div>
+                <div class="modal-body">
+
+
+                    <form name="myForm">
+                        <div class="form-group">
+                            <h3 class="text-medium text-dark-blue font-weight-300 no-margin-bottom">Sign In</h3>
+                            <p class="text-small">Sign in using your mobile number.</p>
+                            <input type="text" class="form-control" id="mobile" name="mobile"
+                                placeholder="Mobile Number..." maxlength="12" autofocus />
+                            <span id="num" style="color:red;"></span>
+                            <!-- <p class="text-small">
+                                <input type="checkbox" id="keepLogin" name="keepLogin"> Keep me signed in.</p> -->
+                        </div>
+                        <button type="submit" onclick="mobileNumber()" id="signin"
+                            class="btn btn-blue btn-rounded btn-large width-95" data-target="#myModal-Verify"
+                            data-dismiss="modal" data-backdrop="static" data-keyboard="false">Continue</button>
+
+                    </form>
+                    <script>
+                        $("input[name='mobile']").keyup(function () {
+                            $("#mobile").mask("999-999-9999");
+                            $('#num').empty();
+                        });
+                    </script>
+
+
+                </div>
+                <div class="modal-footer">
+                    <p class="text-extra-small text-center">New to Whimstay?
+                        <a href="#" data-toggle="modal" data-target="#myModal-Signup" data-dismiss="modal">Create an
+                            account.
+                        </a> </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- end Login form lightbox-->
+
+    <!-- start Mobile Verification form lightbox for Login-->
+    <!-- Modal -->
+    <div id="myModal-Verify" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <!--<h4 class="modal-title">Modal Header</h4>-->
+                </div>
+                <div class="modal-body">
+                    <!-- <form action="/welcome" method="POST"> -->
+                    <div class="form-group">
+                        <h3 class="text-medium text-dark-blue font-weight-300 no-margin-bottom">We Sent You A Text</h3>
+                        <p class="text-small">Please enter the verification code below</p>
+                        <input type="text" class="form-control" id="mobileVerify" onkeypress="return validate(event)"
+                            name="otpCode" placeholder="XXXXXX" autocomplete="off" maxlength="6" autofocus>
+                        <span id="msgVerify" style="color:red"></span>
+                        <input type="hidden" name="mobileno" id="mobileNumber">
+                        <input type="hidden" name="userTypeId" value="1">
+                    </div>
+                    <button type="submit" class="btn btn-blue btn-rounded btn-large width-95" onclick="otpcode()"
+                        id="otpVerify">Sign
+                        In
+                    </button>
+                    <!-- onclick="saveUser()" -->
+                    <!-- </form> -->
+
+
+                </div>
+                <div class="modal-footer">
+                    <p class="text-extra-small text-center">Didn't get a code?
+                        <a href="#" data-toggle="modal" data-target="#myModal-Login" data-dismiss="modal">Let's try that
+                            again.
+                        </a> </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- end Mobile Verification form lightbox for Login-->
+
+    <div id="gen-popup" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: pink;">
+                    <span class="modal-title"></span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="message-body"></p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- start Mobile Verification form lightbox-->
+    <!-- Modal -->
+    <div id="Signup-Verify" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <!--<h4 class="modal-title">Modal Header</h4>-->
+                </div>
+                <div class="modal-body">
+                    <!-- <form action="/welcomeUser" method="POST"> -->
+                    <div class="form-group">
+                        <h3 class="text-medium text-dark-blue font-weight-300 no-margin-bottom">We Sent You A Text</h3>
+                        <p class="text-small">Please enter the verification code below</p>
+                        <input type="text" class="form-control" id="mobileVerifySignup"
+                            onkeypress="return validate(event)" name="otpCode" placeholder="XXXXXX" maxlength="6"
+                            autofocus>
+                        <span id="OtPmsgVerify" style="color:red"></span>
+                        <input type="hidden" name="mobileno1" id="mobileno12">
+                        <input type="hidden" name="dialerCode" id="dialerCode">
+                        <!-- <input type="text" name="pmcId" id="pmsid"> -->
+
+                    </div>
+                    <button type="submit" class="btn btn-blue btn-rounded btn-large width-95" onclick="otpcodeSignUp()"
+                        id="SignUpotpVerify">Sign Up</button>
+                    <!-- onclick="saveUser()" -->
+                    <!-- </form> -->
+
+
+                </div>
+                <div class="modal-footer">
+                    <p class="text-extra-small text-center">Didn't get a code?
+                        <a href="#" data-toggle="modal" data-target="#myModal-Signup" data-dismiss="modal">Let's try
+                            that
+                            again.
+                        </a> </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- end Mobile Verification form lightbox for Signup-->
+
+
+    <!-- Set to define functionality between Sign up and sign -->
+    <span id="Pagel" style="display: none;"></span>
+    <!-- Set to define functionality between Sign up and sign -->
+
+    </form>
+    <!--footer Start-->
+    <footer class="bg-dark-blue padding-30px-tb text-center">
+        <div class="footer-widget-area">
+            <div class="container">
+                <div class="row">
+                    <div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+                        <a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+                            href="https://www.facebook.com/whimstay" target="_blank"><i
+                                class="fab fa-facebook-f"></i><span></span></a>
+                        <a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s"
+                            href="https://www.instagram.com/whimstay" target="_blank"><i
+                                class="fab fa-instagram"></i><span></span></a>
+                        <a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+                            href="https://www.linkedin.com/company/whimstay" target="_blank"><i
+                                class="fab fa-linkedin-in"></i><span></span></a>
+
+                    </div>
+                </div>
+                <p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights
+                    Reserved.
+                </p>
+                <p class="text-white"><a href="./termsandcondition">Terms & Privacy</a> </p>
+            </div>
+        </div>
+
+        <!-- Session create for sign in -->
+        <form action="/welcome" id="form_id" method="post">
+            <input type="hidden" name="mobileno" id="moNumber">
+            <input type="hidden" name="userType" value="1">
+            <input type="hidden" name="otpCode" id="otpcodeDisplay">
+        </form>
+
+        <!-- Session create for sign up -->
+        <form action="/welcomeUser" id="SignUp_id" method="post">
+
+            <input type="hidden" name="firstName" id="Name">
+            <input type="hidden" name="mobileno1" id="mobilenoSignUp">
+            <input type="hidden" name="otpCode" id="otpcodeSignup">
+            <input type="hidden" name="dialerCode" id="CodeCountry">
+            <input type="hidden" name="pmsType" id="pmsTypeName">
+            <!-- <input type="hidden" name="dobDt" id="dateofBirth"> -->
+            <input type="hidden" name="lastName" id="lastname">
+            <input type="hidden" name="emailId" id="emailID">
+            <input type="hidden" name="userTypeId" value="1">
+            <input type="hidden" name="macId" value="NA">
+            <input type="hidden" name="ipAddress" id="ipAddress">
+            <input type="hidden" name="isTrmsNCndAccepted" value="true">
+            <input type="hidden" name="appVersion" value="1.0.1.0">
+            <input type="hidden" name="browserType" id="browserType">
+            <input type="hidden" name="trmsncndAcceptedDate" id="trmsNCndAcceptedDate">
+            <input type="hidden" name="trmsncndAcceptedVersion" value="1.1">
+            <input type="hidden" name="signinFrom" value="whimstay">
+            <input type="hidden" name="pmcId" id="pmsid">
+            <input type="hidden" name="userType" value="1">
+            <input type="hidden" name="token" id="token">
+        </form>
+    </footer>
+    <!-- end footer -->
+    <!-- javascript libraries -->
+
+
+    <!-- setting -->
+    <script src="../public/javascripts/validate.js"></script>
+    <script src="../public/javascripts/global.js"></script>
+
+    <script>
+        $('.modal').on('shown.bs.modal', function () {
+            $(this).find('[autofocus]').focus();
+        });
+        // document.getElementById('otpcodeDisplay').value = sessionStorage.getItem('otpcode');
+    </script>
+
+    <!-- <script>
+
+
+        $("#dob_year,#dob_month,#dob_day").change(function () {
+            getStartDate();
+        });
+        function getStartDate() {
+            var startAth = $("#dob_year").val();
+            if (startAth === "") {
+                $("#fullDob").val('');
+                // console.log("start at hours missing");
+                return;
+            }
+            var startAtm = $("#dob_month").val();
+            if (startAtm == "") {
+                $("#fullDob").val('');
+                //   console.log("start at minutes missing");
+                return;
+            }
+            var startAtam = $("#dob_day").val();
+            if (startAtm == "") {
+                $("#fullDob").val('');
+                //  console.log("start at AM/PM missing");
+                return;
+            }
+            var startDate = startAth + "-" + startAtm + "-" + startAtam;
+            $("#fullDob").val(startDate);
+        }
+
+    </script> -->
+
+
+    <!-- flagscountrycode -->
+    <script>
+
+        $(document).ready(function () {
+            $.getJSON("https://api.ipify.org/?format=json", function (e) {
+                //    alert(e.ip);
+                ipAddress = e.ip
+                document.getElementById('ipAddress').value = ipAddress;
+
+                var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
+                document.getElementById('trmsNCndAcceptedDate').value = utc;
+                //    var today =  moment.utc().valueOf()
+                //     document.getElementById('trmsNCndAcceptedDate').value = today;
+
+                var browser = navigator.userAgent;
+                browser = browser.split("/");
+                browser = browser[2];
+                browser = browser.split(" ");
+                browser = browser[browser.length - 1];
+                document.getElementById('browserType').value = browser;
+            });
+        })
+
+        function validateInput() {
+            $('#mail').empty();
+            $('#pms_id1').empty();
+        }
+        // function validateOtp(event) {
+        // 	var charCode = (event.which) ? event.which : event.keyCode;
+        // 	if (charCode != 46 && charCode > 31
+        // 		&& (charCode < 48 || charCode > 57))
+        // 		return false;
+        // }
+
+        function numberOnly(txt, e) {
+            $('#first').empty();
+            $('#last').empty();
+
+            var arr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz- ";
+            var code;
+            if (window.event)
+                code = e.keyCode;
+            else
+                code = e.which;
+            var char = keychar = String.fromCharCode(code);
+            if (arr.indexOf(char) != -1 || e.key === "Backspace" || e.key === "Tab") {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+        //   To Otp Sign In enter key code
+        var input = document.getElementById("mobileVerify");
+        input.addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("otpVerify").click();
+            }
+        });
+
+        //   To Otp Signup enter key code
+        var input = document.getElementById("mobileVerifySignup");
+        input.addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("SignUpotpVerify").click();
+            }
+        });
+    </script>
+    <script>
+
+        function validate(evt) {
+
+            $('#OtPmsgVerify').empty();
+            $('#msgVerify').empty();
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,734 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+    <meta name="author" content="Wemastè">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    <!-- title -->
+    <title>Bulk Update - Whimstay Host</title>
+    <!-- favicon -->
+    <link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <!-- styles font-awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- bootstrap -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!-- animation -->
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+
+    <!-- wemaste styles -->
+    <link rel="stylesheet" href="../public/stylesheets/core.css" />
+    <link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+  
+    <!-- <link rel="stylesheet" href="../public/stylesheets/grid.css" /> -->
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
+
+    <script src="../public/javascripts/global.js"></script>
+    <script src="https://unpkg.com/ag-grid-enterprise@20.2.0/dist/ag-grid-enterprise.min.js"></script>
+
+
+    <script> var __basePath = ''; </script>
+</head>
+
+
+<style>
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+
+    body {
+        margin: 0 0 90px;
+        /* bottom = footer height */
+        padding: 25px;
+    }
+
+    footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        overflow: hidden;
+    }
+</style>
+
+
+<body class="host-dashboard">
+    <!-- </head> -->
+    <!-- end header -->
+
+    <!-- start header -->
+    <%- include mainMasterDashboard.ejs %>
+    <!-- end header -->
+
+    <!-- start main content -->
+    <input type="hidden" value="<%= pmcId %>" id="pmcId">
+    <input type="hidden" value="<%= url %>" id="globalUrl">
+    <div style="margin-top:50px;text-align: center;color: red;"><label id="infoDiv"></label></div>
+    <div class="row" id="saveDiv" style="display: none;margin-top: 5px;">
+        <button class="btn btn-blue btn-rounded" id="backBtn">Back</button>
+        <button class="btn btn-blue btn-rounded" id="saveTable">Save All</button><br>
+        <h1> </h1>
+        <div id="myGrid" style="height:320px;display: none;" class="ag-theme-balham" rowModelType='pagination'>
+        </div>
+    </div>
+    <div>
+        <input type="hidden" value="<%= data %>" id="userId">
+        <div class="row" id="optionDiv" style=" text-align: center; display:none;margin-top: 100px;">
+            <div class="col-sm-4">
+                <input type="radio" name="fileType" value="excel"> Download/Upload Excel
+            </div>
+          
+            <!-- <div class="col-sm-4">
+                <input type="radio" name="fileType" value="editExcel"> Edit DataTable
+            </div> -->
+        </div> <br /><br />
+
+        <div id="nextBtnDiv" style="text-align: center;display:none;">
+            <label class="btn btn-blue btn-large btn-rounded" id="nextBtn">Next</label>
+        </div> <br>
+        <div id="errRadioDiv" style="text-align:center;color:red;"></div>
+    </div>
+
+    <div class="row" id="excelDiv" style="text-align: center;display: none;margin-top: 50px;">
+        <div class="col-sm-4">
+            <button class="btn btn-blue btn-rounded" id="backBtn1">Back</button><br>
+        </div>
+        <div class="col-sm-4">
+            <a href="" id="downloadFile">
+                <label class="btn btn-blue btn-rounded">Download File</label>
+            </a>
+        </div>
+        <div class="col-sm-4">
+            <label class="btn btn-blue btn-rounded">Upload File
+                <input type="file" class="input-file" id="uploadFile" name="file" accept=".xls, .xlsx">
+            </label>
+        </div>
+    </div>
+
+    <div id="resultModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: pink;">
+                    <span class="modal-title"></span>
+                    <button type="button" class="close" onclick="window.location.reload()" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="edittable"></p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    <button type="button" class="btn btn-secondary" onclick="window.location.reload()" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+        var url = document.getElementById('globalUrl').value;
+        var pmcId = document.getElementById('pmcId').value;
+        var gridOptions = {};
+        var gridArr = [];
+        var rowDataArr = [];
+        var userId = document.getElementById("userId").value;
+        var fileArray = [];
+        $('#nextBtn').click(function () {
+            var displayExcel = $('input[name=fileType]:checked').val();
+            if (displayExcel === "excel") {
+                document.getElementById("optionDiv").style.display = "none";
+                document.getElementById("nextBtnDiv").style.display = "none";
+                document.getElementById('errRadioDiv').innerHTML = '';
+                document.getElementById("excelDiv").style.display = "block";
+                document.getElementById("saveDiv").style.display = "none";
+              
+            } else if (displayExcel === "editExcel") {
+                document.getElementById("optionDiv").style.display = "none";
+                document.getElementById("nextBtnDiv").style.display = "none";
+                document.getElementById('errRadioDiv').innerHTML = '';
+                document.getElementById("saveDiv").style.display = "block";
+                document.getElementById("myGrid").style.display = "block";
+                document.getElementById("excelDiv").style.display = "none";
+              
+                autoSizeAll();
+            } else {
+                document.getElementById('errRadioDiv').innerHTML = "Please select one of the above.";
+                return false;
+            }
+        })
+        $('#saveTable').click(function () {
+            // getDisplayedRowCount();
+            var btn = document.getElementById("saveTable");
+            btn.disabled = true;
+            printAllDisplayedRows();
+        })
+        $('#backBtn').click(function () {
+            window.location.reload();
+        })
+        $('#backBtn1').click(function () {
+            window.location.reload();
+        })
+        $('#backBtn2').click(function () {
+            window.location.reload();
+        })
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                async: false,
+                'headers': { Authorization: localStorage.getItem('token') || '', },
+                url: url + 'user/' + document.getElementById('userId').value,
+                success: function (result) {
+                    var pmstype = result.pmsType;
+                    if (pmstype !== null && pmstype !== undefined && pmstype !== '') {
+                        var pmsUser = pmstype.includes("WHIM");
+                    } else {
+                        var pmsUser = true;
+                    }
+                    if (pmsUser === false) {
+                        document.getElementById("optionDiv").style.display = "block";
+                        document.getElementById("nextBtnDiv").style.display = "block";
+                    } else {
+                        document.getElementById('infoDiv').innerHTML = "You're not a PMS user.";
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('API error: ' + textStatus);
+                }
+            });
+        })
+
+        function getDisplayedRowCount() {
+            var count = gridOptions.api.getDisplayedRowCount();
+        }
+
+        function autoSizeAll() {
+            var allColumnIds = [];
+            gridOptions.columnApi.getAllColumns().forEach(function (column) {
+                allColumnIds.push(column.colId);
+            });
+            gridOptions.columnApi.autoSizeColumns(allColumnIds);
+        }
+        function printAllDisplayedRows() {
+            var count = gridOptions.api.getDisplayedRowCount();
+            for (var i = 0; i < count; i++) {
+                var rowNode = gridOptions.api.getDisplayedRowAtIndex(i);
+                gridArr.push(rowNode.data);
+            }
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(gridArr),
+                contentType: "application/json",
+                dataType: "json",
+                'headers': { Authorization: localStorage.getItem('token') || '' },
+                url: url + 'v1/users/' + userId + '/property/batch',
+                success: function () {
+                    // alert('Job initiated. It may take a while for data to reflect.');
+                    $('#resultModal').modal('show');
+                    $('#edittable').html('Job initiated. It may take a while for data to reflect.');
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 5000);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log("API Error : ", textStatus);
+                },
+            });
+        }
+
+        $('#uploadFile').change(function (event) {
+            var fileData = new FormData();
+            var files = event.target.files;
+            // console.log(files);
+            if (files != null) {
+                fileData.append('file', files[0]);
+            }
+            for (var pair of fileData.entries()) {
+                console.log(pair[0] + ', ' + pair[1]);
+            }
+            $.ajax({
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                mimeType: "multipart/form-data",
+                data: fileData,
+                async: false,
+                dataType: "json",
+                'headers': { Authorization: localStorage.getItem('token') || '' },
+                url: url + 'property/bulk/update/pmcId/' + pmcId,
+                success: function (response) {null
+                    $('#resultModal').modal('show');
+                    $('#edittable').html(response.message);
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 5000);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log("API Error : ", xhr);
+                    $('#resultModal').modal('show');
+                    $('#edittable').html("Uploading failed due to " + xhr.responseJSON.message);
+                },
+            });
+        })
+
+        // $('#downloadFile').click(function (e) {
+        //     e.preventDefault();  //stop the browser from following
+        //     window.location.href = url + 'v1/users/105/property/batch/download?Basic%20aG9zdDpkZmdoamFzZmdzaGZqc3VmeXNnemhjZ2pzemJqY2Jqc3piY2pic2hiaDIzNDU2NzY1NDM0cnRld2VydA==';
+        // })
+
+        $('#downloadFile').click(function (e) {
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = mm + '/' + dd + '/' + yyyy;
+            e.preventDefault();
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url + 'property/bulk/update/pmcId/' + pmcId, true);
+            xhr.responseType = 'blob';
+            xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhr.setRequestHeader('Authorization', localStorage.getItem('token') || '');
+            xhr.onload = function (e) {
+                if (this.status == 200) {
+                    var blob = new Blob([this.response], { type: 'application/vnd.ms-excel' });
+                    var downloadUrl = URL.createObjectURL(blob);
+                    var a = document.createElement("a");
+                    a.href = downloadUrl;
+                    a.download = "property" + today + ".xlsx";
+                    document.body.appendChild(a);
+                    a.click();
+                }
+            };
+            xhr.send();
+            // $.ajax({
+            //     type: "GET",
+            //     dataType: "json",
+            //     async: false,
+            //     'headers': { Authorization: localStorage.getItem('token') || '', },
+            //     url: url + 'v1/users/' + userId + '/property/batch/available',
+            //     success: function () {
+            //         var today = new Date();
+            //         var dd = String(today.getDate()).padStart(2, '0');
+            //         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            //         var yyyy = today.getFullYear();
+            //         today = mm + '/' + dd + '/' + yyyy;
+            //         e.preventDefault();
+            //         var xhr = new XMLHttpRequest();
+            //         xhr.open('GET', url + 'v1/users/' + userId + '/property/batch/download', true);
+            //         xhr.responseType = 'blob';
+            //         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            //         xhr.setRequestHeader('Authorization', localStorage.getItem('token') || '');
+            //         xhr.onload = function (e) {
+            //             if (this.status == 200) {
+            //                 var blob = new Blob([this.response], { type: 'application/vnd.ms-excel' });
+            //                 var downloadUrl = URL.createObjectURL(blob);
+            //                 var a = document.createElement("a");
+            //                 a.href = downloadUrl;
+            //                 a.download = "property" + today + ".xlsx";
+            //                 document.body.appendChild(a);
+            //                 a.click();
+            //             }
+            //         };
+            //         xhr.send();
+            //     },
+            //     error: function (jqXHR, textStatus, errorThrown) {
+            //         console.log('API error: ' + textStatus);
+            //     }
+            // });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            function rowDataPopulate(callback) {
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    async: false,
+                    'headers': { Authorization: localStorage.getItem('token') || '', },
+                    url: url + 'v1/users/' + userId + '/property/batch',
+                    success: function (result) {
+                        result.forEach(element => {
+                            rowDataArr.push(element);
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log('API error: ' + textStatus);
+                    }
+                });
+                callback();
+            }
+            rowDataPopulate(function () {
+                var columnDefs = [
+                    {
+                        headerName: "Property Name", field: "propertyName", cellEditor: 'agLargeTextCellEditor', cellEditorParams: {
+                            maxLength: '300',   // override the editor defaults
+                            cols: '10',
+                            rows: '2'
+                        }, width: 100, height: 100, editable: true
+                    },
+                    {
+                        headerName: "Extenal Id", field: "externalId", cellEditor: 'agLargeTextCellEditor', cellEditorParams: {
+                            maxLength: '300',   // override the editor defaults
+                            cols: '5',
+                            rows: '2'
+                        }, width: 100, height: 100, editable: false
+                    },
+                    {
+                        headerName: "House Rule",
+                        field: "addHouseRule",
+                        editable: true,
+                        cellEditor: 'agLargeTextCellEditor',
+                        cellEditorParams: {
+                            maxLength: '300',   // override the editor defaults
+                            cols: '10',
+                            rows: '2'
+                        }, width: 100, height: 100, editable: true
+                    },
+                    {
+                        headerName: "Check In Time",
+                        field: "checkInTime",
+                        width: 100,
+                        editable: true,
+                        cellEditor: 'agLargeTextCellEditor',
+                        cellEditorParams: {
+                            maxLength: '300',   // override the editor defaults
+                            cols: '10',
+                            rows: '2'
+                        }, width: 100, height: 100,
+                    },
+                    {
+                        headerName: "Check In Instruction",
+                        field: "checkInInstr",
+                        editable: true,
+                        cellEditor: 'agLargeTextCellEditor',
+                        cellEditorParams: {
+                            maxLength: '300',   // override the editor defaults
+                            cols: '10',
+                            rows: '2'
+                        }, width: 100, height: 100, editable: true
+                    },
+                    {
+                        headerName: "Check Out Time",
+                        field: "checkOutTime",
+                        editable: true,
+                        cellEditor: 'agLargeTextCellEditor',
+                        cellEditorParams: {
+                            maxLength: '300',   // override the editor defaults
+                            cols: '10',
+                            rows: '2'
+                        }, width: 100, height: 100,
+                    },
+                    {
+                        headerName: "Check Out Instruction",
+                        field: "checkOutInstr",
+                        editable: true,
+                        cellEditor: 'agLargeTextCellEditor',
+                        cellEditorParams: {
+                            maxLength: '300',   // override the editor defaults
+                            cols: '10',
+                            rows: '2'
+                        }, width: 100, height: 100
+                    },
+                    {
+                        headerName: "Cleaning Fee",
+                        field: "cleaningFee",
+                        width: 100,
+                        editable: true,
+                        cellEditor: 'numericCellEditor'
+                    },
+                    {
+                        headerName: "Cleaning Fee Taxable?   (Y) / (N)",
+                        field: "serviceTaxCleaning",
+                        width: 100,
+                        editable: true,
+                        cellRenderer: 'countryCellRenderer',
+                        cellEditor: 'agRichSelectCellEditor',
+                        cellEditorParams: {
+                            cellRenderer: 'countryCellRenderer',
+                            values: [
+                                'Y', 'N'
+                            ]
+                        },
+                    },
+                    {
+                        headerName: "Other Fee? If Yes- Description or Type?",
+                        field: "otherFeeName",
+                        width: 100,
+                        editable: true,
+                        cellEditor: 'agLargeTextCellEditor',
+                        cellEditorParams: {
+                            maxLength: '300',   // override the editor defaults
+                            cols: '10',
+                            rows: '2'
+                        }, width: 100, height: 100
+                    },
+                    {
+                        headerName: "Other Fee",
+                        field: "otherFee",
+                        width: 100,
+                        editable: true,
+                        cellEditor: 'numericCellEditor'
+                    },
+                    {
+                        headerName: "Other Fee Taxable?(Y) / (N)",
+                        field: "otherFeeTaxable",
+                        width: 100,
+                        editable: true,
+                        cellRenderer: 'countryCellRenderer',
+                        cellEditor: 'agRichSelectCellEditor',
+                        cellEditorParams: {
+                            cellRenderer: 'countryCellRenderer',
+                            values: [
+                                'Y', 'N'
+                            ]
+                        },
+                    },
+                    {
+                        headerName: "Damage Waiver or Security Deposit?",
+                        field: "depositeBasicType",
+                        width: 100,
+                        editable: true,
+                        cellRenderer: 'countryCellRenderer',
+                        cellEditor: 'agRichSelectCellEditor',
+                        cellEditorParams: {
+                            cellRenderer: 'countryCellRenderer',
+                            values: [
+                                'D', 'S'
+                            ]
+                        },
+                    },
+                    {
+                        headerName: "Amount - Flat rate or Percent of Total?",
+                        field: "depositAmount",
+                        width: 100,
+                        editable: true,
+                        cellEditor: 'numericCellEditor'
+                    },
+                    {
+                        headerName: "For Security Deposit  - Flat rate or Percent of Total?",
+                        field: "depositType",
+                        width: 100,
+                        editable: true,
+                        cellRenderer: 'countryCellRenderer',
+                        cellEditor: 'agRichSelectCellEditor',
+                        cellEditorParams: {
+                            cellRenderer: 'countryCellRenderer',
+                            values: [
+                                'F', 'P'
+                            ]
+                        },
+                    },
+                    {
+                        headerName: " For Damage Waiver, Apply Service Tax? (Y) or (N)",
+                        field: "serviceTaxDeposite",
+                        width: 100,
+                        editable: true,
+                        cellRenderer: 'countryCellRenderer',
+                        cellEditor: 'agRichSelectCellEditor',
+                        cellEditorParams: {
+                            cellRenderer: 'countryCellRenderer',
+                            values: [
+                                'Y', 'N'
+                            ]
+                        },
+                    },
+                    // { headerName: "Button", field: "cleaningFee", width: 90, cellRenderer: buttonCellRendererFunc },
+                    // {
+                    //     headerName: "Drop down",
+                    //     field: "checkOutInstr",
+                    //     width: 100,
+                    //     cellRenderer: 'countryCellRenderer',
+                    //     cellEditor: 'agRichSelectCellEditor',
+                    //     cellEditorParams: {
+                    //         cellRenderer: 'countryCellRenderer',
+                    //         values: [
+                    //             'Y','N'
+                    //         ]
+                    //     },
+                    //     editable: true
+                    // },
+                ];
+                gridOptions = {
+                    columnDefs: columnDefs,
+                    rowData: rowDataArr,
+                    paginationPageSize: 10,
+                    pagination: true,
+                    onGridReady: function (params) {
+                        params.api.sizeColumnsToFit();
+                    },
+                    onRowEditingStarted: function (event) {
+                        // console.log('never called - not doing row editing');
+                    },
+                    onRowEditingStopped: function (event) {
+                        // console.log('never called - not doing row editing');
+                    },
+                    onCellEditingStarted: function (event) {
+                        // console.log('cellEditingStarted', event);
+                    },
+                    onCellEditingStopped: function (event) {
+                        // console.log('cellEditingStopped', event);
+                    },
+                    components: {
+                        genderCellRenderer: GenderCellRenderer,
+                        numericCellEditor: NumericCellEditor,
+                        countryCellRenderer: CountryCellRenderer
+                    }
+                };
+                function getCharCodeFromEvent(event) {
+                    event = event || window.event;
+                    return (typeof event.which == "undefined") ? event.keyCode : event.which;
+                }
+                function isCharNumeric(charStr) {
+                    return !!/\d/.test(charStr);
+                }
+                function isKeyPressedNumeric(event) {
+                    var charCode = getCharCodeFromEvent(event);
+                    var charStr = String.fromCharCode(charCode);
+                    return isCharNumeric(charStr);
+                }
+                // simple function cellRenderer, just returns back the name of the country
+                function CountryCellRenderer(params) {
+                    return params.value;
+                }
+                // function to act as a class
+                function NumericCellEditor() {
+                }
+                // gets called once before the renderer is used
+                NumericCellEditor.prototype.init = function (params) {
+                    // create the cell
+                    this.eInput = document.createElement('input');
+                    if (isCharNumeric(params.charPress)) {
+                        this.eInput.value = params.charPress;
+                    } else {
+                        if (params.value !== undefined && params.value !== null) {
+                            this.eInput.value = params.value;
+                        }
+                    }
+                    var that = this;
+                    this.eInput.addEventListener('keypress', function (event) {
+                        if (!isKeyPressedNumeric(event)) {
+                            that.eInput.focus();
+                            if (event.preventDefault) event.preventDefault();
+                        } else if (that.isKeyPressedNavigation(event)) {
+                            event.stopPropagation();
+                        }
+                    });
+                    // only start edit if key pressed is a number, not a letter
+                    var charPressIsNotANumber = params.charPress && ('1234567890'.indexOf(params.charPress) < 0);
+                    this.cancelBeforeStart = charPressIsNotANumber;
+                };
+                NumericCellEditor.prototype.isKeyPressedNavigation = function (event) {
+                    return event.keyCode === 39
+                        || event.keyCode === 37;
+                };
+                // gets called once when grid ready to insert the element
+                NumericCellEditor.prototype.getGui = function () {
+                    return this.eInput;
+                };
+                // focus and select can be done after the gui is attached
+                NumericCellEditor.prototype.afterGuiAttached = function () {
+                    this.eInput.focus();
+                };
+                // returns the new value after editing
+                NumericCellEditor.prototype.isCancelBeforeStart = function () {
+                    return this.cancelBeforeStart;
+                };
+                // example - will reject the number if it contains the value 007
+                // - not very practical, but demonstrates the method.
+                NumericCellEditor.prototype.isCancelAfterEnd = function () {
+                    var value = this.getValue();
+                    return value.indexOf('007') >= 0;
+                };
+                // returns the new value after editing
+                NumericCellEditor.prototype.getValue = function () {
+                    return this.eInput.value;
+                };
+                // any cleanup we need to be done here
+                NumericCellEditor.prototype.destroy = function () {
+                    // but this example is simple, no cleanup, we could  even leave this method out as it's optional
+                };
+                // if true, then this editor will appear in a popup 
+                NumericCellEditor.prototype.isPopup = function () {
+                    // and we could leave this method out also, false is the default
+                    return false;
+                };
+                function GenderCellRenderer() {
+                }
+                GenderCellRenderer.prototype.init = function (params) {
+                    this.eGui = document.createElement('span');
+                    if (params.value !== "" || params.value !== undefined || params.value !== null) {
+                        var gender = '<img border="0" width="15" height="20" src="https://raw.githubusercontent.com/ag-grid/ag-grid/master/packages/ag-grid-docs/src/images/' + params.value.toLowerCase() + '.png">';
+                        this.eGui.innerHTML = gender + ' ' + params.value;
+                    }
+                };
+                GenderCellRenderer.prototype.getGui = function () {
+                    return this.eGui;
+                };
+                // setup the grid after the page has finished loading
+            });
+            var gridDiv = document.querySelector('#myGrid');
+            new agGrid.Grid(gridDiv, gridOptions);
+        });
+        function buttonClicked() {
+            window.alert("Row button clicked: ");
+        }
+        function buttonCellRendererFunc(params) {
+            // console.log(params.data)
+            var data = params.data;
+            // alert("open");
+            // params.$scope.ageClicked = ageClicked;
+            //return '<button ng-click="ageClicked(data.age)" ng-bind="data.age"></button>';
+            return '<button onclick="buttonClicked()">save</button>';
+        }
+    </script>
+    <!-- end share with a host lightbox-->
+
+    <!--footer Start-->
+    <footer class="bg-dark-blue text-center">
+        <div class="footer-widget-area">
+            <div class="container">
+                <div class="row">
+                    <div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+                        <a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+                            href="https://www.facebook.com/whimstay" target="_blank"><i
+                                class="fab fa-facebook-f"></i><span></span></a>
+                        <a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s"
+                            href="https://www.instagram.com/whimstay/" target="_blank"><i
+                                class="fab fa-instagram"></i><span></span></a>
+                        <a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+                            href="https://www.linkedin.com/company/whimstay" target="_blank"><i
+                                class="fab fa-linkedin-in"></i><span></span></a>
+
+                    </div>
+                </div>
+                <p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights
+                    Reserved.</p>
+                <p class="text-white"><a href="./terms_privacy">Terms & Privacy</a> </p>
+
+            </div>
+        </div>
+
+    </footer>
+    <!-- end footer -->
+
+    <!-- javascript libraries -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../public/javascripts/global.js"></script>
+</body>
+
+</html>

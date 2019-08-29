@@ -1,0 +1,145 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+    <meta name="author" content="Wemastè">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    <!-- title -->
+    <title>Terms & Privacy - Whimstay Host</title>
+    <!-- favicon -->
+    <link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+
+    <!-- styles font-awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!-- animation -->
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <!-- wemaste styles -->
+    <link rel="stylesheet" href="../public/stylesheets/core.css" />
+    <link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+
+
+
+</head>
+
+<body class="host-dashboard">
+
+    <!-- start header -->
+    <%- include mainMasterDashboard.ejs %>
+    <!-- end header -->
+
+
+    <!-- end header -->
+
+    <!-- start main content -->
+    <input type="hidden" value="<%= url %>" id="globalUrl">
+    <section id="getstarted" class="no-transition">
+        <div class="container">
+            <!-- <div class="row">
+            <div class="col-md-12  margin-20px-top margin-30px-bottom">
+                
+                    
+			      <h3 class="text-capitalize text-dark-blue font-weight-300" style="display: none;">Terms of Service</h3>
+				
+			
+			</div>
+        </div> -->
+
+            <div class="row">
+
+
+                <div class="col-md-12 margin-100px-bottom">
+
+                    <div id="displayTerms" style="margin-top: 26px;"></div>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+        </div>
+    </section>
+    <!--end main content -->
+
+    <!--footer Start-->
+    <footer class="bg-dark-blue padding-30px-tb text-center">
+        <div class="footer-widget-area">
+            <div class="container">
+                <div class="row">
+                    <div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+                        <a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+                            href="https://www.facebook.com/whimstay" target="_blank"><i
+                                class="fab fa-facebook-f"></i><span></span></a>
+                        <a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s"
+                            href="https://www.instagram.com/whimstay" target="_blank"><i
+                                class="fab fa-instagram"></i><span></span></a>
+                        <a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+                            href="https://www.linkedin.com/company/whimstay" target="_blank"><i
+                                class="fab fa-linkedin-in"></i><span></span></a>
+
+                    </div>
+                </div>
+
+
+                <p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights
+                    Reserved.</p>
+                <p class="text-white"><a href="./terms_privacy">Terms & Privacy</a> </p>
+            </div>
+        </div>
+
+    </footer>
+    <!-- end footer -->
+    <!-- javascript libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--form validation-->
+    <!-- <script src="http://13.59.91.130:3000/assets/validation.js"></script>
+  <script src="http://13.59.91.130:3000/assets/script.js"></script>
+	 -->
+    <!-- setting -->
+    <script>
+         var url = document.getElementById('globalUrl').value;
+        $.ajax({
+            url: url + 'support/document',
+            type: 'GET',
+            dataType: "json",
+            'headers': {
+                Authorization: localStorage.getItem('token') || '',
+            },
+            success: function (result, textStatus, xhr) {
+                console.log(JSON.stringify(result))
+                $.each(result, function (i, item) {
+                    var trHTML = '';
+                    //var url = 'https://docs.google.com/gview?embedded=true&url=' + item.urlPath;
+                    trHTML += '<div class="col-sm-12"><p class="no-margin-bottom"><li><a href="' + item.urlPath + '" target="blank"><strong>' + item.documentName + '</strong></a></li></p></div><br>'
+
+                    // document.getElementById('displayTerms').value = item.documentName;
+                    $('#displayTerms').append(trHTML);
+
+                });
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Database');
+                // console.log(errorThrown);
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

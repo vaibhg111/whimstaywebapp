@@ -1,0 +1,114 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../assets/email.js"></script>
+    <script src="../public/javascripts/API.js"></script>
+    <style>
+        #Photoview1 {
+            border-radius: 32px;
+            border: 5px solid #01364D;
+            padding: 5px;
+            height: 420px;
+            /* margin-left: 550px; */
+            width: 214px;
+        }
+
+        #Photoview2 {
+            border-radius: 32px;
+            border: 5px solid #01364D;
+            padding: 5px;
+            height: 420px;
+            /* margin-left: 550px; */
+            width: 214px;
+        }
+
+        #div3 {
+            width: 100px;
+            margin-left: 50px;
+            height: 15px;
+            border-radius: 30px;
+            border: 1px solid #2A2928;
+            padding: 5px;
+        }
+    </style>
+    <script type="text/javascript">
+        function HandleBrowseClick(input_image) {
+            $("#Photoview1").hide();
+            $("#Photoview2").show();
+            $("#Photo_Confirm").show();
+            var fu1 = document.getElementById("FileUpload1");
+            var file = document.getElementById("file-input");
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+    <div class="topnav">
+        <div class="col-md-12">
+            <img class="col-md-2 col-md-offset-1" onclick="location.href='/' " id="logo" src="/public/images/wemaste_Logo.png">
+        </div>
+        <div class="col-md-12">
+            <hr style="border:0.5px solid #FC97B9; margin-top: -20px;">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div>
+            <div style="float: left; width: 30%; height: 300px;">
+                <label id="maindiv1" style="font-size: 24px;   float: left; color: #01364D; margin-left: 135px;">Add Photos</label>
+                <br>
+                <label id="maindiv2" style="margin-left: 120px; color: #01364D; font-size: 16px; ">
+                    Add great, hi resolution photos
+                    <br> to make your property stand out.
+                    <br>you can easily move them around
+                </label>
+            </div>
+            <div style="float: right; width: 60%; align-content: left; ">
+                <div id="Photoview1">
+
+                    <div id="photo_display" class="image-upload" onclick="HandleBrowseClick('input-image-hidden');">
+                        <label for="file-input">
+                            <img src="/public/images/add-circular-button.png" onclick="HandleBrowseClick('input-image-hidden');" style="margin-left:70px; width:50px; margin-top: 150px; "
+                            />
+                        </label>
+                        <input id="file-input" style="display: none;" type="file" onchange="filel(this.files[0])" />
+                    </div>
+
+                </div>
+                <div id="Photoview2" style="display: none;">
+                    <div id="display_image">
+                        <img id="image_display" style="height:400px; width:190px;" src="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <div>
+        <label style="color:#01364D; margin-top: 5px; margin-left: 630px; ">2/5</label>
+        <br>
+        <button id="Photo_Confirm" onclick="Photo_Confirm()" style=" display: none; width: 250px; margin-left: 520px; margin-top: 10px; background-color:#01364D; color:white;height:
+        33px;border-radius: 8px; border: 1px #01364D ">Confirm</button>
+        <!-- <button id="Photo_Continue" onclick="Photo_Continue()"  style="width: 250px; margin-left: 520px; margin-top: 10px; background-color:#01364D; color:white;height:
+                        33px;border-radius: 8px; border: 1px #01364D ">Continue</button> -->
+        <br>
+
+
+    </div>
+    <input type="hidden" id="session_user" value="<%=data %>">
+    </div>
+
+</body>
+
+</html>

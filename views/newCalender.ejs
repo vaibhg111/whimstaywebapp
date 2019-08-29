@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css' rel='stylesheet' />
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.print.css' rel='stylesheet'
+    media='print' />
+  <!-- <script src='../lib/moment.min.js'></script> -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js'></script>
+  <!-- <script src='../lib/jquery.min.js'></script> -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <!-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js'></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+  <meta name="author" content="Wemastè">
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="noindex">
+  <!-- title -->
+  <title>Calendar - Whimstay Host</title>
+
+  <!-- favicon -->
+  <link rel="icon" href="../public/images/favicon.ico">
+  <link rel="stylesheet" href="font-awesome.min.css">
+  <!-- styles font-awesome icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- bootstrap -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <!-- animation -->
+  <link rel="stylesheet" href="css/animate.min.css" />
+  <!-- font-awesome icon -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+    integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link
+    href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css'
+    rel='stylesheet' />
+  <script
+    src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js'></script>
+  <!-- wemaste styles -->
+  <link rel="stylesheet" href="../public/stylesheets/core.css" />
+  <link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+  <style>
+    .fc-time {
+      display: none;
+    }
+
+    body {
+      margin: 40px 10px;
+      padding: 0;
+      font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+      font-size: 14px;
+    }
+
+    #calendar {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+  </style>
+
+  <script>
+
+    $(document).ready(function () {
+
+      var newurl = document.getElementById('globalUrl');
+
+      var userId = document.getElementById("userId").value;
+
+      var prod_id = sessionStorage.getItem("Prop_ID");
+
+      //console.log("prod_id" + prod_id);
+
+      // var eventData = new Object();
+
+      var finalEvents = [];
+      var convertedStartDate = [];
+      var convertedEndDate = [];
+      var month = sessionStorage.getItem("monthOf");
+      var year = sessionStorage.getItem("yearOf");
+      window.onload = function () {
+        var textFile = null,
+          makeTextFile = function (text) {
+            var data = new Blob([text], {
+              type: 'text/plain'
+            });
+
+
+
+            // If we are replacing a previously generated file we need to
+
+
+
+            // manually revoke the object URL to avoid memory leaks.
+
+
+
+            if (textFile !== null) {
+              window.URL.revokeObjectURL(textFile);
+            }
+            textFile = window.URL.createObjectURL(data);
+            return textFile;
+          };
+
+        var create = document.getElementById('create'),
+          textbox = document.getElementById('textbox');
+
+        // create.addEventListener('click', function () {
+
+
+
+        //     var link = document.getElementById('downloadlink');
+
+
+
+        //     link.href = makeTextFile(textbox.value);
+
+
+
+        //     link.style.display = 'block';
+
+
+
+        // }, false);
+
+
+
+      };
+
+
+
+      calendarMaster();
+
+      $.ajax({
+        url: newurl + 'v1/user/' + userId + '/property/' + prod_id,
+        type: 'GET',
+        dataType: "json",             'headers': {                 Authorization: localStorage.getItem('token') || '',             },
+        success: function (result, textStatus, xhr) {
+          // console.log("Response", result);
+          var events = result.propertyHostUnit.unitCalenderRate;
+          var propName = result.propertyName;
+          var propUnitId = result.propertyHostUnit.unitId;
+          document.getElementById("property_Name").innerHTML = propName;
+          sessionStorage.setItem('property_Unit', propUnitId)
+          // console.log("events", events);
+        }, error: function (xhr, textStatus, errorThrown) {
+          console.log('Update Stock error');
+          // console.log(errorThrown);
+        }
+      });
+
+
+
+      $.ajax({
+        url: newurl + 'v1/user/' + userId + '/property/' + prod_id + '/blocking',
+        type: 'GET',
+        dataType: "json",             'headers': {                 Authorization: localStorage.getItem('token') || '',             },
+        success: function (result, textStatus, xhr) {
+          var trHTML = '<div style="overflow-y:50px">';
+
+          // console.log("Response for Get Block Data", result);
+
+          $.each(result, function (i, item) {
+
+            var fromDate = moment(item.effFromDt).format("MMM DD,YYYY");
+            var endDate = moment(item.effToDt).format("MMM DD,YYYY")
+            var txt = fromDate + " <B>To</B> " + endDate;
+            trHTML += '<div class="row date-box" ><div class="col-md-12" >' + txt + '</div><div class="col-md-12 pull-right"> <a  id="' + item.blockId + '" onclick="deleteBlock(this)" ><i class="fa fa-trash" aria-hidden="true"></i> Delete Blocked Dates</a> </div></div>'
+          });
+
+          $('#date_display').append(trHTML);
+
+        }, error: function (xhr, textStatus, errorThrown) {
+          console.log('Update Stock error');
+        }
+      });
+
+      $('#external-events div.external-event').each(function () {
+
+        // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+
+
+
+        // it doesn't need to have a start or end
+
+        var eventObject = {
+
+
+
+          title: $.trim($(this).text()) // use the element's text as the event title
+
+
+
+        };
+
+        // store the Event Object in the DOM element so we can get to it later
+
+
+
+        $(this).data('eventObject', eventObject);
+
+        // make the event draggable using jQuery UI
+
+
+
+        $(this).draggable({
+
+
+
+          zIndex: 999,
+
+
+
+          revert: true,      // will cause the event to go back to its
+
+
+
+          revertDuration: 0  //  original position after the drag
+
+
+
+        });
+
+      });
+
+
+
+      function calendarMaster() {
+
+
+
+        $('#calendar').fullCalendar({
+
+
+
+          header: {
+
+
+
+            left: 'prevYear,prev,next,nextYear today',
+
+
+
+            center: 'title',
+
+
+
+            right: 'year,month,basicWeek,basicDay'
+
+
+
+          },
+
+          editable: false,
+
+
+
+          firstDay: 0, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+
+
+
+          selectable: false,
+
+
+
+          defaultView: 'month',
+          // yearColumns: 3,
+
+
+
+          //defaultDate: '2019-01-12',
+
+
+
+          navLinks: true, // can click day/week names to navigate views
+
+          //eventLimit: true, // allow "more" link when too many events
+
+          //   defaultView: 'agenda',
+
+          axisFormat: 'h:mm',
+
+
+
+          fullday: false,
+
+
+
+          allDaySlot: false,
+
+
+
+          selectHelper: true,
+
+
+
+          dayClick: function (date, jsEvent, view) {
+
+
+
+            // alert('Clicked on: ' + date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear());  
+
+
+
+          },
+
+
+
+
+
+          events: function (start, end, timezone, callback) {
+
+
+
+            var startdate = moment(start).format('YYYY-MM-DD');
+
+
+
+            // console.log(startdate);
+
+
+
+            var endate = moment(end).format('YYYY-M');
+
+
+
+            // console.log(endate);
+
+            var res = endate.split("-");
+
+            var yearOf = res[0];
+
+
+
+            var monthOf = res[1];
+
+
+
+            monthOf = monthOf - 1;
+
+
+
+            var newurl = document.getElementById('globalUrl');
+
+
+
+            var userId = document.getElementById("userId").value;
+
+
+
+            var firstName = document.getElementById("firstName").value;
+
+
+
+            var prod_id = sessionStorage.getItem("Prop_ID");
+
+
+
+            var URL = newurl + 'v1/user/' + userId + '/property/rate/p/' + prod_id + '/year/' + yearOf + '/month/' + monthOf;
+
+
+
+            var finalEvents = [];
+
+
+
+            var eventData = new Object();
+
+
+
+            $.ajax({
+
+
+
+              url: URL,
+
+
+
+             dataType: "json",  
+                    'headers': {                 
+                        Authorization: localStorage.getItem('token') || '',             
+                    },
+
+
+              type: 'GET',
+
+
+
+              success: function (result) {
+
+
+
+                console.log("result events", JSON.stringify(result));
+
+
+
+                finalEvents = [];
+
+                convertedStartDate = [];
+
+                convertedEndDate = [];
+
+
+
+                result.forEach(element => {
+
+
+
+                  convertedStartDate.push(moment(element.start).format("YYYY-MM-DD"));
+
+
+
+                  convertedEndDate.push(moment(element.end).format("YYYY-MM-DD"));
+
+
+
+                });
+
+                // console.log("convertedStartDate" + convertedStartDate);
+
+
+
+                // console.log("convertedEndDate" + convertedEndDate);
+
+                var i;
+
+
+
+                for (i = 0; i < result.length; i++) {
+
+                  if (result[i].className == "available") {
+                    eventData = {
+                      title: '',
+                      start: '',
+                      end: '',
+                      className: ''
+                    }
+                  } else if (result[i].className == "unavailable") {
+                    eventData = {
+                      title: 'Unavailable',
+                      start: new Date(convertedStartDate[i] + "T23:59:00.000" ),
+                      end: new Date(convertedEndDate[i] + "T23:59:00.000"),
+                      className: 'unavailable',
+                      color: '#999'
+                    }
+                  } else if (result[i].className == "na") {
+                    eventData = {
+                      title: '',
+                      start: '',
+                      end: '',
+                      className: ''
+                    }
+                  } else if (result[i].className == "booked") {
+                    eventData = {
+                      title: 'Booked',
+                      start: new Date(convertedStartDate[i] + "T23:59:00.000" ),
+                      end: new Date(convertedEndDate[i] + "T23:59:00.000"),
+                      className: 'booked',
+                      color: '#02C6C4',
+                      url: "./bookings"
+                    }
+                  } else {
+                    eventData = {
+                      title: 'Blocked',
+                      start: new Date(convertedStartDate[i] + "T23:59:00.000" ),
+                      end: new Date(convertedEndDate[i] + "T23:59:00.000"),
+                      className: result[i].className,
+                      color: '#000',
+                    }
+                  }
+                  finalEvents.push(eventData);
+                }
+                console.log("finalEvents" + JSON.stringify(finalEvents));
+                // // if(callback) {
+                callback(finalEvents);
+                // }
+              }
+
+            })
+
+            // }else{
+
+
+
+            //    callback(user_events);
+
+
+
+            // }
+
+          },
+
+          // eventColor: '#378006'
+
+        });
+
+      }
+
+    });
+
+
+
+  </script>
+
+</head>
+
+<!-- start header -->
+
+
+
+<header>
+
+
+
+  <nav
+    class="nav-white-text navbar navbar-default bootsnav navbar-fixed-top nav-darkblue header-light bg-medium-gray nav_line">
+
+
+
+    <div class="container-fluid nav-header-container">
+
+
+
+      <div class="navbar-header">
+
+
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+
+
+
+          <span class="icon-bar"></span>
+
+
+
+          <span class="icon-bar"></span>
+
+
+
+          <span class="icon-bar"></span>
+
+
+
+        </button>
+
+
+
+        <a href="./dashboard" title="Logo" class="logo scroll navbar-brand">
+
+
+
+          <img src="../public/images/whimstay-logo.png" class="logo-dark" alt="boltex">
+
+
+
+          <img src="../public/images/whimstay-logo.png" alt="boltex" class="logo-light default">
+
+
+
+        </a>
+
+
+
+      </div>
+
+
+
+      <div class="collapse navbar-collapse pull-right bg-medium-gray" id="myNavbar">
+
+
+
+        <ul id="accordion" class="nav navbar-nav navbar-left no-margin alt-font text-normal" data-in="fadeIn"
+          data-out="fadeOut">
+
+
+
+          <!-- start menu item -->
+
+
+
+          <li>
+
+
+
+            <div class="col-md-2 col-xs-5 width-auto sm-width-15 xs-width-20 no-padding">
+
+
+
+              <a href="./newListings" onclick="SessionClear()" type="button" id="addNewListingButtonId"
+                class="btn btn-blue btn-rounded btn-large">Add New Property</a>
+
+
+
+            </div>
+
+
+
+          </li>
+
+
+
+          <li class="hideTab"></li>
+
+
+
+          <li class="hideTab"></li>
+
+
+
+          <li class="hideTab"></li>
+
+
+
+          <li class="hideTab"></li>
+
+
+
+          <li class="hideTab"></li>
+
+
+
+          <li class="hideTab"></li>
+
+
+
+          <li>
+
+
+
+            <a href="./dashboard" class="scroll">Welcome</a>
+
+
+
+          </li>
+
+
+
+          <li>
+
+
+
+            <a href="./properties" class="scroll">Properties</a>
+
+
+
+          </li>
+
+
+
+          <li>
+
+
+
+            <a href="./bookings" class="scroll">Bookings</a>
+
+
+
+          </li>
+
+
+
+          <li>
+
+
+
+            <a href="./Profile" class="scroll">Profile</a>
+
+
+
+          </li>
+
+
+
+          <li>
+
+
+
+            <a href="./support" class="scroll">Host Support</a>
+
+
+
+          </li>
+
+
+
+        </ul>
+
+
+
+      </div>
+
+    </div>
+
+
+
+  </nav>
+
+
+
+  <!-- <input type="hidden" value="<%= isAdmin %>" id="isAdminFlag"> -->
+
+
+
+</header>
+
+
+
+<body>
+
+  <input type="hidden" value="<%= data %>" id="userId">
+
+
+
+  <input type="hidden" value="<%= firstName %>" id="firstName">
+
+
+
+  <!-- <input maxlength="100" type="text" class="form-control" placeholder="Full Name" name="fullName" value="<%= data.fullName %>"
+
+
+
+  /> -->
+
+
+
+  <!-- start main content -->
+
+
+
+  <section id="listings" class="listings no-transition">
+
+
+
+    <div class="container">
+
+
+
+      <div class="row">
+
+
+
+        <div class="col-md-12 margin-20px-top margin-30px-bottom">
+
+
+
+          <h5 class="text-capitalize text-dark-blue font-weight-300">Calendar: <spna id="property_Name"></spna>
+
+
+
+          </h5>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+      <div class="row">
+
+        <!-- <textarea id="textbox">Type something here</textarea>
+
+
+
+          <button id="create">Create file</button> <a download="info.ics" id="downloadlink" style="display: none">Download</a> -->
+
+
+
+        <input type="hidden" value="<%= data %>" id="userId">
+
+
+
+        <input type="hidden" value="<%= firstName %>" id="firstName">
+
+
+
+        <div class="col-md-8 margin-30px-bottom">
+
+
+
+          <div id='calendar'></div>
+
+
+
+          <div style='clear:both'></div>
+
+
+
+        </div>
+
+
+
+        <div class="col-md-1"></div>
+
+
+
+        <div class="col-md-3 margin-30px-bottom">
+
+
+
+          <h5 class="text-capitalize text-dark-blue font-weight-300">Blocked Dates</h5>
+
+
+
+          <p>Add dates you do not want to be available on Whimstay. </p>
+
+
+
+          <!-- <div class="row date-box"> -->
+
+
+
+          <!-- <div class="col-md-12">Dec 3, 2018 - Dec 9, 2018</div> -->
+
+
+
+          <!-- <div class="col-md-12"> -->
+
+
+
+          <!-- <a href="#"  onclick="deleteBlock(this)" ><i class="fa fa-trash" aria-hidden="true"></i> delete dates </a> -->
+
+
+
+          <div id="date_display" style="padding: 0px"></div>
+
+
+
+          <!-- <a type="button" id="createTaxTemp" class="btn btn-blue btn-rounded btn-large width-100" onclick="deleteBlock(this)" ><i class="fa fa-trash" aria-hidden="true"></i> delete dates</a>
+
+
+
+              </div> -->
+
+
+
+          <!-- </div> -->
+
+
+
+          <button type="button" class="btn btn-blue btn-rounded btn-large width-100 margin-10px-bottom"
+            data-toggle="modal" data-target="#myModal-BlockDates">Add Blocked Dates</button>
+
+
+
+          <a href="/properties" class="btn btn-blue btn-rounded btn-large width-100">Return to Properties</a>
+
+
+
+          <!-- </div> -->
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+  </section>
+
+
+
+  <script>
+
+
+
+    function deleteAllCookies() {
+
+
+
+      // alert("delete");
+
+
+
+      var cookies = document.cookie.split(";");
+
+
+
+      for (var i = 0; i < cookies.length; i++) {
+
+
+
+        var cookie = cookies[i];
+
+
+
+        var eqPos = cookie.indexOf("=");
+
+
+
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+
+
+
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+
+
+      }
+
+
+
+    }
+
+
+
+    $(function () {
+
+
+
+      //       var date = new Date();
+
+
+
+      // date.setDate(date.getDate());
+
+
+
+      $('#datetimepicker1').datetimepicker({
+
+
+
+        format: 'MM-DD-YYYY',
+
+
+
+        minDate: new Date().setHours(0, 0, 0, 0),
+
+
+
+      });
+
+
+
+      $('#datetimepicker2').datetimepicker({
+
+
+
+        useCurrent: false, //Important! See issue #1075
+
+
+
+        format: 'MM-DD-YYYY',
+
+
+
+        minDate: new Date().setHours(0, 0, 0, 0)
+
+
+
+      });
+
+
+
+      $("#datetimepicker1").on("dp.change", function (e) {
+
+
+
+        $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+
+
+
+      });
+
+
+
+      $("#datetimepicker2").on("dp.change", function (e) {
+
+
+
+        $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+
+
+
+      });
+
+
+
+    });
+
+
+
+    function blockedDates() {
+
+
+
+
+
+      var startDate1 = document.getElementById('startDate').value;
+
+      var endDate1 = document.getElementById('endDate').value;
+
+      if (startDate1 == null || startDate1 == undefined || startDate1 == '') {
+
+        document.getElementById('calval').innerHTML = 'Please enter Start Date.';
+
+        return false;
+
+        document.getElementById('startDate').focus();
+
+      } else {
+
+        document.getElementById('calval').innerHTML = '';
+
+      }
+
+      if (endDate1 == null || endDate1 == undefined || endDate1 == '') {
+
+        document.getElementById('calval').innerHTML = 'Please enter End Date.'
+
+        return false;
+
+        document.getElementById('endDate').focus();
+
+      } else {
+
+        document.getElementById('calval').innerHTML = ''
+
+      }
+
+
+
+
+
+
+
+
+      var startDate = startDate1.split("-").reverse().join("-");
+      startDate=startDate.split("-");
+      startDate=startDate[0]+"-"+startDate[2]+"-"+startDate[1];
+
+      var endDate = endDate1.split("-").reverse().join("-");
+      endDate=endDate.split("-");
+      endDate=endDate[0]+"-"+endDate[2]+"-"+endDate[1];
+      //var startDate = moment(startDate1,"yyyy-MM-dd")
+     
+     // var endDate = moment(endDate1,"yyyy-MM-dd")
+
+
+
+      deleteAllCookies();
+
+
+
+      var prod_id = sessionStorage.getItem("Prop_ID");
+
+
+
+      var unitId = sessionStorage.getItem('property_Unit');
+
+
+
+      var userId = document.getElementById("userId").value;
+
+
+
+      var newurl = document.getElementById('globalUrl');
+
+
+
+      var dataSet = {
+
+
+
+        "effFromDt": startDate,
+
+
+
+        "effToDt": endDate,
+
+
+
+        "active": 1,
+
+
+
+        "userId": userId,
+
+
+
+        "propertyId": prod_id,
+
+
+
+        "unitId": unitId
+
+
+
+      }
+
+console.log(JSON.stringify(dataSet))
+
+      $.ajax({
+
+
+
+        type: 'POST',
+
+
+
+        //data: person,
+
+
+
+        data: JSON.stringify(dataSet),
+
+
+
+        contentType: "application/json",
+
+
+
+        dataType: "json",             'headers': {                 Authorization: localStorage.getItem('token') || '',             },
+
+
+
+        url: newurl + 'v1/user/' + userId + '/property/' + prod_id + '/blocking',
+
+
+
+        success: function (result) {
+
+
+
+          // console.log("blockedDates"+JSON.stringify(result));
+
+
+
+          if (result.message) {
+
+
+
+            document.getElementById("msg-body").innerHTML = result.message;
+
+
+
+            $('#dyna-popup').modal('show');
+
+
+
+            setTimeout(function () {
+
+
+
+              $('#dyna-popup').modal('hide');
+
+
+
+              location.reload();
+
+
+
+            }, 3000);
+
+
+
+          } else {
+
+
+
+            location.reload();
+
+
+
+          }
+
+
+
+          // console.log(result);
+
+
+
+          // location.reload();
+
+
+
+        }, error: function (xhr, textStatus, errorThrown) {
+
+
+
+          console.log('Update Stock error');
+
+
+
+          // console.log(errorThrown);
+
+
+
+        }
+
+
+
+      });
+
+    }
+
+
+
+    function deleteBlock(obj) {
+
+
+
+      var newurl = document.getElementById('globalUrl');
+
+
+
+      var prod_id = sessionStorage.getItem("Prop_ID");
+
+
+
+      var userId = document.getElementById("userId").value;
+
+
+
+      var objectId = obj.id;
+
+
+
+      $.ajax({
+
+
+
+        url: newurl + 'v1/user/' + userId + '/property/' + prod_id + '/blocking/' + objectId,
+
+
+
+        type: 'DELETE',
+
+
+
+        dataType: "json",             'headers': {                 Authorization: localStorage.getItem('token') || '',             },
+
+
+
+        success: function (result, textStatus, xhr) {
+
+
+
+          // alert(JSON.stringify(result));
+
+
+
+          document.getElementById("msg-body").innerHTML = "Block Deleted successfully";
+
+
+
+          $('#dyna-popup').modal('show');
+
+
+
+          setTimeout(function () {
+
+            $('#dyna-popup').modal('hide');
+
+            window.location.reload();
+
+          }, 3000);
+
+
+
+
+
+
+
+        }, error: function (xhr, textStatus, errorThrown) {
+
+
+
+          console.log('Block Delete API Error');
+
+
+
+          // console.log(errorThrown);
+
+
+
+        }
+
+
+
+      });
+
+    }
+
+
+
+
+
+
+
+    function clearMsg() {
+
+      $('#calval').empty();
+
+    }
+
+
+
+  </script>
+
+  <!--end main content -->
+
+
+
+  <!-- start share with a host lightbox-->
+
+
+
+  <!-- Modal -->
+
+
+
+  <div id="myModal-BlockDates" class="modal fade" role="dialog">
+
+
+
+    <div class="modal-dialog">
+
+
+
+      <!-- Modal content-->
+
+
+
+      <div class="modal-content">
+
+
+
+        <div class="modal-header">
+
+
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+
+          <!--<h4 class="modal-title">Modal Header</h4>-->
+
+
+
+        </div>
+
+
+
+        <div class="modal-body">
+
+
+
+          <!-- <script type="text/javascript">
+
+
+
+                    $(function () {
+
+
+
+                      $('#datetimepicker5').datetimepicker();
+
+
+
+                    });
+
+
+
+                  </script> -->
+
+
+
+          <h5 class="text-capitalize text-dark-blue font-weight-300">Blocked Dates</h5>
+
+
+
+          <p>Add dates you do not want to be available on Whimstay.
+
+
+
+          </p>
+
+
+
+
+
+
+
+          <div class="row">
+
+
+
+            <div class="col-md-4">
+
+
+
+              <label>From Date:</label>
+
+
+
+            </div>
+
+
+
+            <div class="col-md-8">
+
+
+
+              <div class='input-group date' id='datetimepicker1'>
+
+
+
+                <input type='text' id="startDate" data-format="yyyy-MM-dd" class="form-control" />
+
+
+
+                <span class="input-group-addon" onclick="clearMsg()">
+
+
+
+                  <span class="glyphicon glyphicon-calendar"></span>
+
+
+
+                </span>
+
+
+
+              </div>
+
+
+
+            </div>
+
+
+
+          </div>
+
+
+
+          <div class="row margin-20px-bottom">
+
+
+
+            <div class="col-md-4">
+
+
+
+              <label>To Date:</label>
+
+
+
+            </div>
+
+
+
+            <div class="col-md-8">
+
+
+
+              <div class='input-group date' id='datetimepicker2'>
+
+
+
+                <input type='text' id="endDate" data-format="yyyy-MM-dd" class="form-control" />
+
+
+
+                <span class="input-group-addon" onclick="clearMsg()">
+
+
+
+                  <span class="glyphicon glyphicon-calendar"></span>
+
+
+
+                </span>
+
+
+
+              </div>
+
+
+
+            </div>
+
+            <span>&nbsp;&nbsp;</span>
+
+            <span class="error" id="calval" style="color:red;font-family: 'Montserrat', sans-serif;"></span>
+
+          </div>
+
+
+
+          <button type="submit" class="btn btn-blue btn-rounded btn-large width-100" onclick="blockedDates()">Add
+
+            Dates</button>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+  <!-- end share with a host lightbox-->
+
+
+
+  <div id="dyna-popup" class="modal" tabindex="-1" role="dialog">
+
+
+
+    <div class="modal-dialog" role="document">
+
+
+
+      <div class="modal-content">
+
+
+
+        <div class="modal-header" style="background-color: pink;">
+
+
+
+          <span class="modal-title"></span>
+
+
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+
+
+            <span aria-hidden="true">&times;</span>
+
+
+
+          </button>
+
+
+
+        </div>
+
+
+
+        <div class="modal-body">
+
+
+
+          <p id="msg-body"></p>
+
+
+
+        </div>
+
+
+
+        <div class="modal-footer">
+
+
+
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+
+
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+  <!-- end share with a host lightbox-->
+
+
+
+  <!--footer Start-->
+
+
+
+  <footer class="bg-dark-blue padding-30px-tb text-center">
+
+
+
+    <div class="footer-widget-area">
+
+
+
+      <div class="container">
+
+
+
+        <div class="row">
+
+
+
+          <div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+
+
+
+            <a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+              href="https://www.facebook.com/whimstay" target="_blank"><i
+                class="fab fa-facebook-f"></i><span></span></a>
+
+
+
+            <a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s"
+              href="https://www.instagram.com/whimstay" target="_blank"><i
+                class="fab fa-instagram"></i><span></span></a>
+
+
+
+            <a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+              href="https://www.linkedin.com/company/whimstay" target="_blank"><i
+                class="fab fa-linkedin-in"></i><span></span></a>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+        <p class="text-white text-large margin-10px-bottom margin-20px-top"
+          style="font-family: 'Montserrat', sans-serif;">© Whimstay, Inc. All Rights Reserved.</p>
+
+
+
+        <p class="text-white" style="font-family: 'Montserrat', sans-serif;"> <a href="./terms_privacy"
+            style="font-family: 'Montserrat', sans-serif;">Terms & Privacy</a> </p>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </footer>
+
+
+
+  <!-- end footer -->
+
+
+
+  <!-- javascript libraries -->
+
+
+
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+          <script src="../public/javascripts/global.js"></script> -->
+
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+  <script src="../public/javascripts/global.js"></script>
+
+
+
+</body>
+
+
+
+</html>

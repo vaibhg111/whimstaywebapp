@@ -1,0 +1,351 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+	<meta name="author" content="Wemastè">
+	<meta name="robots" content="noindex">
+	<meta name="googlebot" content="noindex">
+	<!-- title -->
+	<title>Host Support - Whimstay Host</title>
+	<!-- favicon -->
+	<link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+
+	<!-- styles font-awesome icon -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<!-- animation -->
+	<link rel="stylesheet" href="css/animate.min.css" />
+	<!-- font-awesome icon -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	 crossorigin="anonymous">
+
+	<!-- wemaste styles -->
+	<link rel="stylesheet" href="../public/stylesheets/core.css" />
+	<link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+
+
+</head>
+
+<body class="host-dashboard">
+
+	<!-- start header -->
+	<%- include mainMasterDashboard.ejs %>
+		<!-- end header -->
+
+		<!-- start main content -->
+		<section id="getstarted" class="no-transition">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12  margin-20px-top margin-30px-bottom">
+
+
+						<h3 class="text-capitalize text-dark-blue font-weight-300">Host Support</h3>
+
+						<input type="hidden" value="<%= firstName %>" id="firstName">
+						<input type="hidden" value="<%= data %>" id="userId">
+						<input type="hidden" value="<%= url %>" id="globalUrl">
+
+					</div>
+				</div>
+
+				<div class="row">
+
+						<div class="col-md-8 margin-30px-bottom">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h6 class="text-blue">Email Us</h6>
+							</div>
+							<div class="panel-body">
+								
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="mc-field-group">
+											<input type="text" value="" name="FNAME" class="required" id="fName" maxlength="50" onkeypress="return numberOnly(this, event)"
+											 placeholder="First Name">
+											<span id="first" style="color:red;"></span>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="mc-field-group">
+
+											<input type="text" value="" name="LNAME" class="required" id="lastName" maxlength="50" onkeypress="return numberOnly(this, event)"
+											 placeholder="Last Name">
+											<span id="last" style="color:red;"></span>
+										</div>
+									</div>
+
+									<div class="col-sm-12">
+										<div class="mc-field-group">
+											<input type="text" value="" name="COMPANY" class="" id="company" maxlength="100" placeholder="Company (Optional)">
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="mc-field-group">
+											<input type="email" value="" name="EMAIL" class="required email" id="email" onkeypress="validateInput()" maxlength="255" placeholder="Email Address">
+											<span id="mail" style="color:red;"></span>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="mc-field-group">
+											<input type="text" value="" name="PHONE" class="required" id="mobileNo" onkeypress="validateInput()" maxlength="10" placeholder="Phone Number">
+											<span id="number" style="color:red;"></span>
+										</div>
+									</div>
+
+									<div class="col-sm-12">
+										<div class="mc-field-group">
+
+											<textarea class="form-control" rows="5" name="MESSAGE" onkeypress="validateInput()" class="" id="FullBody" maxlength="2000" placeholder="Any comments or questions?"></textarea>
+											<span id="bodyValidate" style="color:red;"></span>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-4 pull-right">
+										<button type="button" id="emailSupport" class="btn btn-blue btn-rounded btn-large width-100">Send</button>
+									</div>
+								</div>
+
+
+							</div>
+
+						</div>
+
+
+					</div>
+					<div class="col-md-1"></div>
+					<!-- <div class="col-md-3 margin-30px-bottom">
+
+						<div class="sidebar-box">
+							<h5 class="text-capitalize text-dark-blue font-weight-300 margin-20px-bottom">Contact Us</h5>
+
+
+							<p class="text-small">Wemastè<br/> 425 El Pintado <br/> Danville, CA 94526
+							</p>
+
+							<p class="text-small"><a href="http://wemaste.com" target="_blank">http://wemaste.com</a></p>
+
+							<p class="text-small"><a href="mailto:letsgo@wemaste.com">letsgo@wemaste.com</a></p>
+						</div>
+						<div class="sidebar-box">
+							<h5 class="text-capitalize text-dark-blue font-weight-300">Share the Love</h5>
+							<p>Tell your host friends about Whimstay.</p>
+							<button type="button" id="shareMail" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-target="#myModal-Share">Share</button>
+						</div>
+
+						<div class="sidebar-box">
+							<h5 class="text-capitalize text-dark-blue font-weight-300">Follow Us</h5>
+							<div class="sidebar-social-icon">
+								<a href="https://facebook.com/wemastevacation" class="facebook-bg-hvr" target="_blank"><i class="fab fa-facebook-f"></i></a>
+								<a href="https://www.instagram.com/wemaste/" class="instagram-bg-hvr" target="_blank"><i class="fab fa-instagram"></i></a>
+								<a href="https://linkedin.com/company/wemaste" class="linkedin-bg-hvr" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+
+							</div>
+						</div>
+
+					</div> -->
+
+
+				</div>
+
+
+			</div>
+			<!-- <div><a href="https://www.brownbearsw.com/cal/prajakta_test" target="blank">test</a></div> -->
+		</section>
+		<!--end main content -->
+
+
+		<!-- start share with a host lightbox-->
+		<!-- Modal -->
+		<div id="myModal-Share" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<!--<h4 class="modal-title">Modal Header</h4>-->
+					</div>
+					<div class="modal-body">
+
+
+						<form action="/">
+							<div class="form-group">
+								<label for="shareTo">To: <span class="text-extra-small">(seperate with a comma)</span></label>
+								<input type="email" class="form-control" id="shareTo" maxlength="5000" name="shareTo" maxlength="" placeholder="Enter Emails... ">
+								<span id="mail1" style="color:red;"></span>
+							</div>
+							<div class="form-group">
+								<label for="shareSubject">Subject:</label>
+								<input type="text" class="form-control" id="shareSubject" maxlength="500" name="shareSubject" maxlength="" Value="Have You Seen Whimstay Yet">
+								<span id="subject" style="color:red;"></span>
+							</div>
+							<div class="form-group">
+								<label for="shareMessage">Message:</label>
+								<div class="form-control margin-10px-bottom" contenteditable="true" maxlength="2000" id="shareMessage" maxlength="" name="shareMessage">
+									<span id="message" style="color:red;"></span>
+								</div>
+							</div>
+
+							<button type="submit" id="emailSent" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-target="#Share_model"
+							 data-dismiss="modal">Send</button>
+						</form>
+
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- end share with a host lightbox-->
+
+		<!--footer Start-->
+		<footer class="bg-dark-blue padding-30px-tb text-center">
+			<div class="footer-widget-area">
+				<div class="container">
+					<div class="row">
+                        <div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+                            <a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s" href="https://www.facebook.com/whimstay"
+                                target="_blank"><i class="fab fa-facebook-f"></i><span></span></a>
+                            <a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s" href="https://www.instagram.com/whimstay"
+                                target="_blank"><i class="fab fa-instagram"></i><span></span></a>
+                            <a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s" href="https://www.linkedin.com/company/whimstay"
+                                target="_blank"><i class="fab fa-linkedin-in"></i><span></span></a>
+
+                        </div>
+                    </div>
+					<p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights Reserved.</p>
+					<p class="text-white"><a href="./terms_privacy">Terms & Privacy</a> </p>
+				</div>
+			</div>
+
+		</footer>
+		<!-- end footer -->
+
+		<!-- Modal start -->
+
+		<div id="dynamic_model" class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: pink;">
+						<span class="modal-title"></span>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p id="msg-body"></p>
+					</div>
+					<div class="modal-footer">
+						<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal End -->
+
+
+
+		<!-- Modal start -->
+
+		<div id="Share_model" class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: pink;">
+						<span class="modal-title"></span>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p id="message-body"></p>
+					</div>
+					<div class="modal-footer">
+						<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal End -->
+
+
+		<!-- javascript libraries -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script> -->
+
+
+		<!-- setting -->
+		<script src="../public/javascripts/global.js"></script>
+		<script src="../public/javascripts/shareTheLoveApi.js"></script>
+		<script src="../public/javascripts/hostSupportApi.js"></script>
+
+		<script>
+			var baseUrl = document.getElementById("globalUrl").value;
+			$(document).ready(function () {
+				$.ajax({
+
+					headers: { "Content-Type": "application/json" },
+					type: "GET",
+					'headers': {                 
+        				Authorization: localStorage.getItem('token') || '',            
+     				},
+					url: baseUrl + 'user/' + document.getElementById("userId").value,
+					success: function (result) {
+						//console.log(JSON.stringify(result.mobileno1));
+
+						document.getElementById("fName").value = result.firstName;
+						document.getElementById("lastName").value = result.lastName;
+						document.getElementById("email").value = result.emailId;
+						document.getElementById("mobileNo").value = result.mobileno1;
+
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						console.log('API Connection Error: ' + textStatus);
+					}
+
+				});
+			});
+
+		</script>
+
+		<script>
+
+			function validateInput() {
+				$('#mail').empty();
+				$('#number').empty();
+				$('#bodyValidate').empty();
+			}
+
+			function numberOnly(txt, e) {
+				$('#first').empty();
+				$('#last').empty();
+
+				var arr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz- ";
+				var code;
+				if (window.event)
+					code = e.keyCode;
+				else
+					code = e.which;
+				var char = keychar = String.fromCharCode(code);
+				if (arr.indexOf(char) != -1 || e.key === "Backspace" || e.key === "Tab") {
+					return true;
+				} else {
+					return false;
+				}
+
+			}
+		</script>
+
+
+</body>
+
+</html>

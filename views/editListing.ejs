@@ -1,0 +1,2058 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1"/>
+	<meta name="author" content="Wemastè">
+	<meta name="robots" content="noindex">
+	<meta name="googlebot" content="noindex">
+  <!-- title -->
+  	<title>Property Details: Add Listing - Wemastè Host</title>
+  <!-- favicon -->
+  <link rel="icon" href="../public/images/favicon.ico">
+	
+  <!-- styles font-awesome icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="http://13.59.91.130:3000/bootstrap/css/bootstrap.min.css">
+  <!-- animation -->
+  <link rel="stylesheet" href="css/animate.min.css"/>
+   <!-- font-awesome icon -->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- wemaste styles -->
+  <link rel="stylesheet" href="../public/stylesheets/core.css"/>
+  <link rel="stylesheet" href="../public/stylesheets/stylehome.css"/>
+ 
+	
+  <!-- <script>
+     
+		$("#my_select").change(function() {
+	  var id = $(this).children(":selected").attr("id");
+	  alert(id);
+	  alert("a");
+	});
+	
+	$('#editbed').click(function() {
+		alert("a");
+	});
+		</script> -->
+	<style>
+	.main{
+		margin-left: -20px;
+	}
+	/* .selection{
+		margin-left:15px;
+	} */
+	</style>
+	
+		 
+  
+</head>
+
+<body class="host-dashboard">
+	
+<!-- start header -->
+<%- include mainMasterDashboard.ejs %>
+<!-- end header -->
+	
+<!-- start main content -->
+<section id="addnewlisting" class="no-transition addnewlisting">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12  margin-20px-top">
+                
+                    
+			      <h3 class="text-capitalize text-dark-blue font-weight-300">Create A New Listing</h3>
+				
+			
+			</div>
+        </div>
+		
+		<div class="row">
+            <div class="col-sm-12">
+				<!--start: add property wizard-->
+				<div class="wizard">
+				<div class="wizard-inner">
+					<div class="connecting-line"></div>
+					<ul class="nav nav-tabs" role="tablist">
+
+						<li role="presentation" class="active">
+							<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Property Details">
+								<span class="round-tab">
+									<i class="fas fa-home"></i>
+								</span>
+							</a>
+						</li>
+
+						<li role="presentation" class="disabled">
+							<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Bedrooms">
+								<span class="round-tab">
+									<i class="fas fa-bed"></i>
+								</span>
+							</a>
+						</li>
+						<li role="presentation" class="disabled">
+							<a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Bathrooms">
+								<span class="round-tab">
+									<i class="fas fa-bath"></i>
+								</span>
+							</a>
+						</li>
+						<li role="presentation" class="disabled">
+							<a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Amenities">
+								<span class="round-tab">
+									<i class="fas fa-swimming-pool"></i>
+								</span>
+							</a>
+						</li>
+						<li role="presentation" class="disabled">
+							<a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Description">
+								<span class="round-tab">
+									<i class="far fa-image"></i>
+								</span>
+							</a>
+						</li>
+						<li role="presentation" class="disabled">
+							<a href="#step6" data-toggle="tab" aria-controls="step6" role="tab" title="Price">
+								<span class="round-tab">
+									<i class="fas fa-hand-holding-usd"></i>
+								</span>
+							</a>
+						</li>
+
+						<li role="presentation" class="disabled">
+							<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+								<span class="round-tab">
+									<i class="fas fa-check"></i>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<form role="form">
+					<div class="tab-content">
+						<!--start: step 1: property details-->
+						<div class="tab-pane active" role="tabpanel" id="step1">
+							<h4 class="alt-font">Property Details</h4>
+								<div class="row">
+									<div class="col-sm-5">
+										
+										<label for="propertyAddress">Property location?</label>
+										
+									
+										<input type="text" class="form-control" id="propertyAddress" name="propertyAddress" placeholder="Enter your address...">
+										
+										
+										<iframe src="https://maps.google.com/maps?q=&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+										
+										
+										
+										
+									</div>	
+									
+									<div class="col-sm-2"> 
+
+									</div>
+									
+									<div class="col-sm-5">
+										
+										<div class="form-group">
+										  <label for="sel1">What type of property?</label>
+										  <select class="form-control" id="propertyType">
+											  <option id="0" value="0">select one...</option>
+											  <option id="1" value="1">Apartment</option>
+											  <option id="2" value="2">House</option>
+											  <option id="3" value="3">Secondary Unit</option>
+											  <option id="4" value="4">Bed & Breakfast</option>
+											  <option id="5" value="5">Boutique Hotel</option>
+											  <option id="6" value="6">Unique Space</option>
+										  </select>
+										</div>
+										
+										<div class="form-group">
+										  <label for="sel1">Let's dig a little deeper?</label>
+										  <select class="form-control" id="subPropertyType">
+	
+										  </select>
+										</div>
+										
+										<div class="form-group">
+										  <label for="sel1">What will guest have?</label>
+										  <select class="form-control" id="guestRoom">
+											  <option id="0" value="0">select one...</option>
+											  <option id="1" value="1">Entire Place</option>
+											  <option id="2" value="2">Private Room</option>
+											  <option id="3" value="3">Shared Room</option>
+										  </select>
+										</div>
+										
+										<label for="noGuest">Total number of guest?</label>
+										<p>The number and type of beds you have determines how many guests can stay comfortably.</p>
+										
+										<div class="row">
+											<div class="col-xs-3 bedCount">
+											<input type="text" class="form-control addNo" id="noBeds" name="noGuest" value="1">
+											</div>
+											
+											<div class="col-xs-9">
+											
+											
+											<span class="fa-stack fa-lg" id="btn_Minus" onclick="btn_Minus()">
+												  <i class="far fa-circle fa-stack-2x"></i>
+												  <i class="fas fa-minus fa-stack-1x"></i>
+											</span>
+												<span class="fa-stack fa-lg" id="btn_Plus" onclick="btn_Plus()">
+												  <i class="far fa-circle fa-stack-2x"></i>
+												  <i class="fas fa-plus fa-stack-1x"></i>
+											</span>
+											</div>
+										</div>
+
+									</div>	
+							
+							</div>
+							
+							<ul class="list-inline pull-right">
+								<li><button type="button" id="PropertyDetailsSave" class="btn btn-blue btn-rounded next-step">Save & Next</button></li>
+							</ul>
+						</div>
+						<!--start: step 2: -->
+						<div class="tab-pane" role="tabpanel" id="step2">
+							<h4 class="alt-font">Bedrooms</h4>
+									
+								<div class="row">
+									<div class="col-sm-5">
+										
+										<div class="form-group">
+										  <label for="sel1">How many bedrooms can guests use?</label>
+										  <select class="form-control" id="my_select">
+											  <option>select one...</option>
+											  <option id="1" value="0">studio</option>
+											  <option id="2" value="1">1 bedroom</option>
+											  <option id="3" value="2">2 bedrooms</option>
+											  <option id="4" value="3">3 bedrooms</option>
+											  <option id="5" value="4">4 bedrooms</option>
+											  <option id="6" value="5">5 bedrooms</option>
+											  <option id="7" value="6">6 bedrooms</option>
+											  <option id="8" value="7">7 bedrooms</option>
+											  <option id="9" value="8">8 bedrooms</option>
+											  <option id="10" value="9">9 bedrooms</option>
+											  <option id="11" value="10">10 bedrooms</option>
+											  <option id="12" value="11">11 bedrooms</option>
+											  <option id="13" value="12">12 bedrooms</option>
+											  <option id="14" value="13">13 bedrooms</option>
+											  <option id="15" value="14">14 bedrooms</option>
+											  <option id="16" value="15">15 bedrooms</option>
+										  </select>
+										</div>
+										
+									
+									
+									<label for="noGuest">How many beds can guests use?</label>
+										
+										<div class="row">
+											
+											<div class="col-xs-3 bedCount">
+											<input type="text" class="form-control addNo" id="Bed" name="noBeds" value="2">
+											</div>
+											<div class="col-xs-9">
+											
+											
+											<span class="fa-stack fa-lg" id="btn_minus" onclick="btn_minus()">
+												  <i class="far fa-circle fa-stack-2x"></i>
+												  <i class="fas fa-minus fa-stack-1x"></i>
+											</span>
+												<span class="fa-stack fa-lg" id="btn_plus" onclick="btn_plus()">
+												  <i class="far fa-circle fa-stack-2x"></i>
+												  <i class="fas fa-plus fa-stack-1x"></i>
+											</span>
+											</div>
+										</div>	
+									</div>
+									
+									<div class="col-sm-2">
+
+									</div>
+									
+									<div class="col-sm-5">
+											
+										<h6>Sleeping Arrangements</h6><br/>
+										
+										<div id="main" class="main">
+												
+											</div>
+											
+									
+										
+										<div class="row addBeds">
+											<div class="col-sm-9">
+												<p><strong>Common Space</strong><br/>
+										<div><label type="text" id="lblBedCnt0">0 beds</label></div></p>
+											</div>
+											<div class="col-sm-3">
+												<button type="button" class="btn btn-blue btn-rounded width-100"  data-toggle="collapse" data-target="#bed3collapse">Add Bed</button>
+											</div>
+											
+											
+											<!--start add bed type and how many-->
+											<div class="clearfix"></div>
+											<div id="bed3collapse" class="collapse bedcollapse">
+												<div class="row">
+														<div><input type="hidden" value="" id="lbl0"></div>
+														<div><input type="hidden" value=",6,8,9," id=lblSelected0 ></div>
+													<div class="col-sm-4 col-xs-8">Couch</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id="bedCouch_0" name="bedSingle" placeholder="0"></div>
+
+													<div class="col-sm-4 col-xs-8">Air Mattress</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id="bedAirMattress_0" name="bedSingle" placeholder="0"></div>
+												</div>												
+												<div class="row">
+												<div class="col-sm-4 col-xs-8">Floor Mattress</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id="bedFloorMattress_0" name="bedSingle" placeholder="0" value="0"></div>
+												<div class="containerSpace" id="containerright0_1" >
+												<div class="col-sm-6 col-xs-12">
+													<select class="form-control selection" id="addNewBedRight0_1">
+													  <option value="0">Add another bed</option>
+													  <option value="1">Single</option>
+													  <option value="2">Double</option>
+													  <option value="3">Queen</option>
+													  <option value="4">King</option>
+													  <option value="5">Crib</option>
+													  <option value="7">Bunkbed</option>
+													  <option value="10">Toddler Bed</option>
+													  <option value="11">Hammock</option>
+													  <option value="12">Water Bed</option>
+													</select>
+												</div>
+											</div>
+												</div>
+												
+											</div>
+											<!--end add bed type and how many-->
+											
+										</div>
+									</div>	
+								</div>
+								
+							
+							
+							<ul class="list-inline pull-right">
+								<li><button type="button" id="getApi" class="btn btn-default btn-rounded prev-step">Back</button></li>
+								<li><button type="button" id="BedroomSave"  class="btn btn-blue btn-rounded next-step">Save & Next</button></li>
+							</ul>
+						</div>
+						<!--start: step 3: -->
+						<div class="tab-pane" role="tabpanel" id="step3">
+							<h4 class="alt-font">Bathrooms</h4>
+							
+									
+									<div class="col-sm-5">
+											
+										<label for="noBaths">How many Bathroom can a guest use?</label>
+											<p>If you have a toilet separate from the shower, count it as a 0.5 bathroom.</p>
+										
+											<div class="row">
+
+												<div class="col-xs-3 bathCount">
+												<input type="text" class="form-control addNo" id="noBaths" name="noBaths" value="0" >
+												</div>
+												<div class="col-xs-9">
+
+
+												<span class="fa-stack fa-lg" id="btn_Bathroom_Minus" onclick="btn_Bathroom_Minus()">
+													  <i class="far fa-circle fa-stack-2x"></i>
+													  <i class="fas fa-minus fa-stack-1x"></i>
+												</span>
+													<span class="fa-stack fa-lg" id="btn_Bathroom_Plus"  onclick="btn_Bathroom_Plus()">
+													  <i class="far fa-circle fa-stack-2x"></i>
+													  <i class="fas fa-plus fa-stack-1x"></i>
+												</span>
+												</div>
+											</div>
+										
+										
+									</div>
+									<div class="col-sm-2">
+
+									</div>
+									
+									<div class="col-sm-5">
+										
+										<h6>Bathroom Features</h6>
+										
+										<div id="Bathroom" class="Bathroom">
+                                                
+											</div>
+							</div>
+							
+							
+							<ul class="list-inline pull-right">
+								<li><button type="button" id="getApi" class="btn btn-default btn-rounded prev-step">Back</button></li>
+								<li><button type="button" id="bathroomApi" class="btn btn-blue btn-rounded btn-info-full next-step">Save & Next</button></li>
+							</ul>
+						</div>
+						<!--start: step 4: -->
+						<div class="tab-pane" role="tabpanel" id="step4">
+							<h4 class="alt-font">Amenities</h4>
+							
+									
+								<div class="col-sm-5">
+									<h6>The Essentials</h6>
+										<div class="row">
+											<div class="col-xs-12"><div class="form-group"><div class="checkbox"><label><input class="chk" type="checkbox" id="Feature_1" value="1"> Essentials <span class="text-extra-small">(Towels, bed sheets, soap, toilet paper, & pillows)</span></label></div></div></div>
+
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"><label><input class="chk" type="checkbox" id="Feature_2" value="2"> Wifi</label></div></div></div>
+
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_3" value="3"> Shampoo/Conditioner</label></div></div></div>
+
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_4" value="4"> Closet/Drawers</label></div></div></div>
+										
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_5" value="5"> TV</label></div></div></div>
+										
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_6" value="6"> Heat</label></div></div></div>
+										
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_7" value="7"> Air Conditioning</label></div></div></div>
+										
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_8" value="8"> Breakfast, Coffee, Tea</label></div></div></div>
+										
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_9" value="9"> Desk/workspace</label></div></div></div>
+										
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_10" value="10"> Fireplace</label></div></div></div>
+										
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_11" value="11"> Iron</label></div></div></div>
+										
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_12" value="12"> Hair Dryer</label></div></div></div>
+										
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_13" value="13"> Pet Friendly</label></div></div></div>
+										
+											<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_14" value="14"> Private Entrance</label></div></div></div>
+									</div>
+									
+										<h6 class="margin-20px-top">Bonus Areas</h6>
+									
+											<div class="row">
+												<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_15" value="15"> Kitchen</label></div></div></div>
+												
+												<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_16" value="16"> Laundry – Washer</label></div></div></div>
+												
+												<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_17" value="17"> Laundry – Dryer</label></div></div></div>
+												
+												<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_18" value="18"> Pool</label></div></div></div>
+												
+												<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_19" value="19"> Hot tub</label></div></div></div>
+												
+												<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_20" value="20"> Parking</label></div></div></div>
+												
+												<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_21" value="21"> Elevator</label></div></div></div>
+												
+												<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"> <label><input class="chk" type="checkbox" id="Feature_22" value="22"> Gym</label></div></div></div>
+												
+												
+											</div>
+
+									</div>
+									<div class="col-sm-2">
+
+									</div>
+									
+									<div class="col-sm-5">
+												<h6>Safety Amenities</h6>
+										
+											<div class="col-xs-12"><div class="form-group"><div class="checkbox"><label><input class="chk" type="checkbox" id="Feature_23" value="23"> Smoke Detector <span class="text-extra-small">Check your local laws, which may require a working smoke detector in every room</span></label></div></div></div>
+
+											<div class="col-xs-12"><div class="form-group"><div class="checkbox"><label><input class="chk" type="checkbox" id="Feature_24" value="24"> 	Carbon Monoxide Detector <span class="text-extra-small">Check your local laws, which may require a working carbon monoxide detector in every room</span></label></div></div></div>
+
+											<div class="col-xs-12"><div class="form-group"><div class="checkbox"><label><input class="chk" type="checkbox" id="Feature_25" value="25"> First Aid Kit </label></div></div></div>
+										
+											<div class="col-xs-12"><div class="form-group"><div class="checkbox"><label><input class="chk" type="checkbox" id="Feature_26" value="26"> Safety Card </label></div></div></div>
+										
+											<div class="col-xs-12"><div class="form-group"><div class="checkbox"><label><input class="chk" type="checkbox" id="Feature_27" value="27"> Fire Extinguisher</label></div></div></div>
+										
+											<div class="col-xs-12"><div class="form-group"><div class="checkbox"><label><input class="chk" type="checkbox" id="Feature_28" value="28"> Lock on bedroom door</label></div></div></div>
+										
+							
+									</div>
+							
+							<ul class="list-inline pull-right">
+								<li><button type="button" id="getApi" class="btn btn-default btn-rounded  prev-step">Back</button></li>
+								<li><button type="button" id="AmenitiesApi" class="btn btn-blue btn-rounded btn-info-full next-step">Save & Next</button></li>
+							</ul>
+						</div>
+						<!--start: step 5: -->
+						<div class="tab-pane" role="tabpanel" id="step5">
+								<h4 class="alt-font">Description & Photos</h4>
+								
+										
+										<div class="col-sm-5">
+											
+											<div class="form-group">
+												<label for="lisitngName">Name your place</label>
+												<input type="text" class="form-control" id="propertyName" name="propertyName" placeholder="Listing Title...">
+											</div>
+											<div class="form-group">
+												<label for="lisitngDesc">Description your property</label>
+												<textarea class="form-control margin-10px-bottom" rows="7" id="propertyDesc" name="propertyDesc"></textarea>
+											</div>
+											
+											<div class="form-group">
+												<label for="lisitingPhotos">Upload Photos</label>
+												<input type="file" class="input-file" id="profile-img" name="file" accept="image/jpg, image/jpeg, image/png, image/gif" multiple="">
+											
+											</div>
+											<br/><br/>
+											<!-- <input type="file" name="file" id="profile-img"><br/><br/> -->
+											<img src="" id="profile-img-tag" style="border: none;" width="200px" height="100px"/>
+
+
+
+											
+											<!-- <img src="images/create-a-listing.jpg"/>
+											<p>Cover Photo</p>
+											<div class="row margin-20px-bottom">
+												<div class="col-xs-4"><img src="images/create-a-listing.jpg"/></div>
+												<div class="col-xs-4"><img src="images/create-a-listing.jpg"/></div>
+												<div class="col-xs-4"><img src="images/create-a-listing.jpg"/></div>
+											</div>
+											<div class="row">
+												<div class="col-xs-4"><img src="images/create-a-listing.jpg"/></div>
+												<div class="col-xs-4"><img src="images/create-a-listing.jpg"/></div>
+												<div class="col-xs-4"><img src="images/create-a-listing.jpg"/></div>
+											</div>
+	 -->
+										</div>
+										<div class="col-sm-2">
+	
+										</div>
+	<script>
+		$(document).ready(function () {
+		var check_value = $('.chk:checked').val();
+		alert(check_value);
+		});
+	</script>
+
+										<div class="col-sm-5">
+												<h6 class="margin-20px-bottom">Property Requirments</h6>
+											
+													<div class="row">
+														<div class="col-xs-12"><div class="form-group">
+																
+															Suitable for children (2-12 years): 
+															<label class="radio-inline"><input type="radio" value="1" name="optChildren">Yes</label>
+															<label class="radio-inline"><input type="radio" value="0" name="optChildren">No</label>
+														</div></div>
+														<div class="col-xs-12"><div class="form-group">
+															Suitable for infants (Under 2 years): 
+															<label class="radio-inline"><input type="radio" value="1" name="optInfants">Yes</label>
+															<label class="radio-inline"><input type="radio" value="0" name="optInfants">No</label>
+														</div></div>
+														<div class="col-xs-12"><div class="form-group">
+															Suitable for pets: 
+															<label class="radio-inline"><input type="radio" value="1" name="optPets">Yes</label>
+															<label class="radio-inline"><input type="radio" value="0" name="optPets">No</label>
+														</div></div>
+														<div class="col-xs-12"><div class="form-group">
+															Smoking allowed: 
+															<label class="radio-inline"><input type="radio" value="1" name="optSmoking">Yes</label>
+															<label class="radio-inline"><input type="radio" value="0" name="optSmoking">No</label>
+														</div></div>
+														<div class="col-xs-12"><div class="form-group">
+															Events or parties allowed: 
+															<label class="radio-inline"><input type="radio" value="1" name="optEvents">Yes</label>
+															<label class="radio-inline"><input type="radio" value="0" name="optEvents">No</label>
+														</div></div>
+														<div class="col-xs-12">
+																<div class="form-group">
+																		  <label for="shareMessage">What are any additional house rules?</label>
+																		<textarea class="form-control margin-10px-bottom" rows="2" id="txtaddhouserule" name="checkinTime"></textarea>
+																	</div>
+															</div>
+		
+														
+													</div>
+												
+												</div>
+											
+								<ul class="list-inline pull-right">
+									<li><button type="button" id="getApi" class="btn btn-default btn-rounded  prev-step">Back</button></li>
+									<li><button type="button" id="addPhotoApi" class="btn btn-blue btn-rounded btn-info-full next-step">Next</button></li>
+								</ul>
+							</div>
+						<!--start: step 6: -->
+						<div class="tab-pane" role="tabpanel" id="step6">
+								<h4 class="alt-font">Check-in, Check-out, & Pricing</h4>
+								
+										<div class="col-sm-5">
+											
+											<h6 class="margin-20px-bottom">Check-in Information</h6>
+											
+													<!--end add check-in info-->
+													<div class="row">
+														
+														<div class="col-xs-12">
+															<div class="form-group">
+																  <label for="shareMessage">What time is check-in?</label>
+																<textarea class="form-control margin-10px-bottom" rows="2" id="que_1" name="checkinTime"></textarea>
+															</div>
+														</div>
+														<div class="col-xs-12">
+															<div class="form-group">
+																  <label for="shareMessage">What should guests know for check-in?</label>
+																<textarea class="form-control margin-10px-bottom" rows="2" id="que_2" name="checkinWifi"></textarea>
+															</div>
+														</div>
+														<div class="col-xs-12">
+															<div class="form-group">
+																  <label for="shareMessage">What are some recommend attractions in the area?</label>
+																<textarea class="form-control margin-10px-bottom" rows="2" id="que_3" name="checkinLockbox"></textarea>
+															</div>
+														</div>
+	
+														<!--end add check-in info-->
+												
+												
+											</div>
+											
+											<!--start add check-out info-->
+													<h6 class="margin-20px-bottom">Check-out Information</h6>
+													<div class="row">
+														<div class="col-xs-12">
+															<div class="form-group">
+																  <label for="shareMessage">What time is check-out?</label>
+																<textarea class="form-control margin-10px-bottom" rows="2" id="que_4" name="checkoutProcess"></textarea>
+															</div>
+														</div>
+														<div class="col-xs-12">
+															<div class="form-group">
+																  <label for="shareMessage">What should guests know for check-out?</label>
+																<textarea class="form-control margin-10px-bottom" rows="2" id="que_5" name="checkoutTime"></textarea>
+															</div>
+														</div>
+														<div class="col-xs-12">
+															<div class="form-group">
+																  <label for="shareMessage">Write a personal thank you for guests.</label>
+																<textarea class="form-control margin-10px-bottom" rows="2" id="que_6" name="checkoutOpenQuestion"></textarea>
+															</div>
+														</div>
+														
+													</div>
+	
+												<!--end add check-out info-->
+											
+										</div>
+	
+										<div class="col-sm-2">
+	
+										</div>
+	
+										<div class="col-sm-5">
+											
+											
+											
+											<h6 class="margin-20px-top">Pricing</h6>
+											<div class="form-group">
+												
+												<p>What is the premium price you get for this listing? This price will then be discounted by 40% on the Wemastè app. </p>
+												<div class="input-group">
+														<span class="input-group-addon"><i class="fas fa-dollar-sign"></i></span>
+												<input type="text" class="form-control" id="lisitngPrice" name="lisitngPrice" placeholder="Amount">
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-sm-12">
+	
+															<label>Cleaning Fee</label>
+												</div>
+												<div class="col-xs-6">
+													<div class="form-group">
+															<div class="input-group">
+																	<span class="input-group-addon"><i class="fas fa-dollar-sign"></i></span>
+															<input type="text" class="form-control" id="cleaningPrice" name="cleaningPrice" placeholder="Amount">
+															</div>
+														</div>
+												</div>
+												<div class="col-xs-6">
+														<div class="form-group">
+																<select class="form-control" id="cleaningPricePer">
+																  <option value="0" >Select Fee Type...</option>
+																  <option value="n">Per Night</option>
+																  <option value="s">Per Stay</option>
+																</select>
+														</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-12">
+	
+															<label>Pet Fee</label>
+												</div>
+												<div class="col-xs-6">
+													<div class="form-group">
+															<div class="input-group">
+																	<span class="input-group-addon"><i class="fas fa-dollar-sign"></i></span>
+															<input type="text" class="form-control" id="petPrice" name="petPrice" placeholder="Amount">
+															</div>
+														</div>
+												</div>
+												<div class="col-xs-6">
+														<div class="form-group">
+																<select class="form-control" id="petPricePer">
+																  <option value="0" >Select Fee Type...</option>
+																  <option value="n" >Per Night</option>
+																  <option value="s" >Per Stay</option>
+																</select>
+														</div>
+												</div>
+											</div>
+											
+										</div>
+								
+								<ul class="list-inline pull-right">
+									<li><button type="button" class="btn btn-default btn-rounded  prev-step">Back</button></li>
+									<li><button type="button" class="btn btn-blue btn-rounded btn-info-full next-step">Next</button></li>
+								</ul>
+							</div>
+						<!--start: step :-->
+						<div class="tab-pane" role="tabpanel" id="complete">
+								<h4 class="alt-font">Review & Publish</h4>
+								<p>You have successfully completed all steps.</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</form>
+				</div>
+			<!--end: add property wizard-->
+			
+        
+
+        </div>
+    </div>
+</section>
+<!--end main content -->
+	
+	
+	<!-- start share with a host lightbox-->
+		<!-- Modal -->
+		<div id="myModal-Share" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<!--<h4 class="modal-title">Modal Header</h4>-->
+			  </div>
+			  <div class="modal-body">
+				
+				  
+				  <form action="/">
+					  <div class="form-group">
+						  <label for="shareTo">To: <span class="text-extra-small">(seperate with a comma)</span></label> <input type="email" class="form-control" id="shareTo" name="shareTo" placeholder="Enter Emails... ">
+					  </div>
+					  <div class="form-group">
+					  <label for="shareSubject">Subject:</label> <input type="text" class="form-control" id="shareSubject" name="shareSubject" Value="Have You Seen Whimstay Yet">
+					  </div>
+					  <div class="form-group">
+						  <label for="shareMessage">Message:</label>
+						  <textarea class="form-control margin-10px-bottom" rows="7" id="shareMessage" name="shareMessage">
+Just wanted to share the love. Thought you might be intrested.
+							  
+Whimstay is a new vacation rental app that will sell your unsold listings 10 days out as last-minute deals to respectful adventurers.
+
+Best of all, that are offering NO service fees for a whole year by signing up today.
+							  
+http://wemaste.com/host
+
+Cheers,
+
+[Host First Name]		
+						  </textarea>
+					  </div>
+					  
+					  <button type="submit" class="btn btn-blue btn-rounded btn-large width-100" data-dismiss="modal">Send</button>
+				 </form>
+				  
+				  
+			  </div>
+			  
+			</div>
+
+		  </div>
+		</div>
+	<!-- end share with a host lightbox-->
+	
+<!--footer Start-->
+<footer class="bg-dark-blue padding-30px-tb text-center">
+    <div class="footer-widget-area">
+        <div class="container">
+			<div class="row">
+                <div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+                    <a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s" href="https://facebook.com/wemastevacation"  target="_blank"><i class="fab fa-facebook-f"></i><span></span></a>
+                    <a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s" href="https://www.instagram.com/wemaste/" target="_blank"><i class="fab fa-instagram"></i><span></span></a>
+                    <a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s" href="https://linkedin.com/company/wemaste"  target="_blank"><i class="fab fa-linkedin-in"></i><span></span></a>
+                    
+                </div>
+            </div>
+			
+			
+            <p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All rights reserved.</p>
+			<p class="text-white"><a href="./terms_privacy">Terms & Privacy</a> </p>
+        </div>
+    </div>
+
+</footer>
+<!-- end footer -->
+	<!-- javascript libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+
+  <!--form validation-->
+  <!-- <script src="http://13.59.91.130:3000/assets/validation.js"></script>
+  <script src="http://13.59.91.130:3000/assets/script.js"></script> -->
+	
+	<!-- setting -->
+	<script src="../public/javascripts/main.js"></script>
+	<!-- <script src="../public/javascripts/manageProfile.js"></script>
+	<script src="../public/javascripts/validate.js"></script> -->
+	<!-- <script src="../public/javascripts/createNewListingApi.js"></script> -->
+    <script src="../public/javascripts/googleMap.js"></script>
+    
+    <script>
+	 
+            $(document).ready(function () {
+              
+              document.getElementById("propertyAddress").value = sessionStorage.getItem("myMainKey");
+              var p = sessionStorage.getItem("propertyTypeId");
+              document.getElementById("propertyType").value=p
+if (p ==1)
+	{
+		$('#subPropertyType').empty();
+		$('#subPropertyType').append(  $('<option></option>').val(0).html('select'));
+		$('#subPropertyType').append(  $('<option></option>').val(1).html('Apartment'));
+		$('#subPropertyType').append(  $('<option></option>').val(2).html('Condo'));
+		$('#subPropertyType').append(  $('<option></option>').val(3).html('Loft'));
+		$('#subPropertyType').append(  $('<option></option>').val(4).html('Studio'));
+	}
+	else if  (p ==2)
+	{
+		$('#subPropertyType').empty();
+		$('#subPropertyType').append(  $('<option></option>').val(0).html('select'));
+		$('#subPropertyType').append(  $('<option></option>').val(5).html('House'));
+		$('#subPropertyType').append(  $('<option></option>').val(6).html('Bungalow'));
+		$('#subPropertyType').append(  $('<option></option>').val(7).html('Cabin'));
+		$('#subPropertyType').append(  $('<option></option>').val(8).html('Cottage'));
+		$('#subPropertyType').append(  $('<option></option>').val(9).html('Country House'));
+		$('#subPropertyType').append(  $('<option></option>').val(10).html('Townhome'));
+		$('#subPropertyType').append(  $('<option></option>').val(11).html('Villa'));
+	}
+	else if (p ==3)
+	{
+		$('#subPropertyType').empty();
+		$('#subPropertyType').append(  $('<option></option>').val(0).html('select'));
+		$('#subPropertyType').append(  $('<option></option>').val(12).html('Guesthouse'));
+		$('#subPropertyType').append(  $('<option></option>').val(13).html('Guest Suite'));
+		
+	}
+	else if (p ==4)
+	{
+		$('#subPropertyType').empty();
+		$('#subPropertyType').append(  $('<option></option>').val(0).html('select'));
+		$('#subPropertyType').append(  $('<option></option>').val(14).html('Bed and breakfast'));
+		
+	}
+	
+	else if (p ==5)
+	{
+		$('#subPropertyType').empty();
+		$('#subPropertyType').append(  $('<option></option>').val(0).html('select'));
+		$('#subPropertyType').append(  $('<option></option>').val(15).html('Boutique hotel'));
+		$('#subPropertyType').append(  $('<option></option>').val(16).html('Aparthotel'));
+		$('#subPropertyType').append(  $('<option></option>').val(17).html('Hostel'));
+		$('#subPropertyType').append(  $('<option></option>').val(18).html('Hotel'));
+		$('#subPropertyType').append(  $('<option></option>').val(19).html('Lodge'));
+		$('#subPropertyType').append(  $('<option></option>').val(20).html('Resort'));
+		$('#subPropertyType').append(  $('<option></option>').val(21).html('Serviced Apartment'));
+	}	
+	else if (p ==6)
+	{
+		$('#subPropertyType').empty();
+		$('#subPropertyType').append(  $('<option></option>').val(0).html('select'));
+		$('#subPropertyType').append(  $('<option></option>').val(22).html('Barn'));
+		$('#subPropertyType').append(  $('<option></option>').val(23).html('Boat'));
+		$('#subPropertyType').append(  $('<option></option>').val(24).html('Bus'));
+		$('#subPropertyType').append(  $('<option></option>').val(25).html('Camper/RV'));
+		$('#subPropertyType').append(  $('<option></option>').val(26).html('Campsite'));
+		$('#subPropertyType').append(  $('<option></option>').val(27).html('Castle'));
+		$('#subPropertyType').append(  $('<option></option>').val(28).html('Cave'));
+		$('#subPropertyType').append(  $('<option></option>').val(29).html('Dome house'));
+		$('#subPropertyType').append(  $('<option></option>').val(30).html('Earth house'));
+		$('#subPropertyType').append(  $('<option></option>').val(31).html('Farm Stay'));
+		$('#subPropertyType').append(  $('<option></option>').val(32).html('Houseboat'));
+		$('#subPropertyType').append(  $('<option></option>').val(33).html('Hut'));
+		$('#subPropertyType').append(  $('<option></option>').val(34).html('Igloo'));
+		$('#subPropertyType').append(  $('<option></option>').val(35).html('Island'));
+		$('#subPropertyType').append(  $('<option></option>').val(36).html('Lighthouse'));
+		$('#subPropertyType').append(  $('<option></option>').val(37).html('Plane'));
+		$('#subPropertyType').append(  $('<option></option>').val(38).html('Mobile Home'));
+		$('#subPropertyType').append(  $('<option></option>').val(39).html('Tent'));
+		$('#subPropertyType').append(  $('<option></option>').val(40).html('Tiny House'));
+		$('#subPropertyType').append(  $('<option></option>').val(41).html('Tipi'));
+		$('#subPropertyType').append(  $('<option></option>').val(42).html('Train'));
+		$('#subPropertyType').append(  $('<option></option>').val(43).html('Treehouse'));
+		$('#subPropertyType').append(  $('<option></option>').val(44).html('Windmill'));
+		$('#subPropertyType').append(  $('<option></option>').val(45).html('Yurt'));
+		
+    }	
+            document.getElementById("subPropertyType").value = sessionStorage.getItem("propertySubTypeId");
+            document.getElementById("guestRoom").value = sessionStorage.getItem("guestRoom");
+	
+            document.getElementById("noBeds").value = sessionStorage.getItem("myMain");
+            document.getElementById("my_select").value = sessionStorage.getItem("my_select");
+			document.getElementById("Bed").value = sessionStorage.getItem("Bed");
+			document.getElementById("noBaths").value = sessionStorage.getItem("noBaths");
+			document.getElementById("propertyName").value = sessionStorage.getItem("propertyName");
+			document.getElementById("propertyDesc").value = sessionStorage.getItem("propertyDesc");
+
+			ShowBathroomRow();
+
+			ShowBedroomRow();
+			  for (var i = 0; i < 28; i++) {
+				// document.getElementById("Feature_" + (i+1)).checked =true;
+				document.getElementById("Feature_" + (i+1)).checked = ((sessionStorage.getItem("Feature_"+ (i+1)) == "1"? true :false ));
+			  }
+			//   sujata changes to 13092018
+			ShowYogiQueAnswer();
+			// //price//
+			document.getElementById("lisitngPrice" ).value =sessionStorage.getItem("basePrice");
+
+			document.getElementById("petPrice" ).value = parseFloat(sessionStorage.getItem("petFee"));
+			document.getElementById("petPricePer" ).value =sessionStorage.getItem("petFeeType");
+
+			document.getElementById("cleaningPrice" ).value =parseFloat(sessionStorage.getItem("cleaningFee"));
+			document.getElementById("cleaningPricePer" ).value =sessionStorage.getItem("cleaningFeeType");
+			
+			$('input[name=optChildren][value="' + sessionStorage.getItem("suitableChild") + '"]').prop('checked', true);
+			$('input[name=optInfants][value="' + sessionStorage.getItem("suitableInfant") + '"]').prop('checked', true);
+			$('input[name=optPets][value="' + sessionStorage.getItem("suitablePet") + '"]').prop('checked', true);
+			$('input[name=optSmoking][value="' + sessionStorage.getItem("smokeAllowed") + '"]').prop('checked', true);
+			$('input[name=optEvents][value="' + sessionStorage.getItem("partyAllowed") + '"]').prop('checked', true);
+
+			// $('input[name=optChildren]:checked').val() =sessionStorage.getItem("suitableChild"); 
+			// $('input[name=optInfants]:checked').val()=sessionStorage.getItem("suitableInfant"); 
+			// $('input[name=optPets]:checked').val()=sessionStorage.getItem("suitablePet"); 
+
+			// $('input[name=optSmoking]:checked').val()=sessionStorage.getItem("smokeAllowed"); 
+			// $('input[name=optEvents]:checked').val()=sessionStorage.getItem("partyAllowed"); 
+
+			document.getElementById("txtaddhouserule").value=sessionStorage.getItem("addHouseRule");
+			//price//
+              
+          });
+          </script>   
+<script>
+function btn_Minus(){
+	var noBeds = document.getElementById("noBeds");
+	if(noBeds.value == 1) noBeds.value=1
+    else
+    noBeds.value=parseFloat(noBeds.value)-1;
+}
+function btn_Plus(){
+	var noBeds = document.getElementById("noBeds");
+	noBeds.value=parseFloat(noBeds.value)+1;
+}
+
+$("body").on("focusout",".bathCount input",function(){
+    // alert("a");
+    AddRow();    
+});
+
+function AddRow()
+{
+    var objBathCnt = document.getElementById("noBeds");
+	// alert(objBathCnt.value);
+	if(objBathCnt.value.indexOf('-') != -1) objBathCnt.value=0;
+}
+</script>
+
+<script>
+		function btn_minus(){
+			var noBed = document.getElementById("noBed");
+			if(noBed.value == 2) noBed.value=2
+			else
+			noBed.value=parseFloat(noBed.value)-1;
+		}
+		function btn_plus(){
+			var noBed = document.getElementById("noBed");
+			noBed.value=parseFloat(noBed.value)+1;
+		}
+		
+		$("body").on("focusout",".bathCount input",function(){
+			// alert("a");
+			AddNewRow();    
+		});
+		
+		function AddNewRow()
+		{
+			var objBathCnt = document.getElementById("noBeds");
+			// alert(objBathCnt.value);
+			if(objBathCnt.value.indexOf('-') != 1) objBathCnt.value=2;
+		}
+		</script>
+		
+
+<script>
+function btn_Bathroom_Minus(){
+    var noBaths = document.getElementById("noBaths");
+    // if (noBaths.value.indexOf('.') == -1 )
+    // {
+    // noBaths.value=parseInt(noBaths.value)-1;
+    // }
+    // else{
+    //     noBaths.value=parseFloat(noBaths.value)-1;
+    // }
+    if(noBaths.value == 0) noBaths.value=0
+    else
+    noBaths.value=parseFloat(noBaths.value)-0.5;
+    AddBathroomRow();
+}
+function btn_Bathroom_Plus(){
+    // alert(document.getElementById('noBaths').value);
+    var noBaths = document.getElementById("noBaths");
+    // if (noBaths.value.indexOf('.') == -1 )
+    // {
+    //     noBaths.value=parseInt(noBaths.value) + 1;
+    // }
+    // else
+    // {
+    //     noBaths.value=parseFloat(noBaths.value)+1;
+    // }
+    noBaths.value=parseFloat(noBaths.value)+0.5;
+    AddBathroomRow();
+}
+// <!-- Sujata Changes on 13092018 -->
+
+function ShowYogiQueAnswer()
+{
+    
+    var YogiQuesAnsArr = JSON.parse(sessionStorage.getItem("YogiQuesAnsArr"));//no brackets
+
+    for (var i = 0; i < YogiQuesAnsArr.length; i++) {
+        // alert(YogiQuesIdArr[i]);        
+        document.getElementById("que_" + (i+1)).value = YogiQuesAnsArr[i];              
+    }
+}
+
+function ShowBedroomRow()
+{
+
+// var bedroomIDArr = JSON.parse(sessionStorage.getItem("bedroomID"));//no brackets
+// 	// lblbedroomId'+ iCnt +' =bedroomIDArr[i];
+// 	for (var i = 0; i < bedroomIDArr.length; i++) {
+// 			// alert(storedArray1[i]);
+// 			// lblbedroomId'+ iCnt +' =bedroomIDArr[i];
+// 	}
+	
+// 	var bedroomAmenitiesArr = JSON.parse(sessionStorage.getItem("bedroomAmenities"));//no brackets
+// 	// <!-- lblSelected'+ iCnt +' --> =bedroomAmenitiesArr[i]
+// 	for (var i = 0; i < bedroomAmenitiesArr.length; i++) {
+// 			alert(bedroomAmenitiesArr[i]);
+// // <!-- lblSelected'+ iCnt +' --> =bedroomAmenitiesArr[i]
+// 	}
+
+// 	var bedCntAmenitiesarr = JSON.parse(sessionStorage.getItem("bedCntAmenitiesarr"));//no brackets
+// 		//lblSelectbedCount'+ iCnt +' =bedCntAmenitiesarr[i]
+// 	for (var i = 0; i < bedCntAmenitiesarr.length; i++) {
+// 			alert(bedCntAmenitiesarr[i]);
+// 			//lblSelectbedCount'+ iCnt +' =bedCntAmenitiesarr[i]
+// 	}
+
+	// sessionStorage.setItem("bedCntAmenitiesarr",  JSON.stringify(bedCntAmenitiesarr) );
+
+	var iCnt = 0;
+	var ipresentCnt = 0;
+	// CREATE A "DIV" ELEMENT AND DESIGN IT USING jQuery ".css()" CLASS.
+	var container = $(document.createElement('div')).css({
+		 width: '100%', 
+		borderTopColor: '#999', borderBottomColor: '#999',
+		borderLeftColor: '#999', borderRightColor: '#999'
+	});
+
+	var p =  document.getElementById("my_select").value;
+			
+			$(container).empty();
+
+				var bedroomIDArr = JSON.parse(sessionStorage.getItem("bedroomID"));//no brackets
+	var bedroomAmenitiesArr = JSON.parse(sessionStorage.getItem("bedroomAmenities"));//no brackets	
+	var bedCntAmenitiesarr = JSON.parse(sessionStorage.getItem("bedCntAmenitiesarr"));//no brackets	
+	var text_t=""
+	var text_cnt=0;
+		   // alert(p);
+			for(var q=1; q<=p; q++){
+				iCnt= q;
+			
+				var r =  document.getElementById("tb"+iCnt);
+				if(r==null){
+					var strSub="";
+					var lstPos="right";
+					var array1 = [bedCntAmenitiesarr[iCnt]];
+					for (m =0;m < array1.length;m++)
+					{
+					var array = new Array();
+					array =array1[m].split(",");
+					
+					for (l =0;l < array.length -1 ;l++)
+					{
+						// var array1 = [array[l]];
+						// alert(array1[0]);
+						var pos=array[l].indexOf(':');
+				  		var posamen=parseInt(array[l].substring(0, pos-1));
+				 		 text_t= (posamen == 1  ? 'Single': 
+						 (posamen == 2  ? 'Double': 
+				 		(posamen == 3  ? 'King': 
+				 		(posamen == 4  ? 'Queen': ''))));
+						text_cnt=parseInt(bedCntAmenitiesarr[iCnt].substring(pos + 2 ,bedCntAmenitiesarr[iCnt].length -1)) ;
+					
+						if(!(l % 2))
+						{
+							lstPos='left';
+						strSub= strSub +	'<div class="row" >'+
+						'<div class="containerLeft" id=containerleft'+ iCnt + '_'+ (l+1) +'  >'+
+						'<div class="col-sm-4 col-xs-8">'+ text_t +'</div>'+
+						'	<div class="col-sm-2 col-xs-4 bedCount">'+
+								'<input type="text" class="form-control" id=bed'+ text_t.replace(' ', '')  +'_'+ iCnt +' name='+ text_t +' value="'+ text_cnt +'">'+
+							'</div>'+
+							'</div>'
+							
+						}
+						else
+						{
+							lstPos='right';
+						strSub= strSub + '<div class="containerRight" id=containerright'+ iCnt + '_'+ (l+1) +'  >'+
+						'<div class="col-sm-4 col-xs-8">'+ text_t +'</div>'+
+						'<div class="col-sm-2 col-xs-4 bedCount">'+
+							'<input type="text" class="form-control" id=bed'+ text_t.replace(' ', '') +'_'+ iCnt +' name='+ text_t +' value="'+ text_cnt +'">'+
+						'</div>'+
+						'</div>'	
+						
+						}
+					}
+				}
+					if(lstPos =="right")
+					{
+						strSub= strSub +	'<div class="row" >'+
+						'<div class="containerLeft" id=containerleft'+ iCnt + '_'+ (array.length +1 ) +'  >'+
+								'<div class="col-sm-6 col-xs-12">'+
+						'<select class="form-control selection" id=addNewBedLeft'+ iCnt + '_'+ (array.length +1 ) +'   >'+
+						'<option value="0">Add another bed</option>'+
+						((bedroomAmenitiesArr[iCnt].indexOf('1,') != -1) ? '': '<option value="1">Single</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('2,') != -1) ? '': '<option value="2">Double</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('3,') != -1) ? '': '<option value="3">Queen</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('4,') != -1) ? '': '<option value="4">King</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('5,') != -1) ? '': '<option value="5">Crib</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('6,') != -1) ? '': '<option value="6">Couch</option>') +
+						 ((bedroomAmenitiesArr[iCnt].indexOf('7,') != -1) ? '': '<option value="7">Bunkbed</option>') +
+						 ((bedroomAmenitiesArr[iCnt].indexOf('8,') != -1) ? '': '<option value="8">Air Mattress</option>') +
+						 ((bedroomAmenitiesArr[iCnt].indexOf('9,') != -1) ? '': '<option value="9">Floor Mattress</option>') +
+						 ((bedroomAmenitiesArr[iCnt].indexOf('10,') != -1) ? '': '<option value="10">Toddler Bed</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('11,') != -1) ? '': '<option value="11">Hammock</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('12,') != -1) ? '': '<option value="12">Water Bed</option>')+
+									
+						
+									
+						'</select>'+
+						'</div>'+
+							'</div>'
+						
+					}
+					else
+					{
+						strSub= strSub +	'<div class="containerRight" id=containerright'+ iCnt + '_'+ (array.length) +'   >'+
+								'<div class="col-sm-6 col-xs-12">'+ 
+						 '<select class="form-control selection" id=addNewBedRight'+ iCnt + '_'+ (array.length) +'   >'+
+						 '<option value="0">Add another bed</option>'+
+						
+						 ((bedroomAmenitiesArr[iCnt].indexOf('1,') != -1) ? '': '<option value="1">Single</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('2,') != -1) ? '': '<option value="2">Double</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('3,') != -1) ? '': '<option value="3">Queen</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('4,') != -1) ? '': '<option value="4">King</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('5,') != -1) ? '': '<option value="5">Crib</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('6,') != -1) ? '': '<option value="6">Couch</option>') +
+						 ((bedroomAmenitiesArr[iCnt].indexOf('7,') != -1) ? '': '<option value="7">Bunkbed</option>') +
+						 ((bedroomAmenitiesArr[iCnt].indexOf('8,') != -1) ? '': '<option value="8">Air Mattress</option>') +
+						 ((bedroomAmenitiesArr[iCnt].indexOf('9,') != -1) ? '': '<option value="9">Floor Mattress</option>') +
+						 ((bedroomAmenitiesArr[iCnt].indexOf('10,') != -1) ? '': '<option value="10">Toddler Bed</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('11,') != -1) ? '': '<option value="11">Hammock</option>')+
+						 ((bedroomAmenitiesArr[iCnt].indexOf('12,') != -1) ? '': '<option value="12">Water Bed</option>')+
+									
+						 '</select>'+
+						'</div>'+
+						'</div>'	
+					}
+				
+				  $(container).append('<div class="col-sm-9"><p><strong>Bedroom'+ iCnt +'</strong><br>'+
+				  // (iCnt-1) +' beds'+								label
+				  '<div><label type="text" id=lblBedCnt'+ iCnt +'>0 beds</></div>'+		
+				  '</p></div>'+
+				  '<div class="col-sm-3 button-class">'+
+				  
+				  '<button id='+ iCnt +' type="button"  class="btn btn-blue btn-rounded btn-beds width-100" data-toggle="collapse" data-target=#bed1collapse'+ iCnt + '>'+  'Add Beds </button>'+
+				  
+				  '</div>'+
+				  '<div class="clearfix">'+
+		  '<div id=bed1collapse'+ iCnt +' class="collapse bedcollapse">'+
+		  '<div class="row">'+
+		  '<div><input type="hidden" value='+ (iCnt-1) +' id=lbl'+ iCnt +' ></div>'+
+		  '<div><input type="hidden" value='+ bedroomAmenitiesArr[iCnt] +' id=lblSelected'+ iCnt +' ></div>'+
+		  
+		  '<div><input type="hidden" value='+bedCntAmenitiesarr[iCnt] +' id=lblSelectbedCount'+ iCnt +' ></div>'+
+		  '<div><input type="hidden" value='+ bedroomIDArr[iCnt] +' id=lblbedroomId'+ iCnt +' ></div>'+
+		  
+		  strSub +
+
+		  '</div>'+
+		  '</div>'
+			  );				  
+
+
+	// var lblbedroomId=document.getElementById("lblbedroomId"+ iCnt );
+	// var lblSelected=document.getElementById("lblSelected"+ iCnt );
+	// var lblSelectbedCount=document.getElementById("lblSelectbedCount"+ iCnt );
+
+	// lblbedroomId.value=bedroomIDArr[iCnt];
+	// lblSelected.value=bedroomAmenitiesArr[iCnt];
+	// lblSelectbedCount.value=bedCntAmenitiesarr[iCnt];
+
+				  
+				  // '<input type=text class="input" id=tb' + iCnt + ' ' +
+				  // 'value="Text Element ' + iCnt + '" />');
+				}else{
+				alert("present");
+				}
+				
+			}
+			  // iCnt = iCnt + 1;
+
+			  // ADD TEXTBOX.
+		   //   $(container).append('<input type=text class="input" id=tb' + iCnt + ' ' +
+			 //     'value="Text Element ' + iCnt + '" />');
+
+			  // SHOW SUBMIT BUTTON IF ATLEAST "1" ELEMENT HAS BEEN CREATED.
+			  if (iCnt == 1) {
+				  var divSubmit = $(document.createElement('div'));
+				  $(divSubmit).append('<input type=button class="bt"' + 
+					  'onclick="GetTextValue()"');
+			  }
+
+			  // ADD BOTH THE DIV ELEMENTS TO THE "main" CONTAINER.
+			  $('#main').after(container, divSubmit);
+
+}
+
+function ShowBathroomRow()
+{
+	AddBathroomRow();
+    var objBathCnt = document.getElementById("noBaths");
+	// alert(objBathCnt.value);
+	if(objBathCnt.value.indexOf('-') != -1) objBathCnt.value=0;
+    var BathCnt=objBathCnt.value;
+    
+    if (BathCnt.indexOf('.') != -1 )
+    {
+        BathCnt=parseFloat(noBaths.value)+ 0.5;
+    }
+	 for(var BathroomNo=1; BathroomNo<=BathCnt; BathroomNo++){
+
+				var storedArray = JSON.parse(sessionStorage.getItem("bathroomAmenities"));//no brackets
+				var BathRoomArray = JSON.parse(sessionStorage.getItem("bathroomID"));//no brackets
+				var BathRoomTypeArray = JSON.parse(sessionStorage.getItem("bathroomTypeID"));//no brackets
+						// alert(storedArray[BathroomNo-1]);
+				var lblBathAmenities=document.getElementById("lblBathAmenities_"+ BathroomNo );
+				var lblBathroomId=document.getElementById("lblBathroomId_"+ BathroomNo );
+				lblBathAmenities.innerText=storedArray[BathroomNo-1];
+				lblBathroomId.value=BathRoomArray[BathroomNo-1];
+					
+				// alert(lblBathroomId.value);
+				// alert('bathroom type'+ BathRoomTypeArray[BathroomNo-1]);
+				var bathaddBaths =  document.getElementById("addBaths_"+ BathroomNo );
+				bathaddBaths.value = BathRoomTypeArray[BathroomNo-1];
+				
+				// alert(document.getElementById("lblBathAmenities_"+ BathroomNo ).value);
+				if ((lblBathAmenities.innerText).indexOf("13,") != -1 )
+				{
+					document.getElementById("Combo_" + (BathroomNo)).checked=true;
+				}
+				if ((lblBathAmenities.innerText).indexOf("14,") != -1 )
+				{
+					document.getElementById("Toilet_" + (BathroomNo)).checked=true;
+				}
+				if ((lblBathAmenities.innerText).indexOf("15,") != -1 )
+				{
+					document.getElementById("JettedTub_" + (BathroomNo)).checked=true;
+				}
+				if ((lblBathAmenities.innerText).indexOf("16,") != -1 )
+				{
+					document.getElementById("Tub_" + (BathroomNo)).checked=true;
+				}
+				if ((lblBathAmenities.innerText).indexOf("17,") != -1 )
+				{
+					document.getElementById("OutdoorShower_" + (BathroomNo)).checked=true;
+				}
+				if ((lblBathAmenities.innerText).indexOf("18,") != -1 )
+				{
+					document.getElementById("Shower_" + (BathroomNo)).checked=true;
+				}
+				if ((lblBathAmenities.innerText).indexOf("19,") != -1 )
+				{
+					document.getElementById("Bidet_" + (BathroomNo)).checked=true;
+				}
+				AddBathroomType(BathroomNo);		
+    }
+}
+// <!-- Sujata Changes on 13092018 -->
+
+$("body").on("focusout",".bedCount input",function(){
+    // alert("a");
+    AddBathroomRow();    
+});
+
+$("body").on("click",".bathCount input",function(){
+
+// alert(    $(this).is(":checked"));
+// alert(    $(this).attr('value'));
+var str=$(this).attr('id');
+	var iRow =0;
+	iRow=str.indexOf('_');
+	var iRNo=str.substring(iRow+1);
+	var lblBathAmenities=  document.getElementById("lblBathAmenities_"+ iRNo );
+
+	if ($(this).is(":checked"))
+	{
+		if((lblBathAmenities.innerText).indexOf($(this).attr('value')+",") == -1)
+		{
+			lblBathAmenities.innerText=(lblBathAmenities.innerText)+$(this).attr('value')+",";
+		}
+	}
+	else{
+		lblBathAmenities.innerText=(lblBathAmenities.innerText).replace($(this).attr('value')+",","");
+	}
+	// alert (lblBathAmenities.innerText);
+
+	AddBathroomType(iRNo);
+});
+
+$("body").on("change",".bathSelection",function(){
+
+var str=$(this).attr('id');
+	var iRow =0;
+	iRow=str.indexOf('_');
+	var iRNo=str.substring(iRow+1);
+
+	AddBathroomType(iRNo);        
+});
+
+$("body").on("click",".bathBtn button",function(){            
+	var str=$(this).attr('val');
+	var iRow =0;
+	iRow=str.indexOf('_');
+	var iRNo=str.substring(iRow+1);
+	AddBathroomType(iRNo);
+});
+
+function AddBathroomType(BRNo)
+{
+        var bathaddBaths =  document.getElementById("addBaths_"+ BRNo );
+        var BtnBath =  document.getElementById("BtnBath_"+ BRNo );
+        var lblBathSelected =  document.getElementById("lblBathSelected_"+ BRNo );
+        
+        var lblBathAmenities=  document.getElementById("lblBathAmenities_"+ BRNo );
+
+        var BathFeat="";        
+        if(bathaddBaths != null )
+        {        
+            var strUser =  document.getElementById(bathaddBaths.id).options[ document.getElementById(bathaddBaths.id).selectedIndex].text;
+            if (strUser != "Bathroom type") BathFeat=strUser;
+        }    
+        if ((lblBathAmenities.innerText).indexOf("13,") != -1 )
+        {
+            BathFeat =BathFeat+ ((BathFeat.length >0 )? ",":"") + " Combo Tub/Shower";
+        }
+        if ((lblBathAmenities.innerText).indexOf("14,") != -1 )
+        {
+            BathFeat =BathFeat+ ((BathFeat.length >0 )? ",":"") + " Toilet";
+        }
+        if ((lblBathAmenities.innerText).indexOf("15,") != -1 )
+        {
+            BathFeat =BathFeat+ ((BathFeat.length >0 )? ",":"") + " Jetted Tub";
+        }
+        if ((lblBathAmenities.innerText).indexOf("16,") != -1 )
+        {
+            BathFeat =BathFeat+((BathFeat.length >0 )? ",":"") + " Tub";
+        }
+        if ((lblBathAmenities.innerText).indexOf("17,") != -1 )
+        {
+            BathFeat =BathFeat+ ((BathFeat.length >0 )? ",":"") + " Outdoor Shower";
+        }
+        if ((lblBathAmenities.innerText).indexOf("18,") != -1 )
+        {
+            BathFeat =BathFeat+ ((BathFeat.length >0 )? ",":"") + " Shower";
+        }
+        if ((lblBathAmenities.innerText).indexOf("19,") != -1 )
+        {
+            BathFeat =BathFeat+ ((BathFeat.length >0 )? ",":"") + " Bidet";
+        }
+        lblBathSelected.innerText =BathFeat;
+        
+		BtnBath.innerHTML= ((BathFeat.length >0 )? "Edit Feat.":"Add Feat");
+	//    alert(lblBathAmenities.innerText);
+}
+
+function AddBathroomRow()
+{
+    var objBathCnt = document.getElementById("noBaths");
+	// alert(objBathCnt.value);
+	if(objBathCnt.value.indexOf('-') != -1) objBathCnt.value=0;
+    var BathCnt=objBathCnt.value;
+    
+    if (BathCnt.indexOf('.') != -1 )
+    {
+        BathCnt=parseFloat(noBaths.value)+ 0.5;
+    }
+    // alert(BathCnt);
+    var containerBath = document.getElementById("Bathroom");
+                    $(containerBath).empty();
+                         // alert(p);
+                          for(var BathroomNo=1; BathroomNo<=BathCnt; BathroomNo++){
+                        //       iCnt= q;
+                        //       var r =  document.getElementById("tb"+iCnt);
+                        //       if(r==null){
+							$(containerBath).append('<div class="row addBeds">'+
+                                           '<div class="col-sm-9">'+
+                                            '<p><strong>Bathroom '+ BathroomNo +'</strong></p>'+
+                                            '<div><label type="text" id=lblBathSelected_'+ BathroomNo +'></label></div>'+
+											'<div><input type="hidden" value="," id=lblBathAmenities_'+ BathroomNo +' ></div>'+
+											'<div><input type="hidden" value="0" id=lblBathroomId_'+ BathroomNo +' ></div>'+
+                                           '</div>'+
+                                           '<div class="col-sm-3 bathBtn">'+
+                                               '<button id=BtnBath_'+ BathroomNo +' type="button" class="btn btn-blue btn-rounded btn-beds width-100" data-toggle="collapse" data-target=#bath'+ BathroomNo +'collapse>Add Feat.</button>'+
+                                           '</div>'+
+                                           '<div class="clearfix"></div>'+
+                                           '<div id="bath'+ BathroomNo +'collapse" class="collapse bedcollapse">'+
+                                               '<div class="row">'+
+                                                   '<div class="col-sm-12 ">'+
+                                                       '<div class="form-group ">'+
+                                                       '<select class="form-control bathSelection" id=addBaths_'+ BathroomNo +'>'+
+                                                         '<option value="0">Bathroom type</option>'+
+                                                         '<option value="1">Full</option>'+
+                                                         '<option value="2">Half</option>'+
+                                                         '<option value="3">Shower</option>'+
+                                                         '</select>'+
+                                                         '</div>'+
+                                                         '</div>'+
+                                                         '</div>'+
+                                                         '<div class="row">'+
+                                                           '<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"><label class="bathCount"><input id=Combo_'+ BathroomNo +' type="checkbox" value="13">Combo Tub/Shower</label></div></div></div>'+
+                                                           '<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"><label class="bathCount"><input id=Toilet_'+ BathroomNo +' type="checkbox" value="14">Toilet</label></div></div></div>'+
+
+														   '</div>'+
+														   '<div class="row">'+
+                                                               '<div class="col-sm-6 col-xs-12"><div class="checkbox"><label class="bathCount"><input id=JettedTub_'+ BathroomNo +' type="checkbox" value="15">Jetted Tub</label></div></div>'+
+                                                               '<div class="col-sm-6 col-xs-12"><div class="form-group"><div class="checkbox"><label class="bathCount"><input id=Tub_'+ BathroomNo +' type="checkbox" value="16">Tub</label></div></div></div>'+
+                                                               '</div>'+
+                                                               '<div class="row">'+
+                                                                   '<div class="col-sm-6 col-xs-12"><div class="checkbox"><label class="bathCount"><input id=OutdoorShower_'+ BathroomNo +' type="checkbox" value="17">Outdoor Shower</label></div></div>'+
+                                                                   '<div class="col-sm-6 col-xs-12"><div class="checkbox"><label class="bathCount"><input id=Shower_'+ BathroomNo +' type="checkbox" value="18">Shower</label></div></div>'+
+
+                                                   '</div>'+
+                                                   '<div class="row">'+
+                                                       '<div class="col-sm-6 col-xs-12"><div class="checkbox"><label class="bathCount"><input id=Bidet_'+ BathroomNo +' type="checkbox" value="19">Bidet</label></div></div>'+
+                                               '</div>'+
+                                           '</div>'+
+
+                                           '</div>');
+                                                    }
+}
+</script>
+
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+			var reader = new FileReader();
+	
+            reader.onload = function (e) {
+                $('#profile-img-tag').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#profile-img").change(function(){
+        readURL(this);
+	});
+
+	// $(document).ready(function(){
+    //     $('input[type="file"]').change(function(e){
+	// 		// var fileName = e.target.files[0].name;
+	// 		var fileName = e.target.files[0].length;
+    //         alert(fileName);
+    //     });
+    // });
+
+</script>
+
+
+
+<script>
+$('#propertyType').change(function(e) {
+	//alert(this.value);
+	if (this.value ==1)
+	{
+		$('#subPropertyType').empty();
+		$('#subPropertyType').append(  $('<option></option>').val(0).html('select'));
+		$('#subPropertyType').append(  $('<option></option>').val(1).html('Apartment'));
+		$('#subPropertyType').append(  $('<option></option>').val(2).html('Condo'));
+		$('#subPropertyType').append(  $('<option></option>').val(3).html('Loft'));
+		$('#subPropertyType').append(  $('<option></option>').val(4).html('Studio'));
+	}
+	else if  (this.value ==2)
+	{
+		$('#subPropertyType').empty();
+		$('#subPropertyType').append(  $('<option></option>').val(0).html('select'));
+		$('#subPropertyType').append(  $('<option></option>').val(5).html('House'));
+		$('#subPropertyType').append(  $('<option></option>').val(6).html('Bungalow'));
+		$('#subPropertyType').append(  $('<option></option>').val(7).html('Cabin'));
+		$('#subPropertyType').append(  $('<option></option>').val(8).html('Cottage'));
+		$('#subPropertyType').append(  $('<option></option>').val(9).html('Country House'));
+		$('#subPropertyType').append(  $('<option></option>').val(10).html('Townhome'));
+		$('#subPropertyType').append(  $('<option></option>').val(11).html('Villa'));
+	}
+	else if (this.value ==3)
+	{
+		$('#subPropertyType').empty();
+		$('#subPropertyType').append(  $('<option></option>').val(0).html('select'));
+		$('#subPropertyType').append(  $('<option></option>').val(12).html('Guesthouse'));
+		$('#subPropertyType').append(  $('<option></option>').val(13).html('Guest Suite'));
+		
+	}
+	else if (this.value ==4)
+	{
+		$('#subPropertyType').empty();
+		$('#subPropertyType').append(  $('<option></option>').val(0).html('select'));
+		$('#subPropertyType').append(  $('<option></option>').val(14).html('Bed and breakfast'));
+		
+	}
+	
+	else if (this.value ==5)
+	{
+		$('#subPropertyType').empty();
+		$('#subPropertyType').append(  $('<option></option>').val(0).html('select'));
+		$('#subPropertyType').append(  $('<option></option>').val(15).html('Boutique hotel'));
+		$('#subPropertyType').append(  $('<option></option>').val(16).html('Aparthotel'));
+		$('#subPropertyType').append(  $('<option></option>').val(17).html('Hostel'));
+		$('#subPropertyType').append(  $('<option></option>').val(18).html('Hotel'));
+		$('#subPropertyType').append(  $('<option></option>').val(19).html('Lodge'));
+		$('#subPropertyType').append(  $('<option></option>').val(20).html('Resort'));
+		$('#subPropertyType').append(  $('<option></option>').val(21).html('Serviced Apartment'));
+	}	
+	else if (this.value ==6)
+	{
+		$('#subPropertyType').empty();
+		$('#subPropertyType').append(  $('<option></option>').val(0).html('select'));
+		$('#subPropertyType').append(  $('<option></option>').val(22).html('Barn'));
+		$('#subPropertyType').append(  $('<option></option>').val(23).html('Boat'));
+		$('#subPropertyType').append(  $('<option></option>').val(24).html('Bus'));
+		$('#subPropertyType').append(  $('<option></option>').val(25).html('Camper/RV'));
+		$('#subPropertyType').append(  $('<option></option>').val(26).html('Campsite'));
+		$('#subPropertyType').append(  $('<option></option>').val(27).html('Castle'));
+		$('#subPropertyType').append(  $('<option></option>').val(28).html('Cave'));
+		$('#subPropertyType').append(  $('<option></option>').val(29).html('Dome house'));
+		$('#subPropertyType').append(  $('<option></option>').val(30).html('Earth house'));
+		$('#subPropertyType').append(  $('<option></option>').val(31).html('Farm Stay'));
+		$('#subPropertyType').append(  $('<option></option>').val(32).html('Houseboat'));
+		$('#subPropertyType').append(  $('<option></option>').val(33).html('Hut'));
+		$('#subPropertyType').append(  $('<option></option>').val(34).html('Igloo'));
+		$('#subPropertyType').append(  $('<option></option>').val(35).html('Island'));
+		$('#subPropertyType').append(  $('<option></option>').val(36).html('Lighthouse'));
+		$('#subPropertyType').append(  $('<option></option>').val(37).html('Plane'));
+		$('#subPropertyType').append(  $('<option></option>').val(38).html('Mobile Home'));
+		$('#subPropertyType').append(  $('<option></option>').val(39).html('Tent'));
+		$('#subPropertyType').append(  $('<option></option>').val(40).html('Tiny House'));
+		$('#subPropertyType').append(  $('<option></option>').val(41).html('Tipi'));
+		$('#subPropertyType').append(  $('<option></option>').val(42).html('Train'));
+		$('#subPropertyType').append(  $('<option></option>').val(43).html('Treehouse'));
+		$('#subPropertyType').append(  $('<option></option>').val(44).html('Windmill'));
+		$('#subPropertyType').append(  $('<option></option>').val(45).html('Yurt'));
+		
+	}	
+	
+	
+
+
+});
+
+</script>
+
+
+	<script>
+$("body").on("focusout",".bedCount input",function(){
+
+	var dInput = this.id;
+	// alert(this.id);
+	// if(dInput > 0){
+		iRow= dInput.indexOf('_');
+		var strpos=dInput.substring(iRow+1);
+		var strTypeCnt="";
+		
+		var bedSingle =  document.getElementById("bedSingle_"+ strpos );
+		var bedDouble =  document.getElementById("bedDouble_"+ strpos );
+		var bedQueen =  document.getElementById("bedQueen_"+ strpos );
+		var bedKing =  document.getElementById("bedKing_"+ strpos );
+		var bedCouch =  document.getElementById("bedCouch_"+ strpos );
+		var bedBunkbed =  document.getElementById("bedBunkbed_"+ strpos );
+
+		var bedAirMattress =  document.getElementById("bedAirMattress_"+ strpos );
+		var bedFloorMattress =  document.getElementById("bedFloorMattress_"+ strpos );
+		var bedCrib =  document.getElementById("bedCrib_"+ strpos );
+		var bedToddler =  document.getElementById("bedToddlerBed_"+ strpos );
+		var bedHammock =  document.getElementById("bedHammock_"+ strpos );
+		var bedWater =  document.getElementById("bedWaterBed_"+ strpos );		
+
+		var lblCnt=document.getElementById("lbl"+ strpos );
+		var lblBedCnt=document.getElementById("lblBedCnt"+ strpos );
+		
+		var bedSingleCnt=0;
+		var bedDoubleCnt=0;
+		var bedQueenCnt=0;
+		var bedKingCnt=0;
+		var bedCouchCnt=0;
+		var bedBunkbedCnt=0;
+
+		var bedAirMattressCnt=0;
+		var bedFloorMattressCnt=0;
+		var bedCribCnt=0;
+		var bedToddlerCnt=0;
+		var bedHammockCnt=0;
+		var bedWaterCnt=0;
+
+		
+		if(bedSingle != null )
+		{
+			if (bedSingle.value >0)
+			{ 
+			bedSingleCnt=bedSingle.value;
+			strTypeCnt = strTypeCnt + ((strTypeCnt.length==0)? "" :", ") + bedSingleCnt +" Single Bed" ;
+			}
+		}
+	
+		if(bedDouble != null )		
+		{
+			if (bedDouble.value >0) 
+			{
+				bedDoubleCnt=bedDouble.value;
+				strTypeCnt = strTypeCnt + ((strTypeCnt.length==0)? "" :", ") + bedDoubleCnt +" Double Bed" ;
+			}
+		}
+		
+		if(bedQueen != null )		
+		{
+			if (bedQueen.value >0)
+			{
+				bedQueenCnt=bedQueen.value;
+				strTypeCnt = strTypeCnt + ((strTypeCnt.length==0)? "" :", ") + bedQueenCnt +" Queen Bed" ;
+			} 
+		}
+
+		if(bedKing != null )	
+		{	
+			if (bedKing.value >0) 
+			{
+				bedKingCnt=bedKing.value;
+				strTypeCnt = strTypeCnt + ((strTypeCnt.length==0)? "" :", ") + bedKingCnt +" King Bed" ;
+			}
+		}
+
+		if(bedBunkbed != null )	
+		{	
+			if (bedBunkbed.value >0) 
+			{
+				bedBunkbedCnt=bedBunkbed.value;
+				strTypeCnt = strTypeCnt + ((strTypeCnt.length==0)? "" :", ") + bedBunkbedCnt +" Bunkbed" ;
+			}
+		}
+		
+		if(bedCrib != null )
+		{
+			if (bedCrib.value >0) 
+			{
+				bedCribCnt=bedCrib.value;
+				strTypeCnt = strTypeCnt + ((strTypeCnt.length==0)? "" :", ") + bedCribCnt +" Crib" ;
+			}
+		}
+
+		if(bedCouch != null )		
+		{
+			if (bedCouch.value >0) 
+			{
+				bedCouchCnt=bedCouch.value;
+				strTypeCnt = strTypeCnt + ((strTypeCnt.length==0)? "" :", ") + bedCouchCnt +" Couch" ;
+			}
+		}		
+
+		if(bedAirMattress != null )
+		{
+			if (bedAirMattress.value >0) 
+			{
+				bedAirMattressCnt=bedAirMattress.value;
+				strTypeCnt = strTypeCnt + ((strTypeCnt.length==0)? "" :", ") + bedAirMattressCnt +" Air Mattress" ;
+			}
+		}
+
+		if(bedFloorMattress != null )
+		{
+			if (bedFloorMattress.value >0) 
+			{
+				bedFloorMattressCnt=bedFloorMattress.value;
+				strTypeCnt = strTypeCnt + ((strTypeCnt.length==0)? "" :", ") + bedFloorMattressCnt +" Floor Mattress" ;
+			}
+		}		
+
+		if(bedToddler != null )
+		{
+			if (bedToddler.value >0) 
+			{
+				bedToddlerCnt=bedToddler.value;
+				strTypeCnt = strTypeCnt + ((strTypeCnt.length==0)? "" :", ") + bedToddlerCnt +" Toddler Bed" ;
+			}
+		}
+
+		if(bedHammock != null )
+		{
+			if (bedHammock.value >0) 
+			{
+				bedHammockCnt=bedHammock.value;
+				strTypeCnt = strTypeCnt + ((strTypeCnt.length==0)? "" :", ") + bedHammockCnt +" Hammock" ;
+			}
+		}
+
+		if(bedWater != null )
+		{
+			if (bedWater.value >0) 
+			{
+				bedWaterCnt=bedWater.value;
+				strTypeCnt = strTypeCnt + ((strTypeCnt.length==0)? "" :", ") + bedWaterCnt +" Water Bed" ;
+			}
+		}
+
+		
+
+			lblCnt.value=parseInt( bedSingleCnt) + parseInt(bedDoubleCnt) + parseInt(bedQueenCnt) + parseInt(bedKingCnt) 
+			+ parseInt(bedBunkbedCnt )+ parseInt(bedCouchCnt) + parseInt(bedAirMattressCnt) +
+			parseInt( bedFloorMattressCnt) +
+			parseInt( bedCribCnt) +
+			parseInt( bedToddlerCnt) +
+			parseInt( bedHammockCnt) +
+			parseInt( bedWaterCnt) ;
+			// lblBedCnt.value=lblCnt.value;
+			lblBedCnt.innerHTML=lblCnt.value + ((lblCnt.value >1)?" beds ":" beds ")+ ((strTypeCnt.length==0)?"":"<br />"+strTypeCnt) ;
+			
+	// }
+	
+});
+
+			$("body").on("click",".button-class button",function(){
+				// alert("trigger by "+$(this).attr('id'));
+			   // alert($('input[id^="tag"]').val());
+			var id = $(this).attr('id');
+			//alert(id);
+			 //alert($('#lbl' + id).val());
+			
+				//alert($('input[id^="tag"]').value);
+			  
+				if($(this).text() == "Done"){
+					// $('#lbl').val();
+					
+				  if($('#lbl' + id).val() == "0") {
+					$(this).html('Add Bed');
+				  } 
+				  else{
+					$(this).html('Edit Bed');
+				  }
+				}else{
+					$(this).html('Done');
+				
+				}
+			   // alert($('#container_id'+id).attr('id'));
+			//    $('#container_id'+id).empty(
+								
+			//     );
+			//     $('#container_id'+id).append('<div class="col-sm-9"><p><strong>Append</strong><br>beds</p></div>'
+								
+			//     );
+			
+			});
+			
+			$("body").on("change",".selection",function(){
+			//alert("a");
+			var str = $(this).attr('id');
+			var str1 = $((this)).val();
+			// alert($(this).selectedIndex);
+			var text_t = $(this).find('option:selected').text();
+			var text_Val = $(this).find('option:selected').val();
+			// alert(text_Val);
+			
+			// var str1 = $((this)).text();
+			// alert(text_t);
+			//var str = "addNewBeds1";
+			// var n = str.IndexOf('ight');
+			
+			var iright = str.indexOf('Right');
+			var ileft = str.indexOf('Left');
+			var iRow =0;
+			iRow=str.indexOf('_');
+			var iRowno=str.substring( iRow + 1);
+			// alert(iRow);
+			if(ileft != -1 )
+			{
+			var result = str.substring(ileft + 4,iRow);
+			
+			// alert(result);
+			// alert(iRowno);
+			var v =  document.getElementById("lblSelected"+ result ).value;
+			v=v + text_Val + ',';
+			document.getElementById("lblSelected"+ result ).value=v;
+			// alert(v);
+			// iRow=str.indexOf('_');
+			// alert(v.indexOf(',6,'));
+			// alert(v.indexOf(',7,'));
+			//alert(result);
+
+			$('#containerleft'+result +'_'+ iRowno ).empty();
+
+			$('#containerleft'+result +'_'+ iRowno ).append(
+			'<div class="col-sm-4 col-xs-8">'+ text_t +'</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bed'+ text_t.replace(' ', '')  +'_'+ result +' name='+ text_t +' placeholder="0">'+
+						'</div>'+
+						'<div class="containerRight" id=containerright'+ result +'_'+ iRowno +' >'+
+						'<div class="col-sm-6 col-xs-12">'+
+						'<select class="form-control selection" id=addNewBedRight'+ result +'_'+ iRowno +' >'+
+						'<option value="0">Add another bed</option>'+
+						
+						((v.indexOf(',1,') != -1) ? '': '<option value="1">Single</option>')+
+						((v.indexOf(',2,') != -1) ? '': '<option value="2">Double</option>')+
+						((v.indexOf(',3,') != -1) ? '': '<option value="3">Queen</option>')+
+						((v.indexOf(',4,') != -1) ? '': '<option value="4">King</option>')+
+						((v.indexOf(',5,') != -1) ? '': '<option value="5">Crib</option>')+
+						((v.indexOf(',6,') != -1) ? '': '<option value="6">Couch</option>') +
+						((v.indexOf(',7,') != -1) ? '': '<option value="7">Bunkbed</option>') +
+						((v.indexOf(',8,') != -1) ? '': '<option value="8">Air Mattress</option>') +
+						((v.indexOf(',9,') != -1) ? '': '<option value="9">Floor Mattress</option>') +
+						((v.indexOf(',10,') != -1) ? '': '<option value="10">Toddler Bed</option>')+
+						((v.indexOf(',11,') != -1) ? '': '<option value="11">Hammock</option>')+
+						((v.indexOf(',12,') != -1) ? '': '<option value="12">Water Bed</option>')+
+									
+						'</select>'+
+						'</div>'+
+						'</div>'
+					);
+			}
+			else
+			{
+				var result = str.substring(iright +5, iRow );
+				var v =  document.getElementById("lblSelected"+ result ).value;
+				v=v + text_Val + ',';
+				document.getElementById("lblSelected"+ result ).value=v;
+				//alert(v);
+				//alert(result);
+				$('#containerright'+result +'_'+ iRowno).empty();
+
+				$('#containerright'+result +'_'+ iRowno).append(
+				'<div class="col-sm-4 col-xs-8">'+ text_t +'</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bed'+ text_t.replace(' ', '') +'_'+ result +' name='+ text_t +' placeholder="0">'+
+						'</div>'+
+						'<div class="row" >'+
+						'<div class="containerLeft" id=containerleft'+ result +'_'+ (parseInt(iRowno) +1) +' >'+
+						'<div class="col-sm-6 col-xs-12">'+
+						'<select class="form-control selection" id=addNewBedLeft'+ result +'_'+ (parseInt(iRowno) +1) +' >'+
+						'<option value="0">Add another bed</option>'+
+						((v.indexOf(',1,') != -1) ? '': '<option value="1">Single</option>')+
+						((v.indexOf(',2,') != -1) ? '': '<option value="2">Double</option>')+
+						((v.indexOf(',3,') != -1) ? '': '<option value="3">Queen</option>')+
+						((v.indexOf(',4,') != -1) ? '': '<option value="4">King</option>')+
+						((v.indexOf(',5,') != -1) ? '': '<option value="5">Crib</option>')+
+						((v.indexOf(',6,') != -1) ? '': '<option value="6">Couch</option>') +
+						((v.indexOf(',7,') != -1) ? '': '<option value="7">Bunkbed</option>') +
+						((v.indexOf(',8,') != -1) ? '': '<option value="8">Air Mattress</option>') +
+						((v.indexOf(',9,') != -1) ? '': '<option value="9">Floor Mattress</option>') +
+						((v.indexOf(',10,') != -1) ? '': '<option value="10">Toddler Bed</option>')+
+						((v.indexOf(',11,') != -1) ? '': '<option value="11">Hammock</option>')+
+						((v.indexOf(',12,') != -1) ? '': '<option value="12">Water Bed</option>')+
+						'</select>'+
+						'</div>'+
+						'</div>'+
+						'</div>'
+					);
+			}
+	
+			});
+			
+			
+			
+				$(document).ready(function() {
+					$('#my_select').trigger('change');
+			
+					var iCnt = 0;
+					var ipresentCnt = 0;
+					// CREATE A "DIV" ELEMENT AND DESIGN IT USING jQuery ".css()" CLASS.
+					var container = $(document.createElement('div')).css({
+						padding: '5px', margin: '0px', width: '500px', 
+						borderTopColor: '#999', borderBottomColor: '#999',
+						borderLeftColor: '#999', borderRightColor: '#999'
+					});
+					
+					$('#my_select').change(function(e) {
+						if (iCnt <= 19) {
+						  var p =  document.getElementById("my_select").value;
+			
+						  $(container).empty();
+						 // alert(p);
+						  for(var q=1; q<=p; q++){
+							  iCnt= q;
+							  var r =  document.getElementById("tb"+iCnt);
+							  if(r==null){
+								$(container).append('<div class="col-sm-9"><p><strong>Bedroom'+ iCnt +'</strong><br>'+
+								// (iCnt-1) +' beds'+								
+								'<div><label type="text" id=lblBedCnt'+ iCnt +'>0 beds</label></div>'+		
+								'</p></div>'+
+								'<div class="col-sm-3 button-class">'+
+								
+								'<button id='+ iCnt +' type="button"  class="btn btn-blue btn-rounded btn-beds width-100" data-toggle="collapse" data-target=#bed1collapse'+ iCnt + '>'+  'Add Beds </button>'+
+								
+								'</div>'+
+								'<div class="clearfix">'+
+						'<div id=bed1collapse'+ iCnt +' class="collapse bedcollapse">'+
+						'<div class="row">'+
+						'<div><input type="hidden" value='+ (iCnt-1) +' id=lbl'+ iCnt +' ></div>'+
+						'<div><input type="hidden" value=",1,2,3,4," id=lblSelected'+ iCnt +' ></div>'+
+						
+						'<div><input type="hidden" value=",1 : 0,2 : 0,3 : 0,4 : 0," id=lblSelectbedCount'+ iCnt +' ></div>'+
+						'<div><input type="hidden" value="0" id=lblbedroomId'+ iCnt +' ></div>'+
+
+						'<div class="col-sm-4 col-xs-8">Single Bed</div>'+
+						'<div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedSingle_'+ iCnt +' name="bedSingle" placeholder="0" />'+
+						'</div>'+
+						'<div class="col-sm-4 col-xs-8">Double Bed</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedDouble_'+ iCnt +' name="bedSingle" placeholder="0">'+
+						'</div>'+
+						'</div>'+
+						'<div class="row">'+
+						'<div class="col-sm-4 col-xs-8">Queen Bed</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedQueen_'+ iCnt +' name="bedSingle" placeholder="0">'+
+						'</div>'+
+						'<div class="col-sm-4 col-xs-8">King Bed</div><div class="col-sm-2 col-xs-4 bedCount"><input type="text" class="form-control" id=bedKing_'+ iCnt +' name="bedSingle" placeholder="0">'+
+						'</div>'+
+						'</div>'+
+						'<div class="row" >'+
+						'<div class="containerLeft" id=containerleft'+ iCnt +'_1 >'+
+						'<div class="col-sm-6 col-xs-12">'+
+						'<select class="form-control selection" id=addNewBedLeft'+ iCnt +'_1 >'+
+						'<option value="0">Add another bed</option>'+
+						'<option value="5">Crib</option>'+
+						'<option value="6">Couch</option>'+
+						'<option value="7">Bunkbed</option>'+
+						'<option value="8">Air Mattress</option>'+
+						'<option value="9">Floor Mattress</option>'+
+						'<option value="10">Toddler Bed</option>'+
+						'<option value="11">Hammock</option>'+
+						'<option value="12">Water Bed</option>'+
+						'</select>'+
+						'</div>'+
+						'</div>'+
+						'</div>'+
+						'</div>'
+							);
+								
+								
+								// '<input type=text class="input" id=tb' + iCnt + ' ' +
+								// 'value="Text Element ' + iCnt + '" />');
+							  }else{
+							  alert("present");
+							  }
+							  
+						  }
+							// iCnt = iCnt + 1;
+			
+							// ADD TEXTBOX.
+						 //   $(container).append('<input type=text class="input" id=tb' + iCnt + ' ' +
+						   //     'value="Text Element ' + iCnt + '" />');
+			
+							// SHOW SUBMIT BUTTON IF ATLEAST "1" ELEMENT HAS BEEN CREATED.
+							if (iCnt == 1) {
+								var divSubmit = $(document.createElement('div'));
+								$(divSubmit).append('<input type=button class="bt"' + 
+									'onclick="GetTextValue()"');
+							}
+			
+							// ADD BOTH THE DIV ELEMENTS TO THE "main" CONTAINER.
+							$('#main').after(container, divSubmit);
+						}
+						// AFTER REACHING THE SPECIFIED LIMIT, DISABLE THE "ADD" BUTTON.
+						// (20 IS THE LIMIT WE HAVE SET)
+						else {      
+							$(container).append('<label>Reached the limit</label>'); 
+							$('#btAdd').attr('class', 'bt-disable'); 
+							$('#btAdd').attr('disabled', 'disabled');
+						}
+					});
+			
+					// REMOVE ONE ELEMENT PER CLICK.
+					$('#btRemove').click(function() {
+						if (iCnt != 0) { $('#tb' + iCnt).remove(); iCnt = iCnt - 1; }
+					
+						if (iCnt == 0) { 
+							$(container)
+								.empty() 
+								.remove(); 
+			
+							$('#btSubmit').remove(); 
+							$('#btAdd')
+								.removeAttr('disabled') 
+								.attr('class', 'bt');
+						}
+					});
+			
+					// REMOVE ALL THE ELEMENTS IN THE CONTAINER.
+					$('#btRemoveAll').click(function() {
+						$(container)
+							.empty()
+							.remove(); 
+			
+						$('#btSubmit').remove(); 
+						iCnt = 0; 
+						
+						$('#btAdd')
+							.removeAttr('disabled') 
+							.attr('class', 'bt');
+					});
+				});
+			
+				// PICK THE VALUES FROM EACH TEXTBOX WHEN "SUBMIT" BUTTON IS CLICKED.
+				var divValue, values = '';
+			
+				function GetTextValue() {
+					$(divValue) 
+						.empty() 
+						.remove(); 
+					
+					values = '';
+			
+					$('.input').each(function() {
+						divValue = $(document.createElement('div')).css({
+							padding:'5px', width:'200px'
+						});
+						values += this.value + '<br />'
+					});
+			
+					$(divValue).append('<p><b>Your selected values</b></p>' + values);
+					$('body').append(divValue);
+				}
+			</script>
+
+
+	
+</body>
+</html>

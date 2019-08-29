@@ -1,0 +1,29 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 1
+    },
+    "auditLog": "log\\.9d38f8fb191771bae8dd6b6ac2ad1f287aff450e-audit.json",
+    "files": [
+        {
+            "date": 1565761437513,
+            "name": "log\\Wemastewebapp-2019-08-14-11.log",
+            "hash": "5143785f4555b7b471355b032866f3ad"
+        },
+        {
+            "date": 1565765882091,
+            "name": "log\\Wemastewebapp-2019-08-14-12.log",
+            "hash": "27c2f75a77b9c9a623c8fcaa4c0e5d93"
+        },
+        {
+            "date": 1565772646813,
+            "name": "log\\Wemastewebapp-2019-08-14-14.log",
+            "hash": "92d7361b88e1fc54be28e94a6b4eee50"
+        },
+        {
+            "date": 1565790500455,
+            "name": "log\\Wemastewebapp-2019-08-14-19.log",
+            "hash": "42c7c4038809f7710e8a8134aa595ba9"
+        }
+    ]
+}

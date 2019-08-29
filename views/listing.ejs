@@ -1,0 +1,1267 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+	<meta name="author" content="Wemastè">
+	<meta name="robots" content="noindex">
+	<meta name="googlebot" content="noindex">
+	<!-- title -->
+	<title>Properties - Whimstay Host</title>
+	<!-- favicon -->
+	<link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+
+	<!-- styles font-awesome icon -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<!-- animation -->
+	<link rel="stylesheet" href="css/animate.min.css" />
+	<!-- font-awesome icon -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+		integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+	<!-- wemaste styles -->
+	<link rel="stylesheet" href="../public/stylesheets/core.css" />
+	<link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+
+	<style>
+		.sorting_asc {
+			text-align: center;
+			padding: 5px !important;
+		}
+
+		.current {
+			color: green;
+		}
+
+		#pagin li {
+			display: inline-block;
+		}
+
+		img {
+			text-indent: 100vw;
+		}
+
+		.modal-text {
+			overflow-y: auto;
+			overflow-x: hidden !important;
+			height: 500px;
+		}
+
+		.modal-dialog {
+			overflow-y: initial !important;
+
+		}
+
+		#modal-width {
+			width: 650px;
+		}
+
+		#lisitngDiscount::-webkit-inner-spin-button,
+		#lisitngDiscount::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		/* #pagination {
+			margin-top: 20px;
+		} */
+
+		ul li {
+			display: inline;
+		}
+
+		/* #applyTax {
+			margin-bottom: 15px;
+			margin-left: 15px;
+		} */
+
+		/* .TemplateDisplay {
+			height: 150px;
+			overflow-y: auto;
+
+		} */
+
+		/* .discountDisplay {
+			height: 150px;
+			overflow-y: auto;
+
+		} */
+
+		div.dataTables_wrapper div.dataTables_info {
+			margin-left: 10px;
+		}
+
+		div.dataTables_wrapper div.dataTables_filter input {
+			margin-top: 15px;
+		}
+
+		#table_data_info {
+			margin-left: 5px;
+		}
+
+		div.dataTables_wrapper div.dataTables_filter {
+			text-align: left;
+			margin-left: 40px;
+			margin-top: -8px;
+		}
+
+		div.dataTables_wrapper div.dataTables_filter label {
+			margin-top: 10px;
+		}
+
+		#Update_table {
+			margin-top: -10px !important;
+		}
+
+		.dataTable>thead>tr>th:after {
+			content: "" !important;
+		}
+
+		table.dataTable.select tbody tr,
+		table.dataTable thead th:first-child {
+			cursor: pointer;
+		}
+	</style>
+
+</head>
+
+<body class="host-dashboard">
+
+	<!-- start header -->
+	<%- include mainMasterDashboard.ejs %>
+	<!-- end header -->
+
+
+
+	<!-- start main content -->
+	<section id="listings" class="listings no-transition">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 margin-20px-top margin-30px-bottom">
+
+
+					<h3 class="text-capitalize text-dark-blue font-weight-300">property</h3>
+					<input type="hidden" value="<%= data %>" id="userId">
+					<input type="hidden" value="<%= url %>" id="globalUrl">
+					<input type="hidden" value="<%= pmcId %>" id="pmcId">
+					<input type="hidden" value="<%= firstName %>" id="firstName">
+				</div>
+			</div>
+
+			<div class="row">
+
+
+				<div class="col-md-8 margin-30px-bottom">
+
+					<div id="tabs">
+						<ul class="nav nav-tabs">
+							<!-- class="active" -->
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#tabactive" id="activeTabApi"
+									onclick="activeTabApi()">Published</a>
+							</li>
+
+							<li class="nav-item">
+								<a data-toggle="tab" href="#tabinprogress" id="inProgressTabApi"
+									onclick="inProgressTabApi()">Draft</a>
+							</li>
+							<li class="nav-item">
+								<a data-toggle="tab" href="#tabdeactive" id="deactiveTabApi"
+									onclick="deactiveTabApi()">Hidden</a>
+							</li>
+
+						</ul>
+					</div>
+					<!-- end tabs-->
+					<div class="tab-content">
+						<!-- Start active tabs-->
+						<div id="location" border='1' class="line-content">
+
+						</div>
+
+						<script>
+							function priceEdit(obj) {
+								// alert(obj.basePrice);
+								var price = JSON.parse(obj.id);
+								price.pmsUnitId = price.pmsUnitId.replace('%%%&&&', " ");
+								console.log(price.pmsUnitId);
+								//console.log("--------------------------------");
+								document.getElementById("lisitngPrice").value = price.basePrice;
+								document.getElementById("lisitngDiscount").value = price.discPercent;
+
+								if (price.pulledProperty == 0) {
+									document.getElementById("lisitngPrice").disabled = false;
+								} else {
+									document.getElementById("lisitngPrice").disabled = true;
+								}
+
+								if (price.minPrice == undefined) {
+									document.getElementById("minPrice").value = 0;
+								} else {
+									document.getElementById("minPrice").value = price.minPrice;
+								}
+								document.getElementById("pmcId").value = price.pmcId;
+								sessionStorage.setItem("pmsUnitId",price.pmsUnitId);
+							}
+
+						</script>
+
+
+
+						<ul id="pagin">
+
+						</ul>
+					</div>
+					<!-- end tabs-->
+
+				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-3 margin-30px-bottom">
+
+					<!---------------------------------------Tax Display ---------------------------------------------------------->
+					<div class="sidebar-box">
+						<h5 class="text-capitalize text-dark-blue font-weight-300">Tax Templates</h5>
+						<p>Setup your tax rules and apply to your properties.</p>
+
+						<div id="TemplateDisplay" style="margin-left: -10px;"></div>
+						<button type="button" id="createTaxTemp" style="margin-top:15px; display: none;"
+							class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal"
+							data-target="#myModal-Taxes">Create New
+						</button>
+
+					</div>
+					<!---------------------------------------Discount Display ---------------------------------------------------------->
+
+					<div class="sidebar-box">
+						<h5 class="text-capitalize text-nowrap text-dark-blue font-weight-300">Discount Templates</h5>
+						<p>Setup your discount rules and apply to your properties.</p>
+
+						<div id="discountDisplay" style="margin-left: -10px;"></div>
+						<button type="button" id="createDiscountxTemp" style="margin-top:15px; display: none;"
+							class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal"
+							data-target="#myModal-discount">Create New
+						</button>
+
+					</div>
+
+					<!---------------------------------------Contact Display ---------------------------------------------------------->
+
+					<div class="sidebar-box">
+						<h5 class="text-capitalize text-nowrap text-dark-blue font-weight-300">Contact Templates</h5>
+						<p>Setup your contact rules and apply to your properties.</p>
+						<div id="contactDisplay" style=" margin-left: -10px;"></div>
+						<button type="button" id="createContactTemp" style="margin-top:15px; display: none;"
+							class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal"
+							data-target="#myModal-contact">Create New
+						</button>
+
+					</div>
+
+
+				</div>
+
+
+			</div>
+
+
+		</div>
+	</section>
+	<!--end main content -->
+
+
+	<!-- Modal start -->
+
+	<div id="Share_model" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: pink;">
+					<span class="modal-title"></span>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p id="message-body"></p>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
+
+	<!-- Modal start -->
+
+	<div id="propertyLogs_model" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: pink;">
+					<span class="modal-title"></span>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p id="msg-body"></p>
+					<input type="hidden" id="property_Id">
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+					<button type="button" style="float: left;color: black;" id="editProperty" class="btn btn-secondary"
+						data-dismiss="modal">Edit
+						Property
+					</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
+
+
+	<!-- Modal start -->
+
+	<div id="Tax_Message" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: pink;">
+					<span class="modal-title"></span>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p id="main-body"></p>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
+
+	<!-- Modal -->
+	<div id="myModal-Price" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<!--<h4 class="modal-title">Modal Header</h4>-->
+				</div>
+				<div class="modal-body">
+
+
+					<h6 class="margin-20px-top">Edit Pricing</h6>
+					<div class="form-group">
+
+						<p>What is the property price you get per night for this property?</p>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fas fa-dollar-sign"></i></span>
+							<input type="text" class="form-control" id="lisitngPrice" name="lisitngPrice"
+								onkeypress="return validate(event);" maxlength="5" placeholder="Amount">
+						</div>
+						<span id="lisitngPrice1" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+
+						<p>What percent discount would you like to set? <br />
+							<!-- <span class="text-small">The discount must be at least 20%. The
+									default and recommendation is 40%.</span>  -->
+						</p>
+						<div class="input-group">
+							<input type="number" class="form-control" id="lisitngDiscount" name="lisitngDiscount"
+								onInput="return check(event,value)" step="0.01" placeholder="40" max="100">
+							<span class="input-group-addon"><i class="fas fa-percent"></i></span>
+						</div>
+						<span id="lisitngDiscount1" style="color:red;"></span>
+
+						<p class="margin-20px-top">What is the lowest price threshold? (optional) <br />
+							<span class="text-small">(Property will be booked with this amount if discounted price goes
+								below threshold value.)</span>
+						</p>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fas fa-dollar-sign"></i></span>
+							<input type="text" class="form-control" id="minPrice" name="minPrice"
+								onkeypress="return validate(event);" maxlength="6" placeholder="Amount">
+						</div>
+						<span id="minPrice1" style="color:red;"></span>
+					</div>
+
+					<button type="submit" id="editPrice" class="btn btn-blue btn-rounded btn-large width-100"
+						data-dismiss="modal">Save
+						Edits
+					</button>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!-- end share with a host lightbox-->
+
+	<input type="hidden" class="form-control" id="propertyId">
+	<input type="hidden" class="form-control" id="unitId">
+
+	<!-- ------------------------------start share with a host lightbox---------------------------------------------->
+	<!-- Modal -->
+	<div id="myModal-Share" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<!--<h4 class="modal-title">Modal Header</h4>-->
+				</div>
+				<div class="modal-body">
+
+
+					<form action="/">
+						<div class="form-group">
+							<label for="shareTo">To:
+								<span class="text-extra-small">(seperate with a comma)</span>
+							</label>
+							<input type="email" class="form-control" id="shareTo" name="shareTo" maxlength="5000"
+								placeholder="Enter Emails... ">
+							<span id="mail1" style="color:red;"></span>
+						</div>
+						<div class="form-group">
+							<label for="shareSubject">Subject:</label>
+							<input type="text" class="form-control" id="shareSubject" maxlength="500"
+								name="shareSubject" Value="Have You Seen Whimstay Yet">
+							<span id="subject" style="color:red;"></span>
+						</div>
+						<div class="form-group">
+							<label for="shareMessage">Message:</label>
+							<div class="form-control margin-10px-bottom" contenteditable="true" rows="7"
+								maxlength="2000" id="shareMessage" name="shareMessage">
+								<span id="message" style="color:red;"></span>
+							</div>
+						</div>
+
+						<button type="submit" id="emailSent" class="btn btn-blue btn-rounded btn-large width-100"
+							data-toggle="modal" data-target="#Share_model" data-dismiss="modal">Send</button>
+					</form>
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!------------------------------------ end share with a host lightbox------------------------------------------->
+
+	<!-- --------------------------------------Tax Template ----------------------------------------------  -->
+	<!-- Modal -->
+	<div id="myModal-Taxes" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<!-- <h6 class="modal-title">Create a New Tax Template</h6> -->
+					<div id="headerText"></div>
+				</div>
+				<div class="modal-body">
+
+
+					<form action="/">
+
+						<div class="form-group">
+							<label for="shareSubject">Tax Template Name</label>
+							<input type="text" class="form-control no-margin-bottom" id="taxTName"
+								onkeypress="validateInput()" maxlength="50" name="taxTName">
+						</div>
+						<span id="taxTName1" style="color:red;"></span>
+						<input type="hidden" class="form-control no-margin-bottom" id="taxTempId" name="taxTName">
+						<div class="form-group">
+							<label for="shareSubject">Nightly Tax Rate</label>
+
+							<div class="input-group">
+								<input type="number" class="form-control" onkeypress="validate(event)"
+									onInput="return check(event,value)" min="0" max="100" step="0.01"
+									onchange="handleChange(this);" id="rateTaxes" name="rateTaxes">
+								<span class="input-group-addon"><i class="fas fa-percent"></i></span>
+							</div>
+						</div>
+						<span id="rateTaxes1" style="color:red;"></span>
+
+
+						<div class="form-group">
+							<label for="shareSubject">Service Tax Rate</label>
+
+							<div class="input-group">
+								<input type="number" class="form-control" onkeypress="validate(event)"
+									onInput="return check(event,value)" min="0" max="100" step="0.01"
+									onchange="handleChange(this);" id="servicesTaxes" name="servicesTaxes">
+								<span class="input-group-addon"><i class="fas fa-percent"></i></span>
+							</div>
+						</div>
+						<span id="servicesTaxes1" style="color:red;"></span>
+						<div id="addTemplate"></div>
+						<div id="editTemplate"></div>
+
+
+					</form>
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!------------------------------- end share with a taxes lightbox ------------------------------------------->
+
+
+	<!-- --------------------------------------Tax Template Property Add ------------------------------------  -->
+	<!-- Modal -->
+	<div id="myModal-TaxesNext" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" onclick="javascript:window.location.reload()" class="close"
+						data-dismiss="modal">&times;</button>
+					<h6 class="modal-title" style="word-wrap: break-word;" id="taxDisplay"></h6>
+
+				</div>
+				<div class="modal-text">
+
+					<!-- float: right; margin-right: -30px !important;" -->
+					<!-- <div id="applyTax"  style="margin-top: 10px; margin-right: 25px; float: right;"></div> -->
+
+
+					<!-- <div id="propertyList"> -->
+
+					<table id="table_data" class="table table-striped table-bordered text-extra-small">
+
+						<thead>
+
+							<tr>
+
+								<th style="width: 45px"><input type="checkbox" name="select_tax" id="checkAll"> </th>
+
+								<!-- <input type="checkbox" id="checkAll"> Select</th> -->
+								<th> Title</th>
+								<th>Address</th>
+							</tr>
+						</thead>
+						<tbody id="tBody"></tbody>
+					</table>
+					<div class="text-center" style="margin-bottom: 15px;">
+						<button type="submit" id="applyTax" class="btn btn-blue btn-rounded btn-large width-90"
+							data-dismiss="modal">Apply
+							Tax Template</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!----------------------------------------end share with a taxes Add lightbox ------------------------------------>
+
+
+	<!-- --------------------------------------Tax Template Property Update ------------------------------------  -->
+	<!-- Modal -->
+	<div id="myModal-TaxesUpdate" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content" id="modal-width">
+				<div class="modal-header">
+					<button type="button" onclick="javascript:window.location.reload()" class="close"
+						data-dismiss="modal">&times;</button>
+					<h6 class="modal-title" style="word-wrap: break-word;" id="taxTitleDisplay"></h6>
+
+
+				</div>
+				<div class="modal-text">
+
+					<!-- float: right; margin-right: -30px !important;" -->
+					<!-- <div id="updateTax" style="margin-top: 10px; margin-right: 25px; float: right;"></div> -->
+
+					<!-- <div id="propertyList"> -->
+
+					<table id="Update_table" class="table table-striped table-bordered text-extra-small">
+
+						<thead>
+
+							<tr>
+
+								<th style="width: 45px"><input type="checkbox" name="select_taxUpdate"
+										id="checkUpdateAll"></th>
+								<!-- <input type="checkbox" id="checkUpdateAll"> Select</th> -->
+								<th> Title</th>
+								<th>Address</th>
+							</tr>
+						</thead>
+						<tbody id="tBody"></tbody>
+					</table>
+					<div class="text-center" style="margin-bottom: 15px;">
+						<button type="submit" id="updateTax" class="btn btn-blue btn-rounded btn-large width-90"
+							data-dismiss="modal">Apply
+							Tax Template</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!------------------------------------ end share with a taxes Update lightbox ------------------------------------>
+
+	<!-- --------------------------------------Discount Template ------------------------------------  -->
+	<!-- Modal -->
+	<div id="myModal-discount" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<!-- <h6 class="modal-title">Create a New Tax Template</h6> -->
+					<div id="discountText"></div>
+				</div>
+				<div class="modal-body">
+
+
+					<form action="/">
+
+						<div class="form-group">
+							<label for="shareSubject">Discount Template Name</label>
+							<input type="text" class="form-control no-margin-bottom" onkeypress="validateInput()"
+								id="discountTName" maxlength="50" name="taxTName">
+						</div>
+						<span id="discountTName1" style="color:red;"></span>
+						<input type="hidden" class="form-control no-margin-bottom" id="discountTempId" name="taxTName">
+						<div class="form-group">
+							<label for="shareSubject">Discount Percentages</label>
+
+							<div class="input-group">
+								<input type="number" class="form-control" id="discountPer"
+									onInput="return check(event,value)" onkeypress="return $('#discountPer1').empty();"
+									step="0.01" name="discountPer" min="0" max="100">
+								<span class="input-group-addon"><i class="fas fa-percent"></i></span>
+							</div>
+							<span class="text-extra-small">(Enter discount percent that will be applied to the property)
+							</span>
+						</div>
+						<span id="discountPer1" style="color:red;"></span>
+						
+
+						<!-- 
+							<div class="form-group">
+								<label for="shareSubject">Service Taxes:</label>
+
+								<div class="input-group">
+									<input type="number" class="form-control" onInput="return check(event,value)" min="0" max="100" step="0.01" onchange="handleChange(this);" id="servicesTaxes" name="servicesTaxes">
+									<span class="input-group-addon"><i class="fas fa-percent"></i></span>
+								</div>
+								<span class="text-extra-small">Enter tax percent that will be applied to the services and fees collected.</span><br/>
+								<span id="servicesTaxes1" style="color:red;"></span>
+							</div> -->
+
+						<div id="addDiscountTemplate"></div>
+						<div id="editDiscount"></div>
+						<!-- <button type="submit" data-backdrop="static" data-keyboard="false" id="addDiscountTemplate" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-target="#myModal-TaxesUpdate" data-dismiss="modal">Next</button> -->
+
+					</form>
+
+
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!------------------------------------ end share with a Discount lightbox -------------------------------------->
+
+	<!-- --------------------------------------Discount Template Property Add ------------------------------------  -->
+	<!-- Modal -->
+	<div id="myModal-discountNext" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content" id="modal-width">
+				<div class="modal-header">
+					<button type="button" onclick="javascript:window.location.reload()" class="close"
+						data-dismiss="modal">&times;</button>
+					<h6 class="modal-title" style="word-wrap: break-word;" id="discNameDisplay"></h6>
+
+				</div>
+				<div class="modal-text">
+
+					<!-- float: right; margin-right: -30px !important;" -->
+
+
+					<!-- <div id="propertyList"> -->
+
+					<table id="discount_table" class="table table-striped table-bordered text-extra-small">
+
+						<thead>
+
+							<tr>
+
+								<th style="width: 45px"><input type="checkbox" id="checkAllDiscount" name="selectall">
+								</th>
+								<!-- <input type="checkbox" id="checkAllDiscount"> Select</th> -->
+								<th> Title</th>
+								<th>Address</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<!-- <div id="applyDiscount" style="margin-top: 10px; margin-right: 25px;"></div> -->
+					<div class="text-center" style="margin-bottom: 15px;">
+						<button type="submit" id="applyDiscount" class="btn btn-blue btn-rounded btn-large width-90"
+							data-dismiss="modal">Apply
+							Discount
+						</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!-------------------------------- end share with a Discount Add lightbox ---------------------------------------------->
+
+
+	<!-- --------------------------------------Discount Template Property Update ------------------------------------  -->
+	<!-- Modal -->
+	<div id="myModal-discountupdate" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content" id="modal-width">
+				<div class="modal-header">
+					<button type="button" onclick="javascript:window.location.reload()" class="close"
+						data-dismiss="modal">&times;</button>
+					<h6 class="modal-title" style="word-wrap: break-word;" id="discDisplay"></h6>
+
+				</div>
+				<div class="modal-text">
+
+					<!-- float: right; margin-right: -30px !important;" -->
+
+
+					<!-- <div id="propertyList"> -->
+
+					<table id="discUpdate_table" class="table table-striped table-bordered text-extra-small">
+
+						<thead>
+
+							<tr>
+
+								<th style="width: 45px"><input type="checkbox" id="updatedDiscountCheckAll"
+										name="select_all"> </th>
+								<!-- <input type="checkbox" id="updatedDiscountCheckAll"> Select</th> -->
+								<th> Title</th>
+								<th>Address</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<!-- <span class="text-extra-small" style="color:red; margin-left: 35px;">(If you deselect discount
+						template then by default 0% applied.)</span> -->
+					<!-- <div id="applyDiscount" style="margin-top: 10px; margin-right: 25px;"></div> -->
+					<div class="text-center" style="margin-bottom: 15px; margin-top:10px;">
+						<button type="submit" id="updateDiscount" class="btn btn-blue btn-rounded btn-large width-90"
+							data-dismiss="modal">Apply
+							Discount
+						</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!------------------------------------- end share with a Discount Table Update lightbox -------------------------------->
+
+
+	<!-- --------------------------------------Contact Template ------------------------------------  -->
+	<!-- Modal -->
+	<div id="myModal-contact" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div id="contactText"></div>
+				</div>
+				<div class="modal-body">
+
+					<div class="form-group">
+						<label for="shareSubject">Contact Name</label>
+						<input type="text" class="form-control no-margin-bottom" maxlength="50"
+							onkeypress="validateInput()" id="contactName" name="contactName">
+					</div>
+					<span id="contactName1" style="color:red;"></span>
+					<input type="hidden" class="form-control no-margin-bottom" id="contactId">
+					<div class="form-group">
+						<label for="shareSubject">Email </label>
+
+						<input type="text" class="form-control no-margin-bottom" maxlength="255" id="email"
+							onkeypress="validateInput()" name="emailId">
+
+					</div>
+					<span id="emailId1" style="color:red;"></span>
+
+					<div class="form-group">
+						<label for="shareSubject">Mobile Number</label>
+						<input type="text" class="form-control no-margin-bottom" maxlength="12" id="mobNo"
+							onkeypress="return $('#mobNo1').empty();!(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57))"
+							name="Mobile">
+					</div>
+					<span id="mobNo1" style="color:red;"></span>
+
+
+					<div id="addContactTemplate"></div>
+					<div id="editContact"></div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!--------------------------------- end share with a Contact lightbox ------------------------------------------>
+
+	<!-- --------------------------------------Contact Template Property Add------------------------------------  -->
+	<div id="myModal-ContactNext" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content" id="modal-width">
+				<div class="modal-header">
+					<button type="button" onclick="javascript:window.location.reload()" class="close"
+						data-dismiss="modal">&times;</button>
+					<h6 class="modal-title" style="word-wrap: break-word;" id="contactAddLabel"></h6>
+
+				</div>
+				<div class="modal-text">
+
+					<table id="contact_table" class="table table-striped table-bordered text-extra-small">
+
+						<thead>
+
+							<tr>
+								<th style="width: 45px"><input type="checkbox" name="select_allContact"
+										id="checkAllContact"></th>
+								<!-- <input type="checkbox" id="checkAllContact"> Select</th> -->
+								<th> Title</th>
+								<th>Address</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<!-- <div id="applyDiscount" style="margin-top: 10px; margin-right: 25px;"></div> -->
+					<div class="text-center" style="margin-bottom: 15px;">
+						<button type="submit" id="ApplyContact" class="btn btn-blue btn-rounded btn-large width-90"
+							data-dismiss="modal">Apply
+							Contact Details
+						</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!------------------------------------- end share with a Contact Table Add lightbox ------------------------------------->
+
+
+	<!-- --------------------------------------Contact Template Property Update------------------------------------  -->
+	<div id="myModal-ContactUpdate" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content" id="modal-width">
+				<div class="modal-header">
+					<button type="button" onclick="javascript:window.location.reload()" class="close"
+						data-dismiss="modal">&times;</button>
+					<h6 class="modal-title" style="word-wrap: break-word;" id="contactUpdateLabel"></h6>
+
+				</div>
+				<div class="modal-text">
+
+					<table id="contactUpdate_table" class="table table-striped table-bordered text-extra-small">
+
+						<thead>
+
+							<tr>
+								<th style="width: 45px"><input type="checkbox" name="select_allContactUpdate"
+										id="checkAllContactUpdate"></th>
+								<!-- <input type="checkbox" id="checkAllContactUpdate"> Select</th> -->
+								<th> Title</th>
+								<th>Address</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<!-- <div id="applyDiscount" style="margin-top: 10px; margin-right: 25px;"></div> -->
+					<div class="text-center" style="margin-bottom: 15px;">
+						<button type="submit" id="UpdateContact" class="btn btn-blue btn-rounded btn-large width-90"
+							data-dismiss="modal">Apply
+							Contact Details
+						</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!------------------------------------ end share with a Contact Table Update lightbox -------------------------------------->
+
+
+	<script>
+
+		$(function () {
+
+			$(':input[type=number]').on('mousewheel', function (e) { $(this).blur(); });
+
+		});
+		$("#mobNo").keyup(function () {
+			$("#mobNo").mask("###-###-####");
+			$('#mobNo1').empty();
+		});
+	</script>
+
+
+
+	<!--footer Start-->
+	<footer class="bg-dark-blue padding-30px-tb text-center">
+		<div class="footer-widget-area">
+			<div class="container">
+				<div class="row">
+					<div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+						<a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+							href="https://www.facebook.com/whimstay" target="_blank"><i
+								class="fab fa-facebook-f"></i><span></span></a>
+						<a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s"
+							href="https://www.instagram.com/whimstay" target="_blank"><i
+								class="fab fa-instagram"></i><span></span></a>
+						<a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+							href="https://www.linkedin.com/company/whimstay" target="_blank"><i
+								class="fab fa-linkedin-in"></i><span></span></a>
+
+					</div>
+				</div>
+
+
+				<p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights
+					Reserved.
+				</p>
+				<p class="text-white">
+					<a href="./terms_privacy">Terms & Privacy</a>
+				</p>
+			</div>
+		</div>
+
+	</footer>
+	<!-- end footer -->
+	<!-- javascript libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<!-- setting -->
+	<!-- <script src="../public/javascripts/main.js"></script> -->
+	<!-- <script src="../public/javascripts/global.js"></script> -->
+	<script src="../public/javascripts/ListingApi.js"></script>
+	<script src="../public/javascripts/serviceTax.js"></script>
+	<script src="../public/javascripts/discountTax.js"></script>
+	<script src="../public/javascripts/contactApi.js"></script>
+	<script src="../public/javascripts/shareTheLoveApi.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src=" https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+	<script src="../public/jQuery-Mask/src/jquery.mask.js"></script>
+
+	<script>
+		check = function (e, value) {
+			$('#lisitngDiscount1').empty();
+			if (!e.target.validity.valid) {
+				e.target.value = value.substring(0, value.length - 1);
+				return false;
+			}
+			var idx = value.indexOf('.');
+			if (idx >= 0) {
+				if (value.length - idx > 3) {
+					e.target.value = value.substring(0, value.length - 1);
+					return false;
+				}
+			}
+			return true;
+		}
+
+
+		function validate(event) {
+			$('#lisitngPrice1').empty();
+			$('#rateTaxes1').empty();
+			$('#servicesTaxes1').empty();
+
+			var charCode = event.which || event.keyCode;
+
+			if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+				return false;
+			}
+			return true;
+		}
+	</script>
+	<script>
+		$(document).ready(function() {
+			// document.getElementById('createContactTemp').disabled = 'disabled';
+		})
+		var globalUrl = document.getElementById("globalUrl").value;
+		var pmcId = document.getElementById("pmcId").value;
+
+		function displayTemplates() {
+
+			document.getElementById('createTaxTemp').style.display = "initial";
+			document.getElementById('createDiscountxTemp').style.display = "initial";
+			document.getElementById('createContactTemp').style.display = "initial";
+
+			//--------------------------------------------- Tax List Display--------------------------------------------
+			$.ajax({
+				url: globalUrl + 'property/tax/pmcid/' + pmcId,
+				type: 'GET',
+				dataType: "json",
+				'headers': {
+					Authorization: localStorage.getItem('token') || '',
+				},
+				success: function (result, textStatus, xhr) {
+					//console.log(JSON.stringify(result))
+					var mainresult = JSON.stringify(result);
+
+					var taxTemp = '';
+					$.each(result, function (i, item) {
+						taxTemp += '<div class="col-md-12" style="margin-top: 15px; word-wrap: break-word;"><a href="#" id=' + item.taxTemplateId + ' onclick="TaxTempId(this)" data-toggle="modal" data-target="#myModal-Taxes">' + item.taxTemplateName + '</a> <a class="fa-pull-right"' +
+							'href="#" id=' + item.taxTemplateId + ' onclick="TaxTempId(this)" data-toggle="modal" data-target="#myModal-Taxes"><i class="fas fa-edit"></i></a></div>'
+					});
+					$('#TemplateDisplay').html(taxTemp).attr({ class: "TemplateDisplay" });
+					if (mainresult == "[]") {
+						$('#TemplateDisplay').css('height', 'auto');
+					}
+					// document.getElementById('createTaxTemp').style.display = "initial";
+				},
+				error: function (xhr, textStatus, errorThrown) {
+					console.log('Error in Database');
+					// console.log(errorThrown);
+				}
+			});
+
+
+			//---------------------------------------------Discount List Display--------------------------------------------
+			$.ajax({
+				url: globalUrl + 'property/discount/pmcId/' + pmcId,
+				type: 'GET',
+				dataType: "json",
+				'headers': {
+					Authorization: localStorage.getItem('token') || '',
+				},
+				success: function (result, textStatus, xhr) {
+
+					var resultSet = JSON.stringify(result);
+
+					var discountTemp = '';
+					$.each(result, function (i, item) {
+						discountTemp += '<div class="col-md-12" style="margin-top: 15px; word-wrap: break-word;"><a href="#" id=' + item.discountTemplateId + ' onclick="discTempId(this)" data-toggle="modal" data-target="#myModal-discount">' + item.discountTemplateName + '</a> <a class="fa-pull-right"' +
+							'href="#" id=' + item.discountTemplateId + ' onclick="discTempId(this)" data-toggle="modal" data-target="#myModal-discount"><i class="fas fa-edit"></i></a></div>'
+					});
+					$('#discountDisplay').html(discountTemp).attr({ class: "discountDisplay" });
+					if (resultSet == "[]") {
+						$('#discountDisplay').css('height', 'auto');
+					}
+					// document.getElementById('createDiscountxTemp').style.display = "initial";
+				},
+				error: function (xhr, textStatus, errorThrown) {
+					console.log('Error in Database');
+					// console.log(errorThrown);
+				}
+			});
+			//---------------------------------------------Contact List Display--------------------------------------------
+			$.ajax({
+				url: globalUrl + 'property/contactTemplate/pmcId/' + pmcId,
+				type: 'GET',
+				dataType: "json",
+				'headers': {
+					Authorization: localStorage.getItem('token') || '',
+				},
+				success: function (result, textStatus, xhr) {
+
+					// console.log(JSON.stringify(result))
+					var resultSet = JSON.stringify(result);
+
+					var contactTemp = '';
+					$.each(result, function (i, item) {
+						contactTemp += '<div class="col-md-12" style="margin-top: 15px; word-wrap: break-word;"><a href="#" id=' + item.contactTemplateId + ' onclick="contactTempId(this)" data-toggle="modal" data-target="#myModal-contact">' + item.contactTemplateName + '</a> <a class="fa-pull-right"' +
+							'href="#" id=' + item.contactTemplateId + ' onclick="contactTempId(this)" data-toggle="modal" data-target="#myModal-contact"><i class="fas fa-edit"></i></a></div>'
+					});
+					$('#contactDisplay').html(contactTemp).attr({ class: "discountDisplay" });
+					if (resultSet == "[]") {
+						$('#contactDisplay').css('height', 'auto');
+					}
+					// document.getElementById('createContactTemp').style.display = "initial";
+				},
+				error: function (xhr, textStatus, errorThrown) {
+					console.log('Error in Database');
+					// console.log(errorThrown);
+				}
+			})
+		}
+
+
+		//---------------------------------------------Perticular Tax Template Display--------------------------------------------
+		function TaxTempId(tempId) {
+			$.ajax({
+				url: globalUrl + 'property/tax/taxTemplateId/' + tempId.id,
+				type: 'GET',
+				dataType: "json",
+				'headers': {
+					Authorization: localStorage.getItem('token') || '',
+				},
+				success: function (result, textStatus, xhr) {
+					// console.log(JSON.stringify(result));
+					document.getElementById("taxTempId").value = result.taxTemplateId
+					document.getElementById("taxTName").value = result.taxTemplateName
+					document.getElementById("rateTaxes").value = result.nightlyRateTaxPercent
+					document.getElementById("servicesTaxes").value = result.serviceTaxPercent
+					$('#taxTName1').empty();
+					$('#rateTaxes1').empty();
+					$('#servicesTaxes1').empty();
+					$('#headerText').empty();
+					$('#headerText').append('<h6 class="modal-title">Edit a Tax Template</h6>');
+
+					// $('#updateTax').append('<button type="submit" id="updateTax" class="btn btn-blue btn-rounded btn-large width-95" data-dismiss="modal">Apply Tax Template</button>')
+					$('#addTemplate').empty();
+					$('#editTemplate').empty();
+					$('#editTemplate').append('<button type="submit" data-backdrop="static" data-keyboard="false" id="editTemplate" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-target="#myModal-TaxesUpdate" data-dismiss="modal">Next</button>');
+				},
+				error: function (xhr, textStatus, errorThrown) {
+					console.log('Error in Database');
+					// console.log(errorThrown);
+				}
+			});
+		}
+
+		//------------------------------------------Reload the Template----------------------------------------------------
+		$('#Tax_Message').on('hidden.bs.modal', function () {
+			window.location.reload();
+		});
+
+
+		//---------------------------------------------Perticular Discount Template Display--------------------------------------------
+
+		function discTempId(discId) {
+
+			$.ajax({
+				url: globalUrl + 'property/discount/discountTemplateId/' + discId.id,
+				type: 'GET',
+				dataType: "json",
+				'headers': {
+					Authorization: localStorage.getItem('token') || '',
+				},
+				success: function (result, textStatus, xhr) {
+
+					document.getElementById("discountTempId").value = result.discountTemplateId
+					document.getElementById("discountTName").value = result.discountTemplateName
+					document.getElementById("discountPer").value = result.discountPercent
+
+					$('#discountTName').empty();
+					$('#discountPer').empty();
+					$('#discountText').empty();
+					$('#discountText').append('<h6 class="modal-title">Edit a Discount Template</h6>');
+
+					// $('#updateTax').append('<button type="submit" id="updateTax" class="btn btn-blue btn-rounded btn-large width-95" data-dismiss="modal">Apply Tax Template</button>')
+					$('#addDiscountTemplate').empty();
+					$('#editDiscount').empty();
+					$('#editDiscount').append('<button type="submit" data-backdrop="static" data-keyboard="false" id="editDiscount" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-target="#myModal-discountupdate" data-dismiss="modal">Next</button>');
+				},
+				error: function (xhr, textStatus, errorThrown) {
+					console.log('Error in Database');
+					// console.log(errorThrown);
+				}
+			});
+		}
+
+		//---------------------------------------------Perticular Contact Template Display--------------------------------------------
+		function contactTempId(contId) {
+
+			$.ajax({
+				url: globalUrl + 'property/contactTemplate/' + contId.id,
+				type: 'GET',
+				dataType: "json",
+				'headers': {
+					Authorization: localStorage.getItem('token') || '',
+				},
+				success: function (result, textStatus, xhr) {
+					//console.log(JSON.stringify(result))
+					var mobile = result.contactNo;
+					mobile = mobile.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
+
+					document.getElementById("contactName").value = result.contactTemplateName
+					document.getElementById("contactId").value = result.contactTemplateId
+					document.getElementById("email").value = result.emailId
+					document.getElementById("mobNo").value = mobile
+
+					$('#contactName').empty();
+					$('#email').empty();
+					$('#mobNo').empty();
+					$('#mobNo1').empty();
+					$('#contactName1').empty();
+					$('#emailId1').empty();
+					$('#contactText').empty();
+					$('#contactText').append('<h6 class="modal-title">Edit a Contact Template</h6>');
+
+					$('#addContactTemplate').empty();
+					$('#editContact').empty();
+					$('#editContact').append('<button type="submit" data-backdrop="static" data-keyboard="false" id="editContact" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-target="#myModal-ContactUpdate" data-dismiss="modal">Next</button>');
+				},
+				error: function (xhr, textStatus, errorThrown) {
+					console.log('Error in Database');
+					// console.log(errorThrown);
+				}
+			});
+		}
+
+		function handleChange(input) {
+			if (input.value == 000) input.value = 0;
+		}
+
+		function validateInput() {
+			$('#taxTName1').empty();
+			$('#discountTName1').empty();
+			$('#contactName1').empty();
+			$('#emailId1').empty();
+
+		}
+
+	</script>
+
+</body>
+
+</html>

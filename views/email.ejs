@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+
+</head>
+
+<body>
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+            </tr>
+        </thead>
+ <tbody id="tBody"></tbody>
+    </table>
+        
+        
+   
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src=" https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="../public/javascripts/global.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            
+            $.ajax({
+                url: globalUrl + 'v1/user/' + 36 + '/property',
+                type: 'GET',
+                dataType: 'json',
+                success: function (result, textStatus, xhr) {
+               
+                     $.each(result, function (i, item) {
+                       
+                        
+
+   // $('<tr>').html("<td>" + item.propertyId + "</td><td>" + item.propertyName + "</td><td>" + item.address + "</td>").appendTo('#example');
+  $('<tr>').html( '<td class="text-center"><input class=chk type="checkbox" id="'+ item.unitId +'" value="'+ item.propertyId +'" name="propertySelect"></td><td>' + item.propertyName + "</td><td>" + item.propertyId + "</td>").appendTo('#example');
+ //$('#example tbody').append("<tr><td>" + item.propertyId + "</td><td>" + item.propertyName + "</td><td>" + item.address + "</td></tr>");
+ //$('table.table').append("<tr><td>" + item.propertyId + "</td><td>" + item.propertyName + "</td><td>" + item.address + "</td></tr>");
+
+                      });  
+                      $('#example').DataTable();
+                    
+                    //$('#propertyList_display').append(trHTML);
+                    //$('#applyTax').append('<button type="submit" id="applyTax" class="btn btn-blue btn-rounded btn-large width-95" data-dismiss="modal">Apply Tax Template</button>')
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Database');
+                    // console.log(errorThrown);
+                }
+            });
+        });  
+        </script>
+
+
+    <script>
+       
+    </script>
+</body>
+
+</html>

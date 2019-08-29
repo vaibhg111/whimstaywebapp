@@ -1,0 +1,329 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+	<meta name="author" content="Wemastè">
+	<meta name="robots" content="noindex">
+	<meta name="googlebot" content="noindex">
+	<!-- title -->
+	<title>Listings - Whimstay Host</title>
+	<!-- favicon -->
+	<link rel="icon" href="../public/images/favicon.ico">
+	<link rel="stylesheet" href="font-awesome.min.css">
+	<script src="//code.jquery.com/jquery.min.js"></script>
+	<script src="slider.js"></script>
+
+	<!-- styles font-awesome icon -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<!-- animation -->
+	<link rel="stylesheet" href="css/animate.min.css" />
+	<!-- font-awesome icon -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	 crossorigin="anonymous">
+
+	<!-- wemaste styles -->
+
+	<link rel="stylesheet" href="../public/stylesheets/core.css" />
+	<link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+
+
+
+	<style>
+		/* .current {
+			color: green;
+		} */
+
+		#pagin li {
+			display: inline-block;
+		}
+
+		img {
+			text-indent: 100vw;
+		}
+	</style>
+	<script>
+
+		$(document).ready(function () {
+			var url = globalUrl;
+			var userId = document.getElementById("userId").value;
+			$.ajax({
+
+				//headers: { "Content-Type": "application/json" },
+				type: "GET",
+				dataType: "json",             'headers': {                 Authorization: localStorage.getItem('token') || '',             },
+				//url: 'http://13.59.91.130:8083/v1/user/1/property',
+				url: url + 'v1/user/' + userId + '/property/' + sessionStorage.getItem("Preview_ID"),
+
+				success: function (result) {
+
+					var trHTML = '';
+					var imageList = result.propertyHostUnit.propertyAttachments;
+					for (var i = 0; i < imageList.length; i++) {
+						$('<div class="items"><img src="' + imageList[i].fullFilePath + '" style="width:100%;  height:555px;"><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
+						$('<li data-target="#carousel-generic" data-slide-to="' + i + '"></li>').appendTo('.carousel-indicators')
+
+					}
+					$('.items').first().addClass('active');
+					$('.carousel-indicators > li').first().addClass('active');
+					$('#carousel-generic').carousel();
+					if(result.propertyHostUnit.noOfBedroom == "999"){
+                        result.propertyHostUnit.noOfBedroom ="0";
+                    }else{
+                        result.propertyHostUnit.noOfBedroom=result.propertyHostUnit.noOfBedroom;
+                    }
+					
+					trHTML += '<label style="margin-left:15px;font: bold;font-size: 18px;font-weight: 700; ">Property Name-: </label><label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 500; ">' + result.propertyName + '</label><br/>' +
+						'<label style="margin-left:15px;font: bold;font-size: 18px;font-weight: 700; ">Property Description-: </label><br/> <label style="margin-left:20px;font: bold;font-size: 16px;font-weight: 500; ">' + result.propertyDesc + '</label><br/>' +
+						'<label style="margin-left:15px;font: bold;font-size: 18px;font-weight: 700; ">Address-:</label> <label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 500; ">' + result.propertyLocations[0].addressLine1 + ', ' + result.propertyLocations[0].city + ', ' + result.propertyLocations[0].state + ', ' + result.propertyLocations[0].countryCode + '-' + result.propertyLocations[0].postalCode + ' </label><br/>' +
+						'<div class="row"><div class="col-sm-6"><label style="margin-left:15px;font: bold;font-size: 18px;font-weight: 700; ">Max No. of Guest-:</label> <label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 500; ">' + result.propertyHostUnit.maxNoGuest + '</label> </div>' +
+						'<label style="margin-left:15px;font: bold;font-size: 18px;font-weight: 700; ">No. of Bedroom-:</label> <label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 500; ">' + result.propertyHostUnit.noOfBedroom + ' </label></div>' +
+						'<div class="row"><div class="col-sm-6"><label style="margin-left:15px;font: bold;font-size: 18px;font-weight: 700; ">No. of Beds-: </label><label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 500; ">' + result.propertyHostUnit.noOfBeds + ' </label></div>' +
+						'<label style="margin-left:15px;font: bold;font-size: 18px;font-weight: 700; ">no.of Bathroom-: </label><label style="margin-left:10px;font: bold;font-size: 16px;font-weight: 500; ">' + result.propertyHostUnit.noOfBathroom + ' </label></div>' +
+						'<label style="margin-left:15px;font: bold;font-size: 18px;font-weight: 700; "> Bedroom Details -: </label><br/>'
+					// trHTML += '<img src=' + result.propertyHostUnit.propertyAttachments[0].fullFilePath + ' style="width: 800px; height:300px;"><br><br> <div style="padding-left: 3px;"><label id="propertyname"  style="padding-left:15px; font: bold;font-size: 18px;font-weight: 800;">' + result.propertyName + '</label><hr><label style="font: bold;font-size: 18px;font-weight: 800; padding-left:15px;">Details-:</label> <label style="margin-left:65px;">' + result.propertyHostUnit.noOfBedroom + ' Bedrooms</label><label style="margin-left:65px;">' + result.propertyHostUnit.maxNoGuest + ' No of Guest</label><label style="margin-left:65px;">' + result.propertyHostUnit.noOfBathroom + '' + (" ") + 'Bathroom</label></div><hr><div style="font: bold;font-size: 18px;font-weight: 800;padding-left: 15px;">Bedroom details-:</div>'
+					var iunitBathroomsCnt = result.propertyHostUnit.unitBedRooms.length;
+
+					for (var i = 0; i < result.propertyHostUnit.unitBedRooms.length; i++) {
+						trHTML += '<label  style="font: bold;margin-left:30px;font-size: 16px;font-weight: 700;">' + result.propertyHostUnit.unitBedRooms[i].bedroomName + '-:</label>'
+						for (var j = 0; j < result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities.length; j++) {
+							var name = result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities[j].propertyAmenity.amenitiesId;
+							trHTML += '<label style="margin-left:5px;">' + result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities[j].bedCount + '' + (" ") + '' + result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities[j].propertyAmenity.amenitiesDesc + ((j + 1 == result.propertyHostUnit.unitBedRooms[i].propertyBedroomWiseAminities.length) ? '.' : ',') + '</label>'
+
+						}
+						trHTML += '<br>'
+
+					}
+					trHTML += '<hr><div style="font: bold;margin-left:15px;font-size: 18px;font-weight: 800;">Bathroom Details-:</div>'
+					for (var i = 0; i < result.propertyHostUnit.unitBathrooms.length; i++) {
+
+						trHTML += '<label  style="margin-left:30px;font: bold;font-size: 16px;font-weight: 700; ">' + result.propertyHostUnit.unitBathrooms[i].bathroomName + '-:</label>'
+
+						trHTML += '<label  style="margin-left:30px;font: bold;font-size: 16px;font-weight: 500; ">' + result.propertyHostUnit.unitBathrooms[i].propertyBathroomType.bathroomType + ((result.propertyHostUnit.unitBathrooms[i].propertyBathroomWiseAminities.length > 0) ? ',' : '.') + '</label>'
+						// trHTML+=((result.propertyHostUnit.unitBathrooms[i].propertyBathroomWiseAminities.length > 0) ? ',' : '.');
+						for (var j = 0; j < result.propertyHostUnit.unitBathrooms[i].propertyBathroomWiseAminities.length; j++) {
+							trHTML += '<label style="margin-left:5px;">' + result.propertyHostUnit.unitBathrooms[i].propertyBathroomWiseAminities[j].propertyAmenity.amenitiesDesc + ((j + 1 == result.propertyHostUnit.unitBathrooms[i].propertyBathroomWiseAminities.length) ? '.' : ',') + '</label>'
+						}
+
+						trHTML += '<br>'
+
+					}
+					trHTML += '<hr><div style="margin-left:15px;font: bold;font-size: 18px;font-weight: 800;">Amenties-:</div>'
+					for (var feature = 0; feature < result.propertyHostUnit.propertyFeaturesHosts.length; feature++) {
+						trHTML += '<label style="margin-left:30px; font-size: 16px;font-weight: 500;" >' + result.propertyHostUnit.propertyFeaturesHosts[feature].propertyFeatures.featuresDesc + ((feature + 1 == result.propertyHostUnit.propertyFeaturesHosts.length) ? '.' : ',') + '</label>'
+						// <hr><label style="font: bold;font-size: 18px;font-weight: 800;padding-left: 3px;">Review</label><br>'
+					}
+
+					$('#Main_preview').append(trHTML);
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log('update Stock error: ' + textStatus);
+				}
+
+			});
+		});
+
+	</script>
+</head>
+
+<body class="host-dashboard">
+
+	<!-- start header -->
+	<%- include mainMasterDashboard.ejs %>
+		<!-- end header -->
+
+		<input type="hidden" value="<%= firstName %>" id="firstName">
+
+		<!-- start main content -->
+		<section id="listings" class="listings no-transition">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 margin-30px-bottom">
+						<!-- end tabs-->
+						<div class="tab-content">
+							<!-- Start active tabs-->
+
+							<div id="carousel-generic" class="carousel slide" data-ride="carousel">
+								<!-- Indicators -->
+								<ol class="carousel-indicators"></ol>
+								<!-- Wrapper for slides -->
+								<div class="carousel-inner"></div>
+								<!-- Controls -->
+								<a class="left carousel-control" href="#carousel-generic" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+								<a class="right carousel-control" href="#carousel-generic" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</div>
+							<input type="hidden" value="<%= data %>" id="userId">
+							<div id="Main_preview" style="border:1px solid black;"></div>
+
+						</div>
+						<!-- end tabs-->
+
+					</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-3 margin-30px-bottom">
+
+						<div class="sidebar-box">
+							<h5 class="text-capitalize text-dark-blue font-weight-300">Share the Love</h5>
+							<p> Help us grow by telling your host friends about Whimstay.</p>
+							<button type="button" id="shareMail" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-target="#myModal-Share">Share</button>
+						</div>
+
+						<div class="sidebar-box">
+							<h5 class="text-capitalize text-dark-blue font-weight-300">Follow Us</h5>
+							<div class="sidebar-social-icon">
+								<a href="https://facebook.com/wemastevacation" class="facebook-bg-hvr" target="_blank">
+									<i class="fab fa-facebook-f"></i>
+								</a>
+								<a href="https://www.instagram.com/wemaste/" class="instagram-bg-hvr" target="_blank">
+									<i class="fab fa-instagram"></i>
+								</a>
+								<a href="https://linkedin.com/company/wemaste" class="linkedin-bg-hvr" target="_blank">
+									<i class="fab fa-linkedin-in"></i>
+								</a>
+
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+				<div>
+
+
+
+				</div>
+		</section>
+		<!--end main content -->
+
+		<!-- start share with a host lightbox-->
+		<!-- Modal -->
+		<div id="myModal-Share" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<!--<h4 class="modal-title">Modal Header</h4>-->
+					</div>
+					<div class="modal-body">
+
+
+						<form action="/">
+							<div class="form-group">
+								<label for="shareTo">To:
+									<span class="text-extra-small">(seperate with a comma)</span>
+								</label>
+								<input type="email" class="form-control" id="shareTo" name="shareTo" maxlength="5000" placeholder="Enter Emails... ">
+								<span id="mail1" style="color:red;"></span>
+							</div>
+							<div class="form-group">
+								<label for="shareSubject">Subject:</label>
+								<input type="text" class="form-control" id="shareSubject" name="shareSubject" maxlength="500" Value="Have You Seen Whimstay Yet">
+								<span id="subject" style="color:red;"></span>
+							</div>
+							<div class="form-group">
+								<label for="shareMessage">Message:</label>
+								<div class="form-control margin-10px-bottom" contenteditable="true" id="shareMessage" maxlength="2000" name="shareMessage">
+									<span id="message" style="color:red;"></span>
+								</div>
+							</div>
+
+							<button type="submit" id="emailSent" class="btn btn-blue btn-rounded btn-large width-100" data-toggle="modal" data-target="#Share_model"
+							 data-dismiss="modal">Send</button>
+						</form>
+
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- end share with a host lightbox-->
+
+		<!-- Modal start -->
+
+		<div id="Share_model" class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: pink;">
+						<span class="modal-title">Message</span>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p id="message-body"></p>
+					</div>
+					<div class="modal-footer">
+						<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal End -->
+
+
+		<!--footer Start-->
+		<footer class="bg-dark-blue padding-30px-tb text-center">
+			<div class="footer-widget-area">
+				<div class="container">
+					<div class="row">
+						<div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+							<a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s" href="https://facebook.com/wemastevacation"
+							 target="_blank">
+								<i class="fab fa-facebook-f"></i>
+								<span></span>
+							</a>
+							<a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s" href="https://www.instagram.com/wemaste/"
+							 target="_blank">
+								<i class="fab fa-instagram"></i>
+								<span></span>
+							</a>
+							<a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s" href="https://linkedin.com/company/wemaste"
+							 target="_blank">
+								<i class="fab fa-linkedin-in"></i>
+								<span></span>
+							</a>
+
+						</div>
+					</div>
+
+					<p class="text-white">
+						<a href="./terms_privacy">Terms & Privacy</a>
+					</p>
+					<p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights Reserved.</p>
+
+				</div>
+			</div>
+
+		</footer>
+		<!-- end footer -->
+		<!-- javascript libraries -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<!--form validation-->
+		<!-- <script src="http://13.59.91.130:3000/assets/validation.js"></script>
+		<script src="http://13.59.91.130:3000/assets/script.js"></script> -->
+
+		<!-- setting -->
+		<script src="../public/javascripts/global.js"></script>
+		<script src="../public/javascripts/main.js"></script>
+		<script src="../public/javascripts/ListingApi.js"></script>
+		<script src="../public/javascripts/shareTheLoveApi.js"></script>
+
+</body>
+
+</html>

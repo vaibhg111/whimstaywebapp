@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/style.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/setting.css">
+</head>
+
+<body>
+
+        <%- include masterDashboard.ejs %>
+    <div class="col-md-12">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="margin-left: 30px;">
+
+            <ul class="nav nav-pills nav-stacked">
+                <!--<li class="nav-header"></li>-->
+                <table style="border-collapse: collapse;">
+                    <tr>
+                        <td style="color: #01364D;">
+                            <h3><b>Settings</b></h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="./notification" style="color: #01364D;"><b>Notification</b></a></td>
+                    </tr>
+                    <tr>
+                        <td><a style="color: #FC97B9;" href="./privacy_settings"><b>Privacy Settings</b></a></td>
+                    </tr>
+                    <tr>
+                        <td><a style="color: #01364D;" href="#"><b>Payment Method</b></a></td>
+                    </tr>
+                    <tr>
+                        <td><a style="color: #01364D;" href="#"><b>Transaction History</b></a></td>
+                    </tr>
+                    <tr>
+                        <td><a style="color: #01364D;" href="./Sign_out" onclick="signOut()"><b>Sign Out</b></a></td>
+                    </tr>
+                </table>
+
+            </ul><!-- /span-3 -->
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 ">
+            <!-- Right -->
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12" style="margin-top: 60px;">
+                <label id="polo" style="color: #01364D; font-size: 24px;"><b>Contact</b></label><br/>
+                <label style="color:#01364D; font-size: 18px;"> You can either enable or disable<br/> Wemaste's access to your contacts.</label>
+
+                <label class="container" style="margin-top: 20px;">
+                    <input type="checkbox">Emails
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    <input type="checkbox">Texts
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            
+        </div>
+
+    <script>
+        function signOut() {
+            localStorage.removeItem('token');
+        }
+    </script>
+</body>
+
+</html>

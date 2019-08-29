@@ -1,0 +1,120 @@
+
+<html lang="en">
+
+        <head>
+            <title>Payment for Traveller</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="../assets/style.css">
+        </head>
+        <style>
+            body {
+            font-family: ITC Lubalin Graph Std;
+          }
+            label {
+                color: #01364D;
+                font-size: 18px;
+            }
+        </style>
+        
+        <body>
+        
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <img class="col-md-2 col-md-offset-1" onclick="location.href='/' " id="logo" style="margin-top: 10px;" src="/public/images/wemaste_Logo.png">
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="col-md-12">
+            <label class="col-md-1">5/5</label>
+           <h4 class="col-md-4 col-md-offset-4" style="font-size: 30px; color: #01364D;"><b> List Pricing </b></h4>
+        </div>
+        <form method="POST" action="./userdashboard">
+            <div class="col-md-12">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="margin-left: 30px;">
+        
+                    <ul class="nav nav-pills nav-stacked">
+                        <!--<li class="nav-header"></li>-->
+                        <table style="border-collapse: collapse;">
+                            <tr>
+                                <td class="active">
+                                    <h3 style="color:#01364D; ">
+                                        <b>List Your Pricing</b>
+                                    </h3>
+                                </td>
+                            </tr>
+                            <tr style="color: #01364D;">
+                                <td >
+                                 <span >Wemaste List your Property with "Smart Pricing". Smart Pricing allows you to price your listings based on activity of your property </span>
+                                </td>
+                            </tr>
+                        </table>
+        
+                    </ul>
+                    <!-- /span-3 -->
+                </div>
+                <label class="col-md-4 col-md-offset-1" style="margin-top: 45px;color: #01364D;">
+                    <b>Minimum Pricing</b>
+                </label>
+        
+                <h4 class="col-md-4 col-md-offset-1" style="color: #01364D;">
+                        When demand for your space is low, nightly prices will drop to attract more guests to book.what's the lowest price you're comfortable with?
+                    </h4>        
+                <div class="col-md-4 col-md-offset-1" style="margin-top: 10px">
+                    <div class="form-group">
+                        <input maxlength="100" type="text" class="form-control" placeholder="$1030" name="minPrice" />
+                        <input maxlength="100" type="hidden" class="form-control"  name="propertyId" value="1" />
+                        <input maxlength="100" type="hidden" class="form-control"  name="userId" value="<%= data %>" />
+                        <input maxlength="100" type="hidden" class="form-control"  name="discPer" value="40" />
+                        
+                    </div>
+                </div></div>
+                <div class="col-md-12" style="margin-left: 30px;">
+                <label class="col-md-4 col-md-offset-4" style="color: #01364D;">
+                        <b>Maximum Pricing</b>
+                    </label>
+            
+                    <h4 class="col-md-4 col-md-offset-4" style="color: #01364D;">
+                            If demand is high, e.g. if there's a popular festival in town, what's the highest price you're willing to charge guests per night?
+                        </h4>        
+                    <div class="col-md-4 col-md-offset-4" style="margin-top: 10px">
+                        <div class="form-group">
+                            <input maxlength="100" type="text" autocomplete="off" class="form-control" placeholder="$1070" name="maxPrice" />
+                        </div>
+                    </div>
+        
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="form-group">
+                        <label class="control-label">Base Price</label>
+                        <input maxlength="100" type="text" autocomplete="off" class="form-control" name="basePrice" placeholder="$1050" />
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="form-group">
+                        <label class="control-label">Currency</label>
+                        <input maxlength="100" type="text" autocomplete="off" class="form-control" name="currency" value="USD" disabled />
+                        <input maxlength="100" type="hidden" autocomplete="off" class="form-control" name="currency" value="USD" />
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-md-offset-4">
+                        <div class="form-group">
+                            <input maxlength="100" type="Submit" autocomplete="off" style="background-color: #01364D; color: white;" class="form-control" Value="Complete" />
+                        </div>
+                </div>
+        
+            </div>
+        </form>
+        </body>
+        
+        </html>

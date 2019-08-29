@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../assets/validation.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/style4.css">
+  <script>
+        $(document).ready(function () {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "block";
+
+        });
+      
+        function myFunction() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "block";
+        }
+        function closepopup() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "none";
+        }
+
+
+    </script>
+
+</head>
+<div>
+   
+       <div class="topnav">
+            <div class="col-md-12">
+                <img class="col-md-2 col-md-offset-1 " id="logo" src="/public/images/wemaste_Logo.png">
+            </div>
+            <div class="col-md-12">
+                <hr style="border:0.5px solid #FC97B9; margin-top: -20px;">
+            </div>
+        </div>
+        <div>
+                <div id="myModal" class="modal">
+                <div  class="modal-content" style="width: 400px; height:430px; margin-top: 50px; background-color: rgb(247, 243, 243);">
+                    <img src="/public/images/close1.png" onclick="closepopup()" style="float: right; width: 30px;">
+                    <div style="align-content: center;">
+                        <br>
+                        
+                        <img src="/public/images/Ellipse.png" alt="Avatar" style="width:100px;border-radius: 50%; margin-left: 130px; color:white;">
+                        <br>
+                        <br>
+                        <br>
+                        <label style="Font-Size: 20px; font-family:Montserrat; font: bold; color: #01364D; line-height:25px;">Sign In</label>
+                        <br>
+                        <label style="Font-Size: 16px; font-family:Montserrat; color: #01364D; line-height:25px;">Enter your phone number to log in</label>
+                        <form action="./otp" method="post" onSubmit="return validate()">
+                            <input type="text" id="numb" autocomplete="off" name="mobileno" style="height: 40px; width: 350px;border-color: #01364D; padding: 10px; font-size: 14px; "
+                                class="form-control input-lg" placeholder="Enter Phone Number" maxlength="10" />
+                                <div style="text-align: center; margin-top: 10px;"><span id="number" style="color:red;"></span></div>
+                        
+                        </form>
+                        <br>
+                        <label style="height: 40px; margin-left: 80px; margin-top: 0px; width: 150px; color: #01364D;padding: 10px;  font-size: 14px;">Keep me Signed In</label>
+                        <div style="float: right;margin-top: 10; margin-right: 90px;">
+                        <label class="dot" ></label></div>
+                                           </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div>
+
+        </div>
+    </div>
+</html>

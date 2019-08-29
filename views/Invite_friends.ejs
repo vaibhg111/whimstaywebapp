@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../assets/validation.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/style4.css">
+  <script>
+        $(document).ready(function () {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "block";
+
+        });
+      
+        function myFunction() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "block";
+        }
+        function closepopup() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "none";
+        }
+    </script>
+
+</head>
+<div>
+       <div class="topnav">
+            <div class="col-md-12">
+                <img class="col-md-2 col-md-offset-1 " id="logo" src="/public/images/wemaste_Logo.png">
+                <!-- <button class="col-md-2 col-md-offset-3 btn" style="height:40px;  border: 1px solid black;
+        background-color: white;">List Your Property</button>
+        <button class="col-md-2 btn" style="margin-left: 10px; width:100px;height:40px;  border: 1px solid black;
+        background-color: white; " data-reveal-id="exampleModal">Login</button>
+        <button class="col-md-2 btn" style="margin-left: 10px; width:120px; height:40px;  border: 1px solid black;
+        background-color: white;">Sign Up</button> -->
+            </div>
+            <div class="col-md-12">
+                <hr style="border:0.5px solid #FC97B9; margin-top: -20px;">
+            </div>
+        </div>
+        <div>
+                <div id="myModal" class="modal">
+                <div  class="modal-content" style="width: 400px; height:280px; margin-top: 50px; background-color: rgb(247, 243, 243);">
+                    <img src="/public/images/close.png" onclick="location.href='/dashboard'" style="float: right; width: 30px;">
+                    <div style="align-content: center;">
+                        <br>
+                        <label style="margin-left:10px; Font-Size: 24px; color: #01364D;"><b>Invite A Friend</b></label>
+                        <br>
+                        <label style="Font-Size: 16px; color: #01364D; line-height:25px;">Introduce a friend to Wemaste to get a $000 each in travel credits when they sign up.</label>
+                        <br><br>
+                        <form action="./otp" method="post" onSubmit="return validate()">
+                            <input type="text" id="numb" autocomplete="off" name="emailId" style="height: 40px; width: 350px;border-color: #01364D; padding: 10px; font-size: 14px; "
+                                class="form-control input-lg" placeholder="Enter Email Address"/>
+                                <div style="text-align: center; margin-top: 10px;"><span id="number" style="color:red;"></span></div>
+                            <!-- <button type="submit" id="hide" style="margin-right: 80px;">
+                    <span class="glyphicon glyphicon-play"></span>
+                </button> -->
+                <input maxlength="100" type="Submit" style="background-color: #01364D; font-size: 18px; color: white;" class="form-control" Value="Send" />
+                        </form>
+                                           </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div>
+
+        </div>
+    </div>
+</html>

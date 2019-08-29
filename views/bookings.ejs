@@ -1,0 +1,722 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+    <meta name="author" content="Wemastè">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    <!-- title -->
+    <title>Bookings - Whimstay Host</title>
+    <!-- favicon -->
+    <link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+
+    <!-- styles font-awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!-- animation -->
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <!-- wemaste styles -->
+    <link rel="stylesheet" href="../public/stylesheets/core.css" />
+    <link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js'></script>
+    <!-- <script src="../public/jQuery-Mask/src/jquery.mask.js"></script> -->
+
+    <style>
+        .form-inline .form-control {
+            vertical-align: baseline !important;
+        }
+
+        .rating {
+            border: none;
+            float: left;
+            margin: -6px 10px 10px 0px;
+        }
+
+        .rating>input {
+            display: none;
+        }
+
+        .rating>label:before {
+            margin-top: 2px;
+            padding: 0px 5px 0px 5px;
+            font-size: 1.25em;
+            font-family: FontAwesome;
+            display: inline-block;
+            content: "\f005";
+        }
+
+        .rating>.half:before {
+            content: "\f089";
+            position: absolute;
+        }
+
+        .rating>label {
+            color: rgb(0, 0, 0);
+            float: right;
+            background-color: #fff;
+            /* margin-top: -27px;
+            padding: 14px; */
+
+        }
+
+        /***** CSS Magic to Highlight Stars on Hover *****/
+
+        .rating:not(:checked)>label:hover {
+            color: #02C6C4 !important;
+            cursor: pointer;
+        }
+
+        /* hover current star */
+        .rating:not(:checked)>label:hover~label {
+            color: #02C6C4 !important;
+            cursor: pointer;
+        }
+
+        /* hover previous stars in list */
+
+        .rating>input:checked+label:hover {
+            color: #02C6C4 !important;
+            cursor: pointer;
+        }
+
+        /* hover current star when changing rating */
+        .rating>label:hover~input:checked~label {
+            color: #02C6C4 !important;
+            cursor: pointer;
+        }
+
+        /* lighten current selection */
+        .rating>input:checked~label:hover~label {
+            color: #02C6C4 !important;
+            cursor: pointer;
+        }
+
+        .bookingstable td {
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .bookingstable span {
+            font-size: 10px;
+            display: block;
+        }
+
+        .dataTable>thead>tr>th[class*="sortRemove"]:after {
+            content: "" !important;
+        }
+    </style>
+
+</head>
+
+<body class="host-dashboard">
+    <!-- start header -->
+    <%- include mainMasterDashboard.ejs %>
+    <!-- end header -->
+    <input type="hidden" value="<%= pmcId %>" id="pmcId">
+    <input type="hidden" value="<%= url %>" id="globalUrl">
+    <!------------------------------------ start main content --------------------------------------------------------->
+    <section id="bookinglist" class="listings no-transition">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 margin-20px-top margin-30px-bottom">
+
+
+                    <h3 class="text-capitalize text-dark-blue font-weight-300">Bookings</h3>
+
+
+                </div>
+            </div>
+
+            <div class="row">
+
+
+                <!-- <div class="col-md-12 margin-30px-bottom">
+
+                        <label class="col-sm-1 col-form-label ">View:</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" id="selelectedOption">
+                                <option>Upcoming</option>
+                                <option>Checked In</option>
+                                <option>Checked Out</option>
+                                <option>All</option>
+                            </select>
+                        </div>
+                    </div> -->
+                <div class="col-md-12 margin-30px-bottom">
+                    <table id="booking_table" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 120px">Status</th>
+                                <th scope="col" class="sortRemove" style="width: 120px">Booking ID </th>
+                                <th scope="col" style="width: 100px">Booked</th>
+                                <th scope="col" class="sortRemove" style="width: 150px">Guests</th>
+                                <th scope="col" style="width: 120px">Itinerary</th>
+                                <th scope="col" class="sortRemove" style="width: 240px">Address</th>
+                                <th scope="col" style="width: 120px; text-align: right;">Payout</th>
+                                <th class="sortRemove"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="bookingstable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        // --------------------------------------------Booking List API Call---------------------------------------------------
+        var url = document.getElementById("globalUrl").value;
+        var pmcId = document.getElementById("pmcId").value;
+        $(document).ready(function () {
+            $.ajax({
+                url: url + 'booking/host/bookingDetails/pmcId/' + pmcId,
+                type: 'GET',
+                dataType: "json",
+                'headers': {
+                    Authorization: localStorage.getItem('token') || '',
+                },
+                success: function (result, textStatus, xhr) {
+                    //console.log(JSON.stringify(result))
+                    var itemDataArray = [];
+                    var checkinDt;
+                    var address;
+                    var guestName;
+                    var nextCheckout, payoutAmount, nightcountdisplay, petDisplay, childDisplay, adultDisplay;
+                    $.each(result, function (i, item) {
+                        checkinDt = moment(item.checkInDate).format('MMM DD');
+                        nextCheckout = moment(item.checkOutDate).format('MMM DD');
+                        if (item.fullAddress == null || item.fullAddress == undefined) {
+                            address = "";
+                        }
+                        else {
+                            address = item.fullAddress;
+                        }
+                        if (item.guestName == null || item.guestName == undefined) {
+                            guestName = "";
+                        } else {
+                            guestName = item.guestName;
+                        }
+                        if (item.nightCount == 1) {
+                            nightcountdisplay = item.nightCount + ' Night'
+                        } else {
+                            nightcountdisplay = item.nightCount + ' Nights'
+                        }
+                        if (item.noOfAdult == 1) {
+                            adultDisplay = item.noOfAdult + ' Adult'
+                        } else {
+                            adultDisplay = item.noOfAdult + ' Adults'
+                        }
+                        if (item.noOfChild == 1) {
+                            childDisplay = item.noOfChild + ' Child'
+                        } else {
+                            childDisplay = item.noOfChild + ' Children'
+                        }
+                        if (item.noOfPet == 1) {
+                            petDisplay = 'Pet'
+                        }
+
+                        payoutAmount = item.hostTransferAmount.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                        //  //var itemDataArray =item;
+                        //  itemDataArray.push(item);
+                        var bookingDate = moment(item.bookingDate).format("MMM DD, YYYY");
+                        if (item.noOfChild == 0) {
+                            $('<tr>').html('<td scope="row">' + item.bookingStatus + '</td><td>' + item.bookingNo + '</td><td class="align-middle">' + bookingDate + '</td><td>' + guestName + ' <br><span>' + adultDisplay + '</span></td><td>' + checkinDt + ' - ' + nextCheckout + '<br><span>' + nightcountdisplay + '</span></td><td>' + address + '</td><td class="text-right">$ ' + payoutAmount + '</td>' +
+                                '<td><button class="btn btn-blue btn-rounded btn-small width-100" data-toggle="modal" id="' + item.travellerId + '" value="' + item.bookingNo + '"  onclick="onDetails(this)" data-backdrop="static" data-keyboard="false" data-target="#myModal-Details">Details</button></td>').appendTo('#booking_table');
+                        } else if (item.noOfChild != 0 & item.noOfPet != 0) {
+                            $('<tr>').html('<td scope="row">' + item.bookingStatus + '</td><td>' + item.bookingNo + '</td><td class="align-middle">' + bookingDate + '</td><td>' + guestName + ' <br><span>' + adultDisplay + ', ' + childDisplay + ', ' + petDisplay + ' </span></td><td>' + checkinDt + ' - ' + nextCheckout + '<br><span>' + nightcountdisplay + '</span></td><td>' + address + '</td><td class="text-right">$ ' + payoutAmount + '</td>' +
+                                '<td><button class="btn btn-blue btn-rounded btn-small width-100" data-toggle="modal" id="' + item.travellerId + '" value="' + item.bookingNo + '"  onclick="onDetails(this)" data-backdrop="static" data-keyboard="false" data-target="#myModal-Details">Details</button></td>').appendTo('#booking_table');
+                        } else {
+                            $('<tr>').html('<td scope="row">' + item.bookingStatus + '</td><td>' + item.bookingNo + '</td><td class="align-middle">' + bookingDate + '</td><td>' + guestName + ' <br><span>' + adultDisplay + ', ' + childDisplay + ' ' + '</span></td><td>' + checkinDt + ' - ' + nextCheckout + '<br><span>' + nightcountdisplay + '</span></td><td>' + address + '</td><td class="text-right">$ ' + payoutAmount + '</td>' +
+                                '<td><button class="btn btn-blue btn-rounded btn-small width-100" data-toggle="modal" id="' + item.travellerId + '" value="' + item.bookingNo + '"  onclick="onDetails(this)" data-backdrop="static" data-keyboard="false" data-target="#myModal-Details">Details</button></td>').appendTo('#booking_table');
+                            //$('<tr>').html('<td class="text-center"><input class=chk type="checkbox" id="' + item.unitId + '" value="' + item.propertyId + '" name="propertySelect"></td><td>' + item.propertyName + "</td><td>" + item.address + "</td>").appendTo('#Update_table');
+                        }
+                    });
+                    $('#booking_table').DataTable({
+                        "language": {
+                            "info": "Showing _END_ of _TOTAL_ Bookings",
+                            "infoFiltered": ""
+                        }
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr);
+                    // console.log(errorThrown);
+                }
+            });
+        });
+
+        // --------------------------------------------Booking Details per Property API Call---------------------------------------------------
+        var travellerUserId, subType;
+        var bookingdata;
+        var travellerName;
+        var bookingId;
+        var noOfChild;
+        var userId = document.getElementById("userId").value;
+        var checkoutDt;
+        var currentDt;
+        function onDetails(data) {
+            travellerUserId = data.id;
+            bookingdata = data.value;
+            var depositeType = '';
+
+            $.ajax({
+                url: url + 'booking/userId/' + travellerUserId + '/' + bookingdata + '/host',
+                type: 'GET',
+                dataType: "json",
+                'headers': {
+                    Authorization: localStorage.getItem('token') || '',
+                },
+                success: function (result, textStatus, xhr) {
+                    console.log(JSON.stringify(result))
+                    bookingId = result.bookingId;
+                    travellerName = result.guestName;
+                    $('#booking_Model').empty();
+                    var profileImage; var sysServicefeeAmount, adultDisplay, otherFee, petfeeDisplay, cleaningFee, taxesAndFees, damage_Waiver, totalDepositeAmount, claimButton, total, damageWaiver, processingFee, hostServicefee, DepositProcessfee;
+                    var mobile = result.mobile;
+                    mobile = mobile.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+                    if (result.guestImage == "" || result.guestImage == null) {
+                        profileImage = "../public/images/default_avatar.jpg";
+                    }
+                    else {
+                        profileImage = result.guestImage;
+                    }
+
+                    if (result.serviceFee == "" || result.serviceFee == null) {
+                        sysServicefeeAmount = 0;
+                    }
+                    else {
+                        sysServicefeeAmount = result.serviceFee.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                    }
+                    if (result.otherFee == "" || result.otherFee == null) {
+                        otherFee = 0;
+                    } else {
+                        otherFee = result.otherFee;
+                    }
+                    if (result.cleaningFee == "" || result.cleaningFee == null) {
+                        cleaningFee = 0;
+                    } else {
+                        cleaningFee = result.cleaningFee;
+                    }
+                    if (result.taxesAndFees == "" || result.taxesAndFees == null) {
+                        taxesAndFees = 0;
+                    } else {
+                        taxesAndFees = result.taxesAndFees;
+                    }
+                    if (result.totalDepositeAmount == 0.0 || result.totalDepositeAmount == null) {
+                        totalDepositeAmount = " ";
+                    } else {
+                        totalDepositeAmount = '$ ' + result.totalDepositeAmount.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' ';
+                    }
+                    if (result.hostServicefeeAmount == null) {
+                        hostServicefee = 0;
+                    } else {
+                        hostServicefee = result.hostServicefeeAmount.toFixed(2);
+                    }
+                    if (result.hostDepositProcessAmount == null) {
+                        DepositProcessfee = 0;
+                    } else {
+                        DepositProcessfee = result.hostDepositProcessAmount.toFixed(2);
+                    }
+
+                    if (result.depositBasicType == 1) {
+                        depositeType = "";
+                        processingFee = " ";
+                        damageWaiver = '<tr><td>Damage Waiver</td><td class="text-right"> ' + totalDepositeAmount + '</td></tr>'
+                        claimButton = " ";
+                        damage_Waiver = result.totalDepositeAmount;
+                    } else if (result.depositBasicType == 2) {
+                        processingFee = '<tr><td>Deposit Processing Fee</td><td class="text-right">($ ' + DepositProcessfee + ')</td></tr>'
+                        depositeType = '<div class="col-sm-3"><strong> Security Deposit </strong> </div><div class="col-sm-8"> ' + totalDepositeAmount + ' (collected)</div>';
+                        damage_Waiver = 0;
+
+                        // var totalOfServiceProcessFess= hostServicefee + DepositProcessfee;
+
+                        // total = (result.discPrice + cleaningFee + otherFee + taxesAndFees) - totalOfServiceProcessFess
+                        if (result.bookingStatus === 'Checked Out') {
+                            if (result.claimNo == null && (result.refundAmount == 0 || result.refundAmount == undefined || result.refundAmount == null)) {
+                                claimButton = '<div class="col-sm-1"></div><div class="col-sm-4" id="claimButton"><button class="btn btn-blue btn-rounded btn-small width-100" id=' + result.depositId + ' onclick="claimFun(this)">Start A Claim</button></div>'
+                            } else {
+                                if (result.claimNo == null || result.claimNo == undefined) {
+                                    claimButton = '<div class="col-sm-1"></div><div class="col-sm-6" id="claimButton">Claim number not generated.</button></div>'
+                                } else {
+                                    claimButton = '<div class="col-sm-1"></div><div class="col-sm-6" id="claimButton">Claim No. ' + result.claimNo + '</button></div>'
+                                }
+                            }
+                        } else {
+                            claimButton = "";
+                        }
+
+                    } else {
+                        depositeType = " ";
+                        claimButton = " ";
+                    }
+                    if (damageWaiver == undefined) {
+                        damageWaiver = " ";
+                    }
+                    var nightCount = result.nightCount;
+                    nightCount = nightCount.split(" ");
+                    var discAmount = result.guestFee / nightCount[0];
+                    if (result.child == 0) {
+                        noOfChild = "";
+                    } else if (result.child == 1) {
+                        noOfChild = ', ' + result.child + ' Child';
+                    } else {
+                        noOfChild = ', ' + result.child + ' Children';
+                    }
+                    if (result.adult == 1) {
+                        adultDisplay = result.adult + ' Adult'
+                    } else {
+                        adultDisplay = result.adult + ' Adults'
+                    }
+                    if (result.petFee == 0) {
+                        petfeeDisplay = "";
+                    } else {
+                        petfeeDisplay = '<tr>' +
+                            '	<td>Pet fee</td>' +
+                            '	<td class="text-right">$ ' + result.petFee.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</td>' +
+                            '	</tr>'
+                    }
+                    if (result.subType === null) {
+                        subType = ''
+                    } else {
+                        subType = result.subType
+                    }
+
+
+                    total = result.total;
+                    // if (result.depositBasicType == 2) {
+                    //     total = (result.discPrice + cleaningFee + otherFee + taxesAndFees) - hostServicefee - DepositProcessfee
+                    // } else {
+                    //     if (damage_Waiver != undefined){
+                    //         total = (result.discPrice + cleaningFee + otherFee + taxesAndFees + damage_Waiver) - hostServicefee;
+                    //     }else{
+                    //         total = (result.discPrice + cleaningFee + otherFee + taxesAndFees ) - hostServicefee;
+                    //     }   
+                    // }
+
+                    $('#booking_Model').append('<div class="modal-body booking-detials"> ' +
+                        '<h5 class=text-dark-blue font-weight-300" id="BookingId">Booking ID# ' + result.bookingNo + '</h5><br/>' +
+                        '<div class="row"><div class="col-sm-3"><strong id="Status">Status</strong></div>' +
+                        '<div class="col-sm-9">	' + result.bookingStatus + '</div></div><br/>' +
+                        ' <div class="row"><div class="col-sm-3"><strong>Check-In</strong></div>' +
+                        '<div class="col-sm-3">' + result.checkinTD + '</div>' +
+                        '<div class="col-sm-3"><strong>Checkout</strong></div>' +
+                        '<div class="col-sm-3">	' + result.checkoutTD + '</div></div><br/>' +
+                        '<div class="row"><div class="col-sm-3"><strong>Property</strong></div>' +
+                        '<div class="col-sm-9"><a href="#">' + result.propertyName + '</a><br/>' +
+                        '<span class="text-small">' + subType + ' for ' + result.nightCount + '</span></div></div><br/>' +
+                        '<div class="row"><div class="col-sm-3"><strong>Payout</strong></div>' +
+                        '<div class="col-sm-8">' +
+                        '<table class="table bookingstable table-borderless">' +
+                        '<tbody>' +
+                        '<tr>' +
+                        '	<td>$ ' + discAmount.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' x ' + result.nightCount + '</td>' +
+                        '	<td class="text-right">$ ' + result.guestFee.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</td>' +
+                        '	</tr>' +
+                        '	 <tr>' +
+                        '	<td>Cleaning fee</td>' +
+                        '	<td class="text-right">$ ' + cleaningFee.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</td>' +
+                        '	</tr>' +
+                        '<tr>' + petfeeDisplay +
+                        '<td>Other fee</td>' +
+                        '<td class="text-right">$ ' + otherFee.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</td>' +
+                        '</tr>' +
+                        '	<tr>' +
+                        '	<td>Taxes</td>' +
+                        '	<td class="text-right">$ ' + taxesAndFees.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</td>' +
+                        '		</tr>' +
+                        '<tr>' + damageWaiver +
+                        '<td>Host Service Fee</td>' +
+                        '<td class="text-right"> ($ ' + hostServicefee + ')</td>' +
+                        '</tr>' + processingFee +
+                        // '<td>Deposit (collected)</td>' +
+                        // '<td class="text-right">$ ' + result.totalDepositeAmount.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</td>' +
+                        //'</tr>' +
+                        '<tr class="row-top-border">' +
+                        '<th>Total</th>' +
+                        '<th class="text-right">$ ' + total.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + '</th>' +
+                        '</tr>' +
+                        '	</tbody>' +
+                        '	</table>' +
+                        '	</div>' +
+                        // '	</div>' +
+                        depositeType +
+                        '' + claimButton + '</div><br/>' +
+                        '<div id="claimText"> </div>' +
+                        '<div class="row"><div class="col-sm-3"><strong>Guest</strong></div>' +
+                        '<div class="col-sm-2"><img src="' + profileImage + '" name="Profile Photo" class="img-circle" alt="No Profile Photo"></div>' +
+                        '<div class="col-sm-7">	' + result.guestName + '<br/><span class="text-small">' + adultDisplay + '' + noOfChild + '<br/>	Phone: 	' + mobile + '<br/>Email:	' + result.email + ' </span></div></div><br>' +
+                        '<div class="row"> <div id="starRating"><div class="col-sm-3"><strong>Ratings & Reviews</strong></div><div class="col-sm-9"><p>Thank your guest for staying at your property!<br>Give them a review and send them a message. </p>' +
+                        '<div class="col-sm-5" style="padding: 0px;">Guest Rating:</div><div><fieldset class="rating" style="margin-left: -30px;"><input type="radio" id="field1_star5" name="rating1" value="5" /><label class = "full" for="field1_star5" onclick="starfunction(this)"></label><input type="radio" id="field1_star4" name="rating1" value="4" /><label class = "full" for="field1_star4" onclick="starfunction(this)"></label>' +
+                        '<input type="radio" id="field1_star3" name="rating1" value="3" /><label class = "full" for="field1_star3" onclick="starfunction(this)"></label><input type="radio" id="field1_star2" name="rating1" value="2" /><label class = "full" for="field1_star2" onclick="starfunction(this)"></label><input type="radio" id="field1_star1" name="rating1" value="1" /><label class = "full" for="field1_star1" onclick="starfunction(this)"></label></fieldset></div>' +
+                        '<div class="col-sm-12"><span id="errRating" style="color:red;"></span></div><textarea class="form-control margin-10px-bottom" rows="10" id="descHost" name="descHost" onkeypress="validateInput()"></textarea><span id="errReview" style="color:red;"></span>' +
+                        '<button type="button" id="reviewbtn" class="btn btn-blue btn-rounded btn-large width-100" onclick="validateRatings()" disabled>Submit</button></div></div></div></div>');
+                    //      //$('<tr>').html('<td class="text-center"><input class=chk type="checkbox" id="' + item.unitId + '" value="' + item.propertyId + '" name="propertySelect"></td><td>' + item.propertyName + "</td><td>" + item.address + "</td>").appendTo('#Update_table');
+                    //  });
+                    //  $('#booking_table').DataTable({
+
+                    //-----------------------------------------Review box display------------------------------------------------------
+                    checkoutDt = result.checkOut;
+                    var checkoutDt1 = moment(checkoutDt).format("DD/MM/YYYY");
+                    currentDt = moment().valueOf();
+                    var reviewLastDt = moment(checkoutDt1, "DD/MM/YYYY").add(5, 'days');
+                    reviewLastDt = reviewLastDt._d;
+                    reviewLastDt = moment(reviewLastDt, "DD/MM/YYY").valueOf();
+                    var claimLastDt = moment(checkoutDt1, "DD/MM/YYYY").add(2, 'days');
+                    claimLastDt = claimLastDt._d;
+                    claimLastDt = moment(claimLastDt, "DD/MM/YYY").valueOf();
+
+                    // var timestamp = moment(checkoutDt).valueOf();
+                    // console.log(timestamp)
+                    // console.log(currentDt)
+                    if (currentDt > claimLastDt) {
+                        $('#claimButton').hide();
+                    } else { }
+
+                    //|| currentDt < timestamp
+                    if (currentDt > reviewLastDt) {
+                        //    $('#descHost').hide();
+                        $('#reviewbtn').hide();
+                        $('#starRating').hide();
+                    } else { }
+                    // var ratingSumbit = result.rating;
+                    //    console.log(ratingSumbit);
+                    //    if(ratingSumbit < 0){
+                    //     $('#reviewbtn').hide();
+                    //     $('#starRating').hide();
+                    //    }else{ }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr);
+                    // console.log(errorThrown);
+                }
+            });
+        }
+
+        //--------------------------------------------Review Submit API Call-------------------------------------------------------
+        var starRating;
+        function starfunction(obj) {
+            starRating = obj.control.attributes[3].nodeValue;
+            $(obj).parent().find("label").css({ "color": "#D8D8D8" });
+            $(obj).css({ "color": "#02C6C4" });
+            $(obj).nextAll().css({ "color": "#02C6C4" });
+            document.getElementById("errRating").innerHTML = "";
+        }
+
+        function validateRatings() {
+            if (starRating == "" || starRating == null || starRating == undefined) {
+                document.getElementById("errRating").innerHTML = 'Kindly Review Rating.';
+                return false;
+            }
+            else {
+                document.getElementById("errRating").innerHTML = "";
+            }
+
+            if (document.getElementById("descHost").value == "" || document.getElementById("descHost").value == null || document.getElementById("descHost").value == undefined) {
+                document.getElementById("errReview").innerHTML = 'Kindly write your Review.';
+                document.getElementById("descHost").focus();
+                return false;
+            }
+            else {
+                document.getElementById("errReview").innerHTML = "";
+            }
+            submitDetails();
+        }
+
+        function validateInput() {
+            document.getElementById("errReview").innerHTML = "";
+        }
+
+        function submitDetails() {
+            var review = document.getElementById("descHost").value;
+            var dataList = {
+                "travellerId": travellerUserId,
+                "userId": userId,
+                "bookingId": bookingId,
+                "review": review,
+                "apprAdmin": "N",
+                "apprHost": "Y",
+                "active": 1,
+                "reviewerName": "Vaibhav Ghatolkar",
+                "travelerName": travellerName,
+                "helpfullCount": 0,
+                "unHelpfullCount": 0,
+                "starCount": starRating
+            }
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                headers: {
+                    Authorization: localStorage.getItem('token') || ''
+                },
+                data: JSON.stringify(dataList),
+
+                url: globalUrl + 'v1/user/' + userId + '/traveller/review',
+                success: function (result) {
+                    console.log(result);
+                    window.location.reload();
+                }
+            });
+
+        }
+    </script>
+
+    <!---------------------------------------end main content ------------------------------------------------------>
+
+    <!--------------------------------------- start share with a host lightbox------------------------------------->
+    <!--------------------------------- Modal --------------------------------------------------------------------->
+    <div id="myModal-Details" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <!--<h4 class="modal-title">Modal Header</h4>-->
+                </div>
+
+                <div id="booking_Model"></div>
+
+            </div>
+        </div>
+    </div>
+    <!---------------------------------- end share with a host lightbox--------------------------------------------->
+
+    <!-------------------------------------- Modal start ----------------------------------------------------------->
+
+    <div id="modal_booking" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: pink;">
+                    <span class="modal-title"></span>
+                    <button type="button" class="close" onclick="javascript:window.location.reload()"
+                        data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="main-body"></p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    <button type="button" class="btn btn-secondary" onclick="javascript:window.location.reload()"
+                        data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------------------------- Modal End ------------------------------------------------------>
+
+    <!----------------------------------------------footer Start---------------------------------------------------->
+    <footer class="bg-dark-blue padding-30px-tb text-center">
+        <div class="footer-widget-area">
+            <div class="container">
+                <div class="row">
+                    <div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+                        <a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+                            href="https://www.facebook.com/whimstay" target="_blank"><i
+                                class="fab fa-facebook-f"></i><span></span></a>
+                        <a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s"
+                            href="https://www.instagram.com/whimstay" target="_blank"><i
+                                class="fab fa-instagram"></i><span></span></a>
+                        <a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+                            href="https://www.linkedin.com/company/whimstay" target="_blank"><i
+                                class="fab fa-linkedin-in"></i><span></span></a>
+
+                    </div>
+                </div>
+
+
+                <p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights
+                    Reserved.
+                </p>
+                <p class="text-white"><a href="./terms_privacy">Terms & Privacy</a> </p>
+            </div>
+        </div>
+
+    </footer>
+    <!---------------------------------------- end footer ---------------------------------------------------------->
+    <!------------------------------- javascript libraries --------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="../public/javascripts/global.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src=" https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <!-----------------------------------end javascript libraries -------------------------------------------------->
+
+    <script>
+
+        // ---------------------------------------------------Submit Claim for deposit-------------------------------------------
+        function claimFun(claimId) {
+            sessionStorage.setItem("depositID", claimId.id);
+            $("#" + claimId.id).hide();
+
+            $('#claimText').empty();
+            var trHtml = '<div class="col-sm-3"></div><div class="col-sm-8" style="padding: 0;"><input type="hidden" value=' + claimId.id + ' id="depositId"><textarea class="form-control margin-10px-bottom" rows="5" id="claimHost" name="descHost"></textarea><span id="claimHost1" style="color:red;"></span>' +
+                '<button type="button" class="btn btn-blue btn-rounded btn-large width-100" style="margin-bottom: 20px;" onclick="submitClaim()">Submit</button></div>'
+            $('#claimText').append(trHtml);
+        }
+
+        function submitClaim() {
+
+            if (document.getElementById('claimHost').value == "") {
+                document.getElementById("claimHost1").innerHTML = 'Please enter the reason.';
+                document.getElementById("claimHost").focus();
+                return false;
+            } else {
+                document.getElementById("claimHost1").innerHTML = "";
+            }
+            var url = document.getElementById("globalUrl").value;
+            var pmcId = document.getElementById("pmcId").value;
+            var claimDetails = new Object();
+            claimDetails.claimNote = document.getElementById("claimHost").value;
+            claimDetails.depositId = document.getElementById('depositId').value
+
+            console.log(JSON.stringify(claimDetails))
+            $.ajax({
+                type: 'POST',
+                //data: person,
+                data: JSON.stringify(claimDetails),
+                contentType: "application/json",
+                dataType: "json",
+                'headers': {
+                    Authorization: localStorage.getItem('token') || '',
+                },
+                url: url + 'admin/pmcId/' + pmcId + '/claimDetails',
+                success: function (result) {
+                    console.log(JSON.stringify(result));
+                    document.getElementById("main-body").innerHTML = " Claim raised on this booking";
+                    $('#modal_booking').modal('show');
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(xhr);
+                    document.getElementById("main-body").innerHTML = " Something went wrong, please try again later";
+                    $('#modal_booking').modal('show');
+                },
+
+
+            });
+        }
+        //---------------------------------------------end Submit Claim for deposit----------------------------------------
+        // --------------------------------------------Refresh the page after get popup modal--------------------------------------
+
+        $('#modal_booking').on('hidden.bs.modal', function () {
+            window.location.reload();
+        });
+    </script>
+
+</body>
+
+</html>

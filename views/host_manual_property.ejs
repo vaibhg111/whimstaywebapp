@@ -1,0 +1,450 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../public/javascripts/API.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <style>
+        #div1 {
+            border-radius: 32px;
+            border: 5px solid #01364D;
+            padding: 5px;
+            height: 420px;
+            /* margin-left: 550px; */
+            width: 214px;
+        }
+
+        #div2 {
+            border-radius: 30px;
+            border: 1px solid #01364D;
+            padding: 2px;
+            width: 201px;
+            background-color: white;
+            height: 420px;
+        }
+
+        #div3 {
+            width: 100px;
+            margin-left: 50px;
+            height: 15px;
+            border-radius: 30px;
+            border: 1px solid #2A2928;
+            padding: 5px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+</head>
+
+<body>
+    
+
+    <style>
+        body {
+            font-family: ITC Lubalin Graph Std;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 5px;
+            padding-top: 10px;
+            height: 350px;
+        }
+
+        .SelectProperty {
+            border-style: solid;
+            margin-top: 10px;
+            border-color: #01364D;
+            border-radius: 5px;
+            color: #01364D;
+            height: 35px;
+            font-size: 15px;
+            font: bold;
+            width: 180px;
+            margin-left: 5;
+            padding-left: 10px;
+
+            padding-top: 3px;
+        }
+
+        li {
+            border-style: solid;
+            margin-top: 10px;
+            border-color: #01364D;
+            border-radius: 5px;
+            color: #01364D;
+            height: 35px;
+            width: 180px;
+            margin-right: 500px;
+            padding-left: 5px;
+            margin-left: 0px;
+            padding-top: 3px;
+        }
+
+        a::after {
+            content: "+";
+            float: right;
+            padding-right: 10px;
+            color: #FC97B9;
+            font-size: 18px;
+            font: bold;
+            padding-left: 5px;
+            border: none;
+
+        }
+
+        .image-upload>input {
+            display: none;
+        }
+
+        .image-upload img {
+            width: 80px;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript"> 
+        $(document).ready(function () {
+            $('#list li').click(function () {
+
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function minus() {
+
+
+            var TotalCount = (parseInt(($("#Bedcount").text())) - 1);
+            document.getElementById('Bedcount').innerHTML = TotalCount;
+            if (TotalCount <= 1) {
+                $("#btnminus").attr("disabled", true);
+            }
+        }
+        function plus() {
+            var TotalCount = (parseInt(($("#Bedcount").text())) + 1);
+            document.getElementById('Bedcount').innerHTML = TotalCount;
+            if (TotalCount > 1) {
+                $("#btnminus").removeAttr('disabled');
+                // $('#send').prop('disabled', false);
+            }
+        }
+        function btnminus_1() {
+
+
+            var TotalCount = (parseInt(($("#Bedcount_1").text())) - 1);
+            document.getElementById('Bedcount_1').innerHTML = TotalCount;
+            if (TotalCount <= 1) {
+                $("#btnminus_1").attr("disabled", true);
+            }
+        }
+        function btnbedplus() {
+            var TotalCount = (parseInt(($("#Bedcount_1").text())) + 1);
+            document.getElementById('Bedcount_1').innerHTML = TotalCount;
+            if (TotalCount > 1) {
+                $("#btnminus_1").removeAttr('disabled');
+                // $('#send').prop('disabled', false);
+            }
+        }
+
+        function bath_minus() {
+
+
+            var TotalCount = (parseInt(($("#bathcount_1").text())) - 1);
+            document.getElementById('bathcount_1').innerHTML = TotalCount;
+            if (TotalCount <= 1) {
+                $("#bath_minus").attr("disabled", true);
+            }
+        }
+        function btnbathplus() {
+            var TotalCount = (parseInt(($("#bathcount_1").text())) + 1);
+            document.getElementById('bathcount_1').innerHTML = TotalCount;
+            if (TotalCount > 1) {
+                $("#bath_minus").removeAttr('disabled');
+                // $('#send').prop('disabled', false);
+            }
+        }
+
+        // function selectamenties() {
+        //     alert('');
+        //     $("#amenties li").click(function () {
+
+        //         var amenties_id = ($(this).attr("id"));
+        //         alert(amenties_id);
+        //     });
+        // }
+    </script>
+    <script type="text/javascript">
+        function HandleBrowseClick(input_image) {
+             $("#photoadd").hide();
+            $("#display_image").show();
+            var fu1 = document.getElementById("FileUpload1");
+
+            var file = document.getElementById("file-input");
+          
+         
+        }    
+        
+        function filel(file)
+        {
+            document.getElementById('image_display').src = window.URL.createObjectURL(file);
+        }
+    </script>
+
+    <div class="topnav">
+
+        <div class="col-md-12">
+            <img class="col-md-2 col-md-offset-1 " id="logo" src="/public/images/wemaste_logo.png">
+            <button style="margin-left: 650px; border: none; color:  #01364D;" class="col-md-2 btn" onclick="location.href='/dashboard' "
+                id="login">Save and Exit</button>
+        </div>
+        <div class="col-md-12">
+            <h2 style="visibility: hidden;height: 1px; ">.</h2>
+            <div class="progress" style="margin-top: -40px; height: 5px;">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:20%; height: 10px; background-color:#FC97B9;">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <!-- <hr style="border:2px solid rgb(29, 28, 28); width: 39.40%; float: left;">
+        <hr style="border:2px solid rgb(207, 205, 205); width: 60%; float:right;">
+        <label style="margin-left: 15px;">2/5</label> -->
+    </div>
+    </div>
+    <div class="col-md-12">
+        <div>
+            <div style="float: left; width: 30%; height: 300px;">
+                <label id="maindiv1" style="font-size: 24px;   float: left; color: #01364D; margin-left: 135px;">Create New Listing</label>
+                <br>
+                <label id="maindiv2" style="margin-left: 120px; color: #01364D; font-size: 16px; ">
+                    Creating a listing is quick and easy
+                    <br> let's start with what type of
+                    <br> property you have
+                </label>
+            </div>
+            <input type="hidden" id="session_userId" value="<%= data %>">
+            <div style="float: right; width: 60%; align-content: left; ">
+                <div id="div1">
+                    <div id="MainProperty" style=" border: 100px;">
+                    </div>
+                    <div id='div_sub_property' style="display: none;">
+                        <input id="select_P_nm" disabled class="SelectProperty">
+
+                        <button type="submit" id="play">
+                            <span class="glyphicon glyphicon-ellipsis-v" style="color: #FC97B9; height: 5px;"></span>
+                        </button>
+                        <div id="sub_property">
+                        </div>
+                    </div>
+                    <div id="AccessProperty" style="display: none;" onclick="Access_Property()" style=" border: 100px;">
+                    </div>
+                    <div id="SubAccessProperty" onclick="SubAccessProperty()" style=" display: none; border: 100px; ">
+                        <input id="select_Sub_property" readonly="readonly" class="SelectProperty">
+
+                        <input id="select_Guest" readonly="readonly" style="font-size: 15px; padding-left: 20px; font: bold;" class="SelectProperty">
+                        <button type="submit" style="margin-right: 70px; padding-left:10px; border: none; height: 0px; margin-top: -30px; margin-right: 20px;">
+                            <label id="Bedcount" style="margin-top: 2px; padding-left:3px; height: 0px; color: #01364D;height: 5px; border: none; ">1</label>
+                        </button>
+                        <button type="submit" id="btnminus" style="margin-right: 50px; float: right;margin-top: -30px; margin-right: 30px" disabled
+                            onclick="minus()">
+                            <span class="glyphicon glyphicon-minus" style="margin-top: 2px;  color: #FC97B9; "></span>
+                        </button>
+                        <button type="submit" id="plus" onclick="plus()" style=" float: right;margin-top: -30px; margin-right: 10px">
+                            <span class="glyphicon glyphicon-Plus" style="color: #FC97B9; margin-top: 4px;"></span>
+                        </button>
+                        <button id="select_bed" onclick="select_bed()" class="SelectProperty ">Bed</button>
+
+                    </div>
+                    <div id="Select_bed_Details" style="display:none;">
+                        <input id="select_Sub_property_1" readonly="readonly" class="SelectProperty">
+
+                        <input id="select_Guest_1" readonly="readonly" class="SelectProperty">
+
+                        <input id="select_bed_1" readonly="readonly" style="font-size: 15px; padding-left: 20px; font: bold;" class="SelectProperty">
+                        <button type="submit" style="margin-right: 70px; padding-left:10px; border: none; height: 0px; margin-top: -30px; margin-right: 20px;">
+                            <label id="Bedcount_1" style="margin-top: 2px; padding-left:3px; height: 0px; color: #01364D;height: 5px; border: none; ">1</label>
+                        </button>
+                        <button type="submit" id="btnminus_1" style=" display: none; margin-right: 50px; float: right;margin-top: -30px; margin-right: 30px"
+                            disabled onclick="btnminus_1()">
+                            <span class="glyphicon glyphicon-minus" style="margin-top: 2px;  color: #FC97B9; "></span>
+                        </button>
+                        <button type="submit" id="btnbedplus" onclick="btnbedplus()" style="display: none; float: right;margin-top: -30px; margin-right: 10px">
+                            <span class="glyphicon glyphicon-Plus" style="color: #FC97B9; margin-top: 4px;"></span>
+                        </button>
+                        <div id="bedDetails">
+
+                        </div>
+                    </div>
+                    <div id="Select_bathroom" style="display:none;">
+                        <input id="select_Sub_property_3" readonly="readonly" class="SelectProperty">
+
+                        <input id="select_Guest_3" readonly="readonly" class="SelectProperty">
+                        <input id="select_bed_3" readonly="readonly" class="SelectProperty">
+                        <input id="bathroom_count" readonly="readonly" style="font-size: 15px; padding-left: 20px; font: bold;" class="SelectProperty">
+                        <button type="submit" style="margin-right: 70px; padding-left:10px; border: none; height: 0px; margin-top: -30px; margin-right: 20px;">
+                            <label id="bathcount_1" style="margin-top: 2px; padding-left:3px; height: 0px; color: #01364D;height: 5px; border: none; ">1</label>
+                        </button>
+                        <button type="submit" id="bath_minus" style="margin-right: 50px; float: right;margin-top: -30px; margin-right: 30px" disabled
+                            onclick="bath_minus()">
+                            <span class="glyphicon glyphicon-minus" style="margin-top: 2px;  color: #FC97B9; "></span>
+                        </button>
+                        <button type="submit" id="btnbathplus" onclick="btnbathplus()" style=" float: right;margin-top: -30px; margin-right: 10px">
+                            <span class="glyphicon glyphicon-Plus" style="color: #FC97B9; margin-top: 4px;"></span>
+                        </button>
+
+                    </div>
+                    <div id="PropertyLocation" style="display: none;">
+                        <input id="Enter_address" placeholder="Address" class="SelectProperty">
+
+                        <input id="Enter_aptSuite" placeholder="Apt Suite(optional)" class="SelectProperty">
+                        <input id="Enter_city" placeholder="EnterCity" class="SelectProperty">
+                        <select id="select_State" style="font-size: 15px; padding-left: 20px; font: bold; color: #01364D" class="SelectProperty">
+                            <option value="AK">Alaska</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+
+
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                            <option value="AS">American Samoa</option>
+                            <option value="MP">Northern Mariana Islands</option>
+                            <option value="PR">Puerto Rico</option>
+                            <option value="VI">U.S. Virgin Islands</option>
+                            <option value="FM">Micronesia</option>
+                            <option value="MH">Marshall Islands</option>
+                            <option value="PW">Palau</option>
+                            <option value="AA">U.S. Armed Forces – Americas</option>
+                            <option value="AE">U.S. Armed Forces – Europe</option>
+                            <option value="AP">U.S. Armed Forces – Pacific</option>
+                            <option value="CM">Northern Mariana Islands</option>
+                            <option value="CZ">Panama Canal Zone</option>
+                            <option value="NB">Nebraska</option>
+                            <option value="PI">Philippine Islands</option>
+                            <option value="TT">Trust Territory of the Pacific Islands</option>
+
+
+
+                        </select>
+                        <input id="Enter_country" disabled name="" class="SelectProperty">
+                    </div>
+                    <div id="listingdetails" style="display: none;">
+                        <input id="Tittle" readonly="readonly" class="SelectProperty">
+                        <br>
+                        <input id="Tittle_listing" placeholder="Tittle of listing" class="SelectProperty">
+                        <br>
+                        <!-- <input id="Tittle_Description" placeholder="Listing Description"  style="height: 150px;  "  class="SelectProperty"> -->
+                        <textarea id="Tittle_Description" placeholder="Listing Description" style="height: 150px;    border-color: #01364D;" class="SelectProperty"
+                            rows="5" cols="25"></textarea>
+                        <br>
+                    </div>
+                    <div id="div_amenties" style="display: none; height:250px;">
+                        <h1 style="font-size: 15px; font: bold;  height: 1px; width: 5px;margin-left: 65px;">Amenties</h1>
+                        <br>
+                        <div id="amenties" style="overflow:scroll; height:350px;">
+                        </div>
+
+
+                    </div>
+                    <div id="div_access" style="display: none; height:250px;">
+                        <h1 style="font-size: 15px; font: bold;  height: 1px; width: 5px;margin-left: 65px;">Access</h1>
+                        <div id="Access" style="overflow:scroll; height:350px;">
+                        </div>
+
+
+                    </div>
+                    <div id="div_addphoto" style="display: none;">
+                        <!-- <div >
+                            <img id="image-preview" style="height:100px; width:100px;" src="">
+
+                            <input style="display:none" id="input-image-hidden" onchange="document.getElementById('image-preview').src = window.URL.createObjectURL(this.files[0])"
+                                type="file" accept="image/jpeg, image/png">
+                            <button>UPLOAD IMAGE</button>
+                        </div> -->
+                        <div>
+                            <div id="photoadd" class="image-upload" onclick="HandleBrowseClick('input-image-hidden');">
+                                <label for="file-input">
+                                    <img src="/public/images/add-circular-button.png" onclick="HandleBrowseClick('input-image-hidden');" style="margin-left:60px; margin-top: 150px; "
+                                    />
+                                </label>
+                                <input id="file-input" type="file" onchange="filel(this.files[0])"/>
+                            </div>
+                            <div style="display:none;" id="display_image" >
+                                <img id="image_display" style="height:400px; width:190px;" src="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <div>
+        <label style="color:#01364D; margin-top: 5px; margin-left: 630px; ">2/5</label>
+        <br>
+        <button id=btndone onclick="btndone()" disabled style="width: 250px; margin-left: 520px; margin-top: 10px; background-color:#01364D; color:white;height:
+                        33px;border-radius: 8px; border: 1px #01364D ">Continue</button>
+        <br>
+        <button id=confirm onclick="confirm()" hidden="hidden" style="width: 250px; margin-left: 520px; margin-top: 10px; background-color:#01364D; color:white;height:
+        33px;border-radius: 8px; border: 1px #01364D ">Confirm</button>
+        <br>
+    </div>
+</body>
+
+</html>

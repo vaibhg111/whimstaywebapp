@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/stylesheets/core.css" />
+    <link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+    <title>Property Details - Whimstay host</title>
+    <link rel="icon" href="../public/images/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        form input,
+        button {
+            padding: 5px;
+        }
+
+        table {
+            width: 90%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #FC97B9;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 16px Arial;
+        }
+
+        .autocomplete {
+            /*the container must be positioned relative:*/
+            position: relative;
+            display: inline-block;
+        }
+
+        form {
+            margin-top: 100px;
+        }
+
+        input {
+            border: 1px solid transparent;
+            background-color: #f1f1f1;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        input[type=text] {
+            background-color: #f1f1f1;
+            width: 100%;
+        }
+
+        input[type=submit] {
+            background-color: DodgerBlue;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+        .autocomplete-items div:hover {
+            /*when hovering an item:*/
+            background-color: #e9e9e9;
+        }
+
+        .autocomplete-active {
+            /*when navigating through the items using the arrow keys:*/
+            background-color: DodgerBlue !important;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="row">
+        <div class="col-md-12  margin-20px-top margin-30px-bottom">
+            <h3 class="text-capitalize text-dark-blue font-weight-300">Property Details</h3>
+        </div>
+    </div> -->
+    <%- include mainMasterDashboard.ejs %>
+        <!--Make sure the form has the autocomplete function switched off:-->
+        <form autocomplete="off" style="text-align: center;">
+            <!-- 
+        <div class="autocomplete" style="width:200px;">
+            <input id="ownerInput" type="text" name="myCountry" placeholder="Owner Name">
+        </div>
+
+        <div class="autocomplete" style="width:200px;">
+            <input id="propertyInput" type="text" name="propertyName" placeholder="Property Name">
+        </div> -->
+
+            <div class="autocomplete" style="width:200px;">
+                <input id="emailInput" type="text" name="emailId" placeholder="Email ID">
+
+            </div>
+
+            <div class="autocomplete" style="width:200px;">
+                <input id="mobInput" type="text" name="mobileNo" maxlength="10" placeholder="Mobile No">
+
+            </div><br />
+            <span id="mail" style="color:red;"></span>
+            <span id="number" style="color:red;"></span>
+            <!-- <div class="autocomplete" style="width:200px;">
+            <input id="cityInput" type="text" name="myCountry" placeholder="City">
+        </div> -->
+
+            <!-- <div class="autocomplete" style="width:200px;">
+            <input id="stateInput" type="text" name="state" placeholder="State">
+        </div>
+
+        <div class="autocomplete" style="width:200px;">
+            <input id="rateInput" type="text" name="rate" placeholder="Rate">
+        </div> -->
+
+            <!-- <input type="submit"> -->
+
+            <div style="text-align: center;"> <a class="btn btn-blue btn-rounded btn-large margin-30px-top margin-30px-bottom"
+                    role="button" onclick="onSearch()">Submit</a></div>
+
+        </form>
+
+
+        <div id="div1"></div>
+
+        <div class="div2" style="color:rgb(28, 209, 209)"></div>
+
+        <script type="text/javascript">
+            var baseUrl = globalUrl;
+            var isSearch = false;
+
+            function onSearch() {
+                var mailid = document.getElementById("emailInput").value;
+                var mob = document.getElementById("mobInput").value;
+
+                 if (mailid) {
+                    var v = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    if (v.test(emailInput.value) == false) {
+                        $('#div1').empty();
+                        $('.div2').empty();
+                        document.getElementById("mail").innerHTML = 'Invalid Email Address.';
+                        document.getElementById("number").innerHTML = "";
+                        emailInput.focus();
+                        return false;
+
+                    } else {
+                        document.getElementById("mail").innerHTML = "";
+                        document.getElementById("number").innerHTML = "";
+                    }
+                } 
+                if (mob) {
+                    // For mobile number field
+                    var r = 0;
+                    for (y = 0; y < mob.length; y++) {
+                        if ((mob.charCodeAt(y) >= 32 && mob.charCodeAt(y) <= 47) || (mob.charCodeAt(y) >= 58 && mob.charCodeAt(y) <= 255) || (mob.charCodeAt(y) >= 338 && mob.charCodeAt(y) <= 402) || (mob.charCodeAt(y) >= 8211 && mob.charCodeAt(y) <= 8482)) {
+                            r++;
+                        }
+                    }
+                    if (r != 0) {
+                        $('#div1').empty();
+                        $('.div2').empty();
+                        document.getElementById("number").innerHTML = 'Please enter only numeric values in Mobile Number.';
+                        document.getElementById("mail").innerHTML = "";
+                        document.getElementById("mobInput").focus();
+                        return false;
+                    }
+                    else {
+                        document.getElementById("number").innerHTML = "";
+                        document.getElementById("mail").innerHTML = "";
+                    }
+                    if (mob.length > 10 || mob.length < 10) {
+                        $('#div1').empty();
+                        $('.div2').empty();
+                        document.getElementById("number").innerHTML = 'Mobile number should be of 10 digits';
+                        document.getElementById("mail").innerHTML = "";
+                        document.getElementById("mobInput").focus();
+                        return false;
+                    }
+                    else {
+                        document.getElementById("number").innerHTML = "";
+                        document.getElementById("mail").innerHTML = "";
+                    }
+                }
+           
+                $('#div1').empty();
+                $('.div2').empty();
+                var email = document.getElementById("emailInput").value;
+                var mobile = document.getElementById("mobInput").value;
+                var dataList = {
+                    "emailId": email,
+                    "mobileNo1": mobile,
+                    "address": "",
+                }
+
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    dataType: "json",             'headers': {                 Authorization: localStorage.getItem('token') || '',             },
+                    headers: { "Content-Type": "application/json" },
+                    data: JSON.stringify(dataList),
+
+                    url: baseUrl + 'v1/admin/user',
+                    success: function (result) {
+                        var jsonResult = JSON.stringify(result);
+                        if (jsonResult == "[]") {
+                            $('#div1').empty();
+                            $('#div1').append("<center><span style='color:red'>Record Not Found.</span></center>");
+                        } 
+                        // else if(document.getElementById("number").innerHTML = 'Mobile number should be of 10 digits')
+                        // {
+                        //     $('#div1').empty();
+                        // }
+                        else {
+                            var cnt = 0;
+                            var UserDetailsList = result;
+                            var isActiveStatus = [];
+                            var isHideStatus = [];
+                            table = $('<table align="center">');
+                            table.append('<th>Sr.no.</th><th>Property Name</th><th>Owner Name</th><th>Mobile No</th><th>Email Id </th> <th>Address</th><th>City</th><th>State</th><th>Status</th>');
+                            UserDetailsList.forEach(function (user) {
+                                var tr = $('<tr>');
+                                cnt++;
+                                tr.append('<td>' + cnt + '</td>');
+                                ['proprtyName', 'fullName', 'mobileNo1', 'emailId', 'addressLine1', 'city', 'state'].forEach(function (attr) {
+
+                                    tr.append('<td>' + user[attr] + '</td>');
+                                });
+
+                                ['active'].forEach(function (attr) {
+                                    isActiveStatus = user['active'];
+                                    isHideStatus = user['isHide'];
+                                    if (isActiveStatus == 1 && isHideStatus == 1) {
+                                        tr.append('<td>Hide</td>');
+                                    } else if (isActiveStatus == 0 && isHideStatus == 0) {
+                                        tr.append('<td>Draft</td>');
+                                    } else if (isActiveStatus == 1 && isHideStatus == 0) {
+                                        tr.append('<td>Publish</td>');
+                                    }
+                                });
+
+                                table.append(tr);
+                                sessionStorage.setItem('totalCnt', cnt);
+                            });
+                            $('#div1').empty();
+                            $(table).appendTo('#div1');
+                            var totalCnt = sessionStorage.getItem('totalCnt');
+                            $('.div2').empty();
+                            $('.div2').append('<b>Total Count : ' + totalCnt + '.</b>');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#div1').empty();
+                        $('#div1').append("<center><span style='color:red'>Record Not Found.</span></center>");
+                    }
+
+                });
+
+            }
+        </script>
+
+        <script>
+            function autocomplete(inp, arr) {
+                var currentFocus;
+                inp.addEventListener("input", function (e) {
+                    var a, b, i, val = this.value;
+                    closeAllLists();
+                    if (!val) { return false; }
+                    currentFocus = -1;
+                    a = document.createElement("DIV");
+                    a.setAttribute("id", this.id + "autocomplete-list");
+                    a.setAttribute("class", "autocomplete-items");
+                    this.parentNode.appendChild(a);
+                    for (i = 0; i < arr.length; i++) {
+                        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                            b = document.createElement("DIV");
+                            b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                            b.innerHTML += arr[i].substr(val.length);
+                            b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                            b.addEventListener("click", function (e) {
+                                inp.value = this.getElementsByTagName("input")[0].value;
+                                closeAllLists();
+                            });
+                            a.appendChild(b);
+                        }
+                    }
+                });
+                inp.addEventListener("keydown", function (e) {
+                    var x = document.getElementById(this.id + "autocomplete-list");
+                    if (x) x = x.getElementsByTagName("div");
+                    if (e.keyCode == 40) {
+                        currentFocus++;
+                        addActive(x);
+                    } else if (e.keyCode == 38) {
+                        currentFocus--;
+                        addActive(x);
+                    } else if (e.keyCode == 13) {
+                        e.preventDefault();
+                        if (currentFocus > -1) {
+                            if (x) x[currentFocus].click();
+                        }
+                    }
+                });
+                function addActive(x) {
+                    if (!x) return false;
+                    removeActive(x);
+                    if (currentFocus >= x.length) currentFocus = 0;
+                    if (currentFocus < 0) currentFocus = (x.length - 1);
+                    x[currentFocus].classList.add("autocomplete-active");
+                }
+                function removeActive(x) {
+                    for (var i = 0; i < x.length; i++) {
+                        x[i].classList.remove("autocomplete-active");
+                    }
+                }
+                function closeAllLists(elmnt) {
+                    var x = document.getElementsByClassName("autocomplete-items");
+                    for (var i = 0; i < x.length; i++) {
+                        if (elmnt != x[i] && elmnt != inp) {
+                            x[i].parentNode.removeChild(x[i]);
+                        }
+                    }
+                }
+                document.addEventListener("click", function (e) {
+                    closeAllLists(e.target);
+                });
+            }
+
+            var emailList = [];
+            var mobileNoList = [];
+            var cityList = [];
+            $(document).ready(function () {
+                $.ajax({
+                    headers: { "Content-Type": "application/json" },
+                    type: "GET",
+                    url: baseUrl + 'v1/admin/user',
+                    success: function (result) {
+                        var UserDetailsList = result;
+                        UserDetailsList.forEach(function (user) {
+                            ['emailId'].forEach(function (attr) {
+                                this.emailList = user[attr];
+                            });
+                            ['mobileNo1'].forEach(function (attr) {
+                                this.mobileNoList = "+ user[attr] +"
+                            });
+                        });
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) { 
+                        console.log('update Stock error: ' + textStatus); 
+                        }
+
+                });
+            });
+            var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central Arfrican Republic", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauro", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre & Miquelon", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "St Kitts & Nevis", "St Lucia", "St Vincent", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
+            var states = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua & Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central Arfrican Republic", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauro", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre & Miquelon", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "St Kitts & Nevis", "St Lucia", "St Vincent", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
+            var ownerList = [];
+            var propertyList = [];
+            var stateList = [];
+            autocomplete(document.getElementById("emailInput"), JSON.stringify(this.emailList));
+            autocomplete(document.getElementById("mobInput"), this.mobileNoList);
+        </script>
+</body>
+
+</html>

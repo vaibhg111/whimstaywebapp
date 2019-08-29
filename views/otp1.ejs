@@ -1,0 +1,137 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/style4.css">
+       
+    <script>
+        $(document).ready(function () {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "block";
+
+        });
+        function concat(e) {
+            alert("You pressed a key inside the input field");
+            if (e.keyCode == 9) {
+                alert('');
+                // Here read the active selected link.
+                activeElement = document.activeElement;
+                // If HTML element is an anchor <a>
+                if (activeElement.tagName.toLowerCase() == 'a')
+                    // get it's hyperlink
+                    alert(activeElement.href);
+            }
+        }
+    
+        function myFunction() {
+            var modal = document.getElementById('myModal');
+
+            modal.style.display = "block";
+        }
+        function closepopup() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "none";
+        }
+    
+        $(document).ready(function () {
+            $('input').keyup(function () {
+                if ($(this).val().length == $(this).attr("maxlength")) {
+                    $(this).next().focus();
+                }
+            });
+        });
+
+        function concat() {
+            if (document.getElementById('otp1').value != '' && document.getElementById('otp2').value != '' && document.getElementById('otp3').value != '' && document.getElementById('otp4').value != '' && document.getElementById('otp5').value != '' && document.getElementById('otp6').value != '') {
+                var concatopt = (document.getElementById('otp1').value) + (document.getElementById('otp2').value) + (document.getElementById('otp3').value) + (document.getElementById('otp4').value) + (document.getElementById('otp5').value) + (document.getElementById('otp6').value);
+
+                // +document.getElementById('otp3').value+document.getElementById('otp4').value+document.getElementById('otp5').valuedocument.getElementById('otp6').value;
+                //alert(concatopt);
+                document.getElementById("hidden_value").value = concatopt;
+                document.getElementById("autoSubmit").submit();
+
+            
+            }
+        }
+        var elems_arr = [];
+        var value_arr = $('#input_hidden_field_arr').val();
+    </script>
+</head>
+<body>
+<div>
+    <div class="topnav">
+        <div class="col-md-12">
+            <img class="col-md-2 col-md-offset-1 " id="logo" src="/public/images/wemaste_Logo.png">
+            <!-- <button class="col-md-2 col-md-offset-3 btn" style="height:40px;  border: 1px solid black;
+        background-color: white;">List Your Property</button>
+        <button class="col-md-2 btn" style="margin-left: 10px; width:100px;height:40px;  border: 1px solid black;
+        background-color: white; " data-reveal-id="exampleModal">Login</button>
+        <button class="col-md-2 btn" style="margin-left: 10px; width:120px; height:40px;  border: 1px solid black;
+        background-color: white;">Sign Up</button> -->
+        </div>
+        <div class="col-md-12">
+            <hr style="border:0.5px solid #FC97B9; margin-top: -20px;">
+        </div>
+    </div>
+    <div>
+        <div id="myModal" class="modal">
+            <div class="modal-content" style=" width: 450px; height:300px; margin-top: 80px; background-color: rgb(247, 243, 243);">
+                    <img src="/public/images/close1.png" onclick="closepopup()" style="float: right; width: 30px;">
+                <!-- <button onclick="closepopup()" style="border:none; color: #02C6C4;float: right;font-size: 20px;font-weight: bold; background-color: rgb(247, 243, 243);">X</button> -->
+                <div style="align-content: center; margin-left: 25px;">
+                    <br>
+
+                    <label style="color: #01364D; font: bold; font-size: 15px;">Enter your 6 Digit
+                        <br> SMS Confirmation </label>
+                    <br>
+                    <br>
+                    <br>
+                    <form action="/dashboarduser" id="autoSubmit" method="post">
+                    
+                        <input type="hidden" class="form-control input-lg" id="fullname" name="fullName" value="<%= data.fullName %>">
+                        <input type="hidden" class="form-control input-lg" id="txtyear" name="dobDt" value="<%= data.dobDt %>"/ >
+                        <input type="hidden" class="form-control input-lg" id="fullname" name="emailId" value="<%= data.emailId %>" />
+                        <input type="hidden" class="form-control input-lg" id="numb" name="mobileno1" maxlength="10" value="<%= data.mobileno1 %>" />
+
+
+                    <input type="text" style="width: 45px; height:40px; border-color: #01364D; border: 1px solid #01364D;  border-radius: 3px; padding: 10px;  font-weight: bold; text-align: center;font-size: 15px;"
+                        id="otp1" name="fname" tabindex="1" maxlength="1" />
+                    <input type="text" style="width: 45px; height:40px; border-color: #01364D; border: 1px solid #01364D;  border-radius: 3px; padding: 10px; font-weight: bold; text-align: center;font-size: 15px; "
+                        id="otp2" name="fname" tabindex="2" maxlength="1" />
+                    <input type="text" style="width: 45px;  height:40px; border-color: #01364D; border: 1px solid #01364D;  border-radius: 3px; padding: 10px; font-weight: bold; text-align: center;font-size: 15px; "
+                        id="otp3" name="fname" tabindex="3" maxlength="1" />
+                    <input type="text" style="width: 45px; height:40px; border-color: #01364D; border: 1px solid #01364D;  border-radius: 3px; padding: 10px; font-weight: bold; text-align: center;font-size: 15px; "
+                        id="otp4" name="fname" tabindex="4" maxlength="1" />
+                    <input type="text" style="width: 45px; height:40px; border-color: #01364D; border: 1px solid #01364D;  border-radius: 3px; padding: 10px; font-weight: bold; text-align: center;font-size: 15px; "
+                        id="otp5" name="fname" tabindex="5" maxlength="1" />
+                    <input type="text" style="width: 45px; height:40px; border-color: #01364D; border: 1px solid #01364D;  border-radius: 3px; padding: 10px; font-weight: bold; text-align: center;font-size: 15px; "
+                        id="otp6" name="fname" tabindex="6" maxlength="1" onkeyup="concat();" />
+                    <br>
+                    <br>
+                    <input type="hidden" id="hidden_value" name="otpCode" value="concatopt">
+                    <input type="hidden" value="" id="input_hidden_field_obj" />
+                    </form>
+                    <button style="height: 40px; margin-left: 130px; width: 100px; background-color: #01364D; color: white; border: 1px solid rgb(209, 202, 202); padding: 10px; font-size: 14px;">Resend</button>
+                    <br>
+                    <label style="height: 40px; margin-left: 110px; margin-top: 10px; width: 150px; color: #01364D;padding: 10px;  font-size: 14px;">Keep me Signed In</label>
+                    <div style="float: right;margin-top: 20; margin-right: 100px;">
+                        <label class="dot"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div>
+
+    </div>
+</div>
+</body>
+</html>

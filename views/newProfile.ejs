@@ -1,0 +1,594 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+	<meta name="author" content="Wemastè">
+	<meta name="robots" content="noindex">
+	<meta name="googlebot" content="noindex">
+	<!----------------------- title -------------------------------------->
+	<title>Profile - Whimstay Host</title>
+	<!------------------------ favicon ------------------------------------>
+	<link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+
+	<!---------------- styles font-awesome icon --------------------------->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!------------------------- bootstrap ---------------------------------->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<!-------------------------- animation ---------------------------------->
+	<link rel="stylesheet" href="css/animate.min.css" />
+	<!------------------------- font-awesome icon ---------------------------->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+		integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+	<!------------------------- wemaste styles -------------------------------->
+	<link rel="stylesheet" href="../public/stylesheets/core.css" />
+	<link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+
+	<!-- <script type="text/javascript">
+		function HandleBrowseClick(input_image) {
+			//$("#Photoview1").hide();
+			//$("#Photoview2").show();
+			//$("#Photo_Confirm").show();
+			var fu1 = document.getElementById("FileUpload1");
+			var file = document.getElementById("file-input");
+		}
+
+
+	</script> -->
+
+	<style>
+		.img-circle {
+			width: 240px;
+			height: 150px;
+			margin-top: -13px;
+
+		}
+
+		#imageStyle {
+			margin-top: 13px;
+		}
+
+		img {
+			text-indent: 100vw;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- start header -->
+	<header>
+		<!-- start navigation -->
+		<%- include mainMasterDashboard.ejs %>
+
+		<!-- end header -->
+
+		<!------------------------------------------- start main content ---------------------------------------------->
+		<section id="getstarted" class="no-transition">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12  margin-20px-top margin-30px-bottom">
+
+
+						<h3 class="text-capitalize text-dark-blue font-weight-300">Profile Details</h3>
+
+
+					</div>
+				</div>
+
+				<div class="row">
+
+
+					<div class="col-md-8 margin-30px-bottom">
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h6 class="text-blue">Profile Photo</h6>
+							</div>
+							<div class="panel-body">
+								<form action="/">
+									<div class="row">
+										<div class="form-group">
+											<div class="col-md-3">
+
+												<div id="photo_display" class="image-upload">
+													<label for="file-input">
+														<span id="profilePhoto"></span>
+
+													</label>
+													<input id="file-input" style="display: none;" type="file"
+														onchange="filel(this.files[0])" />
+													<!-- <img src="../public/images/default_avatar.jpg" class="img-circle"> -->
+												</div>
+											</div>
+											<div class="col-md-9">
+
+												<p>Upload Profile Photo</p>
+												<br><br><br>
+												<div class="row">
+
+													<div class="col-md-3">
+														<label
+															class="upload btn btn-blue btn-rounded btn-large width-100">Select
+															Image
+															<input type="file" class="input-file" id="profileImage"
+																name="file"
+																accept="image/jpg, image/jpeg, image/png, image/gif">
+														</label>
+													</div>
+
+													<div class="col-md-5 col-md-offset-1">
+														<button type="button" id="removeProfileImg"
+															class="btn btn-blue btn-rounded btn-large width-100">Remove
+															Image</button>
+													</div>
+
+													<div class="col-md-3 pull-right">
+														<button type="button" id="uploadProfileImg"
+															class="btn btn-blue btn-rounded btn-large width-100">Save</button>
+													</div>
+													<!-- <div class="col-md-3 col-md-offset-1">
+															<label class="upload btn btn-blue btn-rounded btn-large width-100" id="uploadProfileImg">Save
+															</label>
+														</div> -->
+													<!-- <div id="removeImage" class="col-md-3 pull-left">
+															<label class="upload btn btn-blue btn-rounded btn-large width-100" id="removeProfileImg">Remove Image
+															</label>
+														</div> -->
+
+												</div>
+
+											</div>
+										</div>
+									</div>
+
+								</form>
+
+							</div>
+
+						</div>
+						<input type="hidden" value="<%= data %>" id="userId">
+						<input type="hidden" value="<%= pmcId %>" id="pmcId">
+						<input type="hidden" value="<%= url %>" id="globalUrl">
+						<input type="hidden" value="<%= hostUrl %>" id="hostUrl">
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h6 class="text-blue">About You</h6>
+							</div>
+							<div class="panel-body">
+								<form action="/">
+									<div class="row">
+										<div class="form-group">
+											<div class="col-md-3">
+												<label for="descHost" class="pull-right">Describe Yourself:</label>
+											</div>
+											<div class="col-md-9">
+
+												<textarea class="form-control margin-10px-bottom" rows="10"
+													id="descHost" maxlength="500" name="descHost"></textarea>
+
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4 pull-right">
+											<button type="button" id="updateDetails"
+												class="btn btn-blue btn-rounded btn-large width-100">Save</button>
+										</div>
+									</div>
+
+								</form>
+
+							</div>
+
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h6 class="text-blue">Account Info</h6>
+							</div>
+							<div class="panel-body">
+								<form action="/">
+									<div class="row">
+										<div class="form-group">
+											<div class="col-md-3">
+												<label for="firstName" class="pull-right">First Name:</label>
+											</div>
+											<div class="col-md-9">
+
+												<input type="text" class="form-control" id="firstName" name="firstName"
+													maxlength="50" onkeypress="return numberOnly(this, event)"
+													placeholder="First Name..." autocomplete="off" oncopy="return false"
+													onpaste="return false">
+												<span id="firstName1" style="color:red;"></span>
+											</div>
+
+										</div>
+
+										<div class="form-group">
+											<div class="col-md-3">
+												<label for="lastName" class="pull-right">Last Name:</label>
+											</div>
+											<div class="col-md-9">
+
+												<input type="text" class="form-control" id="lastName" name="lastName"
+													maxlength="50" onkeypress="return numberOnly(this, event)"
+													placeholder="Last Name..." autocomplete="off" oncopy="return false"
+													onpaste="return false">
+												<span id="lastName1" style="color:red;"></span>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="col-md-3">
+												<label for="email" class="pull-right">Email:</label>
+											</div>
+											<div class="col-md-9">
+
+												<input type="email" class="form-control" id="emailId" name="email"
+													placeholder="Enter Your Email..." disabled>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="col-md-3">
+												<label for="mobileno" class="pull-right">Mobile Number:</label>
+											</div>
+											<div class="col-md-9">
+
+												<input type="text" class="form-control margin-10px-bottom"
+													id="mobileno1" name="mobileno" disabled>
+												<p class="text-small">If you need to change your mobile number,<a
+														href="./support"> please contact customer
+														support.</a></p>
+											</div>
+										</div>
+
+
+										<div class="form-group">
+											<div class="col-md-3">
+												<label for="websiteurl" class="pull-right">Your Website URL:</label>
+											</div>
+											<div class="col-md-9">
+
+												<input type="text" class="form-control margin-10px-bottom" id="weburl"
+													name="websiteurl">
+												<!-- <p class="text-small">You will use your mobile number to sign into your account. If you need to change your
+														mobile number, please contact customer support.</p> -->
+											</div>
+										</div>
+
+
+									</div>
+									<!-- <input type="hidden" id="dobDt" class="form-control"> -->
+									<input type="hidden" id="mobileno" class="form-control">
+									<input type="hidden" id="dialerCode" class="form-control">
+									<input type="hidden" id="websiteurl" class="form-control">
+
+									<div class="row">
+										<div class="col-md-4 pull-right">
+											<button type="button" id="updateAccountInfo"
+												class="btn btn-blue btn-rounded btn-large width-100">Save</button>
+										</div>
+									</div>
+
+								</form>
+
+							</div>
+
+						</div>
+
+					</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-3 margin-30px-bottom">
+
+						<div class="sidebar-box">
+							<h5 class="text-capitalize text-dark-blue font-weight-300">Profile Settings</h5>
+							<ul class="no-margin-left no-padding-left margin-20px-top">
+								<li class="active"><a href="./profile">Profile Details</a></li>
+								<li><a href="./payout">Payout Settings</a></li>
+								<li><a href="./notification">Notifications</a></li>
+								<li><a href="./Sign_out" onclick="signOut()">Sign Out</a></li>
+							</ul>
+						</div>
+
+						<div class="sidebar-box">
+							<h5 class="text-capitalize text-dark-blue font-weight-300">Share the Love</h5>
+							<p>Help us grow by telling your friends about Whimstay.</p>
+							<button type="button" id="shareMail" class="btn btn-blue btn-rounded btn-large width-100"
+								data-toggle="modal" data-target="#myModal-Share">Share</button>
+						</div>
+						<div class="sidebar-box">
+							<h5 class="text-capitalize text-dark-blue font-weight-300">Follow Us</h5>
+							<div class="sidebar-social-icon">
+								<a href="https://www.facebook.com/whimstay" class="facebook-bg-hvr" target="_blank"><i
+										class="fab fa-facebook-f"></i></a>
+								<a href="https://www.instagram.com/whimstay" class="instagram-bg-hvr" target="_blank"><i
+										class="fab fa-instagram"></i></a>
+								<a href="https://www.linkedin.com/company/whimstay" class="linkedin-bg-hvr"
+									target="_blank"><i class="fab fa-linkedin-in"></i></a>
+
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+			</div>
+
+
+			</div>
+		</section>
+		<!----------------------------------------end main content ---------------------------------------------------->
+		<div class="ajax_loader" style="display:none;" id="spinner" data-backdrop="static" data-keyboard="false">
+			<div id="ajax_loader">
+				<!-- <img src="../public/images/spinner.gif" style="display: block; margin-left: auto; margin-right: auto;"> -->
+				<i id="img-spinner" class="fa fa-spinner fa-spin" alt="Loading"
+					style="font-size:50px;color: #FC97B9"></i>
+			</div>
+		</div>
+
+		<!------------------------------------------ Modal start ----------------------------------------------------->
+		<div id="dynamic_model" class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: pink;">
+						<span class="modal-title"></span>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p id="msg-body"></p>
+					</div>
+					<div class="modal-footer">
+						<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!------------------------------------------- Modal End -------------------------------------------------------->
+
+		<!-------------------------------- start share with a host lightbox--------------------------------------------->
+		<!----------------------------------------- Modal -------------------------------------------------------------->
+		<div id="myModal-Share" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+				<!-------------------- Modal content---------------->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<!--<h4 class="modal-title">Modal Header</h4>-->
+					</div>
+					<div class="modal-body">
+
+
+						<form action="/">
+							<div class="form-group">
+								<label for="shareTo">To: <span class="text-extra-small">(seperate with a
+										comma)</span></label> <input type="email" class="form-control" id="shareTo"
+									name="shareTo" onkeypress="validateInput()" maxlength="5000"
+									placeholder="Enter Emails... ">
+								<span id="mail1" style="color:red;"></span>
+							</div>
+							<div class="form-group">
+								<label for="shareSubject">Subject:</label> <input type="text" class="form-control"
+									id="shareSubject" onkeypress="validateInput()" maxlength="500" name="shareSubject"
+									Value="Have You Seen Whimstay Yet">
+								<span id="subject" style="color:red;"></span>
+							</div>
+							<div class="form-group">
+								<label for="shareMessage">Message:</label>
+								<div class="form-control margin-10px-bottom" contenteditable="true" id="shareMessage"
+									maxlength="2000" name="shareMessage">
+									<span id="message" style="color:red;"></span>
+								</div>
+							</div>
+
+							<button type="submit" id="emailSent" class="btn btn-blue btn-rounded btn-large width-100"
+								data-toggle="modal" data-target="#Share_model" data-dismiss="modal">Send</button>
+						</form>
+
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!------------------------------------- end share with a host lightbox-------------------------------------------->
+
+		<!----------------------------- Modal start ------------------------------------------------------->
+
+		<div id="Share_model" class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: pink;">
+						<span class="modal-title"></span>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p id="message-body"></p>
+					</div>
+					<div class="modal-footer">
+						<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!---------------------------------------------- Modal End --------------------------------------------------->
+
+
+		<!----------------------------------------------footer Start-------------------------------------------------->
+		<footer class="bg-dark-blue padding-30px-tb text-center">
+			<div class="footer-widget-area">
+				<div class="container">
+					<div class="row">
+						<div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+							<a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+								href="https://www.facebook.com/whimstay" target="_blank"><i
+									class="fab fa-facebook-f"></i><span></span></a>
+							<a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s"
+								href="https://www.instagram.com/whimstay" target="_blank"><i
+									class="fab fa-instagram"></i><span></span></a>
+							<a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+								href="https://www.linkedin.com/company/whimstay" target="_blank"><i
+									class="fab fa-linkedin-in"></i><span></span></a>
+
+						</div>
+					</div>
+
+
+					<p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights
+						Reserved.</p>
+					<p class="text-white"><a href="./terms_privacy">Terms & Privacy</a> </p>
+				</div>
+			</div>
+
+		</footer>
+		<!---------------------------------------------- end footer ---------------------------------------------------->
+		<!------------------------------------- javascript libraries --------------------------------------------------->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script> -->
+
+
+		<!-- setting -->
+		<script src="../public/javascripts/global.js"></script>
+		<!-- <script src="../public/javascripts/main.js"></script> -->
+		<script src="../public/javascripts/manageProfile.js"></script>
+		<script src="../public/javascripts/validate.js"></script>
+		<script src="../public/javascripts/shareTheLoveApi.js"></script>
+
+
+
+		<script>
+			//---------------------------------------Display Host details-------------------------------------------------
+			var newurl = document.getElementById('globalUrl').value;
+			$(document).ready(function () {
+				$('#uploadProfileImg').hide();
+				$.ajax({
+
+					headers: {
+						Authorization: localStorage.getItem('token') || '',
+					},
+					type: "GET",
+					url: newurl + 'user/' + document.getElementById("userId").value,
+					success: function (result) {
+						console.log(JSON.stringify(result));
+						document.getElementById("firstName").value = result.firstName;
+						document.getElementById("lastName").value = result.lastName;
+						document.getElementById("emailId").value = result.emailId;
+						document.getElementById("mobileno1").value = result.mobileno1;
+						document.getElementById("mobileno").value = result.mobileno1;
+						// document.getElementById("dobDt").value = result.dobDt;
+						document.getElementById("dialerCode").value = result.dialerCode;
+						//document.getElementById("userProfileId").value = result.userProfile.userProfileId;
+						// var date = document.getElementById("dobDt").value;
+						// var parts = date.split("-");
+						// document.getElementById("userDOBYear").value = parts[0];
+						// document.getElementById("userDOBMonth").value = parts[1];
+						// document.getElementById("userDOBDay").value = parts[2];
+						document.getElementById("descHost").value = result.about;
+						if (result.hostWebsite != undefined) {
+							document.getElementById("weburl").value = result.hostWebsite;
+						}
+						if (result.profileImageFullPath === null || result.profileImageFullPath === "" || result.profileImageFullPath === undefined) {
+							$('#photo_display').append("<img class='img-circle' src='../public/images/default_avatar.jpg' />");
+						} else {
+							$('#photo_display').append("<img class='img-circle' src='" + result.profileImageFullPath + "' />");
+						}
+						// $('#photo_display').append("<img class='img-circle' src='../public/images/default_avatar.jpg' />");
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						// console.log('update Stock error: ' + textStatus); 
+					}
+
+				});
+			})
+
+		</script>
+
+		<script>
+			//-----------------------------------------------Profile image display--------------------------------------------
+			$('#profileImage').click(function () {
+				$('#uploadProfileImg').show();
+			})
+			$('#profileImage').on("change", uploadPhoto);
+			function uploadPhoto() {
+
+				var existingImage = $('#photo_display .img-circle').length;
+				var currentImage = $('#profilePhoto .img-circle').length;
+
+				if (existingImage) {
+					$("#photo_display .img-circle").remove();
+				} else if (currentImage) {
+					$("#profilePhoto ").remove();
+				}
+				var $preview = $('#profilePhoto');
+				if (this.files) $.each(this.files, readAndPreview);
+
+				function readAndPreview(i, file) {
+
+					if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+						return console.log(file.name + " is not an image");
+					} // else...
+
+					var reader = new FileReader();
+
+					$(reader).on("load", function () {
+						$preview.append($('<img/>', { src: this.result, width: 240, height: 150 }).attr({
+							class: "img-circle", id: "imageStyle"
+						}));
+					});
+					reader.readAsDataURL(file);
+				}
+
+
+			}
+		</script>
+
+		<script>
+			function validateInput() {
+				$('#mail1').empty();
+				$('#subject').empty();
+			}
+
+			function numberOnly(txt, e) {
+				$('#firstName1').empty();
+				$('#lastName1').empty();
+				var arr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz- ";
+				var code;
+				if (window.event)
+					code = e.keyCode;
+				else
+					code = e.which;
+				var char = keychar = String.fromCharCode(code);
+				if (arr.indexOf(char) != -1 || e.key === "Backspace" || e.key === "Tab") {
+					return true;
+				} else {
+					return false;
+				}
+
+			}
+
+			function signOut() {
+				localStorage.removeItem('token');
+			}
+		</script>
+
+</body>
+
+</html>

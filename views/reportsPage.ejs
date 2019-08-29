@@ -1,0 +1,276 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+    <meta name="author" content="Wemastè">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    <!-- title -->
+    <title>Property Report - Whimstay Host</title>
+    <!-- favicon -->
+    <link rel="icon" href="../public/images/icons/wemaste-favicon.png">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <!-- styles font-awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- bootstrap -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!-- animation -->
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+
+    <!-- wemaste styles -->
+    <link rel="stylesheet" href="../public/stylesheets/core.css" />
+    <link rel="stylesheet" href="../public/stylesheets/stylehome.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap-datetimepicker.min.css" />
+
+    <!-- <link rel="stylesheet" href="../public/stylesheets/grid.css" /> -->
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
+
+    <script src="../public/javascripts/global.js"></script>
+    <script src="https://unpkg.com/ag-grid-enterprise@20.2.0/dist/ag-grid-enterprise.min.js"></script>
+
+
+    <script> var __basePath = ''; </script>
+</head>
+
+
+<style>
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+
+    body {
+        margin: 0 0 90px;
+        /* bottom = footer height */
+        padding: 25px;
+    }
+
+    footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    #datetimepicker3 .timepicker-picker table td a span,
+    #datetimepicker3 .timepicker-picker table td,
+    #datetimepicker3 .timepicker-picker table td span {
+        height: 10px !important;
+        line-height: 10px !important;
+        width: 10px !important;
+        line-height: 10px !important;
+        padding: 0px !important;
+    }
+
+
+    #datetimepicker4 .timepicker-picker table td a span,
+    #datetimepicker4 .timepicker-picker table td,
+    #datetimepicker4 .timepicker-picker table td span {
+        height: 5px !important;
+        line-height: 5px !important;
+        width: 5px !important;
+        line-height: 5px !important;
+        padding: 0px !important;
+    }
+</style>
+
+
+<body class="host-dashboard">
+    <!-- </head> -->
+    <!-- end header -->
+
+    <!-- start header -->
+    <%- include mainMasterDashboard.ejs %>
+    <!-- end header -->
+
+    <!-- start main content -->
+    <input type="hidden" value="<%= pmcId %>" id="pmcId">
+    <input type="hidden" value="<%= url %>" id="globalUrl">
+
+
+    <div class="row" style="text-align: center;margin-top: 80px;">
+
+        <div class="col-sm-3 col-sm-offset-4">
+
+            <div class="container">
+                <div class="row">
+                    <div class='col-sm-4'>
+                        <div class="form-group">
+
+                            <!-- <div class='input-group date' id='datetimepicker3'>
+                                <input type='text' class="form-control" id="reportDate" />
+                                <span class="input-group-addon" onclick="onDateInput()">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div> -->
+                            <!-- <br /> -->
+                            <select class="form-control" id="reportName">
+                                    <option>MissingPropertyDetailsReport</option>
+                                </select>
+                            <select class="form-control" id="reportFormat">
+                                <option value="EXCEL">EXCEL</option>
+                                <option value="PDF">PDF</option>
+                                <option value="HTML">HTML</option>
+                            </select>
+
+                            
+
+
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#datetimepicker3').datetimepicker(
+                                {
+                                    format: 'YYYY-MM-DD',
+                                }
+                            );
+                            // console.log("datetimepicker3" + document.getElementById('reportDate').value);
+                            // console.log("datetimepicker3" + document.getElementById('reportName').value);
+                            // console.log("datetimepicker3" + document.getElementById('reportFormat').value);
+
+                        });
+                        function onDateInput() {
+                            // alert("date Select");
+                            // console.log("datetimepicker3" + document.getElementById('reportDate').value);
+                        }
+                    </script>
+
+
+
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <!-- <button class="btn btn-blue btn-rounded" id="backBtn2">Back</button> -->
+                <button class="btn btn-blue btn-rounded" id="generateReport">Generate Report</button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script type="text/javascript" charset="utf-8">
+        var url = document.getElementById('globalUrl').value;
+        var pmcId = document.getElementById('pmcId').value;
+        var gridOptions = {};
+        var gridArr = [];
+        var rowDataArr = [];
+        var userId = document.getElementById("userId").value;
+
+
+        $("#generateReport").click(function () {
+            //var reportdate = document.getElementById('reportDate').value;
+            var reportName = document.getElementById('reportName').value;
+            var reportFormat = document.getElementById('reportFormat').value;
+            // $.ajax({
+
+            //     type: "GET",
+            //     dataType: "json",
+            //     contentType: "application/json; charset=utf-8",
+            //     crossDomain: true,
+            //     'headers': { Authorization: localStorage.getItem('token') || '', },
+            var urlToSend = url + 'report?date&reportName=' + reportName + '&format=' + reportFormat + '&pmcId=' + pmcId;
+            //     success: function (result) {
+            //         console.log("Generate Report Success");
+            //     },
+            //     error: function (jqXHR, textStatus, errorThrown) {
+            //         console.log('API error: ' + jqXHR);
+            //     }
+            // });
+            // var params ={
+            //     Authorization: localStorage.getItem('token') || ''
+            // }
+            var req = new XMLHttpRequest();
+            req.open("GET", urlToSend, true);
+            req.responseType = "blob";
+            req.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            req.setRequestHeader('Authorization', localStorage.getItem('token') || '');
+            req.onload = function (e) {
+                if (this.status == 200) {
+                    var blob = new Blob([this.response], { type: 'application/vnd.ms-excel' });
+                    var downloadUrl = URL.createObjectURL(blob);
+                    var a = document.createElement("a");
+                    a.href = downloadUrl;
+                    var url = urlToSend.split('/');
+                    // a.download = "DailyChargeReport"+reportFormat;
+                    switch (reportFormat) {
+                        case "EXCEL":
+                            a.download = "MissingPropertyDetailsReport.xlsx";
+                            break;
+                        case "PDF":
+                            a.download = "MissingPropertyDetailsReport.pdf";
+                            break;
+                        case "HTML":
+                        // window.open(urlToSend,"Report",location=1,status=1);
+                        window.open([url[0] + '//host:dfghjasfgshfjsufysgzhcgjszbjcbjszbcjbshbh23456765434rtewert', url[2] + '/' + url[3] + '/' + url[4]].join("@"), "Report", location = 1, status = 1);
+                    }
+                    document.body.appendChild(a);
+                    a.click();
+                }
+            };
+            req.send();
+        });
+
+
+    </script>
+    <!-- end share with a host lightbox-->
+
+    <!--footer Start-->
+    <footer class="bg-dark-blue text-center">
+        <div class="footer-widget-area">
+            <div class="container">
+                <div class="row">
+                    <div class="medium-icon social-icon-style-3 social_icon list-inline margin-20px-top">
+                        <a class="facebook text-white facebook-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+                            href="https://www.facebook.com/whimstay" target="_blank"><i
+                                class="fab fa-facebook-f"></i><span></span></a>
+                        <a class="instagram text-white instagram-bg-hvr wow fadeInDown" data-wow-duration=".5s"
+                            href="https://www.instagram.com/whimstay/" target="_blank"><i
+                                class="fab fa-instagram"></i><span></span></a>
+                        <a class="linkedin text-white linkedin-bg-hvr wow fadeInUp" data-wow-duration=".5s"
+                            href="https://www.linkedin.com/company/whimstay" target="_blank"><i
+                                class="fab fa-linkedin-in"></i><span></span></a>
+
+                    </div>
+                </div>
+                <p class="text-white text-large margin-10px-bottom margin-20px-top">© Whimstay, Inc. All Rights
+                    Reserved.</p>
+                <p class="text-white"><a href="./terms_privacy">Terms & Privacy</a> </p>
+
+            </div>
+        </div>
+
+    </footer>
+    <!-- end footer -->
+
+    <!-- javascript libraries -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js'></script>
+    <!-- <script src='../public/javascripts/calendar.js'></script> -->
+    <script
+        src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js'></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../public/javascripts/global.js"></script>
+</body>
+
+</html>

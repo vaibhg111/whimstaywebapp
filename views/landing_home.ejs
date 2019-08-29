@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/style.css">
+<script src="../assets/validation.js"></script>
+<script src="../assets/script.js"></script>
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+</script>
+</head>
+<body>
+<div class="topnav" >
+    <div class="col-md-12" >
+    <img class="col-md-2 col-md-offset-1 " onclick="location.href='/' " id="logo" src="../assets/Wemaste-Logo.png"/>
+    <button class="col-md-2 col-md-offset-3" id="property" >List Your Property</button>
+    <button class="col-md-2 host"  id="help" >Host Login</button>
+    
+  </div>  
+  <div class="col-md-12">
+  <!-- <hr item-width="50%" style="border-width: 0.5px; color:black;"> -->
+  <hr style="border:0.5px solid rgb(207, 205, 205);">
+  </div>
+  </div>
+  <div class="container">
+    <div class="row">
+  <form action="./birthdate" method="post" onSubmit="return validate()">
+
+    <div class="col-md-12" style="text-align: center; margin-top: -30px;" >
+    <img class="col-md-4 col-md-offset-5"  id="logo" src="../assets/wemaste_landing.png">
+    </div>
+
+  <div class="col-md-12" style="text-align: center">
+    <span class="col-md-4 col-md-offset-4"  id="book"><b>Why not? Let's go!</b>
+    </span></div>
+
+    <div class="col-md-12" style="text-align: center; margin-top: 5px;">
+            <span class="col-md-4 col-md-offset-4"  id="first">Book last-minute vacation rentals at prices that trigger the travel bug.</span>
+        </div>
+    
+    <div class="form-group col-md-6 col-md-offset-3" style="margin-top: 10px; text-align: center;">
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control input-lg" id="fullname" name="fname" placeholder="Enter Phone Number"/ >
+        </div>
+        <span id="umsg" style="color:red;"></span>
+    </div>
+
+    <div class="col-md-12" style="text-align: center; margin-top: -15px;">
+            <button  id="phone">Get the App</button>
+        </div>
+   
+</form>
+</div>
+  </div>
+  <div class="col-md-12" style="text-align: center; margin-top:50px; ">
+    <button  id="phone">Sign Up with Google</button>
+</div>
+</body>       
+</html>
